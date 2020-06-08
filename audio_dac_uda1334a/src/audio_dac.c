@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
-#include <TFA9896.h>
+#include "TFA9896.h"
 
 #include "em_gpio.h"
 #include "em_cmu.h"
@@ -34,20 +34,20 @@ static void initI2s(uint32_t sampleFrequency)
   CMU_ClockEnable(cmuClock_USART1, true);
 
   // Enable GPIO clock and I2S pins
-  GPIO_PinModeSet(gpioPortC, 6, gpioModePushPull, 1);
-  GPIO_PinModeSet(gpioPortC, 8, gpioModePushPull, 1);
-  GPIO_PinModeSet(gpioPortC, 9, gpioModePushPull, 1);
+  GPIO_PinModeSet(gpioPortC, 1, gpioModePushPull, 1); //TX
+  GPIO_PinModeSet(gpioPortC, 0, gpioModePushPull, 1); //CS
+  GPIO_PinModeSet(gpioPortB, 11, gpioModePushPull, 1); //CLK
 
-  // Initialize USART1 to receive data from microphones synchronously
+  // Initialize USART1 to output I2S stereo data
   USART_InitI2s_TypeDef def = USART_INITI2S_DEFAULT;
   def.sync.databits = usartDatabits16;
   def.format = usartI2sFormatW16D16;
   def.sync.enable = usartDisable;
   def.sync.autoTx = true;
-  def.justify = usartI2sJustifyLeft;
+  def.justify = usartI2sJustifyRight;
 
   // define mono channel operation
-  def.mono = true;
+  def.mono = false;
   def.dmaSplit = false;
 
   // Set baud rate to achieve desired sample frequency
@@ -56,43 +56,43 @@ static void initI2s(uint32_t sampleFrequency)
 
   USART_InitI2s(USART1, &def);
 
-  // Enable route to GPIO pins for I2S transfer on route #5
+  // Enable route to GPIO pins for I2S transfer on EXP header
   USART1->ROUTEPEN =  USART_ROUTEPEN_TXPEN
                       | USART_ROUTEPEN_CSPEN
                       | USART_ROUTEPEN_CLKPEN;
 
-  USART1->ROUTELOC0 = USART_ROUTELOC0_TXLOC_LOC11
-                      | USART_ROUTELOC0_CSLOC_LOC11
-                      | USART_ROUTELOC0_CLKLOC_LOC11;
+  USART1->ROUTELOC0 = USART_ROUTELOC0_TXLOC_LOC4 //PC1
+                      | USART_ROUTELOC0_CSLOC_LOC4 //PC0
+                      | USART_ROUTELOC0_CLKLOC_LOC5; //PB11
 
   // Enable USART1
   USART_Enable(USART1, usartEnableTx);
 }
 
-/**************************************************************************//**
- * @brief  Setup I2C
- *****************************************************************************/
-static void initI2c(void)
-{
-  CMU_ClockEnable(cmuClock_I2C0, true);
-  // Using default settings
-  I2C_Init_TypeDef i2cInit = I2C_INIT_DEFAULT;
-  i2cInit.master = true;
-  // Use ~400khz SCK
-  i2cInit.freq = I2C_FREQ_FAST_MAX;
-
-  // Using PC11(SDA) and PC10(SCL)
-  GPIO_PinModeSet(gpioPortC, 11, gpioModeWiredAndPullUpFilter, 1);
-  GPIO_PinModeSet(gpioPortC, 10, gpioModeWiredAndPullUpFilter, 1);
-  GPIO_DriveStrengthSet(gpioPortC, gpioDriveStrengthStrongAlternateStrong);
-
-  I2C0->ROUTEPEN = I2C_ROUTEPEN_SDAPEN | I2C_ROUTEPEN_SCLPEN;
-  I2C0->ROUTELOC0 = (I2C0->ROUTELOC0 & (~_I2C_ROUTELOC0_SDALOC_MASK)) | I2C_ROUTELOC0_SDALOC_LOC16;
-  I2C0->ROUTELOC0 = (I2C0->ROUTELOC0 & (~_I2C_ROUTELOC0_SCLLOC_MASK)) | I2C_ROUTELOC0_SCLLOC_LOC14;
-
-  // Initializing the I2C
-  I2C_Init(I2C0, &i2cInit);
-}
+///**************************************************************************//**
+// * @brief  Setup I2C
+// *****************************************************************************/
+//static void initI2c(void)
+//{
+//  CMU_ClockEnable(cmuClock_I2C0, true);
+//  // Using default settings
+//  I2C_Init_TypeDef i2cInit = I2C_INIT_DEFAULT;
+//  i2cInit.master = true;
+//  // Use ~400khz SCK
+//  i2cInit.freq = I2C_FREQ_FAST_MAX;
+//
+//  // Using PC11(SDA) and PC10(SCL)
+//  GPIO_PinModeSet(gpioPortC, 11, gpioModeWiredAndPullUpFilter, 1);
+//  GPIO_PinModeSet(gpioPortC, 10, gpioModeWiredAndPullUpFilter, 1);
+//  GPIO_DriveStrengthSet(gpioPortC, gpioDriveStrengthStrongAlternateStrong);
+//
+//  I2C0->ROUTEPEN = I2C_ROUTEPEN_SDAPEN | I2C_ROUTEPEN_SCLPEN;
+//  I2C0->ROUTELOC0 = (I2C0->ROUTELOC0 & (~_I2C_ROUTELOC0_SDALOC_MASK)) | I2C_ROUTELOC0_SDALOC_LOC16;
+//  I2C0->ROUTELOC0 = (I2C0->ROUTELOC0 & (~_I2C_ROUTELOC0_SCLLOC_MASK)) | I2C_ROUTELOC0_SCLLOC_LOC14;
+//
+//  // Initializing the I2C
+//  I2C_Init(I2C0, &i2cInit);
+//}
 
 /**************************************************************************//**
  * @brief Initializes all peripherals needed for TFA9896 transmit
@@ -101,7 +101,7 @@ void TFA9896_init(void)
 {
   initLdma();
   initI2s(TFA9896_SAMPLE_FREQUENCY);
-  initI2c();
+  //initI2c();
 }
 
 /**************************************************************************//**
