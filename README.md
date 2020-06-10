@@ -12,25 +12,25 @@ Header files, source files, and function prefixes will then reference the driver
 
 #### Directory Structure
 
-driver/
-├── doc/
-│   ├── optional_doxygen
-│   └── project.xml
-├── SimplicityStudio/
-│    ├── driver_simple_efx32xx.slsproj
-│    └── driver_test_efx32xx.slsproj
-├── IAR/
-│    ├── driver_app_efx32xx.ewp
-│    └── driver_app_efx32xx.eww
-├── src/
-│    └── driver.c
-├── inc/
-│    ├── driver_config.h
-│    └── driver.h 
-├── test/
-│    ├── driver_simple.c
-│    └── driver_test.c
-├── README.md
+driver/  <br/><br/>
+├── doc/  <br/><br/>
+│   ├── optional_doxygen  <br/><br/>
+│   └── project.xml   <br/><br/>
+├── SimplicityStudio/  <br/><br/>
+│    ├── driver_simple_efx32xx.slsproj   <br/><br/>
+│    └── driver_test_efx32xx.slsproj   <br/><br/>
+├── IAR/  <br/><br/>
+│    ├── driver_app_efx32xx.ewp  <br/><br/>
+│    └── driver_app_efx32xx.eww  <br/><br/>
+├── src/  <br/><br/> 
+│    └── driver.c  <br/><br/>
+├── inc/  <br/><br/>
+│    ├── driver_config.h <br/><br/>
+│    └── driver.h <br/><br/> 
+├── test/ <br/><br/>
+│    ├── driver_simple.c <br/><br/>
+│    └── driver_test.c <br/><br/>
+├── README.md <br/><br/>
 
 doc/ contains the build system file, as well as generated doxygen
 
