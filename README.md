@@ -1,4 +1,8 @@
-## Device Drivers
+# Hardware Drivers
+
+## Overview
+
+The projects in this repository are drivers for external hardware such as sensors, displays, or transmitters that would commonly be used with Silicon Labs products. These drivers are intended to demonstrate the use of external hardware with Silicon Labs devices and to allow customers to use that external hardware in their wireless projects. Compatibility with wireless stacks is a major goal of this project.
 
 #### Driver Naming Conventions
 
