@@ -21,6 +21,9 @@ Or
 - EFR32MG12 Radio Board (BRD4162A)
 - Occupancy Sensor EXP board (BRD8030A)
 
+The driver should work with minimal porting on other series 1 EFM/EFR devices and with other
+PIR sensors having similar designs as the one on the Occupancy Sensor EXP board.
+
 ## Setup ##
 
 To test the PIR sensor, you need to connect the occupancy sensor EXP board to the Pearl Gecko STK/WSTK board through the expansion header. Then, you should program the MCU with the pir_simple.sls project.

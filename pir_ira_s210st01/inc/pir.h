@@ -43,6 +43,14 @@ extern "C" {
 /***************************************************************************//**
  * @addtogroup PIR
  * @{
+ 
+ @brief 
+   The implementation of PIR sensor driver using the PIR sensor on the occupancy
+   sensor EXP board. 
+   
+   The target application of the PIR sensor would be smart lighting or alarm 
+   systems in home automation. Whenever certain motion of the human body is 
+   detected, the system will either turn on the light or the alarm.
  ******************************************************************************/
 
 /// Configures whether to use the internal opamp or an external opamp.
