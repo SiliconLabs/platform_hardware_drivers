@@ -1,21 +1,39 @@
 /***************************************************************************//**
- * @file
- * @brief Silicon Labs BMA400 driver
- *
- * BMA accelerometer sensor i2C driver header file.
- *******************************************************************************
- * # License
- * <b>Copyright 2020 Silicon Laboratories Inc. www.silabs.com</b>
- *******************************************************************************
- *
- * The licensor of this software is Silicon Laboratories Inc. Your use of this
- * software is governed by the terms of Silicon Labs Master Software License
- * Agreement (MSLA) available at
- * www.silabs.com/about-us/legal/master-software-license-agreement. This
- * software is distributed to you in Source Code format and is governed by the
- * sections of the MSLA applicable to Source Code.
- *
- ******************************************************************************/
+* @file
+* @brief Silicon Labs BMA400 driver
+*
+* BMA accelerometer sensor i2C driver header file.
+*******************************************************************************
+* # License
+* <b>Copyright 2020 Silicon Laboratories Inc. www.silabs.com</b>
+*******************************************************************************
+*
+* SPDX-License-Identifier: Zlib
+*
+* The licensor of this software is Silicon Laboratories Inc.
+*
+* This software is provided \'as-is\', without any express or implied
+* warranty. In no event will the authors be held liable for any damages
+* arising from the use of this software.
+*
+* Permission is granted to anyone to use this software for any purpose,
+* including commercial applications, and to alter it and redistribute it
+* freely, subject to the following restrictions:
+*
+* 1. The origin of this software must not be misrepresented; you must not
+*    claim that you wrote the original software. If you use this software
+*    in a product, an acknowledgment in the product documentation would be
+*    appreciated but is not required.
+* 2. Altered source versions must be plainly marked as such, and must not be
+*    misrepresented as being the original software.
+* 3. This notice may not be removed or altered from any source distribution.
+*
+*******************************************************************************
+* # Evaluation Quality
+* This code has been minimally tested to ensure that it builds and is suitable
+* as a demonstration for evaluation purposes only. This code will be maintained
+* at the sole discretion of Silicon Labs.
+******************************************************************************/
 #ifndef BMA400_H
 #define BMA400_H
 
@@ -1352,36 +1370,36 @@ typedef struct bma400_desc
 /*                                Public API                                  */
 /* ########################################################################## */
 /* Setup and init */
-eBMA400_State BMA400_Setup(void); /* a setup is a one off thing */
-eBMA400_State BMA400_Init(const eBMA400_Intfc eIntfc); /* an init can be called subsequently several times*/
+eBMA400_State bma400_Setup(void); /* a setup is a one off thing */
+eBMA400_State bma400_Init(const eBMA400_Intfc eIntfc); /* an init can be called subsequently several times*/
 
 /* Test and Reset */
-int8_t BMA400_soft_reset(const eBMA400_Intfc eIntfc);
-int8_t BMA400_perform_self_test(const eBMA400_Intfc eIntfc);
-uint8_t BMA400_chipid(const eBMA400_Intfc eIntfc);
+int8_t bma400_soft_reset(const eBMA400_Intfc eIntfc);
+int8_t bma400_perform_self_test(const eBMA400_Intfc eIntfc);
+uint8_t bma400_chipid(const eBMA400_Intfc eIntfc);
 
 /* Getters */
-int8_t BMA400_get_accel_data(uint8_t data_sel, struct bma400_sensor_data *accel, const eBMA400_Intfc eIntfc);
-int8_t BMA400_get_power_mode(uint8_t *power_mode, const eBMA400_Intfc eIntfc);
-int8_t BMA400_get_sensor_conf(struct bma400_sensor_conf *conf, uint16_t n_sett, const eBMA400_Intfc eIntfc);
-int8_t BMA400_get_fifo_data(struct bma400_fifo_data *fifo, const eBMA400_Intfc eIntfc);
-int8_t BMA400_get_interrupt_status(uint16_t *int_status, const eBMA400_Intfc eIntfc);
-int8_t BMA400_get_interrupts_enabled(struct bma400_int_enable *int_select, uint8_t n_sett, const eBMA400_Intfc eIntfc);
-int8_t BMA400_get_temperature_data(int16_t *temperature_data, const eBMA400_Intfc eIntfc);
-int8_t BMA400_get_steps_counted(uint32_t *step_count, uint8_t *activity_data, const eBMA400_Intfc eIntfc);
+int8_t bma400_get_accel_data(uint8_t data_sel, struct bma400_sensor_data *accel, const eBMA400_Intfc eIntfc);
+int8_t bma400_get_power_mode(uint8_t *power_mode, const eBMA400_Intfc eIntfc);
+int8_t bma400_get_sensor_conf(struct bma400_sensor_conf *conf, uint16_t n_sett, const eBMA400_Intfc eIntfc);
+int8_t bma400_get_fifo_data(struct bma400_fifo_data *fifo, const eBMA400_Intfc eIntfc);
+int8_t bma400_get_interrupt_status(uint16_t *int_status, const eBMA400_Intfc eIntfc);
+int8_t bma400_get_interrupts_enabled(struct bma400_int_enable *int_select, uint8_t n_sett, const eBMA400_Intfc eIntfc);
+int8_t bma400_get_temperature_data(int16_t *temperature_data, const eBMA400_Intfc eIntfc);
+int8_t bma400_get_steps_counted(uint32_t *step_count, uint8_t *activity_data, const eBMA400_Intfc eIntfc);
 
 /* Setter */
-int8_t BMA400_set_power_mode(uint8_t power_mode, const eBMA400_Intfc eIntfc);
-int8_t BMA400_set_device_conf(const struct bma400_device_conf *conf, uint8_t n_sett, const eBMA400_Intfc eIntfc);
-int8_t BMA400_set_fifo_flush(const eBMA400_Intfc eIntfc);
-int8_t BMA400_set_step_counter_param(uint8_t *sccr_conf, const eBMA400_Intfc eIntfc);
-int8_t BMA400_extract_accel(struct bma400_fifo_data *fifo,
+int8_t bma400_set_power_mode(uint8_t power_mode, const eBMA400_Intfc eIntfc);
+int8_t bma400_set_device_conf(const struct bma400_device_conf *conf, uint8_t n_sett, const eBMA400_Intfc eIntfc);
+int8_t bma400_set_fifo_flush(const eBMA400_Intfc eIntfc);
+int8_t bma400_set_step_counter_param(uint8_t *sccr_conf, const eBMA400_Intfc eIntfc);
+int8_t bma400_extract_accel(struct bma400_fifo_data *fifo,
                             struct bma400_sensor_data *accel_data,
                             uint16_t *frame_count,
                             const eBMA400_Intfc eIntfc);
 
 /* Interrupts */
-void BMA400_I2C_ISR_Handler(const eBMA400_Intfc eIntfc);
-int8_t BMA400_enable_interrupt(const struct bma400_int_enable *int_select, uint8_t n_sett, const eBMA400_Intfc eIntfc);
+void bma400_I2C_ISR_Handler(const eBMA400_Intfc eIntfc);
+int8_t bma400_enable_interrupt(const struct bma400_int_enable *int_select, uint8_t n_sett, const eBMA400_Intfc eIntfc);
 
 #endif
