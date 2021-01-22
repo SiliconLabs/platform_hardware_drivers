@@ -61,11 +61,11 @@ Detailed usage of this driver and hardware setup please refer to the following e
 
 [nt3h2x11_field_detection](https://github.com/SiliconLabs/nfc/tree/master/examples/nt3h2x11_field_detection)
 
-[nt3h2x11_i2c_tag_read](https://github.com/SiliconLabs/nfc/tree/master/examples/nt3h2x11_i2c_read_tag)
+[nt3h2x11_i2c_read_tag](https://github.com/SiliconLabs/nfc/tree/master/examples/nt3h2x11_i2c_read_tag)
 
-[nt3h2x11_i2c_tag_write_ndef](https://github.com/SiliconLabs/nfc/tree/master/examples/nt3h2x11_i2c_write_tag_ndef)
+[nt3h2x11_i2c_write_tag_ndef](https://github.com/SiliconLabs/nfc/tree/master/examples/nt3h2x11_i2c_write_tag_ndef)
 
-[nt3h2x11_t2t_format](https://github.com/SiliconLabs/nfc/tree/master/examples/nt3h2x11_format_t2t)
+[nt3h2x11_format_t2t](https://github.com/SiliconLabs/nfc/tree/master/examples/nt3h2x11_format_t2t)
 
 ## Disclaimer ##
 
