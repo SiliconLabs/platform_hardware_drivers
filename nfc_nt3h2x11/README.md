@@ -39,7 +39,7 @@ Tested on v2.7.x and v3.0.x.
 - 1 GPIO pin for FD interrupt. Details see [nt3h2x11_fd.c](src/nt3h2x11_fd.c).
 
 ## How it works
-Application would first call the the [nt3h2x11_init](src/nt3h2x11.c#L104) to initialize needed peripherals(i2c, gpio fd or both). Then can start using either direct communication APIs ([nt3h2x11_read_block](src/nt3h2x11.c#L132) or [nt3h2x11_write_block](src/nt3h2x11.c#L153)) to exchange data with NT3H2x11, or use register read/write APIs to adjust the settings on NT3H2x11. 
+Application would first call [nt3h2x11_init](src/nt3h2x11.c#L104) to initialize needed peripherals(i2c, gpio fd or both). Then either direct communication APIs ([nt3h2x11_read_block](src/nt3h2x11.c#L132) or [nt3h2x11_write_block](src/nt3h2x11.c#L153)) can be used to exchange data with the NT3H2x11, or use register read/write APIs to adjust the settings on the NT3H2x11. 
 
 ```
                                      --------------------------------------
