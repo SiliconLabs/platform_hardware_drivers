@@ -47,7 +47,6 @@
 #define __NT3H2X11_H__
 
 #include <stdbool.h>
-#include "em_gpio.h"
 #include "nt3h2x11_i2c.h"
 #include "nt3h2x11_fd.h"
 

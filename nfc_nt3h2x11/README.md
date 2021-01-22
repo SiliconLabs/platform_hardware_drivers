@@ -38,19 +38,34 @@ Tested on v2.7.x and v3.0.x.
 - 1 I2C port for communication. Details see [nt3h2x11_i2c.c](src/nt3h2x11_i2c.c).
 - 1 GPIO pin for FD interrupt. Details see [nt3h2x11_fd.c](src/nt3h2x11_fd.c).
 
+## How it works
+Application would first call [nt3h2x11_init](src/nt3h2x11.c#L104) to initialize needed peripherals(i2c, gpio fd or both). Then either direct communication APIs ([nt3h2x11_read_block](src/nt3h2x11.c#L132) or [nt3h2x11_write_block](src/nt3h2x11.c#L153)) can be used to exchange data with the NT3H2x11, or use register read/write APIs to adjust the settings on the NT3H2x11. 
+
+```
+                                     --------------------------------------
+                 ----------  /----> | memory and register R/W (continuous) |    
+ -------        | init I2C |         --------------------------------------
+| Start | ----> |    --    |
+ -------        | init FD  |         ---------------------------
+                 ----------  \----> | FD GPIO interrupt enabled |
+                                     ---------------------------
+```
+
+Please refer to [NT3H2111_2211 datasheet](https://www.nxp.com/docs/en/data-sheet/NT3H2111_2211.pdf) for details.
+
 ## Application Examples
 
 Detailed usage of this driver and hardware setup please refer to the following examples.
 
-[bluetooth_nfc_pairing_t2t_nt3h2x11]()
+[bluetooth_nfc_pairing_t2t_nt3h2x11](https://github.com/SiliconLabs/bluetooth_applications/tree/master/bluetooth_nfc_pairing/bluetooth_nfc_pairing_t2t_nt3h2x11)
 
-[nt3h2x11_field_detection]()
+[nt3h2x11_field_detection](https://github.com/SiliconLabs/nfc/tree/master/examples/nt3h2x11_field_detection)
 
-[nt3h2x11_i2c_tag_read]()
+[nt3h2x11_i2c_read_tag](https://github.com/SiliconLabs/nfc/tree/master/examples/nt3h2x11_i2c_read_tag)
 
-[nt3h2x11_i2c_tag_write_ndef]()
+[nt3h2x11_i2c_write_tag_ndef](https://github.com/SiliconLabs/nfc/tree/master/examples/nt3h2x11_i2c_write_tag_ndef)
 
-[nt3h2x11_t2t_format]()
+[nt3h2x11_format_t2t](https://github.com/SiliconLabs/nfc/tree/master/examples/nt3h2x11_format_t2t)
 
 ## Disclaimer ##
 
