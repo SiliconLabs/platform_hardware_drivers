@@ -36,9 +36,8 @@
  *
 ... */
 
-#include "stdint.h"
+#include <stdint.h>
 #include "em_cmu.h"
-#include "em_gpio.h"
 #include "../inc/nt3h2x11.h"
 #include "../inc/nt3h2x11_i2c.h"
 #include "../inc/nt3h2x11_fd.h"

@@ -39,8 +39,6 @@
 #include <stdint.h>
 #include <string.h>
 #include "em_cmu.h"
-#include "em_gpio.h"
-#include "em_i2c.h"
 #include "../inc/nt3h2x11_i2c.h"
 
 /// NT3H2x11 memory block size
@@ -104,8 +102,8 @@ void nt3h2x11_i2c_init (nt3h2x11_i2c_init_t i2c_init) {
   GPIO->I2CROUTE[0].ROUTEEN = GPIO_I2C_ROUTEEN_SDAPEN | GPIO_I2C_ROUTEEN_SCLPEN;
 #endif
 
-/* Initializing the I2C */
-I2C_Init(nt3h2x11_i2c_port, &i2cInit);
+  /* Initializing the I2C */
+  I2C_Init(nt3h2x11_i2c_port, &i2cInit);
 }
 
 /**************************************************************************//**
