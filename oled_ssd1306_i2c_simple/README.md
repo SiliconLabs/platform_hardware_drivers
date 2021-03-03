@@ -94,4 +94,4 @@ After initialization, the OLED displays the text with the font 6x8. If Button 0 
 
 The example code will look something like the GIF below.
 
-![](images/testing.gif)
+![](images/testing.GIF)
