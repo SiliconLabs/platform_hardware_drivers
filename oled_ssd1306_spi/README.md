@@ -2,7 +2,7 @@
 
 ## Description ##
 
-This project shows the implementation of the OLED driver using an [**OLED W click**](https://www.mikroe.com/oled-w-click) with [**BGM220 Explorer Kit**](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit) based on SPI communication.
+This project shows the implementation of the OLED driver using an **OLED W click** with **BGM220 Explorer Kit** based on SPI communication.
 
 The OLED W click carries a 96 x 39px white monochrome passive matrix OLED display. The OLED W click uses a SSD1306 controller to drive the display. It's built-in functionalities include contrast control, normal or inverse image display, vertical and horizontal scrolling functions and more. 
 
@@ -16,25 +16,25 @@ GSDK v3.1.1
 
 ## Hardware Required ##
 
-- A BGM220 Explorer Kit board.
+- [A BGM220 Explorer Kit board](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit).
 
-- An OLED W Click board.
+- [An OLED W Click board](https://www.mikroe.com/oled-w-click).
 
 ## Connections Required ##
 
 The OLED W Click board can just be "clicked" into its place. Be sure that the board's 45-degree corner matches the Explorer Kit's 45-degree white line. The OLED W click can communicate with the target board MCU either through SPI or I2C mikroBUS™ lines. Just be sure that the click board is configured into SPI-mode (the default) by the resistors and not into I2C-mode.
 
-![board](images/oled_w_click_board.png "BGM220 Explorer Kit Board and OLED W Click Board")
+![board](images/bgm220_kit_oled_board.png "BGM220 Explorer Kit Board and OLED W Click Board")
 
 ## Setup ##
 
 To test this application, you should connect the BMG220 Explorer Kit Board to the PC using a microUSB cable. 
 
-You can either use the already made **oled_ssd1306_spi_simple.sls** project or create an example application code as basis and modify it according to the instructions below:
+You can either import the provided oled_ssd1306_spi_simple.sls project file or start with an empty example project as basis:
 
 1. Create a "Platform - Empty C Example" project for the "BGM220 Explorer Kit Board" using Simplicity Studio 5. Use the default project settings. Be sure to connect and select the BGM220 Explorer Kit Board from the "Debug Adapters" on the left before creating a project.
 
-2. Copy all attached files in *inc* and *src* folders into the project root folder (overwriting existing app.c).
+2. Copy all attached files in *inc*, *src* and *test* folders into the project root folder (overwriting existing app.c).
 
 3. Install the software components:
 
@@ -90,6 +90,6 @@ You can either use the already made **oled_ssd1306_spi_simple.sls** project or c
 
 This example demonstrates some of the available features of the OLED. After initialization, the OLED displays the text with the font 6x8. If Button 0 is pressed the OLED will display an image with some graphic effects.
 
-The example code will look something like the GIF below.
+The OLED display will look something like the GIF below.
 
-![](images/testing.GIF)
+![](images/testing.gif)

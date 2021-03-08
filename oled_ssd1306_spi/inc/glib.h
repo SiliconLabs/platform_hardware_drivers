@@ -1,19 +1,39 @@
 /***************************************************************************//**
- * @file
+ * @file glib.h
  * @brief Silicon Labs Graphics Library
  *******************************************************************************
- * # License
- * <b>Copyright 2018 Silicon Laboratories Inc. www.silabs.com</b>
- *******************************************************************************
- *
- * The licensor of this software is Silicon Laboratories Inc.  Your use of this
- * software is governed by the terms of Silicon Labs Master Software License
- * Agreement (MSLA) available at
- * www.silabs.com/about-us/legal/master-software-license-agreement.  This
- * software is distributed to you in Source Code format and is governed by the
- * sections of the MSLA applicable to Source Code.
- *
- ******************************************************************************/
+* # License
+* <b>Copyright 2020 Silicon Laboratories Inc. www.silabs.com</b>
+*******************************************************************************
+*
+* SPDX-License-Identifier: Zlib
+*
+* The licensor of this software is Silicon Laboratories Inc.
+*
+* This software is provided \'as-is\', without any express or implied
+* warranty. In no event will the authors be held liable for any damages
+* arising from the use of this software.
+*
+* Permission is granted to anyone to use this software for any purpose,
+* including commercial applications, and to alter it and redistribute it
+* freely, subject to the following restrictions:
+*
+* 1. The origin of this software must not be misrepresented; you must not
+*    claim that you wrote the original software. If you use this software
+*    in a product, an acknowledgment in the product documentation would be
+*    appreciated but is not required.
+* 2. Altered source versions must be plainly marked as such, and must not be
+*    misrepresented as being the original software.
+* 3. This notice may not be removed or altered from any source distribution.
+*
+*******************************************************************************
+*
+* EVALUATION QUALITY
+* This code has been minimally tested to ensure that it builds with the specified
+* dependency versions and is suitable as a demonstration for evaluation purposes only.
+* This code will be maintained at the sole discretion of Silicon Labs.
+*
+******************************************************************************/
 
 #ifndef GLIB_H
 #define GLIB_H
@@ -134,15 +154,15 @@ glib_status_t glib_draw_rectangle(glib_context_t *pContext, uint8_t x1, uint8_t 
 glib_status_t glib_draw_circle(glib_context_t *pContext, uint8_t par_x, uint8_t par_y,
                                                 uint8_t par_r);
 
-glib_status_t glib_invert_color(void);
-glib_status_t glib_normal_color(void);
+glib_status_t glib_set_invert_color(void);
+glib_status_t glib_set_normal_color(void);
 glib_status_t glib_set_contrast(uint8_t value);
 glib_status_t glib_scroll_right(uint8_t start_page_addr, uint8_t end_page_addr);
 glib_status_t glib_scroll_left(uint8_t start_page_addr, uint8_t end_page_addr);
 glib_status_t glib_scroll_diag_right(uint8_t start_page_addr, uint8_t end_page_addr);
 glib_status_t glib_scroll_diag_left(uint8_t start_page_addr, uint8_t end_page_addr);
 glib_status_t glib_stop_scroll(void);
-glib_status_t glib_display_on(bool on);
+glib_status_t glib_enable_display(bool on);
 
 /** @} (end addtogroup glib) */
 
