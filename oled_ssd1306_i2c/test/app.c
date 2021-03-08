@@ -79,13 +79,13 @@ void app_process_action(void)
   {
     glib_draw_bmp(&glib_context, oledbw_img);
     sl_udelay_wait(500000);
-    glib_invert_color();
+    glib_set_invert_color();
     sl_udelay_wait(500000);
-    glib_normal_color();
+    glib_set_normal_color();
     sl_udelay_wait(500000);
-    glib_invert_color();
+    glib_set_invert_color();
     sl_udelay_wait(500000);
-    glib_normal_color();
+    glib_set_normal_color();
 
     for (i = 0x8F; i > 0x00; i--)
     {
