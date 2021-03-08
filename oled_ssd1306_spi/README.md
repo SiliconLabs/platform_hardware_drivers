@@ -92,4 +92,4 @@ This example demonstrates some of the available features of the OLED. After init
 
 The OLED display will look something like the GIF below.
 
-![](images/testing.gif)
+![](images/testing.GIF)
