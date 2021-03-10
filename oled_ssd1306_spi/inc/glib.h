@@ -164,8 +164,6 @@ glib_status_t glib_scroll_diag_left(uint8_t start_page_addr, uint8_t end_page_ad
 glib_status_t glib_stop_scroll(void);
 glib_status_t glib_enable_display(bool on);
 
-/** @} (end addtogroup glib) */
-
 #ifdef __cplusplus
 }
 #endif

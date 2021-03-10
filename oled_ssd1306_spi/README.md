@@ -4,7 +4,7 @@
 
 This project shows the implementation of the OLED driver using an **OLED W click** with **BGM220 Explorer Kit** based on SPI communication.
 
-The OLED W click carries a 96 x 39px white monochrome passive matrix OLED display. The OLED W click uses a SSD1306 controller to drive the display. It's built-in functionalities include contrast control, normal or inverse image display, vertical and horizontal scrolling functions and more. 
+The OLED W click carries a 96 x 39px white monochrome passive matrix OLED display. The OLED W click uses a SSD1306 controller to drive the display. Its built-in functionalities include contrast control, normal or inverse image display, vertical and horizontal scrolling functions and more. 
 
 For more information about the SSD1306 controller, see the [specification page](https://cdn.sparkfun.com/assets/learn_tutorials/3/0/8/SSD1306.pdf).
 
