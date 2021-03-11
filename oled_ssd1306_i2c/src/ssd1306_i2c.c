@@ -40,7 +40,7 @@
 
 /***************************************************************************//**
  * @brief
- *   Initialize gpio used in the i2c interface.
+ *   Initialize the i2c interface.
  *
  * @detail
  *  The driver instances will be initialized automatically,
@@ -79,7 +79,7 @@ sl_status_t ssd1306_send_command(const void *cmd, uint8_t len)
   seq.flags = I2C_FLAG_WRITE;
   /* Select register and data to write */
   i2c_write_data[0] = 0x00; // 0x00 for cmd, 0x40 for data
-  for(int i = 0; i < len; i++) {
+  for (int i = 0; i < len; i++) {
     i2c_write_data[i + 1] = ptr[i];
   }
 
@@ -124,8 +124,7 @@ sl_status_t ssd1306_send_data(const void *data, uint8_t len)
   seq.flags = I2C_FLAG_WRITE;
   /* Select register and data to write */
   i2c_write_data[0] = 0x40; // 0x00 for cmd, 0x40 for data
-  for (int i = 0; i < len; i++)
-  {
+  for (int i = 0; i < len; i++) {
     i2c_write_data[i+1] = ptr[i];
   }
   seq.buf[0].data = i2c_write_data;

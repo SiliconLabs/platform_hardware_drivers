@@ -45,12 +45,52 @@ extern "C" {
 
 #define SSD1306_SLAVE_ADDRESS 0x3D
 
+/***************************************************************************//**
+ * @brief
+ *   Initialize the i2c interface.
+ *
+ * @detail
+ *  The driver instances will be initialized automatically,
+ *  during the sl_system_init() call in main.c.
+ *****************************************************************************/
 void ssd1306_i2c_init(void);
+
+/***************************************************************************//**
+ * @brief
+ *    Start an blocking command transmit transfer.
+ *
+ * @note
+ *    @n This function is blocking and returns when the transfer is complete.
+ *
+ * @param[in] command
+ *    Transmit command buffer.
+ *
+ * @param[in] len
+ *    Number of bytes in transfer.
+ *
+ * @return
+ *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure
+ ******************************************************************************/
 sl_status_t ssd1306_send_command(const void *cmd, uint8_t len);
+
+/***************************************************************************//**
+ * @brief
+ *    Start an blocking data transmit transfer.
+ *
+ * @note
+ *    @n This function is blocking and returns when the transfer is complete.
+ *
+ * @param[in] data
+ *    Transmit data buffer.
+ *
+ * @param[in] count
+ *    Number of bytes in transfer.
+ *
+ * @return
+ *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure
+ ******************************************************************************/
 sl_status_t ssd1306_send_data(const void *data, uint8_t len);
 
-
-/** @} */
 #ifdef __cplusplus
 }
 #endif
