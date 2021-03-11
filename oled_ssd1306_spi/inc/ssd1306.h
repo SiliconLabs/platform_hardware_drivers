@@ -104,18 +104,149 @@ typedef struct ssd1306_t {
   unsigned short height;      ///< Display pixel height
 } ssd1306_t;
 
+/**************************************************************************//**
+ * @brief
+ *   Initialization function for the ssd1306 device driver.
+ *
+ * @return
+ *   If all operations completed sucessfully SL_STATUS_OK is returned. On
+ *   failure a different status code is returned specifying the error.
+*****************************************************************************/
 sl_status_t ssd1306_init(void);
+
+/**************************************************************************//**
+ * @brief
+ *   Draw total of rows to SSD1306.
+ *
+ * @param[in] data
+ *   Pointer to the pixel matrix buffer to draw. The format of the buffer
+ *   depends on the color mode of SSD1306.
+ *
+ * @return
+ *   SL_STATUS_OK if there are no errors.
+ *****************************************************************************/
 sl_status_t ssd1306_draw(const void *data);
+
+/**************************************************************************//**
+ * @brief
+ *   Get a handle to SSD1306.
+ *
+ * @return
+ *   Pointer to a SSD1306 structure or NULL if no SSD1306 is initialized
+ *   yet.
+ *****************************************************************************/
 const ssd1306_t *ssd1306_get(void);
 
+/**************************************************************************//**
+ * @brief
+ *   Set a inversion color to SSD1306.
+ *
+ * @return
+ *   SL_STATUS_OK if there are no errors.
+ *****************************************************************************/
 sl_status_t ssd1306_set_invert_color(void);
+
+/**************************************************************************//**
+ * @brief
+ *   Set a normal color to SSD1306.
+ *
+ * @return
+ *   SL_STATUS_OK if there are no errors.
+ *****************************************************************************/
 sl_status_t ssd1306_set_normal_color(void);
+
+/**************************************************************************//**
+ * @brief
+ *   Set a contrast to SSD1306.
+ *
+ * @param[in] value
+ *   value to set contrast. Select 1 out of 256 contrast steps.
+ *   Contrast increases as the value increases
+ *
+ * @return
+ *   SL_STATUS_OK if there are no errors.
+ *****************************************************************************/
 sl_status_t ssd1306_set_contrast(uint8_t value);
+
+/**************************************************************************//**
+ * @brief
+ *   Set a Right Horizontal Scroll to SSD1306.
+ *
+ * @param[in] start_page_addr
+ *   Start page address
+ *
+ * @param[in] end_page_addr
+ *   End page address
+ *
+ * @return
+ *   SL_STATUS_OK if there are no errors.
+ *****************************************************************************/
 sl_status_t ssd1306_scroll_right(uint8_t start_page_addr, uint8_t end_page_addr);
+
+/**************************************************************************//**
+ * @brief
+ *   Set a Left Horizontal Scroll to SSD1306.
+ *
+ * @param[in] start_page_addr
+ *   Start page address
+ *
+ * @param[in] end_page_addr
+ *   End page address
+ *
+ * @return
+ *   SL_STATUS_OK if there are no errors.
+ *****************************************************************************/
 sl_status_t ssd1306_scroll_left(uint8_t start_page_addr, uint8_t end_page_addr);
+
+/**************************************************************************//**
+ * @brief
+ *   Set a Vertical and Right Horizontal Scroll to SSD1306.
+ *
+ * @param[in] start_page_addr
+ *   Start page address
+ *
+ * @param[in] end_page_addr
+ *   End page address
+ *
+ * @return
+ *   SL_STATUS_OK if there are no errors.
+ *****************************************************************************/
 sl_status_t ssd1306_scroll_diag_right(uint8_t start_page_addr, uint8_t end_page_addr);
+
+/**************************************************************************//**
+ * @brief
+ *   Set a Vertical and Left Horizontal Scroll to SSD1306.
+ *
+ * @param[in] start_page_addr
+ *   Start page address
+ *
+ * @param[in] end_page_addr
+ *   End page address
+ *
+ * @return
+ *   SL_STATUS_OK if there are no errors.
+ *****************************************************************************/
 sl_status_t ssd1306_scroll_diag_left(uint8_t start_page_addr, uint8_t end_page_addr);
+
+/**************************************************************************//**
+ * @brief
+ *   Stop scroll to SSD1306.
+ *
+ * @return
+ *   SL_STATUS_OK if there are no errors.
+ *****************************************************************************/
 sl_status_t ssd1306_stop_scroll(void);
+
+/**************************************************************************//**
+ * @brief
+ *   Set the display ON/OFF.
+ *
+ * @param[in] on
+ *   EState of OLED
+ *
+ * @return
+ *   SL_STATUS_OK if there are no errors.
+ *****************************************************************************/
 sl_status_t ssd1306_enable_display(bool on);
 
 #ifdef __cplusplus

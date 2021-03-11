@@ -136,8 +136,7 @@ sl_status_t ssd1306_draw(const void *data)
   uint8_t no_pages = SSD1306_DISPLAY_HEIGHT / 8;
 
   /* Get start address to draw from */
-  for ( i = 0; i < no_pages; i++ )
-  {
+  for ( i = 0; i < no_pages; i++ ) {
   /* Send update command and first line address */
     cmd = 0xB0 + i;  /* Set the current RAM page address. */
     sc += ssd1306_send_command(&cmd, 1);
@@ -169,7 +168,8 @@ const ssd1306_t *ssd1306_get(void)
 {
   if (initialized) {
     return &ssd1306_instance;
-  } else {
+  } 
+  else {
     return NULL;
   }
 }
@@ -402,7 +402,7 @@ sl_status_t ssd1306_enable_display(bool on)
   if (on == true) {
     cmd = SSD1306_DISPLAYON;
   }
-  else{
+  else {
     cmd = SSD1306_DISPLAYOFF;
   }
 

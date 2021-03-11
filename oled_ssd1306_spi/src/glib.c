@@ -114,7 +114,7 @@ glib_status_t glib_clear(glib_context_t *pContext)
   }
 
   /* Fill the display with the background color of the glib_context_t  */
-  for(i = 0; i < sizeof(glib_frame_buffer); i++) {
+  for (i = 0; i < sizeof(glib_frame_buffer); i++) {
       glib_frame_buffer[i] = (pContext->backgroundColor == Black) ? 0x00 : 0xFF;
   }
 
@@ -127,7 +127,7 @@ glib_status_t glib_clear(glib_context_t *pContext)
 *  Draws a pixel at x, y using foregroundColor defined in the glib_context_t.
 *
 *  @param pContext
-*  Pointer to a glib_context_t which holds the foreground color and clipping region
+*  Pointer to a glib_context_t which holds the foreground color.
 *  @param x
 *  X-coordinate
 *  @param y
@@ -144,13 +144,14 @@ glib_status_t glib_draw_pixel(glib_context_t *pContext, int32_t x, int32_t y)
   }
 
   if ((x > dimensions.xSize)
-   || (y > dimensions.ySize)){
+   || (y > dimensions.ySize)) {
       return GLIB_ERROR_INVALID_REGION;
   }
 
-  if (pContext->foregroundColor == White){
+  if (pContext->foregroundColor == White) {
     glib_frame_buffer[x + (y / 8) * dimensions.xSize] |= 1 << (y % 8);
-  }else{
+  }
+  else {
     glib_frame_buffer[x + (y / 8) * dimensions.xSize] &= ~(1 << (y % 8));
   }
 
@@ -180,13 +181,14 @@ glib_status_t glib_earse_pixel(glib_context_t *pContext, int32_t x, int32_t y)
   }
 
   if ((x > dimensions.xSize)
-   || (y > dimensions.ySize)){
+   || (y > dimensions.ySize)) {
       return GLIB_ERROR_INVALID_REGION;
   }
 
-  if (pContext->foregroundColor == White){
+  if (pContext->foregroundColor == White) {
     glib_frame_buffer[x + (y / 8) * dimensions.xSize] &= ~(1 << (y % 8));
-  }else{
+  }
+  else {
     glib_frame_buffer[x + (y / 8) * dimensions.xSize] |= 1 << (y % 8);
   }
 
@@ -228,17 +230,14 @@ glib_status_t glib_draw_char(glib_context_t *pContext, char my_char, int32_t x, 
   }
 
   // Use the font to write
-  for(i = 0; i < pContext->font.height; i++)
-  {
+  for (i = 0; i < pContext->font.height; i++) {
     pixelData = pContext->font.data[(my_char - 32) * pContext->font.height + i];
 
-    for(j = 0; j < pContext->font.width; j++)
-    {
-      if((pixelData << j) & 0x8000)
-      {
+    for (j = 0; j < pContext->font.width; j++) {
+      if ((pixelData << j) & 0x8000) {
         glib_draw_pixel(pContext, x + j, y + i);
-      }else
-      {
+      }
+      else {
         glib_earse_pixel(pContext, x + j, y + i);
       }
     }
@@ -301,9 +300,41 @@ glib_status_t glib_draw_string(glib_context_t *pContext, const char* str,
 
   return ((drawnElements == 0) ? GLIB_ERROR_NOTHING_TO_DRAW : GLIB_OK);
 }
+
 /**************************************************************************//**
 *  @brief
-*  Draws a horizontal line from x1, y1 to x2, y2 by Bresenhem's algorithm
+*  Set new font for the library. Note that GLIB defines a default font in glib.c.
+*  Redefine GLIB_DEFAULT_FONT to change the default font.
+*
+*  @param pContext
+*  Pointer to the glib_context_t
+*
+*  @param pFont
+*  Pointer to the new font
+*
+*  @return
+*  Returns GLIB_OK on success, or else error code
+******************************************************************************/
+glib_status_t glib_set_font(glib_context_t *pContext, glib_font_t *pFont)
+{
+  /* Check arguments */
+  if (pContext == NULL) {
+    return GLIB_ERROR_INVALID_ARGUMENT;
+  }
+
+  if (pFont == NULL) {
+    memset(&pContext->font, 0, sizeof(glib_font_t));
+    return GLIB_ERROR_INVALID_ARGUMENT;
+  } 
+  else {
+    memcpy(&pContext->font, pFont, sizeof(glib_font_t));
+    return GLIB_OK;
+  }
+}
+
+/**************************************************************************//**
+*  @brief
+*  Draws a line from x1, y1 to x2, y2 by Bresenhem's algorithm
 *
 *  @param pContext
 *  Pointer to a glib_context_t in which the line is drawn.
@@ -335,30 +366,20 @@ glib_status_t glib_draw_line(glib_context_t *pContext, uint8_t x1, uint8_t y1,
 
   glib_draw_pixel(pContext, x2, y2);
 
-  while((x1 != x2) || (y1 != y2))
-  {
+  while ((x1 != x2) || (y1 != y2)) {
     glib_draw_pixel(pContext, x1, y1);
     error2 = error * 2;
-    if(error2 > -deltaY)
-    {
+    if (error2 > -deltaY) {
       error -= deltaY;
       x1 += signX;
     }
-    else
-    {
-    /*nothing to do*/
-    }
 
-    if(error2 < deltaX)
-    {
+    if (error2 < deltaX) {
       error += deltaX;
       y1 += signY;
     }
-    else
-    {
-    /*nothing to do*/
-    }
   }
+  
   return GLIB_OK;
 }
 
@@ -394,6 +415,7 @@ glib_status_t glib_draw_rectangle(glib_context_t *pContext, uint8_t x1, uint8_t 
 
   return GLIB_OK;
 }
+
 /**************************************************************************//**
 *  @brief
 *  Draws a circle with center at x, y, and a radius
@@ -416,7 +438,6 @@ glib_status_t glib_draw_rectangle(glib_context_t *pContext, uint8_t x1, uint8_t 
 *  @return
 *  Returns GLIB_OK on success, or else error code
 ******************************************************************************/
-//Draw circle by Bresenhem's algorithm
 glib_status_t glib_draw_circle(glib_context_t *pContext, uint8_t par_x, uint8_t par_y,
                                                 uint8_t par_r)
 {
@@ -425,74 +446,33 @@ glib_status_t glib_draw_circle(glib_context_t *pContext, uint8_t par_x, uint8_t 
   int32_t err = 2 - 2 * par_r;
   int32_t e2;
 
-  if (par_x >= dimensions.xSize || par_y >= dimensions.ySize)
-  {
+  if (par_x >= dimensions.xSize || par_y >= dimensions.ySize) {
     return GLIB_ERROR_INVALID_REGION;
   }
 
   do {
-      glib_draw_pixel(pContext, par_x - x, par_y + y);
-      glib_draw_pixel(pContext, par_x + x, par_y + y);
-      glib_draw_pixel(pContext, par_x + x, par_y - y);
-      glib_draw_pixel(pContext, par_x - x, par_y - y);
-      e2 = err;
-      if (e2 <= y) {
-          y++;
-          err = err + (y * 2 + 1);
-          if(-x == y && e2 <= x) {
-            e2 = 0;
-          }
-          else
-          {
-            /*nothing to do*/
-          }
+    glib_draw_pixel(pContext, par_x - x, par_y + y);
+    glib_draw_pixel(pContext, par_x + x, par_y + y);
+    glib_draw_pixel(pContext, par_x + x, par_y - y);
+    glib_draw_pixel(pContext, par_x - x, par_y - y);
+    e2 = err;
+    if (e2 <= y) {
+      y++;
+      err = err + (y * 2 + 1);
+      if(-x == y && e2 <= x) {
+        e2 = 0;
       }
-      else
-      {
-        /*nothing to do*/
-      }
-      if(e2 > x) {
-        x++;
-        err = err + (x * 2 + 1);
-      }
-      else
-      {
-        /*nothing to do*/
-      }
-    } while(x <= 0);
+    }
+    
+    if(e2 > x) {
+      x++;
+      err = err + (x * 2 + 1);
+    }
+  } while(x <= 0);
 
-    return GLIB_OK;
+  return GLIB_OK;
 }
 
-/**************************************************************************//**
-*  @brief
-*  Set new font for the library. Note that GLIB defines a default font in glib.c.
-*  Redefine GLIB_DEFAULT_FONT to change the default font.
-*
-*  @param pContext
-*  Pointer to the glib_context_t
-*
-*  @param pFont
-*  Pointer to the new font
-*
-*  @return
-*  Returns GLIB_OK on success, or else error code
-******************************************************************************/
-glib_status_t glib_set_font(glib_context_t *pContext, glib_font_t *pFont)
-{
-  /* Check arguments */
-  if (pContext == NULL) {
-    return GLIB_ERROR_INVALID_ARGUMENT;
-  }
-
-  if (pFont == NULL) {
-    memset(&pContext->font, 0, sizeof(glib_font_t));
-    return GLIB_ERROR_INVALID_ARGUMENT;
-  } else {
-    memcpy(&pContext->font, pFont, sizeof(glib_font_t));
-    return GLIB_OK;
-  }
-}
 /**************************************************************************//**
 *  @brief
 *  Update the display device with contents of active glib_frame_buffer.
@@ -504,11 +484,12 @@ glib_status_t glib_update_display(void)
 {
   return ((ssd1306_draw(glib_frame_buffer) == SL_STATUS_OK) ? GLIB_OK : GLIB_ERROR_OUT_OF_MEMORY);
 }
+
 /**************************************************************************//**
 *  @brief
 *  Draws a bitmap
 *
-*  Sets up a bitmap that starts at x0,y0 and draws bitmap.
+*  Sets up a bitmap that starts at 0,0 and draws bitmap.
 *  The picture is a monochrome bitmap.
 *
 *  @param pContext

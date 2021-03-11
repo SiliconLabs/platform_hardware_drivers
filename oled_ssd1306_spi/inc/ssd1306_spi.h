@@ -49,13 +49,54 @@ extern "C" {
 #define SSD1306_RS_GPIO_PORT                   gpioPortC
 #define SSD1306_RS_GPIO_PIN                    6
 
+/***************************************************************************//**
+ * @brief
+ *   Initialize gpio used in the SPI interface.
+ *
+ * @detail
+ *  The driver instances will be initialized automatically,
+ *  during the sl_system_init() call in main.c.
+ *****************************************************************************/
 
 void ssd1306_spi_init(void);
+/***************************************************************************//**
+ * @brief
+ *    Send blocking command over SPI interface.
+ *
+ * @note
+ *    The data received on the MISO wire is discarded.
+ *    @n This function is blocking and returns when the transfer is complete.
+ *
+ * @param[in] command
+ *    Transmit command buffer.
+ *
+ * @param[in] len
+ *    Number of bytes in transfer.
+ *
+ * @return
+ *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure
+ ******************************************************************************/
 sl_status_t ssd1306_send_command(const void *cmd, int len);
+
+/***************************************************************************//**
+ * @brief
+ *    Send blocking data over SPI interface.
+ *
+ * @note
+ *    The data received on the MISO wire is discarded.
+ *    @n This function is blocking and returns when the transfer is complete.
+ *
+ * @param[in] data
+ *    Transmit data buffer.
+ *
+ * @param[in] len
+ *    Number of bytes in transfer.
+ *
+ * @return
+ *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure
+ ******************************************************************************/
 sl_status_t ssd1306_send_data(const void *data, int len);
 
-
-/** @} */
 #ifdef __cplusplus
 }
 #endif

@@ -89,8 +89,7 @@ sl_status_t ssd1306_send_command(const void *cmd, int len)
 
   /* Blocking data transfer to slave. */
   ret = SPIDRV_MTransmitB(spi_handle, cmd, len);
-  if(ret != ECODE_EMDRV_SPIDRV_OK)
-  {
+  if (ret != ECODE_EMDRV_SPIDRV_OK) {
     return SL_STATUS_FAIL;
   }
 
@@ -125,8 +124,7 @@ sl_status_t ssd1306_send_data(const void *data, int len)
 
   /* Blocking data transfer to slave. */
   ret = SPIDRV_MTransmitB(spi_handle, data, len);
-  if(ret != ECODE_EMDRV_SPIDRV_OK)
-  {
+  if (ret != ECODE_EMDRV_SPIDRV_OK) {
     return SL_STATUS_FAIL;
   }
 
