@@ -149,14 +149,14 @@ static void init_gpio(void)
  ******************************************************************************/
 static float convert_degmin_to_decdeg(float degmin, gps_cardinal_t cardinal)
 {
-  int32_t deg;
-  float min;
+  int32_t deg = 0;
+  float min = 0;
   float sign = 1;
 
   deg = degmin / 100;   // dddmm.mmmm (extract and mask deg = ddd)
-  min = (int32_t)degmin % (100);
+  min = degmin - (deg * 100);
 
-  if(cardinal == 'S' || cardinal == 'W') {
+  if(cardinal == SOUTH || cardinal == WEST) {
       sign = -1;
   }
 
@@ -229,6 +229,8 @@ static sl_status_t nmea_format(char *nmea_str, gps_data_t *gps)
   if(nmea_str == NULL || gps == NULL) {
     return SL_STATUS_INVALID_PARAMETER;
   }
+
+  sl_status_t sc = SL_STATUS_IS_WAITING;
 
   // Helper variables that will be processed to convert to appropriate types.
   int32_t tmp_int = 0;
@@ -385,8 +387,11 @@ static sl_status_t nmea_format(char *nmea_str, gps_data_t *gps)
     } else {
       gps->mag_var_ew = EAST; // default
     }
+
+    sc = SL_STATUS_OK;
   }
-  return SL_STATUS_OK;
+
+  return sc;
 }
 
 
@@ -480,6 +485,7 @@ sl_status_t gps_process_action(void)
 {
   if(!handle.rx_processed & handle.rx_is_complete) {
     handle.rx_processed = true;
+    handle.rx_is_complete = false;
     return nmea_format((char *)handle.rx_buffer_ptr, &handle.latest_data);
   }
 
