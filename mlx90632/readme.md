@@ -51,7 +51,7 @@ temperature and the object temperature.
 
 A typical ambient and object temperature measurements are shown in the following figure.
 
-<img src="doc/measurement_figure.jpg" width="600">
+<img src="doc/figure2.jpeg" width="600">
 
 The `mlx90632_init` function configures the sensor, in this way the user only needs to call one init function during startup. The factory-programmed calibration values are also read from the sensor in the init function.
 After init function, in case of using the `measurment_cb` API function this whole measurement and calculation process is done internally by the driver. 
