@@ -56,14 +56,9 @@ A typical ambient and object temperature measurements are shown in the following
 The `mlx90632_init` function configures the sensor, in this way the user only needs to call one init function during startup. The factory-programmed calibration values are also read from the sensor in the init function.
 After init function, in case of using the `measurment_cb` API function this whole measurement and calculation process is done internally by the driver. 
 
-## Setup ##
+## Application Example ##
 
-To test this application, you should connect the BMG220 Explorer Kit Board to the PC using a miniUSB cable.
-
-I2CSPM (I2C simple poll-based master mode driver) is used for initializing the I2C peripheral as master mode and performing the I2C transfer. 
-These modules are need to be added to the include paths and its sources need to be copied to the project.
-
-1. Add the inc and src directory to the project's paths.
-2. Add software components I2CSPM Core, I2CSPM, configure SCL and SDA pins and set speed mode to Fast Mode.
+More information about the application example can be found here:
+https://github.com/SiliconLabs/bluetooth_applications_staging/tree/feature/bluetooth_irthermo_3_click/bluetooth_irthermo_3_click
   
 
