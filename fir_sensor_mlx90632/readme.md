@@ -56,9 +56,38 @@ A typical ambient and object temperature measurements are shown in the following
 The `mlx90632_init` function configures the sensor, in this way the user only needs to call one init function during startup. The factory-programmed calibration values are also read from the sensor in the init function.
 After init function, in case of using the `measurment_cb` API function this whole measurement and calculation process is done internally by the driver. 
 
-## Application Example ##
+## Create an example application ##
 
-More information about the application example can be found here:
+Simplicity Studio 5-series was used to create the example code.
+
+You can either create an example application code as basis and modify it according to the instructions below or use the ready made .sls-project.
+
+1.) Create a "Empty C Project" project for the" BGM220 Explorer Kit Board" using SimplicityStudio 5 Launcher-perspective EXAMPLE PROJECTS-tab. Use the default project settings. Be sure to connect and select the BGM220 Explorer Kit Board from the "Debug Adapters" on the left before creating a project.
+
+2.) Then copy the files [app.c](src/app.c), [mlx90632.c](src/mlx90632.c), [mlx90632_i2c.c](src/mlx90632_i2c.c), [mlx90632.h](inc/mlx90632.h) and [mlx90632_i2c.h](inc/mlx90632_i2c.h) in to the project root folder (app.c is replacing the old app.c).
+
+3.) Install software components in the .slcp
+#### Bluetooth:
+- Log
+#### Platform:
+- I2CSPM Core
+- I2C
+- I2CSPM (Fast mode)
+- USART
+#### Services:
+- CLI: CLI Core
+- CLI: Command Line Interface
+- IO Stream
+- IO Stream: USART Core
+- IO Stream: USART
+#### Third Party:
+- Tiny print 
+
+4.) Save the files, build and ready to flash or debug! To build select the project from the "Simplicity IDE"-perspectives "Project Explorer" and then press the hammer sign from the above toolbar. If there were 0 warnings, then there should be a Binaries-folder in the project. Expand the folder and use the right menu button for the .s37 file and select "Flash to Device". Flash Programmer dialog should be opened. The correct file is selected so just select Program.
+
+5.)Lunch console and then choose Serial 1, finally press enter.
+
+Bluetooth application example can be found here:
 https://github.com/SiliconLabs/bluetooth_applications_staging/tree/feature/bluetooth_irthermo_3_click/bluetooth_irthermo_3_click
   
 
