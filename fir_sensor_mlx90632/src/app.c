@@ -36,10 +36,10 @@
 
 #include <sl_status.h>
 #include "sl_i2cspm.h"
-#include "app_log.h"
 #include <mlx90632.h>
 #include <mlx90632_i2c.h>
 #include "sl_udelay.h"
+#include "stdio.h"
 
 /***************************************************************************//**
  * Initialize application.
@@ -55,19 +55,21 @@ void app_init(void)
 void app_process_action(void)
 {
   double  ambient, object;
-  int i;
+  int i, amb, obj;
   sl_status_t sc;
 
   // Perform the measurement
   sc = mlx90632_measurment_cb(&ambient, &object);
 
+  amb = ambient * 100;
+  obj = object  * 100;
   if (sc != SL_STATUS_OK) {
-      app_log("Measurement Failure!!!\n");
+      printf("Measurement Failure!!!\n");
   }
 
   if (sc == SL_STATUS_OK) {
-    app_log("Ambient: %f C\n", ambient);
-    app_log("Object: %f C\n",object);
+    printf("Ambient: %d.%d C\n", (int)(amb/100), (int)(amb%100));
+    printf("Object: %d.%d C\n", (int)(obj/100), (int)(obj%100));
   }
 
   // Wait 1 sec
