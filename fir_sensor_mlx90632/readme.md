@@ -10,7 +10,7 @@ This project shows the implementation of an I2C temperature sensor driver using 
 
 ## Gecko SDK version ##
 
-GSDK v3.1.1
+GSDK v3.1.2
 
 ## Hardware Required ##
 
@@ -88,6 +88,6 @@ You can either create an example application code as basis and modify it accordi
 5.)Lunch console and then choose Serial 1, finally press enter.
 
 Bluetooth application example can be found here:
-https://github.com/SiliconLabs/bluetooth_applications_staging/tree/feature/bluetooth_irthermo_3_click/bluetooth_irthermo_3_click
+https://github.com/SiliconLabs/bluetooth_applications_staging/tree/feature/bluetooth_irthermo_3_click/bluetooth_fir_sensor_mlx90632
   
 
