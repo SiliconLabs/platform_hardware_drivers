@@ -51,3 +51,49 @@ With this driver the Card UID is extracted from the packet (DATA) and the checks
 ### Configuration
 There are macro definitions in [rfid_config.h](inc/rfid_config.h) that can be modified to get the desired pin connections.
 
+## Peripherals Usage
+- EUART
+
+## Software Workflow
+```
+
+                            -------
+                           | Start |
+                            -------
+                               |
+                               |
+                               V
+                    ------------------------
+                   | Initialize Peripherals |
+                    ------------------------
+                               |
+                               |
+                               V
+                --------------------------------
+         ----> | Complete RFID Packet Received? | ----
+        |       --------------------------------      |
+        |                      |                      |
+        |                      |  yes                 |
+        |                      V                      |
+        |            ---------------------            |
+        |           | Parse RFID Card UID |           |  no
+        |            ---------------------            |
+        |                      |                      |
+        |                      |                      |
+        |                      V                      |
+        |            ---------------------            |
+        |           | Handle other events | <---------
+        |            ---------------------
+        |                      |
+        |                      |
+        |                      V
+        |                   -------
+        |                  | Sleep |
+        |                   -------
+        |                      |
+        |                      |
+        -----------------------
+    
+```
+
+After the peripherals are initialized, the system will constantly check if a complete RFID packet has been received. Once a full packet is received, the data will be parsed and stored. After this check is there are no other events the system will enter a low energy mode.

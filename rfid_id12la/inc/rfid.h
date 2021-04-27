@@ -45,6 +45,11 @@
 
 #include "sl_status.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 #define RFID_UID_LEN    10      // 10 ASCII defined by the datasheet
 #define RFID_PACKET_LEN 14      // [DATA(10) + CHECKSUM(2) + CR(1) + LF(1)] = 14
 
@@ -63,14 +68,47 @@ typedef struct {
 
 #define RFID_DECLARE_RX_BUFFER    static char rfid_rx_buffer[RFID_PACKET_LEN]
 
-#define RFID_INIT_DEFAULT                                                     \
-{                                                                             \
-  rfid_rx_buffer,                                                             \
-  RFID_PACKET_LEN                                                             \
+#define RFID_INIT_DEFAULT                                                      \
+{                                                                              \
+  rfid_rx_buffer,                                                              \
+  RFID_PACKET_LEN                                                              \
 }
 
+/***************************************************************************//**
+ * @brief
+ *    Initialize the RFID handle
+ *
+ * @param[in] init
+ *    RFID configuration struct
+ *
+ * @return
+ *    sl_status_t
+ ******************************************************************************/
 sl_status_t rfid_init(rfid_init_t *init);
+
+/***************************************************************************//**
+ * @brief
+ *    Process complete & valid packet reception
+ *
+ * @return
+ *    sl_status_t
+ ******************************************************************************/
 sl_status_t rfid_process_action(void);
+
+/***************************************************************************//**
+ * @brief
+ *    Get the last read card UID
+ *
+ * @param[out] card_uid
+ *    Buffer to store last read card UID
+ *
+ * @return
+ *    sl_status_t
+ ******************************************************************************/
 sl_status_t rfid_get_data(rfid_uid_t *card_uid);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* _RFID_H_ */
