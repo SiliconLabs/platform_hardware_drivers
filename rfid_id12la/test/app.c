@@ -3,7 +3,7 @@
  * @brief Top level application functions
  *******************************************************************************
  * # License
- * <b>Copyright 2020 Silicon Laboratories Inc. www.silabs.com</b>
+ * <b>Copyright 2021 Silicon Laboratories Inc. www.silabs.com</b>
  *******************************************************************************
  *
  * The licensor of this software is Silicon Laboratories Inc. Your use of this
@@ -45,11 +45,13 @@ void app_process_action(void)
   status = rfid_process_action();
 
   if(status == SL_STATUS_OK) {
-      // copy valid uid into rfid_uid
+      // copy uid into rfid_uid
+      rfid_get_data(&rfid_uid);
+
       if(rfid_uid.valid) {
-          rfid_get_data(&rfid_uid);
           __BKPT();                     // use debugger to view rfid_uid
       }
+
   } else if(status == SL_STATUS_INVALID_COUNT){
       // uh oh checksum error
       __BKPT();
