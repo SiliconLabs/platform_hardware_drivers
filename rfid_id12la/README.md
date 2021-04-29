@@ -8,17 +8,19 @@ v3.0.0 and later
 ## Hardware Required
 - [BGM220P Explorer Kit](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit)(BRD4314A)
 - [ID-12LA RFID Reader](https://www.sparkfun.com/products/11827)
-- 125 kHz RFID Card
+- [125 kHz RFID Card](https://www.sparkfun.com/products/14325)
 
 The driver should work with minimal porting on other devices.
 
 ## Setup
 Connect the RFID module to the BGM220P Explorer Kit as follows:
-| BGM220P | ID-12LA |
+| BGM220P MikroBUS Socket | ID-12LA |
 | ------- | ------- |
 | 3V3 | Pin 2, Pin 11 (V) |
 | GND | Pin 1, Pin 7 |
 | RX | Pin 9 | 
+
+> More information over the connectors and pinout of the BGM220P can be found in the [user guide](https://www.silabs.com/documents/public/user-guides/ug465-brd4314a.pdf).
 
 Import the [rfid_driver.sls](SimplicityStudio/rfid_driver.sls) project into Simplicity Studio 5 and flash the BGM220P or follow the steps in the following section to add the driver into a custom project.
 
@@ -38,6 +40,10 @@ The ID-12LA module outputs a packet through UART when it scans an RFID card. The
 [STX: 0x02] [DATA (10 ASCII)] [CHECKSUM (2 ASCII)] [CR] [LF] [ETX: 0x03]
 ```
 With this driver the Card UID is extracted from the packet (DATA) and the checksum is calculated and verified with the one included in the packet.
+
+The following video demonstrates reading the UID of two different cards. When a card is read by the RFID module and a complete packet is received the Card UID can be viewed in the watch window.
+
+[rfid_driver_demo_video](https://www.dropbox.com/s/261xonv08veajr0/rfid_driver_demo_v2.mp4?dl=0)
 
 ## .sls Projects Used
 [rfid_driver.sls](SimplicityStudio/rfid_driver.sls)

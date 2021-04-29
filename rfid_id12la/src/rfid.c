@@ -211,7 +211,10 @@ static void process_char(char rfid_char)
           }
       }
   } else if(rfid_char == PACKET_START) {
+      // set incoming data as valid
       is_data_valid = true;
+      // reset rx buffer index
+      handle.rx_buffer_idx = 0;
   }
 }
 
@@ -243,7 +246,7 @@ static int8_t ascii_to_int(char ch)
  * @return
  *    true if checksum matches calculated
  ******************************************************************************/
-bool is_valid_checksum(volatile char* rfid_packet)
+static bool is_valid_checksum(volatile char* rfid_packet)
 {
   // get checksum sent in packet
   uint16_t checksum = ascii_to_int(rfid_packet[10]) << 8 | ascii_to_int(rfid_packet[11]);
