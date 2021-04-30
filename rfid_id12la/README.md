@@ -102,4 +102,4 @@ There are macro definitions in [rfid_config.h](inc/rfid_config.h) that can be mo
     
 ```
 
-After the peripherals are initialized, the system will constantly check if a complete RFID packet has been received. Once a full packet is received, the data will be parsed and stored. After this check is there are no other events the system will enter a low energy mode.
+After the peripherals are initialized, the system will constantly check if a complete RFID packet has been received. Once a full packet is received, the data will be parsed and stored. After this check, if there are no other events the system will enter a low energy mode. For every byte that is received the EUART0 interrupt is triggered and records the data into a buffer.
