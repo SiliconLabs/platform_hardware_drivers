@@ -14,9 +14,10 @@
  * sections of the MSLA applicable to Source Code.
  *
  ******************************************************************************/
-#include <stdio.h>
-#include "app_iostream_usart.h"
+
 #include "barometer.h"
+#include "sl_i2cspm_instances.h"
+#include "app_log.h"
 
 // Indicating an ongoing non-blocking pressure measurement
 static uint8_t measurement_flag=0;
@@ -24,15 +25,22 @@ static uint8_t measurement_flag=0;
 // User callback function for the nonblocking sensor read
 void barometer_callback(float pressure);
 
+/***************************************************************************//**
+ * Initialize application.
+ ******************************************************************************/
 void app_init(void)
 {
-  app_iostream_usart_init();
-  printf("\r\nInit\r\n");
+  app_log("\r\nInit\r\n");
 
   barometer_init_t init = BAROMETER_INIT_DEFAULT;
+  // Using the QWIIC I2CSPM instance which was installed
+  init.I2C_port = sl_i2cspm_qwiic;
   barometer_init(&init);
 }
 
+/***************************************************************************//**
+ * App ticking function.
+ ******************************************************************************/
 void app_process_action(void)
 {
   if(!measurement_flag){
@@ -42,6 +50,6 @@ void app_process_action(void)
 }
 
 void barometer_callback(float pressure){
-  printf("Pressure: %f hPA\r\n", pressure);
+  app_log("Pressure: %f hPA\r\n", pressure);
   measurement_flag = 0;
 }

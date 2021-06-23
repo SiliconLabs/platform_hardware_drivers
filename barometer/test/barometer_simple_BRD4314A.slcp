@@ -1,0 +1,31 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+include:
+- path: ''
+  file_list:
+  - {path: app.h}
+component:
+- {id: BGM220PC22HNA}
+- instance: [qwiic]
+  id: i2cspm
+- {id: app_log}
+- {id: sl_system}
+- {id: device_init}
+- instance: [vcom]
+  id: iostream_usart
+- {id: sleeptimer}
+- {id: brd4314a}
+package: platform
+define:
+- {name: DEBUG_EFM}
+description: |
+  This example project shows an empty configuration that can be used as a starting point to add components and functionality.
+label: barometer_simple_BRD4314A
+source:
+- {path: app.c}
+- {path: main.c}
+project_name: barometer_simple_BRD4314A
+category: Example|Platform
+toolchain_settings: []
+ui_hints: {}
+quality: production
+

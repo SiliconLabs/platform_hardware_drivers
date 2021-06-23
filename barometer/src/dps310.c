@@ -120,11 +120,9 @@ sl_status_t barometer_init(barometer_init_t* init)
 
     uint8_t reg_value, shift_value=0;
 
-    dps310.I2C_sensor = init->I2C_sensor;
+    dps310.I2C_port = init->I2C_port;
     dps310.I2C_address = init->I2C_address;
     dps310.oversample_rate = init->oversample_rate;
-
-    I2CSPM_Init(&init->I2C_sensor);
 
     barometer_reset();
 
@@ -347,7 +345,7 @@ static sl_status_t dps310_sensor_read(uint8_t target_address, uint8_t *rx_buff, 
   seq.buf[1].data   = rx_buff;
   seq.buf[1].len    = num_bytes;
 
-  result = I2CSPM_Transfer(dps310.I2C_sensor.port, &seq);
+  result = I2CSPM_Transfer(dps310.I2C_port, &seq);
 
   if(result != i2cTransferDone)
   {
@@ -375,7 +373,7 @@ static sl_status_t dps310_sensor_write(uint8_t target_address, uint8_t cmd)
   seq.buf[0].data   = txBuffer;
   seq.buf[0].len    = 2;
 
-  result = I2CSPM_Transfer(dps310.I2C_sensor.port, &seq);
+  result = I2CSPM_Transfer(dps310.I2C_port, &seq);
 
   if(result != i2cTransferDone)
    {

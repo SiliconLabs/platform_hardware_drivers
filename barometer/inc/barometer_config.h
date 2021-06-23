@@ -39,10 +39,6 @@
 #include "em_device.h"
 #include "em_gpio.h"
 
-#define BAROMETER_DEFAULT_SCL_PORT          gpioPortB
-#define BAROMETER_DEFAULT_SCL_PIN           2
-#define BAROMETER_DEFAULT_SDA_PORT          gpioPortB
-#define BAROMETER_DEFAULT_SDA_PIN           3
 #define BAROMETER_DEFAULT_I2C_INSTANCE      I2C0
 #define BAROMETER_DEFAULT_I2C_ADDR          0x77
 #define BAROMETER_DEFAULT_OVERSAMP_INDEX    4

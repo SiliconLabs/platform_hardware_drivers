@@ -106,11 +106,9 @@ sl_status_t barometer_init(barometer_init_t* init)
       return SL_STATUS_INVALID_STATE;
     }
 
-    ms5637.I2C_sensor = init->I2C_sensor;
+    ms5637.I2C_port = init->I2C_port;
     ms5637.I2C_address = init->I2C_address;
     ms5637.oversample_rate = init->oversample_rate;
-
-    I2CSPM_Init(&init->I2C_sensor);
 
     barometer_reset();
     sl_sleeptimer_init();
@@ -292,7 +290,7 @@ static sl_status_t ms5637_sensor_read(uint8_t *rx_buff, uint8_t num_bytes)
   seq.buf[0].data   = rx_buff;
   seq.buf[0].len    = num_bytes;
 
-  result = I2CSPM_Transfer(ms5637.I2C_sensor.port, &seq);
+  result = I2CSPM_Transfer(ms5637.I2C_port, &seq);
 
   if(result != i2cTransferDone)
   {
@@ -317,7 +315,7 @@ static sl_status_t ms5637_sensor_write(uint8_t cmd)
   seq.buf[0].len    = 1;
   seq.buf[1].len    = 0;
 
-  result = I2CSPM_Transfer(ms5637.I2C_sensor.port, &seq);
+  result = I2CSPM_Transfer(ms5637.I2C_port, &seq);
 
   if(result != i2cTransferDone)
    {

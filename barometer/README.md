@@ -8,12 +8,11 @@ This driver contains two different sensor IC drivers: the Infineon **DPS310** an
 
 ## Gecko SDK version ##
 
-GSDK v3.0.0
+GSDK v3.1.2
 
 ## Hardware Required ##
 
-- WSTK Mainboard (BRD4001A)
-- EFR32xG22 Radio Board (BRD4182A)
+- [BGM220P Explorer kit](https://www.silabs.com/development-tools/wireless/bluetooth/bgm220-explorer-kit)
 
 Supported barometer boards:
 - [Adafruit DPS310 board](https://www.adafruit.com/product/3678](https://www.adafruit.com/product/4494))
@@ -22,7 +21,7 @@ Supported barometer boards:
 
 ## Connections Required ##
 
-A barometer sensor board can be easily connected up with two I2C wires (SDA and SCL) along with 3v3 and GND. For the designated boards, SparkFun qwiic compatible STEMMA QT connectors can be used.
+A barometer sensor board can be easily connected up with two I2C wires (SDA and SCL) along with 3v3 and GND. For the designated boards, SparkFun qwiic compatible STEMMA QT connectors can be used. 
 
 ## How It Works ##
 
@@ -40,22 +39,31 @@ The init function resets and configures the sensor, in this way the user only ne
 
 In case of using the high-level measurement API functions (blocking or non-blocking) this whole measurement and compensation process is done internally by the driver. Using the non-blocking function, the user can register a callback function which is called after the measurement and the compensated sensor value calculation is ready. In this case sleeptimer is used for correct timings. 
 
-## Setup ##
+## Usage ##
 
-To test the barometer application, you need to connect the barometer sensor board to the WSTK's designated I2C EXP header pins. 
+The sensor board can be easily connected to the Explorer kit by using a Qwiic cable. If you are using a WSTK, you need to connect the sensor board's I2C wires to the WSTK's EXP header I2C_SDA and I2C_SCL pins. 
 
-Add the barometer folder to your project. Choose which barometer sensor IC you want to use and delete the other one's source file from the src directory.
+Add the driver's src and inc folders to your project. Choose which barometer sensor IC you want to use and delete the other one's source file from the src directory.
 
-The driver uses the sleeptimer for timings. Also a higher level kit driver I2CSPM (I2C simple poll-based master mode driver) is used for initializing the I2C peripheral as master mode and performing the I2C transfer. These modules are need to be added to the include paths and its sources need to be copied to the project
+The driver uses the sleeptimer for timings. Also a higher level kit driver I2CSPM (I2C simple poll-based master mode driver) is used for initializing the I2C peripheral as master mode and performing the I2C transfer. These software components are need to be installed.
 
-1. Copy the barometer directory to your project. Add the inc directory to the project's include paths.
-2. Add Sleeptimer source and header files to the project (platform/service/sleeptimer)
-3. Add I2CSPM files (platform/driver/i2cspm)
-4. Add I2C emlib source and header files to the project (platform/emlib/)
-5. Choose the actual sensor IC and delete other's source file from your project
-6. Modify the default I2C resources in the barometer_config.h file
+1. Create an "Empty C Project" project for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings. Be sure to connect and select the BGM220 Explorer Kit Board from the "Debug Adapters" on the left before creating a project.
+2. Copy the inc and src folders to your project. Add the inc folder's path to the project's include paths (GNU C, workspace path).
+3. Open the project's .slcp file and install the following software components:
+   1. **Software Components tab -> Services/Sleeptimer**
+   2. **Software Components tab -> Platform/Driver/I2CSPM** (in case of using the BRD4314A Explorer kit board, the instance name should be qwiic)
+   3. **Software Components tab -> Services/IO Stream/IO** Stream: USART with the default instance name: vcom.
+   4. **Software Components tab -> Application/Utility/Log**
+4. Choose the actual sensor IC and delete other's source file from your project
+5. Copy the app.c into the project root folder (replacing the old app.c)
+6. If you want to print float sensor values like in this example, follow the instructions of the [Floating point print() with GCC](https://www.silabs.com/community/mcu/32-bit/knowledge-base.entry.html/2014/11/19/floating_point_print-7R9j) article 
+
+
+## Test ##
+
+To test the barometer application, you need to connect the sensor board and the Explorer kit with a Qwiic cable or the I2C wires to the WSTK's EXP header I2C_SDA and I2C_SCL pins. Build and run the barometer_simple_BRD4314A project on the BRD4314A board. By default, the DPS310 barometer board is used but you can modify it. 
 
 ## .sls Projects Used ##
 
-barometer_tester.sls
+barometer_simple_BRD4314A
 

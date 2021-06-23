@@ -55,7 +55,7 @@ extern "C" {
  * @brief Structure to configure the barometer sensor
  ******************************************************************************/
 typedef struct {
-  I2CSPM_Init_TypeDef   I2C_sensor;
+  sl_i2cspm_t           *I2C_port;
   uint8_t               I2C_address;    /**< I2C address of the sensor */
   uint8_t               oversample_rate; /**< Over-sample index */
 }barometer_init_t;
@@ -63,16 +63,7 @@ typedef struct {
 /// Default initialization structure for barometer driver
 #define BAROMETER_INIT_DEFAULT            \
   {                                       \
-   {                                      \
     BAROMETER_DEFAULT_I2C_INSTANCE,       \
-    BAROMETER_DEFAULT_SCL_PORT,           \
-    BAROMETER_DEFAULT_SCL_PIN,            \
-    BAROMETER_DEFAULT_SDA_PORT,           \
-    BAROMETER_DEFAULT_SDA_PIN,            \
-    0,                                    \
-    I2C_FREQ_STANDARD_MAX,                \
-    i2cClockHLRStandard,                  \
-   },                                     \
     BAROMETER_DEFAULT_I2C_ADDR,           \
     BAROMETER_DEFAULT_OVERSAMP_INDEX      \
   }
