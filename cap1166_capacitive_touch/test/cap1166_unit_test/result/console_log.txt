@@ -1,0 +1,41 @@
+Start unit test.
+
+Do not touch the sensor during test!
+
+
+     CUnit - A unit testing framework for C - Version @VERSION@-@RELEASE@
+     http://cunit.sourceforge.net/
+
+
+Suite: cap1166_unit_test
+  Test: test_cap1166_check_interrupt_reason ...passed
+  Test: test_cap1166_reset ...passed
+  Test: test_cap1166_init ...passed
+  Test: test_cap1166_config ...passed
+  Test: test_cap1166_sensor_enable ...passed
+  Test: test_cap1166_sensor_interrupt_enable ...passed
+  Test: test_cap1166_sensor_repeat_rate_enable ...passed
+  Test: test_cap1166_sensor_threshold_config ...passed
+  Test: test_cap1166_sensor_recalib_config ...passed
+  Test: test_cap1166_sensor_noise_config ...passed
+  Test: test_cap1166_sensor_sensitivity_config ...passed
+  Test: test_cap1166_sensor_sensing_cycle_config ...passed
+  Test: test_cap1166_alter_pin_config ...passed
+  Test: test_cap1166_multiple_touch_config ...passed
+  Test: test_cap1166_press_and_hold_config ...passed
+  Test: test_cap1166_proximity_detection_enable ...passed
+  Test: test_cap1166_touch_pattern_enable ...passed
+  Test: test_cap1166_detect_touch ...passed
+  Test: test_cap1166_identify ...passed
+  Test: test_cap1166_set_power_mode ...passed
+  Test: test_cap1166_led_config ...passed
+  Test: test_cap1166_led_direct_set ...passed
+
+Run Summary:    Type  Total    Ran Passed Failed Inactive
+              suites      1      1    n/a      0        0
+               tests     22     22     22      0        0
+             asserts    114    114    114      0      n/a
+
+Elapsed time =  seconds
+
+Tests completed with return value 0.
