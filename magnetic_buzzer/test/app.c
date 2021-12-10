@@ -34,13 +34,10 @@
 * maintained and there may be no bug maintenance planned for these resources.
 * Silicon Labs may update projects from time to time.
 ******************************************************************************/
-
-#include "buzz2.h"
 #include "app_log.h"
+#include "magnetic_buzzer.h"
 #include "sl_simple_button.h"
 #include "sl_simple_button_instances.h"
-#include "sl_pwm_instances.h"
-#include "sl_pwm_init_mikroe_config.h"
 
 /*******************************************************************************
  *****************************    DEFINE     ***********************************
@@ -51,26 +48,51 @@
 #define E Q/2 // Eighth 1/8 - 1/2 Beat
 #define S Q/4 // Sixteenth 1/16 - 1/4 Beat
 
-// specific notes in the melody
-const int melody[] = {
-    BUZZ2_NOTE_A6, BUZZ2_NOTE_A6, BUZZ2_NOTE_A6, BUZZ2_NOTE_F6, BUZZ2_NOTE_C7,
-    BUZZ2_NOTE_A6, BUZZ2_NOTE_F6, BUZZ2_NOTE_C7, BUZZ2_NOTE_A6, BUZZ2_NOTE_E7,
-    BUZZ2_NOTE_E7, BUZZ2_NOTE_E7, BUZZ2_NOTE_F7, BUZZ2_NOTE_C7, BUZZ2_NOTE_Ab6,
-    BUZZ2_NOTE_F6, BUZZ2_NOTE_C7, BUZZ2_NOTE_A6, BUZZ2_NOTE_A7, BUZZ2_NOTE_A6,
-    BUZZ2_NOTE_A6, BUZZ2_NOTE_A7, BUZZ2_NOTE_Ab7, BUZZ2_NOTE_G7, BUZZ2_NOTE_Gb7,
-    BUZZ2_NOTE_E7, BUZZ2_NOTE_F7, BUZZ2_NOTE_Bb6, BUZZ2_NOTE_Eb7, BUZZ2_NOTE_D7};
-
-// note durations
-const int note_durations[] = {
-    Q, Q, Q, E + S, S, Q, E + S, S, H, Q, Q, Q, E + S, S, Q, E + S, S, H, Q,
-    E + S, S, Q, E + S, S, S, Q, E, E, Q, E + S};
+// a melody
+const buzzer_note_t melody[] = {
+    {BUZZER_NOTE_A6, Q},
+    {BUZZER_NOTE_A6, Q},
+    {BUZZER_NOTE_A6, Q},
+    {BUZZER_NOTE_F6, E+S},
+    {BUZZER_NOTE_C7, S},
+    {BUZZER_NOTE_A6, Q},
+    {BUZZER_NOTE_F6, E + S},
+    {BUZZER_NOTE_C7, S},
+    {BUZZER_NOTE_A6, H},
+    {BUZZER_NOTE_E7, Q},
+    {BUZZER_NOTE_E7, Q},
+    {BUZZER_NOTE_E7, Q},
+    {BUZZER_NOTE_F7, E + S},
+    {BUZZER_NOTE_C7, S},
+    {BUZZER_NOTE_Ab6, Q},
+    {BUZZER_NOTE_F6, E + S},
+    {BUZZER_NOTE_C7, S},
+    {BUZZER_NOTE_A6, H},
+    {BUZZER_NOTE_A7, Q},
+    {BUZZER_NOTE_A6, E + S},
+    {BUZZER_NOTE_A6, E + S},
+    {BUZZER_NOTE_A7, S},
+    {BUZZER_NOTE_Ab7, Q},
+    {BUZZER_NOTE_G7, E + S},
+    {BUZZER_NOTE_Gb7, S},
+    {BUZZER_NOTE_E7, S},
+    {BUZZER_NOTE_F7, Q},
+    {BUZZER_NOTE_Bb6, E},
+    {BUZZER_NOTE_Eb7, Q},
+    {BUZZER_NOTE_D7, E + S},
+    BUZZER_END_MELODY
+};
 
 /*******************************************************************************
  *****************************   VARIABLE    **********************************
  ******************************************************************************/
-volatile uint8_t volume = 5; // goes up to 9
+static buzzer_t buzzer = BUZZER_INIT_DEFAULT;
 
-static buzz2_t buzz2;
+static buzzer_melody_t buzzer_melody = {
+    .melody = melody,
+    .buzzer = &buzzer,
+    .len = 0
+};
 
 /***************************************************************************//**
  * Initialize application.
@@ -79,24 +101,13 @@ void app_init(void)
 {
   sl_status_t retval;
 
-  // pwm configuration
-  sl_pwm_config_t pwm_mikroe_config = {
-    .frequency = BUZZ2_DEF_FREQ,
-    .polarity = SL_PWM_MIKROE_POLARITY,
-  };
-
-  // buzzer2 configuration
-  buzz2_cfg_setup(&buzz2,
-                  sl_pwm_mikroe,
-                  pwm_mikroe_config);
-
-  // initialize the buzzer2
-  retval = buzz2_init(&buzz2);
+  // initialize the buzzer
+  retval = buzzer_init(&buzzer);
   if(retval == SL_STATUS_OK){
       app_log("configuration successfully \r\n");
   }
   else{
-      app_log("Fail to configure buzz2, reason: %04x\r\n", retval);
+      app_log("configure failed return %04x \r\n", retval);
   }
 }
 
@@ -105,15 +116,14 @@ void app_init(void)
  ******************************************************************************/
 void app_process_action(void)
 {
-  uint8_t i;
+  sl_status_t retval;
 
-  for(i = 0; i < sizeof(melody)/sizeof(melody[0]); i++){
-      buzz2_play_sound(&buzz2,
-                       melody[i],
-                       volume,
-                       note_durations[i]);
+  retval = buzzer_play_melody(&buzzer_melody);
+  if(retval != SL_STATUS_OK){
+      app_log("Play melody failed return %04x \r\n", retval);
   }
-  sl_sleeptimer_delay_millisecond(2000);
+
+  sl_sleeptimer_delay_millisecond(10000);
 }
 
 /**************************************************************************//**
@@ -121,10 +131,17 @@ void app_process_action(void)
  *****************************************************************************/
 void sl_button_on_change(const sl_button_t *handle)
 {
+  buzzer_volume_t volume;
   if((handle == &sl_button_btn0) &&
       (sl_button_get_state(handle) == SL_SIMPLE_BUTTON_RELEASED)) {
-      volume++;
-      if(volume > 9) volume = 0;
+
+      buzzer_get_volume(&buzzer, &volume);
+
+      if(++volume > buzzer_VOL100){
+          volume = buzzer_VOL0;
+      }
+
+      buzzer_set_volume(&buzzer, volume);
 
       app_log("The buzzer's volume is %d\n", volume);
   }
