@@ -233,7 +233,7 @@ sl_status_t max17048_get_crate(float *crate);
  *   opposite) or immediately adjacent to the battery.
  *
  *   In cases where this is not possible, the battery temperature can be
- *   provide to the driver from another source, such as an external
+ *   provided to the driver from another source, such as an external
  *   temperature sensor that is integrated with the battery or mounted in
  *   close proximity to it.  The driver imposes no particular requirements
  *   on the source of the temperature other than that it is provided as a
