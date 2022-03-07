@@ -179,6 +179,7 @@ sl_status_t max17048_init(void);
  *   @li @ref SL_STATUS_NOT_INITIALIZED if the driver is not initialized.
  ******************************************************************************/
 sl_status_t max17048_deinit(void);
+
 /**************************************************************************/ /**
  * @brief This function read voltage from battery
  *
@@ -188,6 +189,7 @@ sl_status_t max17048_deinit(void);
  * @return SL_STATUS_OK if successful. Error code otherwise.
  ******************************************************************************/
 sl_status_t max17048_get_vcell(uint32_t *vcell);
+
 /**************************************************************************/ /**
  * @brief This function read voltage from battery
  *
