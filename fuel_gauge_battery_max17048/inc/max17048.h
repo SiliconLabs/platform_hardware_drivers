@@ -261,7 +261,7 @@ sl_status_t max17048_get_crate(float *crate);
  *   read the temperature from whatever alternate source is used but instead
  *   simply returns a value that is updated in some asynchronous fashion.
  *   If firmware does not seed the callback function with an accurate
- *   battery temperature, the MAX17083 could report an erroneous SOC.
+ *   battery temperature, the MAX17408 could report an erroneous SOC.
  *
  * @param[in] temp_cb
  *   User-defined function to return the battery temperature to the driver.
