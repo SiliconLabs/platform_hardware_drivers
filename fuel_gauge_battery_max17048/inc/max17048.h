@@ -156,7 +156,7 @@ sl_status_t max17048_init(void);
  * @details
  *   This function does not write to any of the MAX17048 registers.  Its
  *   sole purpose is to return the GPIO pin(s) used for the ALRTn and
- *   optional QSTRT to the disabled state.
+ *   optional QSTRT pins to the disabled state.
  *
  *   The proper way to de-initialize the MAX17048 would be to manually
  *   disable all of its interrupts (or set those with thresholds to
