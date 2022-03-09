@@ -341,7 +341,7 @@ uint32_t max17048_get_update_interval(void);
  *
  * @details
  *   This callback function is executed from interrupt context when the user
- *   has has enabled one of the MAX17048 interrupt sources.
+ *   has enabled one of the MAX17048 interrupt sources.
  ******************************************************************************/
 typedef void (*max17048_interrupt_callback_t)(sl_max17048_irq_source_t irq, void *data);
 
