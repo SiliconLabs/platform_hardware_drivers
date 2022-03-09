@@ -831,7 +831,7 @@ uint8_t max17048_get_reset_threshold(void);
  *   As the datasheet notes, writing 0xFFFF to HIBRT forces use of
  *   automatic hibernation; similarly, 0x0000 disables.  It follows,
  *   then, that a hybrid use case is possible.  Setting the HIBRT
- *   register HIBTHR and ACTTHR fields to 0xFF and 0x0,respectively,
+ *   register HIBTHR and ACTTHR fields to 0xFF and 0x0, respectively,
  *   will keep the device in hibernate mode with no way to exit.
  *
  * @note
