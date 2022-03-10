@@ -950,9 +950,8 @@ sl_status_t max17048_enable_reset_comparator(bool enable);
  *   The driver only polls the MAX17048 to determine if the device is
  *   in hibernate mode if the user has enabled it.  By default, the
  *   driver manually enters/exits hibernate by writing the appropriate
- *   values to HIBRT upon EM2/3 entry/exit using the in response to
- *   Power Manager sl_power_manager_subscribe_em_transition_event()
- *   notifications.
+ *   values to HIBRT upon EM2/3 entry/exit in response to Power Manager
+ *   sl_power_manager_subscribe_em_transition_event() notifications.
  *
  * @param[out] hibstat
  *   @li activeMode - Device is in active mode
