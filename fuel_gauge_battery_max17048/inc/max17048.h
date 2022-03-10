@@ -1092,15 +1092,8 @@ sl_status_t max17048_load_model(const uint8_t *model);
 
 /***************************************************************************//**
  * @brief
- *   Return the value of the MAX17048 ID register.
- *
- * @note
- *   The driver only polls the MAX17048 to determine if the device is
- *   in hibernate mode if the user has enabled it.  By default, the
- *   driver manually enters/exits hibernate by writing the appropriate
- *   values to HIBRT upon EM2/3 entry/exit using the in response to
- *   Power Manager sl_power_manager_subscribe_em_transition_event()
- *   notifications.
+ *   Returns the one-time factory-programmable identifier value stored
+ *   in the ID register.
  *
  * @param[out] id
  *   The value stored in the ID register.
@@ -1116,7 +1109,7 @@ sl_status_t max17048_get_id(uint8_t *id);
  *   contents of the VERSION register.
  *
  * @param[out] ver
- *   The value stored in the ID register.
+ *   The value stored in the VERSION register.
  *
  * @return
  *   @li @ref SL_STATUS_OK on success.
