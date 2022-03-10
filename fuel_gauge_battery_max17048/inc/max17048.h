@@ -1075,8 +1075,8 @@ sl_status_t max17048_force_quick_start(void);
  *   This function unlocks the TABLE registers by writing 0x57 to address
  *   0x3F and 0x4A to address 0x3E.  While the model is unlocked, battery
  *   status is not updated.  The TABLE registers should be loaded and
- *   re-locked as quickly by writing 0x00 to address 0x3F and 0x00 to
- *   address 0x3E.
+ *   re-locked as quickly as possible by writing 0x00 to address 0x3F and
+ *   0x00 to address 0x3E.
  *
  * @note
  *   By definition, a custom model consists of 64 bytes, written to the
