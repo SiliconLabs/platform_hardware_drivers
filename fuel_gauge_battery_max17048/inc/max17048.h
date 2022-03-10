@@ -1014,11 +1014,11 @@ sl_status_t max17048_exit_sleep(void);
  *
  * @details
  *   In general, POR should be detected using the MAX17048 reset
- *   comparator and its associated interrupt. However, it is possible
+ *   comparator and its associated interrupt.  However, it is possible
  *   to manually initiate a POR by writing 0x5400 to the CMD register.
  *
  * @note
- *   The MAX17048 will issue the reset immediately  after the last bit
+ *   The MAX17048 will issue the reset immediately after the last bit
  *   of the command is clocked into the CMD register and will not ACK
  *   the transfer.
  *
