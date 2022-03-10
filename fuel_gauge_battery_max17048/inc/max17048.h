@@ -1039,7 +1039,7 @@ sl_status_t max17048_force_reset(void);
  * @details
  *   In general, POR should handle most battery swap events.  However,
  *   if the battery cannot reach a fully relaxed state during the
- *   initial 17 ms POR window , it is possible to manually force the
+ *   initial 17 ms POR window, it is possible to manually force the
  *   MAX17048 to perform initial VCELL measurements.
  *
  *   If the user has enabled hardware quick start by #defining
