@@ -1,4 +1,12 @@
 # Barometer driver #
+![Type badge](https://img.shields.io/badge/Type-Hardware%20Driver-green)
+![Technology badge](https://img.shields.io/badge/Technology-Platform-green)
+![License badge](https://img.shields.io/badge/License-zlib-green)
+![SDK badge](https://img.shields.io/badge/SDK-v3.1.2-green)
+![GCC badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/barometer_gcc.json)
+[![GitHub](https://img.shields.io/badge/Adafruit-DPS310-green)](https://www.adafruit.com/product/4494)
+[![GitHub](https://img.shields.io/badge/Sparkfun-MS5637-green)](https://www.sparkfun.com/products/14688)
+[![GitHub](https://img.shields.io/badge/Mikroe-Pressure%203%20Click-green)](https://www.mikroe.com/pressure-3-click)
 
 ## Overview ##
 

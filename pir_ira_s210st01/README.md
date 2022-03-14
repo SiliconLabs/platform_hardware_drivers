@@ -1,4 +1,10 @@
 # PIR Sensor Driver #
+![Type badge](https://img.shields.io/badge/Type-Hardware%20Driver-green)
+![Technology badge](https://img.shields.io/badge/Technology-Platform-green)
+![License badge](https://img.shields.io/badge/License-zlib-green)
+![SDK badge](https://img.shields.io/badge/SDK-v2.7.3-green)
+![GCC badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/pir_ira_s210st01_gcc.json)
+[![GitHub](https://img.shields.io/badge/Silabs-PIR%20Occupancy%20Sensor%20Kit-green)](https://www.silabs.com/development-tools/sensors/occupancy-sensor-kit)
 
 ## Overview ##
 

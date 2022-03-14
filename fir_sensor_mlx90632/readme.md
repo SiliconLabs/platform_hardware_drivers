@@ -1,4 +1,10 @@
 # MLX90632 IrThermo 3 click Driver
+![Type badge](https://img.shields.io/badge/Type-Hardware%20Driver-green)
+![Technology badge](https://img.shields.io/badge/Technology-Platform-green)
+![License badge](https://img.shields.io/badge/License-zlib-green)
+![SDK badge](https://img.shields.io/badge/SDK-v3.1.2-green)
+![GCC badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/fir_sensor_mlx90632_gcc.json)
+[![GitHub](https://img.shields.io/badge/Mikroe-IRTHERMO%203%20CLICK-green)](https://www.mikroe.com/ir-thermo-3-click)
 
 ## Overview ##
 

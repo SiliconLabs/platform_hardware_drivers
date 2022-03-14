@@ -1,4 +1,7 @@
 # NT3H2x11 Driver
+![Type badge](https://img.shields.io/badge/Type-Hardware%20Driver-green)
+![Technology badge](https://img.shields.io/badge/Technology-Platform-green)
+![License badge](https://img.shields.io/badge/License-zlib-green)
 
 Driver to enable EFR/EFM devices to work with NT3H2111 and NT3H2211. 
 NT3H2111 and NT3H2211 belong to NXP's [NTAG I2C](https://www.nxp.com/products/rfid-nfc/nfc-hf/nfc-tags-for-electronics/ntag-ic-iplus-i-nfc-forum-type-2-tag-with-ic-interface:NTAG_I2C) family, which is a NFC Forum Type 2 Tag (T2T) compliant tag IC with I2C interface to a MCU host. 

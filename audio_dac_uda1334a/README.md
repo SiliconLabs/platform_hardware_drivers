@@ -1,4 +1,10 @@
 # Audio DAC Driver #
+![Type badge](https://img.shields.io/badge/Type-Hardware%20Driver-green)
+![Technology badge](https://img.shields.io/badge/Technology-Platform-green)
+![License badge](https://img.shields.io/badge/License-zlib-green)
+![SDK badge](https://img.shields.io/badge/SDK-v3.1.2-green)
+![GCC badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/audio_dac_uda1334a_gcc.json)
+[![GitHub](https://img.shields.io/badge/Adafruit-I2S%20Stereo%20Decoder-green)](https://www.adafruit.com/product/3678)
 
 ## Overview ##
 
