@@ -33,153 +33,438 @@
 * at the sole discretion of Silicon Labs.
 *******************************************************************************/
 #include "max17048.h"
-#include "stdio.h"
 #include "max17048_config.h"
-#include "app_log.h"
+#include "em_gpio.h"
 #include "gpiointerrupt.h"
+#include "sl_sleeptimer.h"
 
-max1704x_t *max17048;
-static uint8_t empty_threshold = 32;
-max17048_temp_callback_t max17048_temp_callback;
-max17048_interrupt_callback_t interrupt_callback[5];
-void *callback_data[5];
-uint16_t rcomp_update_interval = MAX17048_CONFIG_RCOMP_UPDATE_INTERVAL_MS;
-static sl_sleeptimer_timer_handle_t temp_timer;
-static sl_sleeptimer_timer_handle_t quick_start_timer;
-static void temp_callback(sl_sleeptimer_timer_handle_t *handle, void *data);
-static void quick_start_callback(sl_sleeptimer_timer_handle_t *handle,
-                                 void *data);
-static void alrt_pin_callback(uint8_t pin);
+/** @cond DO_NOT_INCLUDE_WITH_DOXYGEN */
 
-/**************************************************************************/ /**
- * @brief This function read register
+// Global variables
+static sl_i2cspm_t  *max17048_i2cspm_instance;
+static bool         max17048_is_initialized = false;
+static uint8_t      max17048_athd_tracking = 0x1C;
+static uint8_t      max17048_rcomp_tracking = 0x97;
+static uint8_t      max17048_valrt_max_tracking = 0xFF;
+static uint8_t      max17048_valrt_min_tracking = 0x00;
+static uint8_t      max17048_vreset_tracking = 0x96;
+static uint8_t      max17048_hibthr_tracking = 0x80;
+static uint8_t      max17048_actthr_tracking = 0x30;
+static uint32_t     max17048_rcomp_update_interval = MAX17048_CONFIG_RCOMP_UPDATE_INTERVAL_MS;
+
+static sl_sleeptimer_timer_handle_t   max17048_temp_timer_handle;
+static sl_sleeptimer_timer_handle_t   max17048_quick_start_timer_handle;
+max17048_temp_callback_t              max17048_temp_callback;
+max17048_interrupt_callback_t         max17048_interrupt_callback[5];
+void *max17048_callback_data[5];
+
+// Function prototypes (private API)
+static sl_status_t max17048_read_register_block(uint8_t reg_addr,
+                                                uint8_t *data,
+                                                uint16_t length);
+static sl_status_t max17048_write_register_block(uint8_t reg_addr,
+                                                 const uint8_t *data,
+                                                 uint16_t length);
+static void max17048_temp_timer_callback(sl_sleeptimer_timer_handle_t *handle, void *data);
+static void max17048_alrt_pin_callback(uint8_t pin);
+static void max17048_quick_start_callback(sl_sleeptimer_timer_handle_t *handle, void *data);
+static sl_status_t max17048_set_rcomp(uint8_t rcomp);
+static sl_status_t max17048_get_alert_condition(uint8_t *alert_condition);
+static sl_status_t max17048_clear_alert_condition(uint8_t alert_condition,
+                                           sl_max17048_irq_source_t source);
+static sl_status_t max17048_clear_alert_status_bit(void);
+static sl_status_t max17048_clear_reset_indicator_bit(void);
+
+/** @endcond */
+
+/***************************************************************************//**
+ * @brief
+ *    Read a block of data from the max17048.
  *
- * @param[in] max17048 The instance to use.
- * @param[in] target_address Address register to read
- * @param[in] num_bytes Number of bytes to read
- * @param[out] rx_buff Data to read
+ * @param[in] reg_addr
+ *    The first register to begin reading from
  *
- * @return SL_STATUS_OK if successful. Error code otherwise.
+ * @param[in] length
+ *    The number of bytes to read
+ *
+ * @param[out] data
+ *    The data to read
+ *
+ * @note
+ *    All registers must be written and read as 16-bit words; 
+ *    8-bit writes cause no effect.
+ *
+ * @retval SL_STATUS_OK Success
+ * @retval SL_STATUS_TRANSMIT I2C transmit failure
  ******************************************************************************/
-static sl_status_t max17048_read_register(max1704x_t *max17048,
-                                          uint8_t target_address,
-                                          uint16_t *rx_buff,
-                                          uint8_t num_bytes)
+  static sl_status_t max17048_read_register_block(uint8_t reg_addr,
+                                                uint8_t *data,
+                                                uint16_t length)
 {
-  // Transfer structure
   I2C_TransferSeq_TypeDef seq;
   I2C_TransferReturn_TypeDef result;
   uint8_t i2c_write_data[1];
-  uint8_t value[2];
 
-  if (max17048 == NULL) {
-      return SL_STATUS_NULL_POINTER;
-  }
-
-  // Initializing I2C transfer
-  seq.addr = max17048->I2C_address << 1;
-
-  seq.flags = I2C_FLAG_WRITE_READ; // must write target address before reading
-  i2c_write_data[0] = target_address;
+  seq.addr = MAX17048_I2C_ADDRESS << 1;
+  seq.flags = I2C_FLAG_WRITE_READ;
+  /* Select register to start reading from */
+  i2c_write_data[0] = reg_addr;
   seq.buf[0].data = i2c_write_data;
   seq.buf[0].len  = 1;
-  seq.buf[1].data = value;
-  seq.buf[1].len  = num_bytes;
+  /* Select length of data to be read */
+  seq.buf[1].data = data;
+  seq.buf[1].len  = length;
 
-  result = I2CSPM_Transfer(max17048->I2C_fuel_gauge, &seq);
-  if (result != i2cTransferDone)
-  {
-      return SL_STATUS_TRANSMIT;
-  }
-  else
-  {
-      *rx_buff = ((uint16_t)value[0]<<8) | value[1];
+  result = I2CSPM_Transfer(max17048_i2cspm_instance, &seq);
+  if (result != i2cTransferDone) {
+    return SL_STATUS_TRANSMIT;
   }
 
   return SL_STATUS_OK;
 }
 
-/**************************************************************************/ /**
- * @brief This function write register
+/***************************************************************************//**
+ * @brief
+ *    Write a block of data to the max17048.
  *
- * @param[in] max17048 The instance to use.
- * @param[in] target_address Address register to write
- * @param[in] data Data to write
- * @param[in] num_bytes Number of bytes to write
+ * @param[in] reg_addr
+ *    The first register to begin writing to
  *
- * @return SL_STATUS_OK if successful. Error code otherwise.
+ * @param[in] length
+ *    The number of bytes to write
+ *
+ * @param[in] data
+ *    The data to write
+ *
+ * @note
+ *    All registers must be written and read as 16-bit words; 
+ *    8-bit writes cause no effect.
+ *
+ * @retval SL_STATUS_OK Success
+ * @retval SL_STATUS_TRANSMIT I2C transmit failure
  ******************************************************************************/
-static sl_status_t max17048_write_register(max1704x_t *max17048,
-                                           uint8_t target_address,
-                                           uint16_t data,
-                                           uint8_t num_bytes)
+  static sl_status_t max17048_write_register_block(uint8_t reg_addr,
+                                                 const uint8_t *data,
+                                                 uint16_t length)
 {
-  // Transfer structure
   I2C_TransferSeq_TypeDef seq;
   I2C_TransferReturn_TypeDef result;
-  uint8_t i2c_write_data[3];
+  uint8_t i2c_write_data[length + 1];
   uint8_t i2c_read_data[1];
+  uint8_t i;
 
-  if (max17048 == NULL) {
-      return SL_STATUS_NULL_POINTER;
-  }
-
-  i2c_write_data[0] = target_address;
-  i2c_write_data[1] = (uint8_t)(data >> 8);
-  i2c_write_data[2] = (uint8_t)(data);
-
-  // Initializing I2C transfer
-  seq.addr        = max17048->I2C_address << 1;
+  seq.addr        = MAX17048_I2C_ADDRESS << 1;
   seq.flags       = I2C_FLAG_WRITE;
+  /* Select register to start writing to */
+  i2c_write_data[0] = reg_addr;
+  for ( i = 0; i < length; i++ ) {
+    i2c_write_data[i + 1] = data[i];
+  }
   seq.buf[0].data = i2c_write_data;
-  seq.buf[0].len  = num_bytes + 1;
-
-  /* Select length of data to be read */
+  seq.buf[0].len  = length + 1;
   seq.buf[1].data = i2c_read_data;
   seq.buf[1].len  = 0;
 
-  result = I2CSPM_Transfer(max17048->I2C_fuel_gauge, &seq);
-  if (result != i2cTransferDone)
-  {
-      return SL_STATUS_TRANSMIT;
+  result = I2CSPM_Transfer(max17048_i2cspm_instance, &seq);
+  if (result != i2cTransferDone) {
+    return SL_STATUS_TRANSMIT;
   }
 
   return SL_STATUS_OK;
 }
 
-/**************************************************************************/ /**
- *  Initializes the max17048/max1749 - fuel gauge.
+/***************************************************************************//**
+ * @brief
+ *    This function adjusts RCOMP to optimize IC performance for different
+ *    lithium chemistries or different operating temperatures.
+ *
+ * @param[in] rcomp
+ *    The compensation resistance.
+ *
+ * @return SL_STATUS_OK if successful. Error code otherwise.
  ******************************************************************************/
-sl_status_t max17048_init()
+static sl_status_t max17048_set_rcomp(uint8_t rcomp)
 {
   sl_status_t status;
-  static max1704x_t init = FUEL_GAUGE_DEFAULT;
+  uint8_t buffer[2];
 
-  //  delay 170 milliseconds for stable
-  sl_sleeptimer_delay_millisecond(170);
+  // Update the private global variable to track
+  max17048_rcomp_tracking = rcomp;
+  buffer[0] = max17048_rcomp_tracking;
+  buffer[1] = max17048_athd_tracking;
+  buffer[1] |= (1 << MAX17048_CONFIG_ALRT_BIT); // Writing 1 to ALRT bit does not actually set ALRT
+  status = max17048_write_register_block(MAX17048_CONFIG, (uint8_t*) buffer, 2);
 
-  if (max17048 != NULL) {
-      return SL_STATUS_ALREADY_INITIALIZED;
+  return status;
+}
+
+/***************************************************************************//**
+ *  Callback when sleep timer expires.
+ ******************************************************************************/
+static void max17048_temp_timer_callback(sl_sleeptimer_timer_handle_t *handle, void *data)
+{
+  (void)handle;
+  (void)data;
+  uint8_t temp;
+  uint8_t rcomp;
+
+  temp = max17048_temp_callback();
+
+  if(temp > 20) {
+    rcomp = RCOMP0 + (temp - 20) * TEMP_CO_UP;
+  } else {
+    rcomp = RCOMP0 + (temp - 20) * TEMP_CO_DOWN;
   }
 
-  max17048 = &init;
+  max17048_set_rcomp(rcomp);
+}
+
+/***************************************************************************//**
+ *  Callback when sleep timer expires.
+ ******************************************************************************/
+static void max17048_quick_start_callback(sl_sleeptimer_timer_handle_t *handle,
+                                 void *data)
+{
+  (void)handle;
+  (void)data;
+
+  GPIO_PinOutClear(MAX17048_CONFIG_ENABLE_QSTRT_PORT,
+                   MAX17048_CONFIG_ENABLE_QSTRT_PIN);
+}
+
+/***************************************************************************//**
+ * This is a callback function that is invoked each time a GPIO interrupt
+ * in one of the pushbutton inputs occurs. Pin number is passed as parameter.
+ *
+ * @param[in] pin  Pin number where interrupt occurs
+ *
+ * @note This function is called from ISR context and therefore it is
+ *       not possible to call any API functions directly.
+ ******************************************************************************/
+static void max17048_alrt_pin_callback(uint8_t pin)
+{
+  max17048_interrupt_callback_t callback;
+  uint8_t alert_condition = 0;
+
+  if (pin == MAX17048_CONFIG_ALRT_PIN) {
+    //check alert condition
+    max17048_get_alert_condition(&alert_condition);
+
+    if ((alert_condition & MAX17048_STATUS_VR) != 0) {
+      // Process RESET alert callback because battery
+      // has changed or there has been POR
+      callback = max17048_interrupt_callback[IRQ_RESET];
+      callback(IRQ_RESET, max17048_callback_data[IRQ_RESET]);
+      max17048_clear_alert_condition(alert_condition, IRQ_RESET);
+    }
+    else if ((alert_condition & MAX17048_STATUS_HD) != 0) {
+      // Cell nearing empty; may need to place system in ultra-low-power state
+      callback = max17048_interrupt_callback[IRQ_EMPTY];
+      callback(IRQ_EMPTY, max17048_callback_data[IRQ_EMPTY]);
+      max17048_clear_alert_condition(alert_condition, IRQ_EMPTY);
+    }
+    else if ((alert_condition & MAX17048_STATUS_VL) != 0) {
+      // Voltage low alert; may need to set parameters for reduced
+      // energy use before reaching empty threshold
+      callback = max17048_interrupt_callback[IRQ_VCELL_LOW];
+      callback(IRQ_VCELL_LOW, max17048_callback_data[IRQ_VCELL_LOW]);
+      max17048_clear_alert_condition(alert_condition, IRQ_VCELL_LOW);
+    }
+    else if ((alert_condition & MAX17048_STATUS_VH) != 0) {
+      // Voltage high alert; may indicate battery is full charged
+      // and need to place charging IC in maintenance/trickle charge state
+      callback = max17048_interrupt_callback[IRQ_VCELL_HIGH];
+      callback(IRQ_VCELL_HIGH, max17048_callback_data[IRQ_VCELL_HIGH]);
+      max17048_clear_alert_condition(alert_condition, IRQ_VCELL_HIGH);
+    }
+    else if ((alert_condition & MAX17048_STATUS_SC) != 0) {
+      // SOC changed by 1%; lowest priority interrupt
+      // Clear
+      callback = max17048_interrupt_callback[IRQ_SOC];
+      callback(IRQ_SOC, max17048_callback_data[IRQ_SOC]);
+      max17048_clear_alert_condition(alert_condition, IRQ_SOC);
+    }
+
+    // Clears the alert status bit to release the ALRT pin.
+    max17048_clear_alert_status_bit();
+  }
+}
+
+/***************************************************************************//**
+ * @brief This function identifies which alert condition was met.
+ *
+ * @param[out] alert_condition
+ *   These bits are set when they are cause an alert. Values:
+ *   - <b>Bit 0:</b> (voltage high) is set when VCELL has been above
+ *     ALRT.VALRTMAX.
+ *   - <b>Bit 1:</b> (voltage low) is set when VCELL has been below
+ *     ALRT.VALRTMIN.
+ *   - <b>Bit 2:</b> (voltage reset) is set after the device has been reset if
+ *     EnVr is set.
+ *   - <b>Bit 3:</b> (SOC low) is set when SOC crosses the value in CONFIG.ATHD.
+ *   - <b>Bit 4:</b> (1% SOC change) is set when SOC changes by at least 1% if
+ *     CONFIG.ALSC is set.
+ *
+ * @return SL_STATUS_OK if successful. Error code otherwise.
+ ******************************************************************************/
+static sl_status_t max17048_get_alert_condition(uint8_t *alert_condition)
+{
+  sl_status_t status;
+  uint8_t buffer[2];
+
+  status = max17048_read_register_block(MAX17048_STATUS, buffer, 2);
+  if (status != SL_STATUS_OK) {
+    return status;
+  }
+
+  *alert_condition = (buffer[0] >> 1) & 0x1F;
+
+  return status;
+}
+
+/***************************************************************************//**
+ * @brief
+ *    This function clears the alert status bit.
+ *
+ * @details
+ *    When an alert is triggered, the IC drives the ALRT pin logic-low
+ *    and sets CONFIG.ALRT = 1. The ALRT pin remains logic-low until the system
+ *    software writes CONFIG.ALRT = 0 to clear the alert.
+ *    The alert function is enabled by default, so any alert can
+ *    occur immediately upon power-up. Entering sleep mode clears no alerts.
+ *
+ * @return SL_STATUS_OK if successful. Error code otherwise.
+ ******************************************************************************/
+static sl_status_t max17048_clear_alert_status_bit(void)
+{
+  sl_status_t status;
+  uint8_t buffer[2];
+
+  buffer[0] = max17048_rcomp_tracking;
+  // Clear ALRT bit in the LSB-CONFIG register to service and deassert the ALRT pin
+  buffer[1] = max17048_athd_tracking & ~(1 << MAX17048_CONFIG_ALRT_BIT);
+  status = max17048_write_register_block(MAX17048_CONFIG, (uint8_t*) buffer, 2);
+
+  return status;
+}
+
+/***************************************************************************//**
+ * @brief
+ *    This function clears the reset indicator bit.
+ *
+ * @details
+ *     RI (reset indicator) is set when the device powers up.
+ *     Any time this bit is set, the IC is not configured, so the
+ *     model should be loaded and the bit should be cleared
+ *
+ * @return SL_STATUS_OK if successful. Error code otherwise.
+ ******************************************************************************/
+static sl_status_t max17048_clear_reset_indicator_bit(void)
+{
+  sl_status_t status;
+  uint8_t buffer[2];
+
+  status = max17048_read_register_block(MAX17048_STATUS, buffer, 2);
+  if (status != SL_STATUS_OK) {
+    return status;
+  }
+
+  // Clear RI bit in the MSB-STATUS register if it is set
+  if ((buffer[0] & 0x01) != 0) {
+    buffer[0] &= ~(1 << 0);
+    status = max17048_write_register_block(MAX17048_STATUS, (uint8_t*) buffer, 2);
+  }
+
+  return status;
+}
+
+/**************************************************************************/ /**
+ * @brief This function clears the correct flag for the specified alert.
+ *
+ * @param[in] alert_condition
+ *    These bits are set when they are cause an alert.
+ *
+ * @param[in] source
+ *    MAX17048 interrupt source.
+ *
+ * @return SL_STATUS_OK if successful. Error code otherwise.
+ ******************************************************************************/
+static sl_status_t max17048_clear_alert_condition(uint8_t alert_condition,
+                                           sl_max17048_irq_source_t source)
+{
+  sl_status_t status;
+  uint8_t buffer[2];
+
+  buffer[0] = alert_condition & ~(1 << source);
+  buffer[0] <<= 1;
+  status = max17048_write_register_block(MAX17048_STATUS, (uint8_t*) buffer, 2);
+
+  return status;
+}
+/***************************************************************************//**
+ *  Initializes the max17048/max1749 - fuel gauge.
+ ******************************************************************************/
+sl_status_t max17048_init(sl_i2cspm_t *i2cspm)
+{
+  sl_status_t status;
+
+  // If already initialized, return status
+  if (max17048_is_initialized == true) {
+    return SL_STATUS_ALREADY_INITIALIZED;
+  }
+  
+  // Update i2cspm instance
+  max17048_i2cspm_instance = i2cspm;
+
   GPIOINT_Init();
   GPIO_PinModeSet(MAX17048_CONFIG_ALRT_PORT,
                   MAX17048_CONFIG_ALRT_PIN,
                   gpioModeInputPullFilter,
                   1);
+  GPIO_ExtIntConfig(MAX17048_CONFIG_ALRT_PORT,
+                    MAX17048_CONFIG_ALRT_PIN,
+                    MAX17048_CONFIG_ALRT_PIN,
+                    false,
+                    true,
+                    true);
+  /* register the callback function that is invoked when interrupt occurs */
+  GPIOINT_CallbackRegister(MAX17048_CONFIG_ALRT_PIN, max17048_alrt_pin_callback);
 
+#if (MAX17048_CONFIG_ENABLE_HW_QSTRT)
   if (MAX17048_CONFIG_ENABLE_HW_QSTRT) {
-      GPIO_PinModeSet(MAX17048_CONFIG_ENABLE_QSTRT_PORT,
-                      MAX17048_CONFIG_ENABLE_QSTRT_PIN,
-                      gpioModePushPull,
-                      0);
+    GPIO_PinModeSet(MAX17048_CONFIG_ENABLE_QSTRT_PORT,
+                    MAX17048_CONFIG_ENABLE_QSTRT_PIN,
+                    gpioModePushPull,
+                    0);
+  }
+#endif
+
+  /* The driver calculates and updates the RCOMP factor at a rate of
+  * 1000 ms <= MAX17048_CONFIG_RCOMP_UPDATE_INTERVAL_MS <= 60000 ms
+  * and defaults to 1 minute (60000 ms = 1 minute).
+  */
+  if ((max17048_rcomp_update_interval < 1000) || (max17048_rcomp_update_interval > 60000)) {
+    return SL_STATUS_INVALID_RANGE;
   }
 
   TEMPDRV_Init();
-  max17048_register_temperature_callback(((max17048_temp_callback_t)((int32_t)TEMPDRV_GetTemp)));
+  status = max17048_register_temperature_callback(((max17048_temp_callback_t)((int32_t)TEMPDRV_GetTemp)));
+  if (status != SL_STATUS_OK) {
+    return status;
+  }
 
-  return status;
+  // Read and clear RI bit if it is set
+  max17048_clear_reset_indicator_bit();
+
+  // Change drive state to initialized
+  max17048_is_initialized = true;
+
+  // User-specified stabilization delay
+  #if MAX17048_CONFIG_STABILIZATION_DELAY > 0
+    sl_sleeptimer_delay_millisecond(MAX17048_CONFIG_STABILIZATION_DELAY);
+  #endif
+
+  return SL_STATUS_OK;
 }
 
 /***************************************************************************//**
@@ -187,86 +472,105 @@ sl_status_t max17048_init()
  ******************************************************************************/
 sl_status_t max17048_deinit(void)
 {
-  if (max17048 == NULL) {
-      return SL_STATUS_NOT_INITIALIZED;
+  sl_status_t status;
+
+  if (max17048_is_initialized == false) {
+    return SL_STATUS_NOT_INITIALIZED;
   }
 
+  // De-initialization tasks
   GPIO_PinModeSet(MAX17048_CONFIG_ALRT_PORT,
                   MAX17048_CONFIG_ALRT_PIN,
                   gpioModeDisabled,
                   1);
+
   if (MAX17048_CONFIG_ENABLE_HW_QSTRT) {
-        GPIO_PinModeSet(MAX17048_CONFIG_ENABLE_QSTRT_PORT,
-                        MAX17048_CONFIG_ENABLE_QSTRT_PIN,
-                        gpioModeDisabled ,
-                        0);
+    GPIO_PinModeSet(MAX17048_CONFIG_ENABLE_QSTRT_PORT,
+                    MAX17048_CONFIG_ENABLE_QSTRT_PIN,
+                    gpioModeDisabled ,
+                    0);
   }
 
-  max17048_disable_soc_interrupt();
-  max17048_disable_empty_interrupt();
-  max17048_disable_vhigh_interrupt();
-  max17048_disable_vlow_interrupt();
-  max17048_disable_reset_interrupt();
-  max17048_enter_sleep();
+  status = max17048_disable_soc_interrupt();
+  if (status != SL_STATUS_OK) {
+    return status;
+  }
+
+  status = max17048_disable_empty_interrupt();
+  if (status != SL_STATUS_OK) {
+    return status;
+  }
+
+  status = max17048_disable_vhigh_interrupt();
+  if (status != SL_STATUS_OK) {
+    return status;
+  }
+
+  status = max17048_disable_vlow_interrupt();
+  if (status != SL_STATUS_OK) {
+    return status;
+  }
+
+  status = max17048_disable_reset_interrupt();
+  if (status != SL_STATUS_OK) {
+    return status;
+  }
+
+  status = max17048_enter_sleep();
+  if (status != SL_STATUS_OK) {
+    return status;
+  }
+
+  // Mark driver as not initialized
+  max17048_is_initialized = false;
 
   return SL_STATUS_OK;
 }
-/**************************************************************************/ /**
- *  Read the cell voltage.
+
+/***************************************************************************//**
+ *  This function returns the cell voltage in millivolts.
  ******************************************************************************/
 sl_status_t max17048_get_vcell(uint32_t *vcell)
 {
   sl_status_t status;
+  uint8_t buffer[2];
+  uint32_t vcell_reg_val;
 
-  status = max17048_read_register(max17048,
-                                  MAX17048_VCELL,
-                                  (uint16_t*)vcell,
-                                  2);
-
-  return status;
-}
-
-/**************************************************************************/ /**
- *  Read the cell voltage.
- ******************************************************************************/
-sl_status_t max17048_get_vcell_vol(float *vcell)
-{
-  sl_status_t status;
-  uint16_t value;
-
-  status = max17048_read_register(max17048, MAX17048_VCELL, &value, 2);
-
-  *vcell = ((float)value / 1000000000) * MAX17048_VCELL_RESOLUTION;
+  status = max17048_read_register_block(MAX17048_VCELL, buffer, 2);
+  vcell_reg_val = (buffer[0] << 8) | buffer[1];
+  *vcell = (uint64_t) vcell_reg_val * MAX17048_VCELL_RESOLUTION / 1000000;
 
   return status;
 }
 
-/**************************************************************************/ /**
- *  Read the SOC in integer.
+/***************************************************************************//**
+ *  Read the SOC register and return the state-of-charge as an integer (0 - 100%).
  ******************************************************************************/
 sl_status_t max17048_get_soc(uint32_t *soc)
 {
   sl_status_t status;
-  uint16_t value;
+  uint8_t buffer[2];
+  uint16_t soc_reg_val;
 
-  status = max17048_read_register(max17048, MAX17048_SOC, &value, 2);
-
-  *soc = value >> 8;
+  status = max17048_read_register_block(MAX17048_SOC, buffer, 2);
+  soc_reg_val = (buffer[0] << 8) | buffer[1];
+  *soc = soc_reg_val / MAX17048_SOC_RESOLUTION;
 
   return status;
 }
 
-/**************************************************************************/ /**
- *  Read the SOC rate.
+/***************************************************************************//**
+ *  This function gets an approximate value for the average SOC rate of change.
  ******************************************************************************/
 sl_status_t max17048_get_crate(float *crate)
 {
   sl_status_t status;
-  uint16_t value;
+  uint8_t buffer[2];
+  uint16_t crate_reg_val;
 
-  status = max17048_read_register(max17048, MAX17048_CRATE, &value, 2);
-
-  *crate = (((int16_t)value)*0.208)/100.0;
+  status = max17048_read_register_block(MAX17048_CRATE, buffer, 2);
+  crate_reg_val = (buffer[0] << 8) | buffer[1];
+  *crate = (float) crate_reg_val * MAX17048_CRATE_RESOLUTION;
 
   return status;
 }
@@ -281,19 +585,19 @@ sl_status_t max17048_register_temperature_callback(
   uint32_t interval;
 
   if (max17048_temp_callback == temp_cb) {
-      return SL_STATUS_ALREADY_INITIALIZED;
+    return SL_STATUS_ALREADY_INITIALIZED;
   }
 
   if (temp_cb == NULL) {
-      return SL_STATUS_NULL_POINTER;
+    return SL_STATUS_NULL_POINTER;
   }
 
   max17048_temp_callback = temp_cb;
 
   interval = max17048_get_update_interval();
-  status = sl_sleeptimer_start_periodic_timer_ms(&temp_timer,
+  status = sl_sleeptimer_start_periodic_timer_ms(&max17048_temp_timer_handle,
                                                  interval,
-                                                 temp_callback,
+                                                 max17048_temp_timer_callback,
                                                  (void *)NULL,
                                                  0,
                                                  0);
@@ -307,7 +611,7 @@ sl_status_t max17048_register_temperature_callback(
 sl_status_t max17048_unregister_temperature_callback(void)
 {
   if (max17048_temp_callback == NULL) {
-      return SL_STATUS_NOT_INITIALIZED;
+    return SL_STATUS_NOT_INITIALIZED;
   }
   max17048_temp_callback = (max17048_temp_callback_t)((int32_t)TEMPDRV_GetTemp);
 
@@ -320,17 +624,18 @@ sl_status_t max17048_unregister_temperature_callback(void)
 sl_status_t max17048_set_update_interval(uint32_t interval)
 {
   sl_status_t status;
+
   if ((interval < 1000) || (interval > 60000)) {
-      return SL_STATUS_INVALID_PARAMETER;
+    return SL_STATUS_INVALID_RANGE;
   }
 
-  rcomp_update_interval = sl_sleeptimer_ms_to_tick((uint16_t)interval);
-  status = sl_sleeptimer_restart_timer(&temp_timer,
-                                       rcomp_update_interval,
-                                       temp_callback,
-                                       (void *)NULL,
-                                       0,
-                                       0);
+  max17048_rcomp_update_interval = sl_sleeptimer_ms_to_tick((uint16_t)interval);
+  status = sl_sleeptimer_restart_periodic_timer(&max17048_temp_timer_handle,
+                                                max17048_rcomp_update_interval,
+                                                max17048_temp_timer_callback,
+                                                (void *)NULL,
+                                                0,
+                                                0);
 
   return status;
 }
@@ -340,26 +645,7 @@ sl_status_t max17048_set_update_interval(uint32_t interval)
  ******************************************************************************/
 uint32_t max17048_get_update_interval(void)
 {
-  return rcomp_update_interval;
-}
-
-static void alrt_pin_callback(uint8_t pin)
-{
-  max17048_interrupt_callback_t callback;
-  uint8_t alert_condition;
-
-  if (pin == MAX17048_CONFIG_ALRT_PIN) {
-      //check alert condition
-      max17048_get_alert_condition(&alert_condition);
-      for (int i= 0; i < 5; i++) {
-          if ((alert_condition >> i ) & 0x01) {
-              callback = interrupt_callback[i];
-              callback(i, callback_data[i]);
-          }
-      }
-      max17048_clear_alert_condition();
-      max1704x_clear_alert_status();
-  }
+  return max17048_rcomp_update_interval;
 }
 
 /***************************************************************************//**
@@ -367,13 +653,7 @@ static void alrt_pin_callback(uint8_t pin)
  ******************************************************************************/
 void max17048_mask_interrupts(void)
 {
-  GPIO_ExtIntConfig(MAX17048_CONFIG_ALRT_PORT,
-                    MAX17048_CONFIG_ALRT_PIN,
-                    MAX17048_CONFIG_ALRT_PIN,
-                    false,
-                    false,
-                    false);
-  GPIOINT_CallbackUnRegister(MAX17048_CONFIG_ALRT_PIN);
+  GPIO_IntDisable(1 << MAX17048_CONFIG_ALRT_PIN);
 }
 
 /***************************************************************************//**
@@ -381,201 +661,188 @@ void max17048_mask_interrupts(void)
  ******************************************************************************/
 void max17048_unmask_interrupts(void)
 {
-  GPIO_ExtIntConfig(MAX17048_CONFIG_ALRT_PORT,
-                    MAX17048_CONFIG_ALRT_PIN,
-                    MAX17048_CONFIG_ALRT_PIN,
-                    false,
-                    true,
-                    true);
-  GPIOINT_CallbackRegister(MAX17048_CONFIG_ALRT_PIN, alrt_pin_callback);
+  // Need to clear interrupt flag for the ALRT pin 
+  // in case an edge was detected while the interrupt was disabled
+  GPIO_IntClear(1 << MAX17048_CONFIG_ALRT_PIN);
+  GPIO_IntEnable(1 << MAX17048_CONFIG_ALRT_PIN);
 }
 
-/**************************************************************************/ /**
+/***************************************************************************//**
  *  Enable/disable alerting when SOC changes.
  ******************************************************************************/
 sl_status_t max17048_enable_soc_interrupt(max17048_interrupt_callback_t irq_cb,
                                           void *cb_data)
 {
   sl_status_t status;
-  uint16_t value;
+  uint8_t buffer[2];
 
   if (irq_cb == NULL || cb_data == NULL) {
-      return SL_STATUS_NULL_POINTER;
+    return SL_STATUS_NULL_POINTER;
   }
 
-  if (interrupt_callback[IRQ_SOC] != NULL || callback_data[IRQ_SOC] != NULL) {
-      return SL_STATUS_ALREADY_INITIALIZED;
+  if (max17048_interrupt_callback[IRQ_SOC] != NULL
+      || max17048_callback_data[IRQ_SOC] != NULL) {
+    return SL_STATUS_ALREADY_INITIALIZED;
   }
 
-  interrupt_callback[IRQ_SOC] = irq_cb;
-  callback_data[IRQ_SOC] = cb_data;
-  status = max17048_read_register(max17048, MAX17048_CONFIG, &value, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
+  max17048_interrupt_callback[IRQ_SOC] = irq_cb;
+  max17048_callback_data[IRQ_SOC] = cb_data;
+  
+  buffer[0] = max17048_rcomp_tracking;  // Get MSB-CONFIG register
+  // Set ALSC bit in the LSB-CONFIG register to enable alerting when SOC changes
+  max17048_athd_tracking |= (1 << MAX17048_CONFIG_ALSC_BIT);
+  buffer[1] = max17048_athd_tracking | (1 << MAX17048_CONFIG_ALRT_BIT); // Writing 1 to ALRT bit does not actually set ALRT
 
-  status = max17048_write_register(
-      max17048,
-      MAX17048_CONFIG,
-      (value | (0x0001 << MAX17048_CONFIG_ALSC_BIT)),
-      2);
-
-  return status;
-}
-
-/**************************************************************************/ /**
- *  Disable alerting when SOC changes.
- ******************************************************************************/
-sl_status_t max17048_disable_soc_interrupt(void)
-{
-  sl_status_t status;
-  uint16_t value;
-
-  if (interrupt_callback[IRQ_SOC] == NULL || callback_data[IRQ_SOC] == NULL) {
-      return SL_STATUS_NOT_INITIALIZED;
-  }
-  status = max17048_read_register(max17048, MAX17048_CONFIG, &value, 2);
-
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
-
-  status = max17048_write_register(
-      max17048,
-      MAX17048_CONFIG,
-      (value & ~(0x0001 << MAX17048_CONFIG_ALSC_BIT)),
-      2);
-
-  return status;
-}
-
-/**************************************************************************/ /**
- *  Set the empty threshold.
- ******************************************************************************/
-sl_status_t max17048_enable_empty_interrupt(
-    uint8_t athd,
-    max17048_interrupt_callback_t irq_cb,
-    void *cb_data)
-{
-  sl_status_t status;
-  uint16_t value;
-
-  if ((athd < 1) || (athd>32)) {
-      return SL_STATUS_INVALID_PARAMETER;
-  }
-
-  if ((irq_cb == NULL) || (cb_data == NULL)) {
-      return SL_STATUS_NULL_POINTER;
-  }
-
-  if (interrupt_callback[IRQ_EMPTY] != NULL
-      || callback_data[IRQ_EMPTY] != NULL) {
-      return SL_STATUS_ALREADY_INITIALIZED;
-  }
-
-  interrupt_callback[IRQ_EMPTY] = irq_cb;
-  callback_data[IRQ_EMPTY] = cb_data;
-
-  status = max17048_read_register(max17048, MAX17048_CONFIG, &value, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
-
-  value &= 0xFFE0;
-  value |= athd & 0x1F;
-  empty_threshold = 1 - athd;
-  status = max17048_write_register(max17048, MAX17048_CONFIG, value, 2);
-
-  return status;
-}
-
-/**************************************************************************/ /**
- *  Set the empty threshold.
- ******************************************************************************/
-sl_status_t max17048_disable_empty_interrupt()
-{
-  sl_status_t status;
-  uint16_t value;
-
-  status = max17048_read_register(max17048, MAX17048_CONFIG, &value, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
-
-  value &= 0xFFE0;
-  value |= 32;
-  empty_threshold = 32;
-  status = max17048_write_register(max17048, MAX17048_CONFIG, value, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
-
-  return status;
-}
-
-/**************************************************************************/ /**
- *  Set the empty threshold.
- ******************************************************************************/
-sl_status_t max17048_set_empty_threshold( uint8_t athd)
-{
-  sl_status_t status;
-  uint16_t value;
-
-  if((athd == 0) || (athd>32)) {
-      return SL_STATUS_INVALID_PARAMETER;
-  }
-
-  status = max17048_read_register(max17048, MAX17048_CONFIG, &value, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
-
-  value &= 0xFFE0;
-  value |= athd & 0x1F;
-  empty_threshold = athd;
-  status = max17048_write_register(max17048, MAX17048_CONFIG, value, 2);
+  status = max17048_write_register_block(MAX17048_CONFIG, (uint8_t*) buffer, 2);
 
   return status;
 }
 
 /***************************************************************************//**
- *  Get the empty threshold.
+ *  Disable alerting when SOC changes.
+ ******************************************************************************/
+sl_status_t max17048_disable_soc_interrupt(void)
+{
+  sl_status_t status;
+  uint8_t buffer[2];
+
+  if (max17048_interrupt_callback[IRQ_SOC] == NULL
+      || max17048_callback_data[IRQ_SOC] == NULL) {
+    return SL_STATUS_NOT_INITIALIZED;
+  }
+
+  buffer[0] = max17048_rcomp_tracking;  // Get MSB-CONFIG register
+  // Clear ALSC bit in the LSB-CONFIG register to disable alerting when SOC changes
+  max17048_athd_tracking &= ~(1 << MAX17048_CONFIG_ALSC_BIT);
+  buffer[1] = max17048_athd_tracking | (1 << MAX17048_CONFIG_ALRT_BIT); // Writing 1 to ALRT bit does not actually set ALRT
+  status = max17048_write_register_block(MAX17048_CONFIG, (uint8_t*) buffer, 2);
+
+  return status;
+}
+
+/***************************************************************************//**
+ *  Enables the MAX17048 empty alert interrupt, sets its threshold.
+ ******************************************************************************/
+sl_status_t max17048_enable_empty_interrupt(uint8_t athd,
+                                          max17048_interrupt_callback_t irq_cb,
+                                          void *cb_data)
+{
+  sl_status_t status;
+  uint8_t buffer[2];
+
+  if ((athd < 1) || (athd > 32)) {
+    return SL_STATUS_INVALID_PARAMETER;
+  }
+
+  if ((irq_cb == NULL) || (cb_data == NULL)) {
+    return SL_STATUS_NULL_POINTER;
+  }
+
+  if (max17048_interrupt_callback[IRQ_EMPTY] != NULL
+      || max17048_callback_data[IRQ_EMPTY] != NULL) {
+    return SL_STATUS_ALREADY_INITIALIZED;
+  }
+
+  max17048_interrupt_callback[IRQ_EMPTY] = irq_cb;
+  max17048_callback_data[IRQ_EMPTY] = cb_data;
+
+  buffer[0] = max17048_rcomp_tracking; // Get the MSB-CONFIG register
+  // Update the private global variable to track
+  max17048_athd_tracking &= 0xE0;
+  max17048_athd_tracking |= (32 - athd) & 0x1F;
+  buffer[1] = max17048_athd_tracking; // Update the LSB-CONFIG register
+
+  status = max17048_write_register_block(MAX17048_CONFIG, (uint8_t*) buffer, 2);
+
+  return status;
+}
+
+/***************************************************************************//**
+ *  Set the empty threshold.
+ ******************************************************************************/
+sl_status_t max17048_disable_empty_interrupt(void)
+{
+  sl_status_t status;
+  uint8_t buffer[2];
+
+  buffer[0] = max17048_rcomp_tracking; // Get the MSB-CONFIG register
+  // Update the private global variable to track
+  max17048_athd_tracking &= 0xE0;
+  max17048_athd_tracking |= 0x1F;
+  buffer[1] = max17048_athd_tracking; // Update the LSB-CONFIG register
+
+  status = max17048_write_register_block(MAX17048_CONFIG, (uint8_t*) buffer, 2);
+  if (status != SL_STATUS_OK) {
+    return status;
+  }
+
+  return status;
+}
+
+/***************************************************************************//**
+ *  Set the empty threshold in percents.
+ ******************************************************************************/
+sl_status_t max17048_set_empty_threshold(uint8_t athd)
+{
+  sl_status_t status;
+  uint8_t buffer[2];
+
+  if((athd == 0) || (athd > 32)) {
+    return SL_STATUS_INVALID_PARAMETER;
+  }
+
+  buffer[0] = max17048_rcomp_tracking; // Get the MSB-CONFIG register
+  // Update the private global variable to track
+  max17048_athd_tracking &= 0xE0;
+  max17048_athd_tracking |= (32 - athd) & 0x1F;
+  buffer[1] = max17048_athd_tracking; // Update the LSB-CONFIG register
+
+  status = max17048_write_register_block(MAX17048_CONFIG, (uint8_t*) buffer, 2);
+
+  return status;
+}
+
+/***************************************************************************//**
+ *  Get the empty threshold in percents.
  ******************************************************************************/
 uint8_t max17048_get_empty_threshold(void)
 {
-  return empty_threshold;
+  return (32 - (max17048_athd_tracking & 0x1F));
 }
 
-/**************************************************************************/ /**
- *  Set thresholds of the voltage alert.
+/***************************************************************************//**
+ *  Set thresholds of the voltage alert in millivolts.
  ******************************************************************************/
-sl_status_t max17048_enable_vhigh_interrupt(uint8_t valrt_max,
+sl_status_t max17048_enable_vhigh_interrupt(uint32_t valrt_max_mv,
                                             max17048_interrupt_callback_t irq_cb,
                                             void *cb_data)
 {
-    sl_status_t status;
-    uint16_t value, valert;
+  sl_status_t status;
+  uint8_t buffer[2];
 
-    if((irq_cb == NULL) || (cb_data == NULL)) {
-        return SL_STATUS_NULL_POINTER;
-    }
+  if((irq_cb == NULL) || (cb_data == NULL)) {
+    return SL_STATUS_NULL_POINTER;
+  }
 
-    if(interrupt_callback[IRQ_VCELL_HIGH] != NULL
-       || callback_data[IRQ_VCELL_HIGH] != NULL) {
-        return SL_STATUS_ALREADY_INITIALIZED;
-    }
+  if(max17048_interrupt_callback[IRQ_VCELL_HIGH] != NULL
+      || max17048_callback_data[IRQ_VCELL_HIGH] != NULL) {
+    return SL_STATUS_ALREADY_INITIALIZED;
+  }
 
-    interrupt_callback[IRQ_VCELL_HIGH] = irq_cb;
-    callback_data[IRQ_VCELL_HIGH] = cb_data;
-    status = max17048_read_register(max17048, MAX17048_VALRT, &valert, 2);
-    if (status != SL_STATUS_OK) {
-        return status;
-    }
+  max17048_interrupt_callback[IRQ_VCELL_HIGH] = irq_cb;
+  max17048_callback_data[IRQ_VCELL_HIGH] = cb_data;
 
-    value = (valert & 0xFF00) | valrt_max;
-    status = max17048_write_register(max17048, MAX17048_VALRT, value, 2);
+  if (valrt_max_mv > MAX17048_VALRT_MAX_MV) {
+    valrt_max_mv = MAX17048_VALRT_MAX_MV;
+  }
 
-    return status;
+  buffer[0] = max17048_valrt_min_tracking; // Get the VALRT.MIN register
+  // Update the private global variable to track
+  max17048_valrt_max_tracking = valrt_max_mv / MAX17048_VALRT_RESOLUTION;
+  buffer[1] = max17048_valrt_max_tracking; // Update the VALRT.MAX register
+  status = max17048_write_register_block(MAX17048_VALRT, (uint8_t*) buffer, 2);
+
+  return status;
 }
 
 /***************************************************************************//**
@@ -585,79 +852,78 @@ sl_status_t max17048_enable_vhigh_interrupt(uint8_t valrt_max,
 sl_status_t max17048_disable_vhigh_interrupt(void)
 {
   sl_status_t status;
-  uint16_t value, valert;
+  uint8_t buffer[2];
 
-  status = max17048_read_register(max17048, MAX17048_VALRT, &valert, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
-
-  value = (valert & 0xFF00) | 0xFF;
-  status = max17048_write_register(max17048, MAX17048_VALRT, value, 2);
+  buffer[0] = max17048_valrt_min_tracking; // Get the VALRT.MIN register
+  // Update the private global variable to track
+  max17048_valrt_max_tracking = 0xFF;
+  buffer[1] = max17048_valrt_max_tracking; // Update the VALRT.MAX register
+  status = max17048_write_register_block(MAX17048_VALRT, (uint8_t*) buffer, 2);
 
   return status;
 }
 
 /***************************************************************************//**
- *  Set the voltage high alert interrupt threshold.
+ *  Set the voltage high alert interrupt threshold in millivolts.
  ******************************************************************************/
-sl_status_t max17048_set_vhigh_threshold(uint8_t valrt_max)
+sl_status_t max17048_set_vhigh_threshold(uint32_t valrt_max_mv)
 {
   sl_status_t status;
-  uint16_t value, valert;
+  uint8_t buffer[2];
 
-  status = max17048_read_register(max17048, MAX17048_VALRT, &valert, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
+  if (valrt_max_mv > MAX17048_VALRT_MAX_MV) {
+    valrt_max_mv = MAX17048_VALRT_MAX_MV;
   }
 
-  value = (valert & 0xFF00) | valrt_max;
-  status = max17048_write_register(max17048, MAX17048_VALRT, value, 2);
+  buffer[0] = max17048_valrt_min_tracking; // Get the VALRT.MIN register
+  // Update the private global variable to track
+  max17048_valrt_max_tracking = valrt_max_mv / MAX17048_VALRT_RESOLUTION;
+  buffer[1] = max17048_valrt_max_tracking; // Update the VALRT.MAX register
+  status = max17048_write_register_block(MAX17048_VALRT, (uint8_t*) buffer, 2);
 
   return status;
 }
 
 /***************************************************************************//**
- *  Get the voltage high alert interrupt threshold.
+ *  Get the voltage high alert interrupt threshold in millivolts.
  ******************************************************************************/
-uint8_t max17048_get_vhigh_threshold(void)
+uint32_t max17048_get_vhigh_threshold(void)
 {
-  uint16_t valert;
-
-  max17048_read_register(max17048, MAX17048_VALRT, &valert, 2);
-
-  return valert & 0xFF;
+  return (uint32_t) max17048_valrt_max_tracking * MAX17048_VALRT_RESOLUTION;
 }
 
 /***************************************************************************//**
  *  Enables the MAX17048 voltage low alert interrupt, sets its threshold,
  *  and registers a user-provided callback function to respond to it.
  ******************************************************************************/
-sl_status_t max17048_enable_vlow_interrupt(uint8_t valrt_min,
+sl_status_t max17048_enable_vlow_interrupt(uint32_t valrt_min_mv,
                                            max17048_interrupt_callback_t irq_cb,
                                            void *cb_data)
 {
   sl_status_t status;
-  uint16_t value, valert;
+  uint8_t buffer[2];
 
   if((irq_cb == NULL) || (cb_data == NULL)) {
-      return SL_STATUS_NULL_POINTER;
+    return SL_STATUS_NULL_POINTER;
   }
 
-  if(interrupt_callback[IRQ_VCELL_LOW] != NULL
-     || callback_data[IRQ_VCELL_LOW] != NULL) {
-      return SL_STATUS_ALREADY_INITIALIZED;
+  if(max17048_interrupt_callback[IRQ_VCELL_LOW] != NULL
+     || max17048_callback_data[IRQ_VCELL_LOW] != NULL) {
+    return SL_STATUS_ALREADY_INITIALIZED;
   }
 
-  status = max17048_read_register(max17048, MAX17048_VALRT, &valert, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
+  max17048_interrupt_callback[IRQ_VCELL_LOW] = irq_cb;
+  max17048_callback_data[IRQ_VCELL_LOW] = cb_data;
+
+  if (valrt_min_mv > MAX17048_VALRT_MIN_MV) {
+    valrt_min_mv = MAX17048_VALRT_MIN_MV;
   }
 
-  interrupt_callback[IRQ_VCELL_LOW] = irq_cb;
-  callback_data[IRQ_VCELL_LOW] = cb_data;
-  value = (valrt_min << 8) | (valert & 0xFF);
-  status = max17048_write_register(max17048, MAX17048_VALRT, value, 2);
+  buffer[1] = max17048_valrt_max_tracking; // Get the VALRT.MAX register
+  // Update the private global variable to track
+  max17048_valrt_min_tracking = valrt_min_mv / MAX17048_VALRT_RESOLUTION;
+  buffer[0] = max17048_valrt_min_tracking; // Update the VALRT.MIN register
+  status = max17048_write_register_block(MAX17048_VALRT, (uint8_t*) buffer, 2);
 
   return status;
 }
@@ -669,199 +935,191 @@ sl_status_t max17048_enable_vlow_interrupt(uint8_t valrt_min,
 sl_status_t max17048_disable_vlow_interrupt(void)
 {
   sl_status_t status;
-  uint16_t value, valert;
+  uint8_t buffer[2];
 
-  status = max17048_read_register(max17048, MAX17048_VALRT, &valert, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
-
-  value = valert & 0xFF;
-  status = max17048_write_register(max17048, MAX17048_VALRT, value, 2);
+  buffer[1] = max17048_valrt_max_tracking; // Get the VALRT.MAX register
+  // Update the private global variable to track
+  max17048_valrt_min_tracking = 0x00;
+  buffer[0] = max17048_valrt_min_tracking; // Update the VALRT.MIN register
+  status = max17048_write_register_block(MAX17048_VALRT, (uint8_t*) buffer, 2);
 
   return status;
 }
 
 /***************************************************************************//**
- *  Set the voltage low alert interrupt threshold.
+ *  Set the voltage low alert interrupt threshold in millivolts.
  ******************************************************************************/
-sl_status_t max17048_set_vlow_threshold(uint8_t valrt_min)
+sl_status_t max17048_set_vlow_threshold(uint32_t valrt_min_mv)
 {
   sl_status_t status;
-  uint16_t value, valert;
+  uint8_t buffer[2];
 
-  status = max17048_read_register(max17048, MAX17048_VALRT, &valert, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
+  if (valrt_min_mv > MAX17048_VALRT_MIN_MV) {
+    valrt_min_mv = MAX17048_VALRT_MIN_MV;
   }
-
-  value = (valrt_min << 8) | (valert & 0xFF);
-  status = max17048_write_register(max17048, MAX17048_VALRT, value, 2);
+  buffer[1] = max17048_valrt_max_tracking; // Get the VALRT.MAX register
+  // Update the private global variable to track
+  max17048_valrt_min_tracking = valrt_min_mv / MAX17048_VALRT_RESOLUTION;
+  buffer[0] = max17048_valrt_min_tracking; // Update the VALRT.MIN register
+  status = max17048_write_register_block(MAX17048_VALRT, (uint8_t*) buffer, 2);
 
   return status;
 }
 
 /***************************************************************************//**
- *  Get the voltage low alert interrupt threshold.
+ *  Get the voltage low alert interrupt threshold in millivolts.
  ******************************************************************************/
-uint8_t max17048_get_vlow_threshold(void)
+uint32_t max17048_get_vlow_threshold(void)
 {
-  uint16_t valert;
-
-  max17048_read_register(max17048, MAX17048_VALRT, &valert, 2);
-
-  return valert >> 8;
+  return (uint32_t) max17048_valrt_min_tracking * MAX17048_VALRT_RESOLUTION;
 }
 
-/**************************************************************************/ /**
- *  Enable or disable voltage reset alert.
+/***************************************************************************//**
+ *  Enables the voltage reset alert interrupt, sets its threshold.
  ******************************************************************************/
-sl_status_t max17048_enable_reset_interrupt(
-    uint8_t vreset,
-    max17048_interrupt_callback_t irq_cb,
-    void *cb_data)
+sl_status_t max17048_enable_reset_interrupt(uint32_t vreset_mv,
+                                            max17048_interrupt_callback_t irq_cb,
+                                            void *cb_data)
 {
-  uint16_t value;
   sl_status_t status;
-  uint16_t res_vol;
+  uint8_t buffer[2];
+  uint8_t vreset_val;
 
   if ((irq_cb == NULL) || (cb_data == NULL)) {
-      return SL_STATUS_NULL_POINTER;
+    return SL_STATUS_NULL_POINTER;
   }
 
-  if (interrupt_callback[IRQ_RESET] != NULL
-      || callback_data[IRQ_RESET] != NULL) {
-      return SL_STATUS_ALREADY_INITIALIZED;
+  if (max17048_interrupt_callback[IRQ_RESET] != NULL
+      || max17048_callback_data[IRQ_RESET] != NULL) {
+    return SL_STATUS_ALREADY_INITIALIZED;
   }
 
-  if (vreset > 0x7F) {
-      return SL_STATUS_INVALID_PARAMETER;
+  if (vreset_mv > MAX17048_VRESET_MV) {
+    return SL_STATUS_INVALID_PARAMETER;
   }
 
-  interrupt_callback[IRQ_RESET] = irq_cb;
-  callback_data[IRQ_RESET] = cb_data;
+  max17048_interrupt_callback[IRQ_RESET] = irq_cb;
+  max17048_callback_data[IRQ_RESET] = cb_data;
 
-  status = max17048_read_register(max17048, MAX17048_STATUS, &value, 2);
+  status = max17048_read_register_block(MAX17048_STATUS, buffer, 2);
   if (status != SL_STATUS_OK) {
-      return status;
+    return status;
   }
 
-  status = max17048_write_register(
-      max17048,
-      MAX17048_STATUS,
-      (value | (0x0001 << MAX17048_STATUS_ENVR_BIT)),
-      2);
+  // Set EnVR bit in the MSB-STATUS register to enable voltage reset alert
+  buffer[0] |= (1 << MAX17048_STATUS_ENVR_BIT);
+  status = max17048_write_register_block(MAX17048_STATUS, (uint8_t*) buffer, 2);
   if (status != SL_STATUS_OK) {
-      return status;
+    return status;
   }
 
-  status = max17048_read_register(max17048, MAX17048_VRESET_ID, &value, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
-
-  res_vol = (uint16_t)vreset << 9;
-  res_vol |= value;
-  status = max17048_write_register(max17048, MAX17048_VRESET_ID, res_vol, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
-
-  status = max17048_read_register(max17048, MAX17048_VRESET_ID, &value, 2);
+  // Update the private global variable to track
+  max17048_vreset_tracking &= 0x01;
+  vreset_val = vreset_mv / MAX17048_VRESET_RESOLUTION;
+  max17048_vreset_tracking |= (vreset_val << 1);
+  buffer[0] = max17048_vreset_tracking; // Update the VRESET register
+  buffer[1] = 0x00; // Writing to ID register does not actually change ID
+  status = max17048_write_register_block(MAX17048_VRESET_ID, (uint8_t*) buffer, 2);
 
   return status;
 }
 
-/**************************************************************************/ /**
+/***************************************************************************//**
  *  Disable voltage reset alert.
  ******************************************************************************/
-sl_status_t max17048_disable_reset_interrupt()
+sl_status_t max17048_disable_reset_interrupt(void)
 {
-  uint16_t value;
   sl_status_t status;
+  uint8_t buffer[2];
 
-  status = max17048_read_register(max17048, MAX17048_STATUS, &value, 2);
+  status = max17048_read_register_block(MAX17048_STATUS, buffer, 2);
   if (status != SL_STATUS_OK) {
-      return status;
+    return status;
   }
-
-  status = max17048_write_register(
-      max17048,
-      MAX17048_STATUS,
-      (value & ~(0x0001 << MAX17048_STATUS_ENVR_BIT)),
-      2);
+  // Clear EnVR bit in the MSB-STATUS register to disable voltage reset alert
+  buffer[0] &= ~(1 << MAX17048_STATUS_ENVR_BIT);
+  status = max17048_write_register_block(MAX17048_STATUS, (uint8_t*) buffer, 2);
 
   return status;
 }
 
 /***************************************************************************//**
- *  Set the reset alert interrupt threshold.
+ *  Set the reset alert interrupt threshold in millivolts.
  ******************************************************************************/
-sl_status_t max17048_set_reset_threshold(uint8_t vreset)
+sl_status_t max17048_set_reset_threshold(uint32_t vreset_mv)
 {
   sl_status_t status;
-  uint16_t res_vol, value;
+  uint8_t buffer[2];
+  uint8_t vreset_val;
 
-  if (vreset > 0x7F) {
-      return SL_STATUS_INVALID_PARAMETER;
+  if (vreset_mv > MAX17048_VRESET_MV) {
+    return SL_STATUS_INVALID_PARAMETER;
   }
 
-  status = max17048_read_register(max17048, MAX17048_VRESET_ID, &value, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
+  // Update the private global variable to track
+  max17048_vreset_tracking &= 0x01;
+  vreset_val = vreset_mv / MAX17048_VRESET_RESOLUTION;
+  max17048_vreset_tracking |= (vreset_val << 1);
+  buffer[0] = max17048_vreset_tracking; // Update the VRESET register
+  buffer[1] = 0x00; // Writing to ID register does not actually change ID
 
-  res_vol = vreset << 9;
-  res_vol |= 0x1F;
-  res_vol |= value;
-  status = max17048_write_register(max17048, MAX17048_VRESET_ID, res_vol, 2);
+  status = max17048_write_register_block(MAX17048_VRESET_ID, (uint8_t*) buffer, 2);
 
   return status;
 }
 
 /***************************************************************************//**
- *  Get the reset alert interrupt threshold.
+ *  Get the reset alert interrupt threshold in millivolts.
  ******************************************************************************/
-uint8_t max17048_get_reset_threshold(void)
+uint32_t max17048_get_reset_threshold(void)
 {
-  uint16_t value;
-
-  max17048_read_register(max17048, MAX17048_VRESET_ID, &value, 2);
-
-  return value >> 9;
+  return (uint32_t) (max17048_vreset_tracking >> 1) * MAX17048_VRESET_RESOLUTION;
 }
 
-/**************************************************************************/ /**
+/***************************************************************************//**
  *  Read hibernate mode status.
  ******************************************************************************/
-sl_status_t max17048_get_hibe_status(max17048_hibstate_t *hibstat)
+sl_status_t max17048_get_hibernate_state(max17048_hibstate_t *hibstat)
 {
   sl_status_t status;
-  uint16_t value;
+  uint8_t buffer[2];
 
-  status = max17048_read_register(max17048, MAX17048_MODE, &value, 2);
-
-  *hibstat = (max17048_hibstate_t)((value >> 12) & 0x01);
+  status = max17048_read_register_block(MAX17048_MODE, buffer, 2);
+  // Get HibStat bit in the MSB-MODE register
+  *hibstat = (max17048_hibstate_t)((buffer[0] >> MAX17048_MODE_HIBSTAT_BIT) & 0x01);
 
   return status;
 }
 
-/**************************************************************************/ /**
+/***************************************************************************//**
  *  Set thresholds for entering and exiting hibernate mode.
  ******************************************************************************/
-sl_status_t max17048_enable_auto_hibernate(uint8_t hib_thr, uint8_t act_thr)
+sl_status_t max17048_enable_auto_hibernate(float hib_thr, uint32_t act_thr)
 {
-    sl_status_t status;
-    uint16_t value;
+  sl_status_t status;
+  uint8_t buffer[2];
 
-    if ((hib_thr = 0x0) && (act_thr != 0x0)) {
-        return SL_STATUS_INVALID_PARAMETER;
-    }
+  if ((hib_thr = 0x0) && (act_thr != 0x0)) {
+    return SL_STATUS_INVALID_PARAMETER;
+  }
 
-    value = ((uint16_t)hib_thr << 8) | act_thr;
-    status = max17048_write_register(max17048, MAX17048_HIBRT, value, 2);
+  if (hib_thr > MAX17048_HIBTHR_PERCENT) {
+    hib_thr = MAX17048_HIBTHR_PERCENT;
+  }
 
-    return status;
+  if (act_thr > MAX17048_ACTTHR_MV) {
+    act_thr = MAX17048_ACTTHR_MV;
+  }
+
+  // Update the private global variables to track
+  max17048_hibthr_tracking = hib_thr / MAX17048_HIBTHR_RESOLUTION;
+  max17048_actthr_tracking = act_thr * 1000 / MAX17048_ACTTHR_RESOLUTION;
+
+  buffer[0] = max17048_hibthr_tracking;    // Update the HibThr register
+  buffer[1] = max17048_actthr_tracking;    // Update the ActThr register
+  status = max17048_write_register_block(MAX17048_HIBRT, (uint8_t*) buffer, 2);
+
+  return status;
 }
 
 /***************************************************************************//**
@@ -871,297 +1129,181 @@ sl_status_t max17048_enable_auto_hibernate(uint8_t hib_thr, uint8_t act_thr)
 sl_status_t max17048_disable_auto_hibernate(void)
 {
   sl_status_t status;
-  uint16_t value;
+  uint8_t buffer[2];
 
-  value = 0x00;
-  status = max17048_write_register(max17048, MAX17048_HIBRT, value, 2);
+  // Update the private global variables to track
+  max17048_hibthr_tracking = 0x00;
+  max17048_actthr_tracking = 0x00;
 
-  return status;
-}
-
-/**************************************************************************/ /**
- *  Set the hibernate threshold level.
- ******************************************************************************/
-sl_status_t max17048_set_hibernate_threshold(uint8_t hib_thr)
-{
-  sl_status_t status;
-  uint16_t value, thres_val;
-
-  status = max17048_read_register(max17048, MAX17048_HIBRT, &thres_val, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
-
-  value = ((uint16_t)hib_thr << 8) | (thres_val & 0xFF);
-  status = max17048_write_register(max17048, MAX17048_HIBRT, value, 2);
+  buffer[0] = 0x00; // Clear the HibThr register
+  buffer[1] = 0x00; // Clear the ActThr register
+  status = max17048_write_register_block(MAX17048_HIBRT, (uint8_t*) buffer, 2);
 
   return status;
 }
 
 /***************************************************************************//**
- *  Get the hibernate threshold level.
+ *  Set the hibernate threshold level in percent.
  ******************************************************************************/
-uint8_t max17048_get_hibernate_threshold(void)
-{
-  uint16_t thres_val;
-
-  max17048_read_register(max17048, MAX17048_HIBRT, &thres_val, 2);
-
-  return thres_val >> 8;
-}
-
-/**************************************************************************/ /**
- *  Set the hibernate threshold level.
- ******************************************************************************/
-sl_status_t max17048_set_activity_threshold(uint8_t act_thr)
+sl_status_t max17048_set_hibernate_threshold(float hib_thr)
 {
   sl_status_t status;
-  uint16_t value, thres_val;
+  uint8_t buffer[2];
 
-  status = max17048_read_register(max17048, MAX17048_HIBRT, &thres_val, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
+  if (hib_thr > MAX17048_HIBTHR_PERCENT) {
+    hib_thr = MAX17048_HIBTHR_PERCENT;
   }
-
-  value = (thres_val & 0xFF00) | act_thr;
-
-  status = max17048_write_register(max17048, MAX17048_HIBRT, value, 2);
+  // Update the private global variable to track
+  max17048_hibthr_tracking = hib_thr / MAX17048_HIBTHR_RESOLUTION;
+  buffer[0] = max17048_hibthr_tracking; // Update the HibThr register
+  buffer[1] = max17048_actthr_tracking; // Get the ActThr register
+  status = max17048_write_register_block(MAX17048_HIBRT, (uint8_t*) buffer, 2);
 
   return status;
 }
 
 /***************************************************************************//**
- *  Get the activity threshold level.
+ *  Get the hibernate threshold level in percent.
  ******************************************************************************/
-uint8_t max17048_get_activity_threshold(void)
+float max17048_get_hibernate_threshold(void)
 {
-  uint16_t thres_val;
-
-  max17048_read_register(max17048, MAX17048_HIBRT, &thres_val, 2);
-
-  return thres_val & 0xFF;
+  return (float) max17048_hibthr_tracking * MAX17048_HIBTHR_RESOLUTION;
 }
 
-/**************************************************************************/ /**
- *  Adjust RCOMP register
+/***************************************************************************//**
+ *  Set the hibernate threshold level in minivolts.
  ******************************************************************************/
-sl_status_t max17048_set_rcomp(uint8_t rcomp)
+sl_status_t max17048_set_activity_threshold(uint32_t act_thr)
 {
   sl_status_t status;
-  uint16_t data;
+  uint8_t buffer[2];
 
-  status = max17048_read_register(max17048, MAX17048_CONFIG, &data, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
+  if (act_thr > MAX17048_ACTTHR_MV) {
+    act_thr = MAX17048_ACTTHR_MV;
   }
-
-  data &= 0x00FF;
-  data |= rcomp << 8;
-  status = max17048_write_register(max17048, MAX17048_CONFIG, data, 2);
+  // Update the private global variable to track
+  max17048_actthr_tracking = act_thr * 1000 / MAX17048_ACTTHR_RESOLUTION;
+  buffer[0] = max17048_hibthr_tracking; // Get the HibThr register
+  buffer[1] = max17048_actthr_tracking; // Update the ActThr register
+  status = max17048_write_register_block(MAX17048_HIBRT, (uint8_t*) buffer, 2);
 
   return status;
 }
 
-/**************************************************************************/ /**
- *  Read alert status.
+/***************************************************************************//**
+ *  Get the activity threshold level in minivolts.
  ******************************************************************************/
-sl_status_t max17048_get_alert_status( uint8_t *state)
+uint32_t max17048_get_activity_threshold(void)
 {
-  sl_status_t status;
-  uint16_t value;
-
-  status = max17048_read_register(max17048, MAX17048_CONFIG, &value, 2);
-
-  *state = (value >> MAX17048_CONFIG_ALRT_BIT) & 0x0001;
-
-  return status;
+  return (uint32_t) max17048_actthr_tracking * MAX17048_ACTTHR_RESOLUTION / 1000;
 }
 
-/**************************************************************************/ /**
- *  Clear alert status
- ******************************************************************************/
-sl_status_t max1704x_clear_alert_status(void)
-{
-  sl_status_t status;
-  uint16_t value;
-
-  status = max17048_read_register(max17048, MAX17048_CONFIG, &value, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
-
-  status = max17048_write_register(max17048, MAX17048_CONFIG,
-                                   value & ~(1 << MAX17048_CONFIG_ALRT_BIT),
-                                   2);
-
-  return status;
-}
-
-/**************************************************************************/ /**
+/***************************************************************************//**
  *  Enables/disables the analog comparator in hibernate mode.
  ******************************************************************************/
 sl_status_t max17048_enable_reset_comparator(bool enable)
 {
-    sl_status_t status;
-    uint16_t value;
+  sl_status_t status;
+  uint8_t buffer[2];
 
-    status = max17048_read_register(max17048, MAX17048_VRESET_ID, &value, 2);
-    if (status != SL_STATUS_OK) {
-        return status;
-    }
+  if (enable) {
+    // Set DIS bit in the VRESET register to o disable 
+    // the analog comparator in hibernate mode
+    max17048_vreset_tracking |= (1 << MAX17048_VRESET_DIS_BIT);
+  } else {
+    // Clear DIS bit in the VRESET register to o enable 
+    // the analog comparator in hibernate mode
+    max17048_vreset_tracking  &= ~(1 << MAX17048_VRESET_DIS_BIT);
+  }
 
-    if (enable) {
-        status = max17048_write_register(max17048,
-            MAX17048_VRESET_ID,
-            (value | (0x0001 << MAX17048_VRESET_DIS_BIT)),
-            2);
-    } else {
-        status = max17048_write_register(max17048,
-            MAX17048_VRESET_ID,
-            (value & ~(0x0001 << MAX17048_VRESET_DIS_BIT)),
-            2);
-    }
+  buffer[0] = max17048_vreset_tracking;
+  status = max17048_write_register_block(MAX17048_VRESET_ID, (uint8_t*) buffer, 2);
 
+  return status;
+}
+
+/***************************************************************************//**
+ *  Forces the MAX17048 to enter sleep mode.
+ ******************************************************************************/
+sl_status_t max17048_enter_sleep(void)
+{
+  sl_status_t status;
+  uint8_t buffer[2];
+
+  // Set EnSleep bit in the MSB-MODE register to enable sleep mode
+  buffer[0] = 1 << MAX17048_MODE_ENSLEEP_BIT;
+  status = max17048_write_register_block(MAX17048_MODE, (uint8_t*) buffer, 2);
+  if (status != SL_STATUS_OK) {
     return status;
-}
-
-/**************************************************************************/ /**
- *  Indicate which alert condition was met.
- ******************************************************************************/
-sl_status_t max17048_get_alert_condition(uint8_t *alert_condition)
-{
-  sl_status_t status;
-  uint16_t value;
-
-  status = max17048_read_register(max17048, MAX17048_STATUS, &value, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
   }
 
-  *alert_condition = (value >> 9) & 0x1F;
-
-  return status;
-}
-
-/**************************************************************************/ /**
- *  Clear which alert condition was met.
- ******************************************************************************/
-sl_status_t max17048_clear_alert_condition(void)
-{
-  sl_status_t status;
-  uint16_t value;
-
-  status = max17048_read_register(max17048, MAX17048_STATUS, &value, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
-
-  value &= 0x40FF;
-
-  status = max17048_write_register(max17048, MAX17048_STATUS, value, 2);
+  buffer[0] = max17048_rcomp_tracking;  // Get MSB-CONFIG register
+  // Set SLEEP bit in the LSB-CONFIG register 
+  // to force the IC to enter sleep mode
+  max17048_athd_tracking |= (1 << MAX17048_CONFIG_SLEEP_BIT);
+  buffer[1] = max17048_athd_tracking | (1 << MAX17048_CONFIG_ALRT_BIT); // Writing 1 to ALRT bit does not actually set ALRT
+  status = max17048_write_register_block(MAX17048_CONFIG, (uint8_t*) buffer, 2);
 
   return status;
 }
 
 
-/**************************************************************************/ /**
- *  Enable sleep.
+/***************************************************************************//**
+ *  Forces the MAX17048 to exit sleep mode.
  ******************************************************************************/
-sl_status_t max17048_enter_sleep()
+sl_status_t max17048_exit_sleep(void)
 {
   sl_status_t status;
-  uint16_t value;
+  uint8_t buffer[2];
 
-  status = max17048_read_register(max17048, MAX17048_MODE, &value, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
+  buffer[0] = max17048_rcomp_tracking;  // Get MSB-CONFIG register
+  // Clear SLEEP bit in the LSB-CONFIG register 
+  // to force the IC to exit sleep mode
+  max17048_athd_tracking &= ~(1 << MAX17048_CONFIG_SLEEP_BIT);
+  buffer[1] = max17048_athd_tracking | (1 << MAX17048_CONFIG_ALRT_BIT); // Writing 1 to ALRT bit does not actually set ALRT
+  status = max17048_write_register_block(MAX17048_CONFIG, (uint8_t*) buffer, 2);
 
-  status = max17048_write_register(max17048,
-      MAX17048_MODE,
-      (value | (0x0001 << MAX17048_MODE_EN_SLEEP_BIT)),
-      2);
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
+  return status;
+}
+/***************************************************************************//**
+ *  Forces the MAX17048 to initiate a power-on reset (POR).
+ ******************************************************************************/
+sl_status_t max17048_force_reset(void)
+{
+  sl_status_t status;
+  uint8_t buffer[2];
 
-  status = max17048_read_register(max17048, MAX17048_CONFIG, &value, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
-
-  status = max17048_write_register(max17048,
-      MAX17048_CONFIG,
-      (value | (0x0001 << MAX17048_CONFIG_SLEEP_BIT)),
-      2);
+  buffer[0] = MAX17048_RESET_MSB;
+  buffer[1] = MAX17048_RESET_LSB;
+  status = max17048_write_register_block(MAX17048_CMD, (uint8_t*) buffer, 2);
 
   return status;
 }
 
-
-/**************************************************************************/ /**
- *  Exit sleep.
- ******************************************************************************/
-sl_status_t max17048_exit_sleep()
-{
-  sl_status_t status;
-  uint16_t value;
-
-  status = max17048_read_register(max17048, MAX17048_CONFIG, &value, 2);
-  if (status != SL_STATUS_OK) {
-      return status;
-  }
-
-  status = max17048_write_register(max17048,
-      MAX17048_CONFIG,
-      (value & ~(0x0001 << MAX17048_CONFIG_SLEEP_BIT)),
-      2);
-
-  return status;
-}
-/**************************************************************************/ /**
- *  Reset the IC.
- ******************************************************************************/
-sl_status_t max17048_force_reset()
-{
-  sl_status_t status;
-
-  status = max17048_write_register(max17048, MAX17048_CMD, MAX17048_RESET, 2);
-
-  return status;
-}
-
-/**************************************************************************/ /**
+/***************************************************************************//**
  *  Forces the MAX17048 to initiate a battery quick start.
  ******************************************************************************/
-sl_status_t max17048_force_quick_start()
+sl_status_t max17048_force_quick_start(void)
 {
   sl_status_t status;
-  uint16_t value;
+  uint8_t buffer[2];
 
   if (MAX17048_CONFIG_ENABLE_HW_QSTRT) {
-      GPIO_PinOutSet(MAX17048_CONFIG_ENABLE_QSTRT_PORT,
-                     MAX17048_CONFIG_ENABLE_QSTRT_PIN);
+    GPIO_PinOutSet(MAX17048_CONFIG_ENABLE_QSTRT_PORT, 
+                   MAX17048_CONFIG_ENABLE_QSTRT_PIN);
 
-      status = sl_sleeptimer_start_timer_ms(&quick_start_timer,
-                                              1,
-                                              quick_start_callback,
-                                              (void *)NULL,
-                                              0,
-                                              0);
-      return status;
-  } else {
-      status = max17048_read_register(max17048, MAX17048_MODE, &value, 2);
-      if (status != SL_STATUS_OK) {
-          return status;
-      }
-
-      status = max17048_write_register(
-          max17048,
-          MAX17048_MODE,
-          (value | (0x0001 << MAX17048_MODE_QUICK_START_BIT)),
-          2);
+    status = sl_sleeptimer_start_timer_ms(&max17048_quick_start_timer_handle,
+                                          1,
+                                          max17048_quick_start_callback,
+                                          (void *)NULL,
+                                          0,
+                                          0);
+    return status;
   }
+
+  // Set EnSleep bit in the MSB-MODE register to enable sleep mode
+  buffer[0] = 1 << MAX17048_MODE_QUICK_START_BIT;
+  status = max17048_write_register_block(MAX17048_MODE, (uint8_t*) buffer, 2);
 
   return status;
 }
@@ -1172,83 +1314,58 @@ sl_status_t max17048_force_quick_start()
 sl_status_t max17048_load_model(const uint8_t *model)
 {
   sl_status_t status;
-  uint16_t value;
+  uint8_t buffer[2];
 
-  status = max17048_write_register(max17048, MAX17048_LOCK_TABLE, MAX17048_UNLOCK, 2);
+  buffer[0] = MAX17048_UNLOCK_MSB;
+  buffer[1] = MAX17048_UNLOCK_LSB;
+  status = max17048_write_register_block(MAX17048_LOCK_TABLE, (uint8_t*) buffer, 2);
   if (status != SL_STATUS_OK) {
-      return status;
+    return status;
   }
 
-  for (int i = 0; i < 64; i += 2) {
-      value = ((uint16_t)(*(model + i)) << 8) | (*(model + i + 1));
-      max17048_write_register(max17048, MAX17048_TABLE + i, value, 2);
+  for (uint8_t i = 0; i < 64; i += 2) {
+    buffer[0] = model[i];
+    buffer[1] = model[i + 1];
+    max17048_write_register_block(MAX17048_TABLE + i, (uint8_t*) buffer, 2);
   }
 
-  status = max17048_write_register(max17048, MAX17048_LOCK_TABLE, MAX17048_LOCK, 2);
+  buffer[0] = 0x00;
+  buffer[1] = 0x00;
+  status = max17048_write_register_block(MAX17048_LOCK_TABLE, (uint8_t*) buffer, 2);
   if (status != SL_STATUS_OK) {
-      return status;
+    return status;
   }
+
+  // Read and clear RI bit if it is set
+  max17048_clear_reset_indicator_bit();
 
   return SL_STATUS_OK;
 }
 
-/**************************************************************************/ /**
+/***************************************************************************//**
  *  Read the ID of th IC.
  ******************************************************************************/
 sl_status_t max17048_get_id(uint8_t *id)
 {
-    sl_status_t status;
-    uint16_t value;
+  sl_status_t status;
+  uint8_t buffer[2];
 
-    status = max17048_read_register(max17048, MAX17048_VRESET_ID, &value, 2);
+  status = max17048_read_register_block(MAX17048_VRESET_ID, buffer, 2);
+  *id = buffer[1];
 
-    *id = (uint8_t)value;
-
-    return status;
+  return status;
 }
 
-/**************************************************************************/ /**
+/***************************************************************************//**
  *  Read the product version of IC.
  ******************************************************************************/
-sl_status_t max17048_get_production_version( uint16_t *ver)
+sl_status_t max17048_get_production_version(uint16_t *ver)
 {
-    sl_status_t status;
+  sl_status_t status;
+  uint8_t buffer[2];
 
-    status = max17048_read_register(max17048, MAX17048_VERSION, ver, 2);
+  status = max17048_read_register_block(MAX17048_VERSION, buffer, 2);
+  *ver =  (buffer[0] << 8) | buffer[1];
 
-    return status;
-}
-
-/**************************************************************************/ /**
- *  Callback when sleep timer expires.
- ******************************************************************************/
-static void temp_callback(sl_sleeptimer_timer_handle_t *handle, void *data)
-{
-  (void)handle;
-  (void)data;
-  uint8_t temp;
-  uint8_t rcomp;
-
-  temp = max17048_temp_callback();
-
-  if(temp > 20) {
-      rcomp = RCOMP0 + (temp - 20) * TEMP_CO_UP;
-  } else {
-      rcomp = RCOMP0 + (temp - 20) * TEMP_CO_DOWN;
-  }
-
-  max17048_set_rcomp(rcomp);
-}
-
-/**************************************************************************/ /**
- *  Callback when sleep timer expires.
- ******************************************************************************/
-static void quick_start_callback(sl_sleeptimer_timer_handle_t *handle,
-                                 void *data)
-{
-  (void)handle;
-  (void)data;
-
-  GPIO_PinOutClear(MAX17048_CONFIG_ENABLE_QSTRT_PORT,
-                   MAX17048_CONFIG_ENABLE_QSTRT_PIN);
+  return status;
 }

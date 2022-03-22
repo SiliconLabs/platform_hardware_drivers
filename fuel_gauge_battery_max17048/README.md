@@ -6,7 +6,7 @@ This project shows the implementation of an I2C fuel gauge driver using MAX17048
 
 ## Gecko SDK Version ##
 
-v3.2.3
+GSDK v4.0.2
 
 ## Hardware Required ##
 
@@ -14,22 +14,24 @@ v3.2.3
 
 - [EFR32xG21 Radio Board (SLWMB4001A)](https://www.silabs.com/development-tools/wireless/wireless-starter-kit-mainboard)
 
-- Wireless Starter Kit Mainbard SLWRB4180A
+- [Wireless Starter Kit Mainbard SLWRB4180B](https://www.silabs.com/development-tools/wireless/slwrb4181b-efr32xg21-wireless-gecko-radio-board)
+
+- [Lithium Ion Battery](https://www.sparkfun.com/products/13851)
 
 ## Connections Required ##
 
-A battery fuel gauge kit can be easily connected up with two I2C wires (SDA and SCL) along with 3.3V and GND.
+We can use some [Wire Jumpers Female to Females](https://www.mikroe.com/wire-jumpers-female-to-female-30cm-10pcs) to connect between the EFR32xG21 Wireless Starter Kit and the MAX17048XEVKIT Evalue Kit, and between the MAX17048XEVKIT Evalue Kit and the Lithium Ion Battery as shown below.
 
-## Setup ##
-To test this application, you should connect the MAX17048EVKIT Board to the WSTK's I2C EXP header pins.
+![connection](doc/images/connection.png)
 
 | WSTK                      |  Fuel Gauge board markings |
-|---------------------------|----------------------------|
-| Extension PIN 1  GND      |  GND                       |
-| Extension PIN 20 3v3      |  3.3V                      |
-| Extension PIN 9 I2C_SDA   |  SDA                       |
-| Extension PIN 7 I2C_SCL   |  SCL                       |
-| Extension PIN 6 GPIO      |  ALRT                      |
+|---------------------------|:--------------------------:|
+| Extension PIN 1  - GND    |  J2-4: GND                 |
+| Extension PIN 9 - PD03    |  J2-5: SDA                 |
+| Extension PIN 7 - PD02    |  J2-3: SCL                 |
+| Extension PIN 6 - PC01    |  J2-6: ALRT                |
+
+## Setup ##
 
 You can either import the provided **fuel_gauge_baterry_max17048.sls** project file or start with an empty example project as basis:
 
@@ -39,31 +41,29 @@ You can either import the provided **fuel_gauge_baterry_max17048.sls** project f
 
 3. Install the software components:
 
-- Open the project's .slcp file.
+   - Open the project's .slcp file.
 
-- Select the SOFTWARE COMPONENTS tab.
+   - Select the SOFTWARE COMPONENTS tab.
 
-- Install **[Platform] > [Driver] > [I2CSPM]** component with the new instance name: **sensor**. Set this component to use I2C0 peripheral, SDL to PD02 pin, SDA to PD03 pin.
+   - Install **[Platform] > [Driver] > [I2CSPM]** component with the new instance name: **inst**. Set this component to use I2C0 peripheral, SDL to PD02 pin, SDA to PD03 pin.
 
-![i2c_peripheral](doc/images/i2c.png)
+        ![i2c_peripheral](doc/images/i2c.png)
 
-![i2c_pins](doc/images/i2c_pins.png)
+        ![i2c_pins](doc/images/i2c_pins.png)
 
-- Install **[Platform] > [Board Control]** component. Set **Enable Virtual COM UART**.
+   - Install **[Services] > [Sleep Timer]** component.
 
-![enable_vcom](doc/images/vcom.png)
+   - Install **[Services] > [IO Stream] > [IO Stream: USART]** component with the default instance name **vcom**.
 
-- Install **[Services] > [IO Stream] > [IO Stream: USART]** component with the default instance name **vcom**.
+   - Set **Enable Virtual COM UART** in **[Platform] > [Board Control]** component.
 
-- Install **[Application] > [Utility] > [Log]** component.
+        ![enable_vcom](doc/images/vcom.png)
 
-- Install **[Platform] > [Driver] > [GPIOINT]** component.
+   - Install **[Platform] > [Driver] > [GPIOINT]** component.
 
-- Install **[Platform] > [Board Drivers] > [Memory LCD with usart SPI driver]** component.
+   - Install **[Platform] > [Driver] > [TEMPDRV]** component.
 
-- Install **[Platform] > [Driver] > [GLIB Graphics Library]** component.
-
-- Install **[Platform] > [Driver] > [TEMPDRV]** component.
+   - Install **[Application] > [Utility] > [Log]** component.
 
 4. Install printf float
 
@@ -71,18 +71,18 @@ You can either import the provided **fuel_gauge_baterry_max17048.sls** project f
 
 - Select **C/C++ Build > Settings > Tool Settings >GNU ARM C Linker > General**. Check **Printf float**.
 
-![enable_print_float](doc/images/float.png)
+     ![enable_print_float](doc/images/float.png)
+
 5. Build and flash the project to your device.
 
-## .sls Projects Used ##
+## How it works ##
 
-**fuel_gauge_baterry_max17048.sls** - Import this project to have a ready-to-compile project.
-    
+### API overview ###
 
+TBD
 
+### Testing ###
 
+Below is the console output of the example application. The message is sent whenever SOC changes by at least 1%.
 
-
-
-
-
+![log](doc/images/log.png)

@@ -3,17 +3,35 @@
  * @brief define driver structures and APIs for the max17048/max17049 Fuel Gauge
  *******************************************************************************
  * # License
- * <b>Copyright 2020 Silicon Laboratories Inc. www.silabs.com</b>
- *******************************************************************************
- *
- * The licensor of this software is Silicon Laboratories Inc. Your use of this
- * software is governed by the terms of Silicon Labs Master Software License
- * Agreement (MSLA) available at
- * www.silabs.com/about-us/legal/master-software-license-agreement. This
- * software is distributed to you in Source Code format and is governed by the
- * sections of the MSLA applicable to Source Code.
- *
- ******************************************************************************/
+* <b>Copyright 2021 Silicon Laboratories Inc. www.silabs.com</b>
+********************************************************************************
+*
+* SPDX-License-Identifier: Zlib
+*
+* The licensor of this software is Silicon Laboratories Inc.
+*
+* This software is provided \'as-is\', without any express or implied
+* warranty. In no event will the authors be held liable for any damages
+* arising from the use of this software.
+*
+* Permission is granted to anyone to use this software for any purpose,
+* including commercial applications, and to alter it and redistribute it
+* freely, subject to the following restrictions:
+*
+* 1. The origin of this software must not be misrepresented; you must not
+*    claim that you wrote the original software. If you use this software
+*    in a product, an acknowledgment in the product documentation would be
+*    appreciated but is not required.
+* 2. Altered source versions must be plainly marked as such, and must not be
+*    misrepresented as being the original software.
+* 3. This notice may not be removed or altered from any source distribution.
+*
+*******************************************************************************
+* # Evaluation Quality
+* This code has been minimally tested to ensure that it builds and is suitable
+* as a demonstration for evaluation purposes only. This code will be maintained
+* at the sole discretion of Silicon Labs.
+*******************************************************************************/
 #ifndef __MAX17048_H_
 #define __MAX17048_H_
 
@@ -23,89 +41,138 @@
 #include "sl_i2cspm.h"
 #include "tempdrv.h"
 
-#define MAX17048_VCELL       (0x02u) //Address of VCELL register
-#define MAX17048_SOC         (0x04u) //Address of SOC register
-#define MAX17048_MODE        (0x06u) //Address of MODE register
-#define MAX17048_VERSION     (0x08u) //Address of VERSION register
-#define MAX17048_HIBRT       (0x0Au) //Address of HIBRT register
-#define MAX17048_CONFIG      (0x0Cu) //Address of CONFIG register
-#define MAX17048_VALRT       (0x14u) //Address of VALRT register
-#define MAX17048_CRATE       (0x16u) //Address of CRATE register
-#define MAX17048_VRESET_ID   (0x18u) //Address of VRESET/ID register
-#define MAX17048_STATUS      (0x1Au) //Address of STATUS register
-#define MAX17048_CMD         (0xFEu) //Address of CMD register
-#define MAX17048_LOCK_TABLE  (0x3Eu) //Address of lock register
-#define MAX17048_TABLE       (0x40u) //Address of TABLE register
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-#define MAX17048_RESET       (0x5400)//Reset value
-#define MAX17048_RCOMP0      (0x97u) //POR value of RCOMP
-#define MAX17048_UNLOCK      (0x4A57)//Unlock value
-#define MAX17048_LOCK        (0x00)  //Lock value
+/***************************************************************************//**
+ * @addtogroup max17048 - Fuel Gauge Sensor
+ * @brief Driver for the max17048/max17049 Fuel Gauge
 
-/*MODE Register Format*/
-#define MAX17048_MODE_HI_STAT_BIT     (12)
-#define MAX17048_MODE_EN_SLEEP_BIT    (13)
-#define MAX17048_MODE_QUICK_START_BIT (14)
 
-/* CONFIG Register Format*/
-#define MAX17048_CONFIG_SLEEP_BIT   (7)
-#define MAX17048_CONFIG_ALSC_BIT    (6)
-#define MAX17048_CONFIG_ALRT_BIT    (5)
-#define MAX17048_VRESET_DIS_BIT     (8)
-#define MAX17048_STATUS_ENVR_BIT    (14)
+   @n @section max17048_example MAX17048 example
 
-/*Resolution for calculate Vcell*/
-#define MAX17048_VCELL_RESOLUTION (78125)
+     Basic example for performing measurement: @n @n
+     @verbatim
 
-#define MAX17048_STATE_ENABLE      0x01
-#define MAX17048_STATE_DISABLE     0x00
-#define MAX17048_VALUE_SET         0x01
-#define MAX17048_VALUE_RESET       0x00
+   #include "sl_i2cspm_instances.h"
+   #include "max17048.h"
 
-#define MAX17048_ALERT_VH_VAL      0xC8 //4.00 V
-#define MAX17048_ALERT_VL_VAL      0xAF //3.50 V
-#define MAX17048_VRESET_THRES      0x3F //2.5 V
+   int main( void )
+   {
 
-#define MAX17048_ALERT_PIN_SET     0x01
-#define MAX17048_ALERT_PIN_RESET   0x00
+     ...
 
-#define MAX17048_DEFAULT_I2C_ADDR 0x36 //I2C address
+     uint32_t soc;
+     uint32_t vcell;
 
-#define RCOMP0       0x97
-#define TEMP_CO_UP   -0.5
-#define TEMP_CO_DOWN 5.0
+     max17048_init(sl_i2cspm_sensor_env);
+     // read the ID
+     max17048_get_id(&id);
+     max17048_get_vcell(&vcell);
+     max17048_get_soc(&soc);
+
+     ...
+
+   } @endverbatim
+
+ * @{
+ ******************************************************************************/
+
+#define MAX17048_VCELL                (0x02)   // Address of VCELL register
+#define MAX17048_SOC                  (0x04)   // Address of SOC register
+#define MAX17048_MODE                 (0x06)   // Address of MODE register
+#define MAX17048_VERSION              (0x08)   // Address of VERSION register
+#define MAX17048_HIBRT                (0x0A)   // Address of HIBRT register
+#define MAX17048_CONFIG               (0x0C)   // Address of CONFIG register
+#define MAX17048_VALRT                (0x14)   // Address of VALRT register
+#define MAX17048_CRATE                (0x16)   // Address of CRATE register
+#define MAX17048_VRESET_ID            (0x18)   // Address of VRESET/ID register
+#define MAX17048_STATUS               (0x1A)   // Address of STATUS register
+#define MAX17048_CMD                  (0xFE)   // Address of CMD register
+#define MAX17048_LOCK_TABLE           (0x3E)   // Address of lock register
+#define MAX17048_TABLE                (0x40)   // Address of TABLE register
+
+#define MAX17048_RESET_MSB            (0x54)   // MSB - Reset value
+#define MAX17048_RESET_LSB            (0x00)   // LSB - Reset value
+#define MAX17048_RCOMP0               (0x97)   // POR value of RCOMP
+#define MAX17048_UNLOCK_MSB           (0x4A)   // MSB - Unlock value
+#define MAX17048_UNLOCK_LSB           (0x57)   // LSB - Unlock value
+#define MAX17048_LOCK                 (0x00)   // Lock value
+
+/* MODE Register */
+#define MAX17048_MODE_HIBSTAT_BIT     (4)
+#define MAX17048_MODE_ENSLEEP_BIT     (5)
+#define MAX17048_MODE_QUICK_START_BIT (6)
+
+/* CONFIG Register */
+#define MAX17048_CONFIG_SLEEP_BIT     (7)
+#define MAX17048_CONFIG_ALSC_BIT      (6)
+#define MAX17048_CONFIG_ALRT_BIT      (5)
+#define MAX17048_VRESET_DIS_BIT       (0)
+#define MAX17048_STATUS_ENVR_BIT      (6)
+
+/* VCELL resolution in nanoVolts (78.125 uV) */
+#define MAX17048_VCELL_RESOLUTION     (78125)
+/* SOC resolution (1%/256)*/
+#define MAX17048_SOC_RESOLUTION       (256)
+/* VALRT resolution in mV */
+#define MAX17048_VALRT_RESOLUTION     (20)
+/* VRESET resolution in mV */
+#define MAX17048_VRESET_RESOLUTION    (40)
+/* CRATE resolution in %/hr */
+#define MAX17048_CRATE_RESOLUTION     (0.208)
+/* Hibernate threshold resolution in %/hr */
+#define MAX17048_HIBTHR_RESOLUTION    (0.208)
+/* Active threshold resolution in microVolts (1.25mV) */
+#define MAX17048_ACTTHR_RESOLUTION    (1250)
+
+#define MAX17048_VALRT_MAX_MV         (MAX17048_VALRT_RESOLUTION * 255)
+#define MAX17048_VALRT_MIN_MV         (MAX17048_VALRT_RESOLUTION * 255)
+#define MAX17048_VRESET_MV            (MAX17048_VRESET_RESOLUTION * 127)
+#define MAX17048_HIBTHR_PERCENT       (MAX17048_HIBTHR_RESOLUTION * 255)
+#define MAX17048_ACTTHR_MV            (MAX17048_ACTTHR_RESOLUTION * 255)
+
+#define MAX17048_STATE_ENABLE         0x01
+#define MAX17048_STATE_DISABLE        0x00
+#define MAX17048_VALUE_SET            0x01
+#define MAX17048_VALUE_RESET          0x00
+
+#define MAX17048_ALERT_VH_VAL         0xC8 // 4.00 V
+#define MAX17048_ALERT_VL_VAL         0xAF // 3.50 V
+#define MAX17048_VRESET_THRES         0x3F // 2.5 V
+
+#define MAX17048_ALERT_PIN_SET        0x01
+#define MAX17048_ALERT_PIN_RESET      0x00
+
+#define MAX17048_I2C_ADDRESS          0x36 // I2C address
+
+#define RCOMP0                        0x97
+#define TEMP_CO_UP                    -0.5
+#define TEMP_CO_DOWN                  5.0
+
+#define MAX17048_STATUS_VH            (1 << 0)
+#define MAX17048_STATUS_VL            (1 << 1)
+#define MAX17048_STATUS_VR            (1 << 2)
+#define MAX17048_STATUS_HD            (1 << 3)
+#define MAX17048_STATUS_SC            (1 << 4)
 
 #define MAX17048_ENUM(name) typedef uint8_t name; enum name##_enum
 
-#define FUEL_GAUGE_DEFAULT                      \
-{                                               \
-  .I2C_fuel_gauge = MAX17048_CONFIG_I2C,        \
-  .I2C_address    = MAX17048_DEFAULT_I2C_ADDR,  \
-}
-
 /// @brief MAX17048 interrupt source enum
 MAX17048_ENUM(sl_max17048_irq_source_t) {
-  IRQ_VCELL_HIGH = 0,
-  IRQ_VCELL_LOW = 1,
-  IRQ_RESET = 2,
-  IRQ_EMPTY = 3,
-  IRQ_SOC = 4,
+  IRQ_VCELL_HIGH  =  0,
+  IRQ_VCELL_LOW   =  1,
+  IRQ_RESET       =  2,
+  IRQ_EMPTY       =  3,
+  IRQ_SOC         =  4,
 };
 
 /// @brief MAX17048 hibernate state
 typedef enum {
-  activeMode = 0,       // Device is in active mode
-  hibernateMode = 1     // Device is in hibernate mode
+  activeMode    = 0,    ///< Device is in active mode
+  hibernateMode = 1     ///< Device is in hibernate mode
 } max17048_hibstate_t;
-
-/**
-   *@brief structure containing all data
-*******************************************************************************/
-typedef struct max1704x
-{
-  I2C_TypeDef *I2C_fuel_gauge;
-  uint8_t I2C_address;
-} max1704x_t;
 
 /***************************************************************************//**
  * @brief
@@ -115,7 +182,7 @@ typedef struct max1704x
  *   This callback function is executed from interrupt context when the user
  *   opts to provide the battery back temperature through a mechanism other
  *   than the integrated EMU temperature sensor (e.g. an external temperature
- *   sensor or other means).  The driver needs the battery pack temperature
+ *   sensor or other means). The driver needs the battery pack temperature
  *   to periodically update the MAX17048 compensation factor (RCOMP).
  *
  * @return
@@ -129,16 +196,19 @@ typedef int32_t (*max17048_temp_callback_t)(void);
  *   max17048_config.h file.
  *
  * @details
- *   This function does not write to any of the MAX17048 registers.  It
+ *   This function does not write to any of the MAX17048 registers. It
  *   assigns the I2C used to communicate with the device, configures the
  *   GPIO(s) used for the ALRTn and optional QSTRT pin(s), and starts a
  *   software timer to trigger temperature (RCOMP) updates at the
  *   user-specified rate.
  *
+ * @param[in] i2cspm
+ *   The I2CSPM instance to use.
+ *
  * @note
  *   Upon return, all interrupts from the MAX17048 are masked so that
  *   firmware can enable interrupts that are required, register their
- *   callback functions, and set relevant thresholds.  Interrupts are
+ *   callback functions, and set relevant thresholds. Interrupts are
  *   globally unmasked by calling max17048_unmask_interrupts().
  *
  * @return
@@ -147,14 +217,14 @@ typedef int32_t (*max17048_temp_callback_t)(void);
  *   @li @ref SL_STATUS_ALREADY_INITIALIZED the function has previously
  *     been called.
  ******************************************************************************/
-sl_status_t max17048_init(void);
+sl_status_t max17048_init(sl_i2cspm_t *i2cspm);
 
 /***************************************************************************//**
  * @brief
  *   De-initialize the MAX17048 driver.
  *
  * @details
- *   This function does not write to any of the MAX17048 registers.  Its
+ *   This function does not write to any of the MAX17048 registers. Its
  *   sole purpose is to return the GPIO pin(s) used for the ALRTn and
  *   optional QSTRT pins to the disabled state.
  *
@@ -169,7 +239,7 @@ sl_status_t max17048_init(void);
  *   of a complete shutdown sequence for an EFM32/EFR32-based system.
  *   Because driver de-initialization disables interrupt recognition, it
  *   is no longer possible to detect a battery swap, even though the
- *   MAX17048 will do so and assert ALRTn.  Leave the driver initialized
+ *   MAX17048 will do so and assert ALRTn. Leave the driver initialized
  *   to handle ALRTn assertion on battery swap, even if the MAX17048 has
  *   been placed in sleep mode.
  *
@@ -180,27 +250,19 @@ sl_status_t max17048_init(void);
  ******************************************************************************/
 sl_status_t max17048_deinit(void);
 
-/**************************************************************************/ /**
- * @brief This function read voltage from battery
+/***************************************************************************//**
+ * @brief This function returns the cell voltage in millivolts.
  *
- * @param[out] vcell The integer Voltage read on battery in units of
- *   1 LSB = 78.125uV/cell.
- *
- * @return SL_STATUS_OK if successful. Error code otherwise.
- ******************************************************************************/
-sl_status_t max17048_get_vcell(uint32_t *vcell);
-
-/**************************************************************************/ /**
- * @brief This function read voltage from battery
- *
- * @param[out] vcell The float Voltage read on battery in mV
+ * @param[out] vcell The cell voltage expressed in millivolts as
+ *   an integer. The function converts the raw output from the
+ *   MAX17048 where 1 LSB = 78.125 uV/cell.
  *
  * @return SL_STATUS_OK if successful. Error code otherwise.
  ******************************************************************************/
-sl_status_t max17048_get_vcell_vol(float *vcell);
+ sl_status_t max17048_get_vcell(uint32_t *vcell);
 
-/**************************************************************************/ /**
- * @brief This function read SOC in integer.
+/***************************************************************************//**
+ * @brief This function returns SOC as an integer %.
  *
  * @param[out] soc The state of charge [0-100%]
  *
@@ -208,12 +270,14 @@ sl_status_t max17048_get_vcell_vol(float *vcell);
  ******************************************************************************/
 sl_status_t max17048_get_soc(uint32_t *soc);
 
-/**************************************************************************/ /**
+/***************************************************************************//**
  * @brief This function gets an approximate value for the average SOC rate of
  * change.
  *
- * @param[out] crate The average SOC rate of change. 1 LSb = 0.208% per hour
- *   (not for conversion to ampere).
+ * @param[out] crate The average rate of change in SOC in % as a floating 
+ *  point value. The CRATE register returns a value expressed at 1 LSB = 0.208%
+ *  per hour. The value does not specifically reflect current consumption
+ *  and cannot be converted to a current.
  *
  * @return SL_STATUS_OK if successful. Error code otherwise.
  ******************************************************************************/
@@ -225,7 +289,7 @@ sl_status_t max17048_get_crate(float *crate);
  *
  * @details
  *   This function is used to register a callback that periodically updates
- *   the temperature of the battery monitored by the MAX17048.  By default, the
+ *   the temperature of the battery monitored by the MAX17048. By default, the
  *   driver uses the EMU temperature sensor on Series 2 EFM32/EFR32 devices.
  *
  *   However, in order for this sensor to accurately reflect the battery
@@ -235,16 +299,16 @@ sl_status_t max17048_get_crate(float *crate);
  *   In cases where this is not possible, the battery temperature can be
  *   provided to the driver from another source, such as an external
  *   temperature sensor that is integrated with the battery or mounted in
- *   close proximity to it.  The driver imposes no particular requirements
+ *   close proximity to it. The driver imposes no particular requirements
  *   on the source of the temperature other than that it is provided as a
  *   signed integer in degrees Celsius.
  *
  * @note
  *   The driver permits only one temperature update callback function to be
- *   registered.  Attempting to register another callback returns an error.
+ *   registered. Attempting to register another callback returns an error.
  *
  *   Firmware can unregister the current callback function, in which case
- *   the driver will revert to using the EMU temperature sensor.  This
+ *   the driver will revert to using the EMU temperature sensor. This
  *   can be useful to further reduce overall current draw in cases where the
  *   system enters a low-power, quiescent state such that the temperature
  *   reported by the EMU sensor is effectively the same as the battery
@@ -253,7 +317,7 @@ sl_status_t max17048_get_crate(float *crate);
  * @details
  *   There is no attempt to synchronize expiration of the software timer
  *   that updates the MAX17048's compensation factor (RCOMP) with
- *   registration of the user-provided callback function.  If the software
+ *   registration of the user-provided callback function. If the software
  *   timer expires and no callback has been registered, the EMU sensor's
  *   output is used.
  *
@@ -281,14 +345,14 @@ sl_status_t max17048_register_temperature_callback(max17048_temp_callback_t temp
  *   Unregister the temperature update callback for the MAX17048 driver
  *
  * @details
- *   This is the opposite of max17048_register_temperature_callback().  It
+ *   This is the opposite of max17048_register_temperature_callback(). It
  *   unregisters the previously-registered temperature update callback
  *   function and causes the driver to revert to the output of the EMU
  *   temperature sensor when next updating the MAX17048's RCOMP value.
  *
  * @details
  *   There is no attempt to unregister the user-provided callback function
- *   before expiration of the software timer that updates RCOMP.  If the
+ *   before expiration of the software timer that updates RCOMP. If the
  *   timer expires and the callback is still registered, it must provide
  *   a valid temperature to the driver.
  *
@@ -306,9 +370,9 @@ sl_status_t max17048_unregister_temperature_callback(void);
  *
  * @details
  *   This function sets the temperature compensation factor (RCOMP) update
- *   interval.  During driver initialization, the value specified by
+ *   interval. During driver initialization, the value specified by
  *   MAX17048_CONFIG_RCOMP_UPDATE_INTERVAL_MS is used and defaults to
- *   1 minute (60000 ms).  Effectively, it changes the timeout rate of the
+ *   1 minute (60000 ms). Effectively, it changes the timeout rate of the
  *   Sleeptimer periodic software timer callback that recalculates RCOMP
  *   and sends the updated value to the MAX17048.
  *
@@ -326,7 +390,7 @@ sl_status_t max17048_set_update_interval(uint32_t interval);
  *
  * @details
  *   This function returns the interval at which the driver updates the
- *   MAX17048 temperature compensation factor (RCOMP).  It is the
+ *   MAX17048 temperature compensation factor (RCOMP). It is the
  *   timeout rate of the Sleeptimer periodic software timer callback that
  *   recalculates RCOMP and sends the updated value to the MAX17048. *
  *
@@ -421,8 +485,8 @@ sl_status_t max17048_disable_soc_interrupt(void);
  *   because it does not have a dedicated enable bit.
  *
  *   However, the alert threshold is set by the ATHD field in the CONFIG
- *   register and is defined as 32 - ATHD.  Because ATHD = 0 at POR, the
- *   empty threshold defaults to 32%.
+ *   register and is defined as 32 - ATHD. Because ATHD = 0x1C at POR, the
+ *   empty threshold defaults to 4%.
  *
  * @param[in] athd
  *   Empty threshold specified as a percent between 1 and 32.
@@ -489,7 +553,7 @@ sl_status_t max17048_disable_empty_interrupt(void);
  *   that no callback function is executed.
  *
  *   There is no requirement for a callback to be registered before
- *   changing the empty threshold.  If one has not previously been
+ *   changing the empty threshold. If one has not previously been
  *   registered, the driver will ignore the interrupt.
  *
  * @param[in] athd
@@ -507,8 +571,8 @@ sl_status_t max17048_set_empty_threshold(uint8_t athd);
  *   Get the empty threshold.
  *
  * @note
- *   The driver does not poll the MAX17048 to retrieve this value.  At
- *   initialization it is assumed to be the default level of 32% and is
+ *   The driver does not poll the MAX17048 to retrieve this value. At
+ *   initialization it is assumed to be the default level of 4% and is
  *   tracked in a private variable should it otherwise be changed.
  *
  * @return
@@ -527,18 +591,18 @@ uint8_t max17048_get_empty_threshold(void);
  *
  *   However, the high alert level is set by the VALRT register MAX field,
  *   and if it is set to a voltage higher than the maximum VCELL level,
- *   the interrupt will never be requested.  Because each LSB of MAX
+ *   the interrupt will never be requested. Because each LSB of MAX
  *   corresponds to 20 mV, a value of 0xFF is 5.1V, which is greater than
  *   the maximum output voltage of a single Li+ cell.
  *
  * @note
- *   The driver does not sanity check valrt_max.  If the user sets
+ *   The driver does not sanity check valrt_max. If the user sets
  *   valrt_max to a nonsensical value, e.g. 0, the interrupt will
- *   trigger constantly.  There is also no requirement that
+ *   trigger constantly. There is also no requirement that
  *   valrt_max > valrt_min.
  *
- * @param[in] valrt_max
- *   High voltage alert threshold in units of 1 LSB = 20 mV.
+ * @param[in] valrt_max_mv
+ *   High voltage alert threshold in millivolts.
  *
  * @param[in] irq_cb
  *   User-defined function to respond to VCELL > valrt_max.
@@ -554,7 +618,7 @@ uint8_t max17048_get_empty_threshold(void);
  *   @li @ref SL_STATUS_ALREADY_INITIALIZED if a callback has already been
  *     initialized.
  ******************************************************************************/
-sl_status_t max17048_enable_vhigh_interrupt(uint8_t valrt_max,
+sl_status_t max17048_enable_vhigh_interrupt(uint32_t valrt_max_mv,
                                             max17048_interrupt_callback_t irq_cb,
                                             void *cb_data);
 
@@ -569,7 +633,7 @@ sl_status_t max17048_enable_vhigh_interrupt(uint8_t valrt_max,
  *
  *   However, the high alert level is set by the VALRT register MAX field,
  *   and if it is set to a voltage higher than the maximum VCELL level,
- *   the interrupt will never be requested.  Because each LSB of MAX
+ *   the interrupt will never be requested. Because each LSB of MAX
  *   corresponds to 20 mV, a value of 0xFF is 5.1V, which is greater than
  *   the maximum output voltage of a single Li+ cell.
  *
@@ -587,33 +651,32 @@ sl_status_t max17048_disable_vhigh_interrupt(void);
  *   interrupt is requested.
  *
  * @note
- *   The driver does not sanity check valrt_max.  If the user sets
+ *   The driver does not sanity check valrt_max. If the user sets
  *   valrt_max to a nonsensical value, e.g. 0, the interrupt will
- *   trigger constantly.  There is also no requirement that
+ *   trigger constantly. There is also no requirement that
  *   valrt_max > valrt_min.
  *
- * @param[in] valrt_max
- *   High voltage alert threshold in units of 1 LSB = 20 mV.
+ * @param[in] valrt_max_mv
+ *   High voltage alert threshold in millivolts.
  *
  * @return
  *   @li @ref SL_STATUS_OK on success.
  ******************************************************************************/
-sl_status_t max17048_set_vhigh_threshold(uint8_t valrt_max);
+sl_status_t max17048_set_vhigh_threshold(uint32_t valrt_max_mv);
 
 /***************************************************************************//**
  * @brief
  *   Get the voltage high alert interrupt threshold.
  *
  * @note
- *   The driver does not poll the MAX17048 to retrieve this value.  At
+ *   The driver does not poll the MAX17048 to retrieve this value. At
  *   initialization it is assumed to be the default level of 0xFF and
  *   is tracked in a private variable should it otherwise be changed.
  *
  * @return
- *   @li High voltage alert threshold between 0x0 and 0xFF in units of
- *   1 LSB = 20 mV.
+ *   @li High voltage alert threshold in millivolts.
  ******************************************************************************/
-uint8_t max17048_get_vhigh_threshold(void);
+uint32_t max17048_get_vhigh_threshold(void);
 
 /***************************************************************************//**
  * @brief
@@ -626,18 +689,18 @@ uint8_t max17048_get_vhigh_threshold(void);
  *
  *   However, the low alert level is set by the VALRT register MIN field,
  *   and if it is set to a voltage lower than the minimum VCELL level,
- *   the interrupt will never be requested.  Because each LSB of MIN
+ *   the interrupt will never be requested. Because each LSB of MIN
  *   corresponds to 20 mV, a value of 0x0 is 0V, which a voltage at
  *   which the system should not even be running.
  *
  * @note
- *   The driver does not sanity check valrt_min.  If the user sets
+ *   The driver does not sanity check valrt_min. If the user sets
  *   valrt_min to a nonsensical value, e.g. 0xFF, the interrupt will
- *   trigger constantly.  There is also no requirement that
+ *   trigger constantly. There is also no requirement that
  *   valrt_max > valrt_min.
  *
- * @param[in] valrt_min
- *   Low voltage alert threshold in units of 1 LSB = 20 mV.
+ * @param[in] valrt_min_mv
+ *   Low voltage alert threshold in millivolts.
  *
  * @param[in] irq_cb
  *   User-defined function to respond to VCELL > valrt_max.
@@ -653,7 +716,7 @@ uint8_t max17048_get_vhigh_threshold(void);
  *   @li @ref SL_STATUS_ALREADY_INITIALIZED if a callback has already been
  *     initialized.
  ******************************************************************************/
-sl_status_t max17048_enable_vlow_interrupt(uint8_t valrt_min,
+sl_status_t max17048_enable_vlow_interrupt(uint32_t valrt_min_mv,
                                            max17048_interrupt_callback_t irq_cb,
                                            void *cb_data);
 
@@ -668,7 +731,7 @@ sl_status_t max17048_enable_vlow_interrupt(uint8_t valrt_min,
  *
  *   However, the low alert level is set by the VALRT register MIN field,
  *   and if it is set to a voltage lower than the minimum VCELL level,
- *   the interrupt will never be requested.  Because each LSB of MAX
+ *   the interrupt will never be requested. Because each LSB of MAX
  *   corresponds to 20 mV, a value of 0x0 is 0V, which a voltage at
  *   which the system should not even be running.
  *
@@ -686,33 +749,32 @@ sl_status_t max17048_disable_vlow_interrupt(void);
  *   interrupt is requested.
  *
  * @note
- *   The driver does not sanity check valrt_min.  If the user sets
+ *   The driver does not sanity check valrt_min. If the user sets
  *   valrt_min to a nonsensical value, e.g. 0xFF, the interrupt will
- *   trigger constantly.  There is also no requirement that
+ *   trigger constantly. There is also no requirement that
  *   valrt_max > valrt_min.
  *
- * @param[in] valrt_min
- *   Low voltage alert threshold in units of 1 LSB = 20 mV.
+ * @param[in] valrt_min_mv
+ *   Low voltage alert threshold in millivolts.
  *
  * @return
  *   @li @ref SL_STATUS_OK on success.
  ******************************************************************************/
-sl_status_t max17048_set_vlow_threshold(uint8_t valrt_min);
+sl_status_t max17048_set_vlow_threshold(uint32_t valrt_min_mv);
 
 /***************************************************************************//**
  * @brief
  *   Get the voltage low alert interrupt threshold.
  *
  * @note
- *   The driver does not poll the MAX17048 to retrieve this value.  At
+ *   The driver does not poll the MAX17048 to retrieve this value. At
  *   initialization it is assumed to be the default level of 0x0 and
  *   is tracked in a private variable should it otherwise be changed.
  *
  * @return
- *   @li Low voltage alert threshold between 0x0 and 0xFF in units of
- *   1 LSB = 20 mV.
+ *   @li Low voltage alert threshold in millivolts.
  ******************************************************************************/
-uint8_t max17048_get_vlow_threshold(void);
+uint32_t max17048_get_vlow_threshold(void);
 
 /***************************************************************************//**
  * @brief
@@ -722,7 +784,7 @@ uint8_t max17048_get_vlow_threshold(void);
  * @details
  *   The reset alert interrupt is used to detect battery removal or a
  *   drop in the cell output voltage below which system functionality
- *   may be impaired.  It is enabled by writing a 1 to the EnVr bit in
+ *   may be impaired. It is enabled by writing a 1 to the EnVr bit in
  *   the STATUS register.
  *
  *   The reset threshold is a 7-bit value specified in units of
@@ -731,12 +793,12 @@ uint8_t max17048_get_vlow_threshold(void);
  * @note
  *   The driver does not fully sanity check vreset, and it is possible
  *   for the user to specify a nonsensical value that constantly
- *   triggers the interrupt.  For example, vreset = 0x7F corresponds
+ *   triggers the interrupt. For example, vreset = 0x7F corresponds
  *   to a reset voltage of 5.08V, which is greater than the maximum
  *   output level of a single Li+ cell.
  *
- * @param[in] vreset
- *   Low voltage alert threshold in units of 1 LSB = 40 mV.
+ * @param[in] vreset_mv
+ *   Low voltage alert threshold in millivolts.
  *
  * @param[in] irq_cb
  *   User-defined function to respond to VCELL > valrt_max.
@@ -752,9 +814,9 @@ uint8_t max17048_get_vlow_threshold(void);
  *   @li @ref SL_STATUS_ALREADY_INITIALIZED if a callback has already been
  *     initialized.
  *
- *   @li @ref SL_STATUS_INVALID_PARAMETER if vreset > 0x7F.
+ *   @li @ref SL_STATUS_INVALID_PARAMETER if vreset_mv > 5080.
  ******************************************************************************/
-sl_status_t max17048_enable_reset_interrupt(uint8_t vreset,
+sl_status_t max17048_enable_reset_interrupt(uint32_t vreset_mv,
                                             max17048_interrupt_callback_t irq_cb,
                                             void *cb_data);
 
@@ -783,34 +845,33 @@ sl_status_t max17048_disable_reset_interrupt(void);
  * @note
  *   The driver does not fully sanity check vreset, and it is possible
  *   for the user to specify a nonsensical value that constantly
- *   triggers the interrupt.  For example, vreset = 0x7F corresponds
+ *   triggers the interrupt. For example, vreset = 0x7F corresponds
  *   to a reset voltage of 5.08V, which is greater than the maximum
  *   output level of a single Li+ cell.
  *
- * @param[in] vreset
- *   Low voltage alert threshold in units of 1 LSB = 40 mV.
+ * @param[in] vreset_mv
+ *   Low voltage alert threshold in millivolts.
  *
  * @return
  *   @li @ref SL_STATUS_OK on success.
  *
- *   @li @ref SL_STATUS_INVALID_PARAMETER if vreset > 0x7F.
+ *   @li @ref SL_STATUS_INVALID_PARAMETER if vreset_mv > 5080.
  ******************************************************************************/
-sl_status_t max17048_set_reset_threshold(uint8_t vreset);
+sl_status_t max17048_set_reset_threshold(uint32_t vreset_mv);
 
 /***************************************************************************//**
  * @brief
  *   Get the reset alert interrupt threshold.
  *
  * @note
- *   The driver does not poll the MAX17048 to retrieve this value.  At
+ *   The driver does not poll the MAX17048 to retrieve this value. At
  *   initialization it is assumed to be the default level of 0x4B and
  *   is tracked in a private variable should it otherwise be changed.
  *
  * @return
- *   @li Reset alert threshold between 0x0 and 0x7F in units of
- *   1 LSB = 40 mV.
+ *   @li Reset alert threshold in millivolts.
  ******************************************************************************/
-uint8_t max17048_get_reset_threshold(void);
+uint32_t max17048_get_reset_threshold(void);
 
 /***************************************************************************//**
  * @brief
@@ -824,34 +885,36 @@ uint8_t max17048_get_reset_threshold(void);
  *   the ADC sampling interval from 250 ms to 45 seconds.
  *
  *   Automatic hibernation happens when the CRATE is less than the
- *   user-specified threshold.  Similarly, exit from hibernate is
+ *   user-specified threshold. Similarly, exit from hibernate is
  *   automatic if any single VCELL reading exceeds the user-specified
  *   activity threshold.
  *
  *   As the datasheet notes, writing 0xFFFF to HIBRT forces use of
- *   automatic hibernation; similarly, 0x0000 disables.  It follows,
- *   then, that a hybrid use case is possible.  Setting the HIBRT
+ *   automatic hibernation; similarly, 0x0000 disables. It follows,
+ *   then, that a hybrid use case is possible. Setting the HIBRT
  *   register HIBTHR and ACTTHR fields to 0xFF and 0x0, respectively,
  *   will keep the device in hibernate mode with no way to exit.
  *
  * @note
- *   The driver does not allow a use case where hib_thr = 0x0 and
- *   act_thr != 0x0, in other words, hibernate is disabled but an
- *   activity level to cause exit from hibernate is specified.  The
+ *   The driver does not allow a use case where hib_thr = 0% and
+ *   act_thr != 0x0 mV, in other words, hibernate is disabled but an
+ *   activity level to cause exit from hibernate is specified. The
  *   datasheet does not specify what would happen in this case.
  *
  * @param[in] hib_thr
- *   Hibernate threshold in charge/discharge units of 1 LSB = 0.208%/hr.
+ *   CRATE threshold below which the MAX17048 enters hibernate
+ *   mode as an percent.
  *
  * @param[in] act_thr
- *   Activity threshold (VCELL level) in units of 1 LSB = 1.25 mV.
+ *   Exit hibernate mode when VCELL changes by greater than the
+ *   specified amount in millivolts.
  *
  * @return
  *   @li @ref SL_STATUS_OK on success.
  *
- *   @li @ref SL_STATUS_INVALID_PARAMETER if hib_thr = 0x0 and act_thr != 0x0.
+ *   @li @ref SL_STATUS_INVALID_PARAMETER if hib_thr = 0 and act_thr != 0.
  ******************************************************************************/
-sl_status_t max17048_enable_auto_hibernate(uint8_t hib_thr, uint8_t act_thr);
+sl_status_t max17048_enable_auto_hibernate(float hib_thr, uint32_t act_thr);
 
 /***************************************************************************//**
  * @brief
@@ -872,27 +935,26 @@ sl_status_t max17048_disable_auto_hibernate(void);
  *   MAX17048 to determine whether or not to enter hibernate mode.
  *
  * @param[in] hib_thr
- *   Hibernate threshold in charge/discharge units of 1 LSB = 0.208%/hr.
+ *   Hibernate threshold in charge/discharge in percent.
  *
  * @return
  *   @li @ref SL_STATUS_OK on success.
  ******************************************************************************/
-sl_status_t max17048_set_hibernate_threshold(uint8_t hib_thr);
+sl_status_t max17048_set_hibernate_threshold(float hib_thr);
 
 /***************************************************************************//**
  * @brief
  *   Get the hibernate threshold level.
  *
  * @note
- *   The driver does not poll the MAX17048 to retrieve this value.  At
+ *   The driver does not poll the MAX17048 to retrieve this value. At
  *   initialization it is assumed to be the default level of 0x80 and
  *   is tracked in a private variable should it otherwise be changed.
  *
  * @return
- *   @li Hibernate Hibernate threshold in charge/discharge units of
- *   1 LSB = 0.208%/hr.
+ *   @li Hibernate threshold in charge/discharge in percent.
  ******************************************************************************/
-uint8_t max17048_get_hibernate_threshold(void);
+float max17048_get_hibernate_threshold(void);
 
 /***************************************************************************//**
  * @brief
@@ -903,26 +965,26 @@ uint8_t max17048_get_hibernate_threshold(void);
  *   MAX17048 to determine whether or not to exit hibernate mode.
  *
  * @param[in] act_thr
- *   Activity threshold (VCELL level) in units of 1 LSB = 1.25 mV.
+ *   Activity threshold (VCELL level change) in millivolts.
  *
  * @return
  *   @li @ref SL_STATUS_OK on success.
  ******************************************************************************/
-sl_status_t max17048_set_activity_threshold(uint8_t act_thr);
+sl_status_t max17048_set_activity_threshold(uint32_t act_thr);
 
 /***************************************************************************//**
  * @brief
  *   Get the activity threshold level.
  *
  * @note
- *   The driver does not poll the MAX17048 to retrieve this value.  At
+ *   The driver does not poll the MAX17048 to retrieve this value. At
  *   initialization it is assumed to be the default level of 0x30 and
  *   is tracked in a private variable should it otherwise be changed.
  *
  * @return
- *   @li Activity threshold (VCELL level) in units of 1 LSB = 1.25 mV.
+ *   @li Activity threshold (VCELL level) in millivolts.
  ******************************************************************************/
-uint8_t max17048_get_activity_threshold(void);
+uint32_t max17048_get_activity_threshold(void);
 
 /***************************************************************************//**
  * @brief
@@ -948,7 +1010,7 @@ sl_status_t max17048_enable_reset_comparator(bool enable);
  *
  * @note
  *   The driver only polls the MAX17048 to determine if the device is
- *   in hibernate mode if the user has enabled it.  By default, the
+ *   in hibernate mode if the user has enabled it. By default, the
  *   driver manually enters/exits hibernate by writing the appropriate
  *   values to HIBRT upon EM2/3 entry/exit in response to Power Manager
  *   sl_power_manager_subscribe_em_transition_event() notifications.
@@ -960,7 +1022,7 @@ sl_status_t max17048_enable_reset_comparator(bool enable);
  * @return
  *   @li @ref SL_STATUS_OK on success.
  ******************************************************************************/
-sl_status_t max17048_get_hibe_status(max17048_hibstate_t *hibstat);
+sl_status_t max17048_get_hibernate_state(max17048_hibstate_t *hibstat);
 
 /***************************************************************************//**
  * @brief
@@ -968,8 +1030,8 @@ sl_status_t max17048_get_hibe_status(max17048_hibstate_t *hibstat);
  *
  * @details
  *   Sleep mode offers the lowest current consumption, but it cannot
- *   be used as a substitute for hibernate mode.  All monitoring is
- *   disabled in sleep mode.  Any discharging (or charging) of the
+ *   be used as a substitute for hibernate mode. All monitoring is
+ *   disabled in sleep mode. Any discharging (or charging) of the
  *   battery, which would happen even if the EFM32/EFR32 is in a low
  *   energy mode, would not be detected and would inject error into
  *   the SOC calculations that will accumulate over time.
@@ -986,7 +1048,7 @@ sl_status_t max17048_get_hibe_status(max17048_hibstate_t *hibstat);
  *
  * @note
  *   It is possible to force exit sleep mode by writing a 0 to the
- *   CONFIG register sleep bit.  POR also exits sleep mode.
+ *   CONFIG register sleep bit. POR also exits sleep mode.
  *
  * @return
  *   @li @ref SL_STATUS_OK on success.
@@ -1014,7 +1076,7 @@ sl_status_t max17048_exit_sleep(void);
  *
  * @details
  *   In general, POR should be detected using the MAX17048 reset
- *   comparator and its associated interrupt.  However, it is possible
+ *   comparator and its associated interrupt. However, it is possible
  *   to manually initiate a POR by writing 0x5400 to the CMD register.
  *
  * @note
@@ -1024,7 +1086,7 @@ sl_status_t max17048_exit_sleep(void);
  *
  * @note
  *   The reset command forces all MAX17048 registers to their default
- *   values.  The driver must update its private tracking variables to
+ *   values. The driver must update its private tracking variables to
  *   reflect this.
  *
  * @return
@@ -1037,7 +1099,7 @@ sl_status_t max17048_force_reset(void);
  *   Forces the MAX17048 to initiate a battery quick start.
  *
  * @details
- *   In general, POR should handle most battery swap events.  However,
+ *   In general, POR should handle most battery swap events. However,
  *   if the battery cannot reach a fully relaxed state during the
  *   initial 17 ms POR window, it is possible to manually force the
  *   MAX17048 to perform initial VCELL measurements.
@@ -1045,7 +1107,7 @@ sl_status_t max17048_force_reset(void);
  *   If the user has enabled hardware quick start by #defining
  *   MAX17048_CONFIG_ENABLE_HW_QSTRT and specifying the GPIO pin to
  *   which the QSTRT input is connected, the driver will use this
- *   option as it offers the lowest latency.  Otherwise, the driver
+ *   option as it offers the lowest latency. Otherwise, the driver
  *   will initiate quick start by writing a 1 to the QuickStart bit
  *   in the MODE register.
  *
@@ -1059,7 +1121,7 @@ sl_status_t max17048_force_reset(void);
  *
  *   For this reason, it would seem that the driver ought to keep
  *   QSTRT high for some nominal amount of time, maybe 1 ms, before
- *   de-asserting it.  This should be implemented with a Sleeptimer
+ *   de-asserting it. This should be implemented with a Sleeptimer
  *   one-shot software timer whose callback de-asserts the pin.
  *
  * @return
@@ -1073,8 +1135,8 @@ sl_status_t max17048_force_quick_start(void);
  *
  * @details
  *   This function unlocks the TABLE registers by writing 0x57 to address
- *   0x3F and 0x4A to address 0x3E.  While the model is unlocked, battery
- *   status is not updated.  The TABLE registers should be loaded and
+ *   0x3F and 0x4A to address 0x3E. While the model is unlocked, battery
+ *   status is not updated. The TABLE registers should be loaded and
  *   re-locked as quickly as possible by writing 0x00 to address 0x3F and
  *   0x00 to address 0x3E.
  *
@@ -1116,59 +1178,8 @@ sl_status_t max17048_get_id(uint8_t *id);
  ******************************************************************************/
 sl_status_t max17048_get_production_version(uint16_t *ver);
 
-/**************************************************************************/ /**
- * @brief This function adjusts RCOMP to optimize IC performance for different
- * lithium chemistries or different operating temperatures.
- *
- * @param[in] max1704x The instance to use.
- *
- * @param[in] rcomp The compensation resistance.
- *
- * @return SL_STATUS_OK if successful. Error code otherwise.
- ******************************************************************************/
-sl_status_t max17048_set_rcomp(uint8_t rcomp);
-
-/**************************************************************************/ /**
- * @brief This function reports alert status.
- *
- * @param[out] status The alert status. Values:
- *     - <b>MAX17048_VALUE_RESET (0x0):</b> No alert
- *     - <b>MAX17048_VALUE_SET (0x1):</b> When an alert occurs.
- *
- * @return SL_STATUS_OK if successful. Error code otherwise.
- ******************************************************************************/
-sl_status_t max17048_get_alert_status(uint8_t *status);
-
-/**************************************************************************/ /**
- * @brief This function clears the alert status.
- *
- * @return SL_STATUS_OK if successful. Error code otherwise.
- ******************************************************************************/
-sl_status_t max1704x_clear_alert_status();
-
-/**************************************************************************/ /**
- * @brief This function identifies which alert condition was met.
- *
- * @param[out] alert_condition
- *   These bits are set when they are cause an alert. Values:
- *   - <b>Bit 0:</b> (voltage high) is set when VCELL has been above
- *     ALRT.VALRTMAX.
- *   - <b>Bit 1:</b> (voltage low) is set when VCELL has been below
- *     ALRT.VALRTMIN.
- *   - <b>Bit 2:</b> (voltage reset) is set after the device has been reset if
- *     EnVr is set.
- *   - <b>Bit 3:</b> (SOC low) is set when SOC crosses the value in CONFIG.ATHD.
- *   - <b>Bit 4:</b> (1% SOC change) is set when SOC changes by at least 1% if
- *     CONFIG.ALSC is set.
- *
- * @return SL_STATUS_OK if successful. Error code otherwise.
- ******************************************************************************/
-sl_status_t max17048_get_alert_condition(uint8_t *alert_condition);
-
-/**************************************************************************/ /**
- * @brief This function clear which alert condition was met.
- *
- * @return SL_STATUS_OK if successful. Error code otherwise.
- ******************************************************************************/
-sl_status_t max17048_clear_alert_condition(void);
+/** @} (end addtogroup max17048) */
+#ifdef __cplusplus
+}
 #endif
+#endif // MAX17048_H
