@@ -3,7 +3,7 @@
  * @brief define driver structures and APIs for the max17048/max17049 Fuel Gauge
  *******************************************************************************
  * # License
-* <b>Copyright 2021 Silicon Laboratories Inc. www.silabs.com</b>
+* <b>Copyright 2022 Silicon Laboratories Inc. www.silabs.com</b>
 ********************************************************************************
 *
 * SPDX-License-Identifier: Zlib
@@ -259,7 +259,7 @@ sl_status_t max17048_deinit(void);
  *
  * @return SL_STATUS_OK if successful. Error code otherwise.
  ******************************************************************************/
- sl_status_t max17048_get_vcell(uint32_t *vcell);
+sl_status_t max17048_get_vcell(uint32_t *vcell);
 
 /***************************************************************************//**
  * @brief This function returns SOC as an integer %.

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="dir_d8473ce25295cd245456e3fc08244df7" kind="dir">
+    <compoundname>D:/my_ws/doxygen/max17048</compoundname>
+    <innerdir refid="dir_5b39c7ff15c0b1ac4e0d03f5e464bf61">D:/my_ws/doxygen/max17048/source</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/my_ws/doxygen/max17048/"/>
+  </compounddef>
+</doxygen>

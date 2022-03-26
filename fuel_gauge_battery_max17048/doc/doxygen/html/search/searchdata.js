@@ -1,33 +1,30 @@
 var indexSectionsWithContent =
 {
-  0: "-ahm",
+  0: "-ahms",
   1: "m",
-  2: "m",
+  2: "ms",
   3: "m",
-  4: "m",
-  5: "ah",
-  6: "-"
+  4: "ah",
+  5: "-"
 };
 
 var indexSectionNames =
 {
   0: "all",
-  1: "files",
-  2: "functions",
-  3: "typedefs",
-  4: "enums",
-  5: "enumvalues",
-  6: "groups"
+  1: "functions",
+  2: "typedefs",
+  3: "enums",
+  4: "enumvalues",
+  5: "groups"
 };
 
 var indexSectionLabels =
 {
   0: "All",
-  1: "Files",
-  2: "Functions",
-  3: "Typedefs",
-  4: "Enumerations",
-  5: "Enumerator",
-  6: "Modules"
+  1: "Functions",
+  2: "Typedefs",
+  3: "Enumerations",
+  4: "Enumerator",
+  5: "Modules"
 };
 

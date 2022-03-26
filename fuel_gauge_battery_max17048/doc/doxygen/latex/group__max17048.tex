@@ -1,0 +1,1942 @@
+\hypertarget{group__max17048}{}\doxysection{-\/ Fuel Gauge Sensor}
+\label{group__max17048}\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+
+
+Driver for the max17048/max17049 Fuel Gauge.  
+
+
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__max17048_gad18d04ec118ab0962300eb72a365a089}{MAX17048\+\_\+\+VCELL}}~(0x02)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga46960eef5e1b976c51ea1af855b9bc25}{MAX17048\+\_\+\+SOC}}~(0x04)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga1f97d2c264bda1506bb394b76952d668}{MAX17048\+\_\+\+MODE}}~(0x06)
+\item 
+\#define \mbox{\hyperlink{group__max17048_gaeadf1d01748b9f2ce99cd650f5ac1f8a}{MAX17048\+\_\+\+VERSION}}~(0x08)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga22ad66ab522c629bca5456cdd3d995ae}{MAX17048\+\_\+\+HIBRT}}~(0x0A)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga72457691e72a85d539f4c78a271574b5}{MAX17048\+\_\+\+CONFIG}}~(0x0C)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga381d1da4ebdb35c17c8c7a55a92a2f54}{MAX17048\+\_\+\+VALRT}}~(0x14)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga1909059608f46f80515b03891dd8ca2e}{MAX17048\+\_\+\+CRATE}}~(0x16)
+\item 
+\#define \mbox{\hyperlink{group__max17048_gafc6effc1d6d1447c98d622682d0a00c9}{MAX17048\+\_\+\+VRESET\+\_\+\+ID}}~(0x18)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga595d6834a4ce62954a8591f98a57d7ae}{MAX17048\+\_\+\+STATUS}}~(0x1A)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga568e86cb5e3b47028a76f0a5dac76d9c}{MAX17048\+\_\+\+CMD}}~(0x\+FE)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga3815765b79fb6afc16b7d799aca8e9cb}{MAX17048\+\_\+\+LOCK\+\_\+\+TABLE}}~(0x3E)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga549981c6144a81a66a6ab83cba7df0e2}{MAX17048\+\_\+\+TABLE}}~(0x40)
+\item 
+\#define \mbox{\hyperlink{group__max17048_gac1d259b1d06e87a61fad465d21782229}{MAX17048\+\_\+\+RESET\+\_\+\+MSB}}~(0x54)
+\item 
+\#define \mbox{\hyperlink{group__max17048_gaeba2d9b65db01608dc4b7aa83dba098b}{MAX17048\+\_\+\+RESET\+\_\+\+LSB}}~(0x00)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga43ccabd130769de4cf8a8e9494c0e7b2}{MAX17048\+\_\+\+RCOMP0}}~(0x97)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga4a990895308dff6c78dd8610598a7d21}{MAX17048\+\_\+\+UNLOCK\+\_\+\+MSB}}~(0x4A)
+\item 
+\#define \mbox{\hyperlink{group__max17048_gaef4e284fb90732834b27ebd63563f8ab}{MAX17048\+\_\+\+UNLOCK\+\_\+\+LSB}}~(0x57)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga415d03ab36f399aae1f9ce5c90026393}{MAX17048\+\_\+\+LOCK}}~(0x00)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga4ccb54fd5a224697735039625190dd59}{MAX17048\+\_\+\+MODE\+\_\+\+HIBSTAT\+\_\+\+BIT}}~(4)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga11da4f14f9ba67ca9363147f21abd07f}{MAX17048\+\_\+\+MODE\+\_\+\+ENSLEEP\+\_\+\+BIT}}~(5)
+\item 
+\#define \mbox{\hyperlink{group__max17048_gae45ad80285d58ece1a4a17777f7bf4e8}{MAX17048\+\_\+\+MODE\+\_\+\+QUICK\+\_\+\+START\+\_\+\+BIT}}~(6)
+\item 
+\#define \mbox{\hyperlink{group__max17048_gafd871248c9426ef0da5afa424e0db094}{MAX17048\+\_\+\+CONFIG\+\_\+\+SLEEP\+\_\+\+BIT}}~(7)
+\item 
+\#define \mbox{\hyperlink{group__max17048_gaf5ea4c5d61eaee40ec30cbf0eb24d6d8}{MAX17048\+\_\+\+CONFIG\+\_\+\+ALSC\+\_\+\+BIT}}~(6)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga5ddce076940ed01567fb0227405a60ed}{MAX17048\+\_\+\+CONFIG\+\_\+\+ALRT\+\_\+\+BIT}}~(5)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga09f05759175772a874f58d227887b447}{MAX17048\+\_\+\+VRESET\+\_\+\+DIS\+\_\+\+BIT}}~(0)
+\item 
+\#define \mbox{\hyperlink{group__max17048_gacd03419a0b4ceb021683b41867d3ffcf}{MAX17048\+\_\+\+STATUS\+\_\+\+ENVR\+\_\+\+BIT}}~(6)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga6f0bd62f7d8985a536225b0ccfeabede}{MAX17048\+\_\+\+VCELL\+\_\+\+RESOLUTION}}~(78125)
+\item 
+\#define \mbox{\hyperlink{group__max17048_gabf9c60ab8c227f18d5e9f3c612201504}{MAX17048\+\_\+\+SOC\+\_\+\+RESOLUTION}}~(256)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga1726fcc00f61e75fca060568b48f3e3e}{MAX17048\+\_\+\+VALRT\+\_\+\+RESOLUTION}}~(20)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga74d47433955c7bd14775e8c3276b026c}{MAX17048\+\_\+\+VRESET\+\_\+\+RESOLUTION}}~(40)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga3a139f579b94dfe65748abadaaff185b}{MAX17048\+\_\+\+CRATE\+\_\+\+RESOLUTION}}~(0.\+208)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga7762094927fa353cb3d55ef1d2068af4}{MAX17048\+\_\+\+HIBTHR\+\_\+\+RESOLUTION}}~(0.\+208)
+\item 
+\#define \mbox{\hyperlink{group__max17048_gac7721869818d616c7c742f15de5037de}{MAX17048\+\_\+\+ACTTHR\+\_\+\+RESOLUTION}}~(1250)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga558b020c6f2a720bd7dd17929155ca2d}{MAX17048\+\_\+\+VALRT\+\_\+\+MAX\+\_\+\+MV}}~(MAX17048\+\_\+\+VALRT\+\_\+\+RESOLUTION $\ast$ 255)
+\item 
+\#define \mbox{\hyperlink{group__max17048_gac3b10685cd3fec0f4b0a0801aa8e2bda}{MAX17048\+\_\+\+VALRT\+\_\+\+MIN\+\_\+\+MV}}~(MAX17048\+\_\+\+VALRT\+\_\+\+RESOLUTION $\ast$ 255)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga9b02b31fa06c04f4afdfc9d816b343d9}{MAX17048\+\_\+\+VRESET\+\_\+\+MV}}~(MAX17048\+\_\+\+VRESET\+\_\+\+RESOLUTION $\ast$ 127)
+\item 
+\#define \mbox{\hyperlink{group__max17048_gacb6b70341ad64db0b4498c8684d77a4a}{MAX17048\+\_\+\+HIBTHR\+\_\+\+PERCENT}}~(MAX17048\+\_\+\+HIBTHR\+\_\+\+RESOLUTION $\ast$ 255)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga39c59dc67da0d7e5aafa195402551b95}{MAX17048\+\_\+\+ACTTHR\+\_\+\+MV}}~(MAX17048\+\_\+\+ACTTHR\+\_\+\+RESOLUTION $\ast$ 255)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga441bc1a8bd662acc1fbabc1819cd2d04}{MAX17048\+\_\+\+STATE\+\_\+\+ENABLE}}~0x01
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga241953141359833dd14e661d74185a96}{MAX17048\+\_\+\+STATE\+\_\+\+DISABLE}}~0x00
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga7d2160fa5a8038a8e7e8782fb67984ad}{MAX17048\+\_\+\+VALUE\+\_\+\+SET}}~0x01
+\item 
+\#define \mbox{\hyperlink{group__max17048_gab1767cad614514ad6fc97c08cd705532}{MAX17048\+\_\+\+VALUE\+\_\+\+RESET}}~0x00
+\item 
+\#define \mbox{\hyperlink{group__max17048_gab481f77fe686d4ba0d8275b6e932b3d8}{MAX17048\+\_\+\+ALERT\+\_\+\+VH\+\_\+\+VAL}}~0x\+C8
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga08d740374874ff55410ba5ed63f22ae3}{MAX17048\+\_\+\+ALERT\+\_\+\+VL\+\_\+\+VAL}}~0x\+AF
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga1e249efcbcc18a58d0ef97e7eb7dacc2}{MAX17048\+\_\+\+VRESET\+\_\+\+THRES}}~0x3F
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga2c541a15e57c3e60a661cb98eec9847a}{MAX17048\+\_\+\+ALERT\+\_\+\+PIN\+\_\+\+SET}}~0x01
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga294f2b8f7aa400a3c4697f283ebd5aae}{MAX17048\+\_\+\+ALERT\+\_\+\+PIN\+\_\+\+RESET}}~0x00
+\item 
+\#define \mbox{\hyperlink{group__max17048_gab90e33c0b08115b56e5b751058d6fbb8}{MAX17048\+\_\+\+I2\+C\+\_\+\+ADDRESS}}~0x36
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga188c2af36326bc9adfcac7d5f8a42511}{RCOMP0}}~0x97
+\item 
+\#define \mbox{\hyperlink{group__max17048_gae6d43dfbe91293feebc30004cae57beb}{TEMP\+\_\+\+CO\+\_\+\+UP}}~-\/0.\+5
+\item 
+\#define \mbox{\hyperlink{group__max17048_gafa8c9f869649af21f3e8bfa01182cdd6}{TEMP\+\_\+\+CO\+\_\+\+DOWN}}~5.\+0
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga13b183365621559d80afe793159b154a}{MAX17048\+\_\+\+STATUS\+\_\+\+VH}}~(1 $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{group__max17048_gac70a43dec2cba274fa570cab47e7b9e0}{MAX17048\+\_\+\+STATUS\+\_\+\+VL}}~(1 $<$$<$ 1)
+\item 
+\#define \mbox{\hyperlink{group__max17048_gaae723a28d76e1363080dbc40d4e34d9c}{MAX17048\+\_\+\+STATUS\+\_\+\+VR}}~(1 $<$$<$ 2)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga5ce3ab301378af00056c7991fa11cff8}{MAX17048\+\_\+\+STATUS\+\_\+\+HD}}~(1 $<$$<$ 3)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga662ecc9f2a0f4421046bc331547f0634}{MAX17048\+\_\+\+STATUS\+\_\+\+SC}}~(1 $<$$<$ 4)
+\item 
+\#define \mbox{\hyperlink{group__max17048_ga7ad22ac7251eec063c2aaf2adc723471}{MAX17048\+\_\+\+ENUM}}(name)~typedef uint8\+\_\+t name; enum name\#\#\+\_\+enum
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint8\+\_\+t \mbox{\hyperlink{group__max17048_ga81bb645b77909f926785580bdea72b0f}{sl\+\_\+max17048\+\_\+irq\+\_\+source\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em MAX17048 interrupt source enum. \end{DoxyCompactList}\item 
+typedef int32\+\_\+t($\ast$ \mbox{\hyperlink{group__max17048_ga680a8aa2a20465cfbcb7fdf9208c5e77}{max17048\+\_\+temp\+\_\+callback\+\_\+t}}) (void)
+\begin{DoxyCompactList}\small\item\em MAX17048 temperature external temperature measurement callback function. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__max17048_ga5328c547b89d1e336b44390abc4965d0}{max17048\+\_\+interrupt\+\_\+callback\+\_\+t}}) (\mbox{\hyperlink{group__max17048_ga81bb645b77909f926785580bdea72b0f}{sl\+\_\+max17048\+\_\+irq\+\_\+source\+\_\+t}} irq, void $\ast$data)
+\begin{DoxyCompactList}\small\item\em MAX17048 interrupt callback function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries sl\+\_\+max17048\+\_\+irq\+\_\+source\+\_\+t\+\_\+enum} \{ \newline
+{\bfseries IRQ\+\_\+\+VCELL\+\_\+\+HIGH} = 0
+, \newline
+{\bfseries IRQ\+\_\+\+VCELL\+\_\+\+LOW} = 1
+, \newline
+{\bfseries IRQ\+\_\+\+RESET} = 2
+, \newline
+{\bfseries IRQ\+\_\+\+EMPTY} = 3
+, \newline
+{\bfseries IRQ\+\_\+\+SOC} = 4
+ \}
+\item 
+enum \mbox{\hyperlink{group__max17048_ga3f9e19d54b68f884baa1de9580909b33}{max17048\+\_\+hibstate\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__max17048_gga3f9e19d54b68f884baa1de9580909b33aa9827654cde2568f4f082c27746fa59f}{active\+Mode}} = 0
+, \newline
+\mbox{\hyperlink{group__max17048_gga3f9e19d54b68f884baa1de9580909b33a59f864cf7b64c780506d1d358f9613f1}{hibernate\+Mode}} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em MAX17048 hibernate state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga46a4ac6a6d0d0f98d0cf6388a21d8214}{max17048\+\_\+init}} (sl\+\_\+i2cspm\+\_\+t $\ast$i2cspm)
+\begin{DoxyCompactList}\small\item\em Initialize the MAX17048 driver with the values provided in the \mbox{\hyperlink{max17048__config_8h_source}{max17048\+\_\+config.\+h}} file. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga3da20249b4ef2fbd8dbab8fe45971c18}{max17048\+\_\+deinit}} (void)
+\begin{DoxyCompactList}\small\item\em De-\/initialize the MAX17048 driver. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_gaf66c5ab7163803d9d4f9b5c6beeb48c7}{max17048\+\_\+get\+\_\+vcell}} (uint32\+\_\+t $\ast$vcell)
+\begin{DoxyCompactList}\small\item\em This function returns the cell voltage in millivolts. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga6ac6d8d7bb558efbae9bb013b97bff22}{max17048\+\_\+get\+\_\+soc}} (uint32\+\_\+t $\ast$soc)
+\begin{DoxyCompactList}\small\item\em This function returns SOC as an integer \%. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga1f3ff8a523f2a234df0e47965554160f}{max17048\+\_\+get\+\_\+crate}} (float $\ast$crate)
+\begin{DoxyCompactList}\small\item\em This function gets an approximate value for the average SOC rate of change. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_gaa1d1f3ab66a445b1289f38f1483b6425}{max17048\+\_\+register\+\_\+temperature\+\_\+callback}} (\mbox{\hyperlink{group__max17048_ga680a8aa2a20465cfbcb7fdf9208c5e77}{max17048\+\_\+temp\+\_\+callback\+\_\+t}} temp\+\_\+cb)
+\begin{DoxyCompactList}\small\item\em Register the temperature update callback for the MAX17048 driver. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga42e42578f78e2d4d25ef8c875dc6f96e}{max17048\+\_\+unregister\+\_\+temperature\+\_\+callback}} (void)
+\begin{DoxyCompactList}\small\item\em Unregister the temperature update callback for the MAX17048 driver. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga474f195b19fba6d349818c42f0853ced}{max17048\+\_\+set\+\_\+update\+\_\+interval}} (uint32\+\_\+t interval)
+\begin{DoxyCompactList}\small\item\em Set the RCOMP update interval. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__max17048_ga2e14c854a21af022ebd49b78b520e8d1}{max17048\+\_\+get\+\_\+update\+\_\+interval}} (void)
+\begin{DoxyCompactList}\small\item\em Get the RCOMP update interval. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__max17048_ga6c4dd46a920d4d1e44bb868038c692fc}{max17048\+\_\+mask\+\_\+interrupts}} (void)
+\begin{DoxyCompactList}\small\item\em Mask MAX17048 interrupts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__max17048_ga048dfd6319ccc78e656d5f2819357c7d}{max17048\+\_\+unmask\+\_\+interrupts}} (void)
+\begin{DoxyCompactList}\small\item\em Unmask MAX17048 interrupts. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_gaa8c520e91572655c43d29e586bfc2686}{max17048\+\_\+enable\+\_\+soc\+\_\+interrupt}} (\mbox{\hyperlink{group__max17048_ga5328c547b89d1e336b44390abc4965d0}{max17048\+\_\+interrupt\+\_\+callback\+\_\+t}} irq\+\_\+cb, void $\ast$cb\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Enables the MAX17048 state-\/of-\/charge (SOC) interrupt and registers a user-\/provided callback function to respond to it. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_gad7a770f000e304210f9816b29f3f1868}{max17048\+\_\+disable\+\_\+soc\+\_\+interrupt}} (void)
+\begin{DoxyCompactList}\small\item\em Disables the MAX17048 state-\/of-\/charge (SOC) interrupt and unregisters the user-\/provided callback function. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga4496efacef0e093d718a236029780ecc}{max17048\+\_\+enable\+\_\+empty\+\_\+interrupt}} (uint8\+\_\+t athd, \mbox{\hyperlink{group__max17048_ga5328c547b89d1e336b44390abc4965d0}{max17048\+\_\+interrupt\+\_\+callback\+\_\+t}} irq\+\_\+cb, void $\ast$cb\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Enables the MAX17048 empty alert interrupt, sets its threshold, and registers a user-\/provided callback function to respond to it. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga7b10be8d77646d016c1f42637d8fe551}{max17048\+\_\+disable\+\_\+empty\+\_\+interrupt}} (void)
+\begin{DoxyCompactList}\small\item\em Disables the MAX17048 empty alert interrupt and unregisters the the user-\/provided callback function. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga129619245c3f1ae5b376c537d734a7ef}{max17048\+\_\+set\+\_\+empty\+\_\+threshold}} (uint8\+\_\+t athd)
+\begin{DoxyCompactList}\small\item\em Set the empty threshold. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{group__max17048_gaf07d953475034869fee5623b842a5d26}{max17048\+\_\+get\+\_\+empty\+\_\+threshold}} (void)
+\begin{DoxyCompactList}\small\item\em Get the empty threshold. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga2dc052e99940eb937d2648195ba8ec79}{max17048\+\_\+enable\+\_\+vhigh\+\_\+interrupt}} (uint32\+\_\+t valrt\+\_\+max\+\_\+mv, \mbox{\hyperlink{group__max17048_ga5328c547b89d1e336b44390abc4965d0}{max17048\+\_\+interrupt\+\_\+callback\+\_\+t}} irq\+\_\+cb, void $\ast$cb\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Enables the MAX17048 voltage high alert interrupt, sets its threshold, and registers a user-\/provided callback function to respond to it. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga3ceb5d1e51b85b9812f6e01c90f88324}{max17048\+\_\+disable\+\_\+vhigh\+\_\+interrupt}} (void)
+\begin{DoxyCompactList}\small\item\em Disables the MAX17048 voltage high alert interrupt and unregisters the user-\/provided callback function. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga2222b6efb1cd395ebe51e14aa5e22c88}{max17048\+\_\+set\+\_\+vhigh\+\_\+threshold}} (uint32\+\_\+t valrt\+\_\+max\+\_\+mv)
+\begin{DoxyCompactList}\small\item\em Set the voltage high alert interrupt threshold. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__max17048_gae239698bfaeec936f207d921b65e3caf}{max17048\+\_\+get\+\_\+vhigh\+\_\+threshold}} (void)
+\begin{DoxyCompactList}\small\item\em Get the voltage high alert interrupt threshold. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga44da5bcac4b8d24431134c43efc661db}{max17048\+\_\+enable\+\_\+vlow\+\_\+interrupt}} (uint32\+\_\+t valrt\+\_\+min\+\_\+mv, \mbox{\hyperlink{group__max17048_ga5328c547b89d1e336b44390abc4965d0}{max17048\+\_\+interrupt\+\_\+callback\+\_\+t}} irq\+\_\+cb, void $\ast$cb\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Enables the MAX17048 voltage low alert interrupt, sets its threshold, and registers a user-\/provided callback function to respond to it. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga5383af8dbe8910543f0cbd5cacb0b841}{max17048\+\_\+disable\+\_\+vlow\+\_\+interrupt}} (void)
+\begin{DoxyCompactList}\small\item\em Disables the MAX17048 voltage low alert interrupt and unregisters the user-\/provided callback function. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga4bbe2d0282a213364c9b00cb6476a5f5}{max17048\+\_\+set\+\_\+vlow\+\_\+threshold}} (uint32\+\_\+t valrt\+\_\+min\+\_\+mv)
+\begin{DoxyCompactList}\small\item\em Set the voltage low alert interrupt threshold. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__max17048_ga80360aaf5c8235fdfc1df138236231cf}{max17048\+\_\+get\+\_\+vlow\+\_\+threshold}} (void)
+\begin{DoxyCompactList}\small\item\em Get the voltage low alert interrupt threshold. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga77d5f41ce5b13ed29b0cb796ccd2b723}{max17048\+\_\+enable\+\_\+reset\+\_\+interrupt}} (uint32\+\_\+t vreset\+\_\+mv, \mbox{\hyperlink{group__max17048_ga5328c547b89d1e336b44390abc4965d0}{max17048\+\_\+interrupt\+\_\+callback\+\_\+t}} irq\+\_\+cb, void $\ast$cb\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Enables the MAX17048 reset alert interrupt, sets its threshold, and registers a user-\/provided callback function to respond to it. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga284f22aa25c9d4519842e8a2ac57c44f}{max17048\+\_\+disable\+\_\+reset\+\_\+interrupt}} (void)
+\begin{DoxyCompactList}\small\item\em Disables the MAX17048 reset alert interrupt and unregisters the user-\/provided callback function. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_gab3b238189efc62b2cbab34f6e75a11ec}{max17048\+\_\+set\+\_\+reset\+\_\+threshold}} (uint32\+\_\+t vreset\+\_\+mv)
+\begin{DoxyCompactList}\small\item\em Set the reset alert interrupt threshold. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__max17048_gadbf4aa694f3692200f09d4c1bc4d42d7}{max17048\+\_\+get\+\_\+reset\+\_\+threshold}} (void)
+\begin{DoxyCompactList}\small\item\em Get the reset alert interrupt threshold. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_gac461439fc7a6add30ddf2bf7d530e3b7}{max17048\+\_\+enable\+\_\+auto\+\_\+hibernate}} (float hib\+\_\+thr, uint32\+\_\+t act\+\_\+thr)
+\begin{DoxyCompactList}\small\item\em Enables MAX17048 automatic hibernation by setting the activity and CRATE (rate of discharge/charge) thresholds to non-\/min/max values. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga84261f39f5f2b4f65376469aa5af7534}{max17048\+\_\+disable\+\_\+auto\+\_\+hibernate}} (void)
+\begin{DoxyCompactList}\small\item\em Disables automatic hibernation by setting the activity and CRATE thresholds to 0x0. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_gaf0f4e9bbb181649b9655eb5643892710}{max17048\+\_\+set\+\_\+hibernate\+\_\+threshold}} (float hib\+\_\+thr)
+\begin{DoxyCompactList}\small\item\em Set the hibernate threshold level. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{group__max17048_ga4d5512602578226a49a978c7e652d5ae}{max17048\+\_\+get\+\_\+hibernate\+\_\+threshold}} (void)
+\begin{DoxyCompactList}\small\item\em Get the hibernate threshold level. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga93e51267fe944a8e78c730cc78e6f9d4}{max17048\+\_\+set\+\_\+activity\+\_\+threshold}} (uint32\+\_\+t act\+\_\+thr)
+\begin{DoxyCompactList}\small\item\em Set the activity threshold level. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{group__max17048_gab4dc2d4edfa30523a67483e344f5b989}{max17048\+\_\+get\+\_\+activity\+\_\+threshold}} (void)
+\begin{DoxyCompactList}\small\item\em Get the activity threshold level. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga55975d771f83912b68cd55b059a01e38}{max17048\+\_\+enable\+\_\+reset\+\_\+comparator}} (bool enable)
+\begin{DoxyCompactList}\small\item\em Disabling the MAX17048 reset comparator in hibernate mode reduces current consumption by 0.\+5 uA. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga66daaef0642f1f20fb6a7583a31df836}{max17048\+\_\+get\+\_\+hibernate\+\_\+state}} (\mbox{\hyperlink{group__max17048_ga3f9e19d54b68f884baa1de9580909b33}{max17048\+\_\+hibstate\+\_\+t}} $\ast$hibstat)
+\begin{DoxyCompactList}\small\item\em Check if the MAX17048 is in hibernate mode. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_gaa417efb663c06cd2240cdeb63846a47e}{max17048\+\_\+enter\+\_\+sleep}} (void)
+\begin{DoxyCompactList}\small\item\em Places the MAX17048 into sleep mode. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga6540b9afc85e8af172dd3fc3435bd95f}{max17048\+\_\+exit\+\_\+sleep}} (void)
+\begin{DoxyCompactList}\small\item\em Forces the MAX17048 to exit sleep mode. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga2ff3d5ffd024c3d275a9258848d8ef52}{max17048\+\_\+force\+\_\+reset}} (void)
+\begin{DoxyCompactList}\small\item\em Forces the MAX17048 to initiate a power-\/on reset (POR). \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_gaeea62c82e1684456b987571a306a9d0b}{max17048\+\_\+force\+\_\+quick\+\_\+start}} (void)
+\begin{DoxyCompactList}\small\item\em Forces the MAX17048 to initiate a battery quick start. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga03d04668c5e05b32e99b42edb87bacdd}{max17048\+\_\+load\+\_\+model}} (const uint8\+\_\+t $\ast$model)
+\begin{DoxyCompactList}\small\item\em Load a custom model into the MAX17048 and enable it. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_gafca203ef5ad76c5b9d57929c4474527d}{max17048\+\_\+get\+\_\+id}} (uint8\+\_\+t $\ast$id)
+\begin{DoxyCompactList}\small\item\em Returns the one-\/time factory-\/programmable identifier value stored in the ID register. \end{DoxyCompactList}\item 
+sl\+\_\+status\+\_\+t \mbox{\hyperlink{group__max17048_ga85e3127bce3f3b2e6f5c3a5577b643ac}{max17048\+\_\+get\+\_\+production\+\_\+version}} (uint16\+\_\+t $\ast$ver)
+\begin{DoxyCompactList}\small\item\em Provides the production version of the MAX17048 by reading the contents of the VERSION register. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver for the max17048/max17049 Fuel Gauge. 
+
+~\newline
+ \hypertarget{group__max17048_max17048_example}{}\doxysubsection{MAX17048 example}\label{group__max17048_max17048_example}
+Basic example for performing measurement\+: ~\newline
+ ~\newline
+ \begin{DoxyVerb}#include "sl_i2cspm_instances.h"
+#include "max17048.h"
+
+int main( void )
+{
+
+  ...
+
+  uint32_t soc;
+  uint32_t vcell;
+
+  max17048_init(sl_i2cspm_sensor_env);
+  // read the ID
+  max17048_get_id(&id);
+  max17048_get_vcell(&vcell);
+  max17048_get_soc(&soc);
+
+  ...
+
+} \end{DoxyVerb}
+ 
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__max17048_ga39c59dc67da0d7e5aafa195402551b95}\label{group__max17048_ga39c59dc67da0d7e5aafa195402551b95}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_ACTTHR\_MV@{MAX17048\_ACTTHR\_MV}}
+\index{MAX17048\_ACTTHR\_MV@{MAX17048\_ACTTHR\_MV}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_ACTTHR\_MV}{MAX17048\_ACTTHR\_MV}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+ACTTHR\+\_\+\+MV~(MAX17048\+\_\+\+ACTTHR\+\_\+\+RESOLUTION $\ast$ 255)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00134}{134}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gac7721869818d616c7c742f15de5037de}\label{group__max17048_gac7721869818d616c7c742f15de5037de}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_ACTTHR\_RESOLUTION@{MAX17048\_ACTTHR\_RESOLUTION}}
+\index{MAX17048\_ACTTHR\_RESOLUTION@{MAX17048\_ACTTHR\_RESOLUTION}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_ACTTHR\_RESOLUTION}{MAX17048\_ACTTHR\_RESOLUTION}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+ACTTHR\+\_\+\+RESOLUTION~(1250)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00128}{128}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga294f2b8f7aa400a3c4697f283ebd5aae}\label{group__max17048_ga294f2b8f7aa400a3c4697f283ebd5aae}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_ALERT\_PIN\_RESET@{MAX17048\_ALERT\_PIN\_RESET}}
+\index{MAX17048\_ALERT\_PIN\_RESET@{MAX17048\_ALERT\_PIN\_RESET}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_ALERT\_PIN\_RESET}{MAX17048\_ALERT\_PIN\_RESET}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+ALERT\+\_\+\+PIN\+\_\+\+RESET~0x00}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00146}{146}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga2c541a15e57c3e60a661cb98eec9847a}\label{group__max17048_ga2c541a15e57c3e60a661cb98eec9847a}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_ALERT\_PIN\_SET@{MAX17048\_ALERT\_PIN\_SET}}
+\index{MAX17048\_ALERT\_PIN\_SET@{MAX17048\_ALERT\_PIN\_SET}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_ALERT\_PIN\_SET}{MAX17048\_ALERT\_PIN\_SET}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+ALERT\+\_\+\+PIN\+\_\+\+SET~0x01}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00145}{145}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gab481f77fe686d4ba0d8275b6e932b3d8}\label{group__max17048_gab481f77fe686d4ba0d8275b6e932b3d8}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_ALERT\_VH\_VAL@{MAX17048\_ALERT\_VH\_VAL}}
+\index{MAX17048\_ALERT\_VH\_VAL@{MAX17048\_ALERT\_VH\_VAL}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_ALERT\_VH\_VAL}{MAX17048\_ALERT\_VH\_VAL}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+ALERT\+\_\+\+VH\+\_\+\+VAL~0x\+C8}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00141}{141}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga08d740374874ff55410ba5ed63f22ae3}\label{group__max17048_ga08d740374874ff55410ba5ed63f22ae3}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_ALERT\_VL\_VAL@{MAX17048\_ALERT\_VL\_VAL}}
+\index{MAX17048\_ALERT\_VL\_VAL@{MAX17048\_ALERT\_VL\_VAL}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_ALERT\_VL\_VAL}{MAX17048\_ALERT\_VL\_VAL}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+ALERT\+\_\+\+VL\+\_\+\+VAL~0x\+AF}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00142}{142}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga568e86cb5e3b47028a76f0a5dac76d9c}\label{group__max17048_ga568e86cb5e3b47028a76f0a5dac76d9c}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_CMD@{MAX17048\_CMD}}
+\index{MAX17048\_CMD@{MAX17048\_CMD}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_CMD}{MAX17048\_CMD}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+CMD~(0x\+FE)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00092}{92}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga72457691e72a85d539f4c78a271574b5}\label{group__max17048_ga72457691e72a85d539f4c78a271574b5}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_CONFIG@{MAX17048\_CONFIG}}
+\index{MAX17048\_CONFIG@{MAX17048\_CONFIG}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_CONFIG}{MAX17048\_CONFIG}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+CONFIG~(0x0C)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00087}{87}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga5ddce076940ed01567fb0227405a60ed}\label{group__max17048_ga5ddce076940ed01567fb0227405a60ed}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_CONFIG\_ALRT\_BIT@{MAX17048\_CONFIG\_ALRT\_BIT}}
+\index{MAX17048\_CONFIG\_ALRT\_BIT@{MAX17048\_CONFIG\_ALRT\_BIT}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_CONFIG\_ALRT\_BIT}{MAX17048\_CONFIG\_ALRT\_BIT}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+CONFIG\+\_\+\+ALRT\+\_\+\+BIT~(5)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00111}{111}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gaf5ea4c5d61eaee40ec30cbf0eb24d6d8}\label{group__max17048_gaf5ea4c5d61eaee40ec30cbf0eb24d6d8}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_CONFIG\_ALSC\_BIT@{MAX17048\_CONFIG\_ALSC\_BIT}}
+\index{MAX17048\_CONFIG\_ALSC\_BIT@{MAX17048\_CONFIG\_ALSC\_BIT}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_CONFIG\_ALSC\_BIT}{MAX17048\_CONFIG\_ALSC\_BIT}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+CONFIG\+\_\+\+ALSC\+\_\+\+BIT~(6)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00110}{110}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gafd871248c9426ef0da5afa424e0db094}\label{group__max17048_gafd871248c9426ef0da5afa424e0db094}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_CONFIG\_SLEEP\_BIT@{MAX17048\_CONFIG\_SLEEP\_BIT}}
+\index{MAX17048\_CONFIG\_SLEEP\_BIT@{MAX17048\_CONFIG\_SLEEP\_BIT}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_CONFIG\_SLEEP\_BIT}{MAX17048\_CONFIG\_SLEEP\_BIT}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+CONFIG\+\_\+\+SLEEP\+\_\+\+BIT~(7)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00109}{109}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga1909059608f46f80515b03891dd8ca2e}\label{group__max17048_ga1909059608f46f80515b03891dd8ca2e}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_CRATE@{MAX17048\_CRATE}}
+\index{MAX17048\_CRATE@{MAX17048\_CRATE}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_CRATE}{MAX17048\_CRATE}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+CRATE~(0x16)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00089}{89}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga3a139f579b94dfe65748abadaaff185b}\label{group__max17048_ga3a139f579b94dfe65748abadaaff185b}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_CRATE\_RESOLUTION@{MAX17048\_CRATE\_RESOLUTION}}
+\index{MAX17048\_CRATE\_RESOLUTION@{MAX17048\_CRATE\_RESOLUTION}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_CRATE\_RESOLUTION}{MAX17048\_CRATE\_RESOLUTION}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+CRATE\+\_\+\+RESOLUTION~(0.\+208)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00124}{124}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga7ad22ac7251eec063c2aaf2adc723471}\label{group__max17048_ga7ad22ac7251eec063c2aaf2adc723471}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_ENUM@{MAX17048\_ENUM}}
+\index{MAX17048\_ENUM@{MAX17048\_ENUM}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_ENUM}{MAX17048\_ENUM}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+ENUM(\begin{DoxyParamCaption}\item[{}]{name }\end{DoxyParamCaption})~typedef uint8\+\_\+t name; enum name\#\#\+\_\+enum}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00160}{160}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga22ad66ab522c629bca5456cdd3d995ae}\label{group__max17048_ga22ad66ab522c629bca5456cdd3d995ae}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_HIBRT@{MAX17048\_HIBRT}}
+\index{MAX17048\_HIBRT@{MAX17048\_HIBRT}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_HIBRT}{MAX17048\_HIBRT}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+HIBRT~(0x0A)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00086}{86}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gacb6b70341ad64db0b4498c8684d77a4a}\label{group__max17048_gacb6b70341ad64db0b4498c8684d77a4a}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_HIBTHR\_PERCENT@{MAX17048\_HIBTHR\_PERCENT}}
+\index{MAX17048\_HIBTHR\_PERCENT@{MAX17048\_HIBTHR\_PERCENT}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_HIBTHR\_PERCENT}{MAX17048\_HIBTHR\_PERCENT}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+HIBTHR\+\_\+\+PERCENT~(MAX17048\+\_\+\+HIBTHR\+\_\+\+RESOLUTION $\ast$ 255)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00133}{133}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga7762094927fa353cb3d55ef1d2068af4}\label{group__max17048_ga7762094927fa353cb3d55ef1d2068af4}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_HIBTHR\_RESOLUTION@{MAX17048\_HIBTHR\_RESOLUTION}}
+\index{MAX17048\_HIBTHR\_RESOLUTION@{MAX17048\_HIBTHR\_RESOLUTION}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_HIBTHR\_RESOLUTION}{MAX17048\_HIBTHR\_RESOLUTION}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+HIBTHR\+\_\+\+RESOLUTION~(0.\+208)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00126}{126}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gab90e33c0b08115b56e5b751058d6fbb8}\label{group__max17048_gab90e33c0b08115b56e5b751058d6fbb8}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_I2C\_ADDRESS@{MAX17048\_I2C\_ADDRESS}}
+\index{MAX17048\_I2C\_ADDRESS@{MAX17048\_I2C\_ADDRESS}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_I2C\_ADDRESS}{MAX17048\_I2C\_ADDRESS}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+I2\+C\+\_\+\+ADDRESS~0x36}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00148}{148}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga415d03ab36f399aae1f9ce5c90026393}\label{group__max17048_ga415d03ab36f399aae1f9ce5c90026393}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_LOCK@{MAX17048\_LOCK}}
+\index{MAX17048\_LOCK@{MAX17048\_LOCK}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_LOCK}{MAX17048\_LOCK}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+LOCK~(0x00)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00101}{101}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga3815765b79fb6afc16b7d799aca8e9cb}\label{group__max17048_ga3815765b79fb6afc16b7d799aca8e9cb}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_LOCK\_TABLE@{MAX17048\_LOCK\_TABLE}}
+\index{MAX17048\_LOCK\_TABLE@{MAX17048\_LOCK\_TABLE}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_LOCK\_TABLE}{MAX17048\_LOCK\_TABLE}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+LOCK\+\_\+\+TABLE~(0x3E)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00093}{93}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga1f97d2c264bda1506bb394b76952d668}\label{group__max17048_ga1f97d2c264bda1506bb394b76952d668}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_MODE@{MAX17048\_MODE}}
+\index{MAX17048\_MODE@{MAX17048\_MODE}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_MODE}{MAX17048\_MODE}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+MODE~(0x06)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00084}{84}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga11da4f14f9ba67ca9363147f21abd07f}\label{group__max17048_ga11da4f14f9ba67ca9363147f21abd07f}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_MODE\_ENSLEEP\_BIT@{MAX17048\_MODE\_ENSLEEP\_BIT}}
+\index{MAX17048\_MODE\_ENSLEEP\_BIT@{MAX17048\_MODE\_ENSLEEP\_BIT}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_MODE\_ENSLEEP\_BIT}{MAX17048\_MODE\_ENSLEEP\_BIT}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+MODE\+\_\+\+ENSLEEP\+\_\+\+BIT~(5)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00105}{105}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga4ccb54fd5a224697735039625190dd59}\label{group__max17048_ga4ccb54fd5a224697735039625190dd59}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_MODE\_HIBSTAT\_BIT@{MAX17048\_MODE\_HIBSTAT\_BIT}}
+\index{MAX17048\_MODE\_HIBSTAT\_BIT@{MAX17048\_MODE\_HIBSTAT\_BIT}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_MODE\_HIBSTAT\_BIT}{MAX17048\_MODE\_HIBSTAT\_BIT}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+MODE\+\_\+\+HIBSTAT\+\_\+\+BIT~(4)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00104}{104}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gae45ad80285d58ece1a4a17777f7bf4e8}\label{group__max17048_gae45ad80285d58ece1a4a17777f7bf4e8}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_MODE\_QUICK\_START\_BIT@{MAX17048\_MODE\_QUICK\_START\_BIT}}
+\index{MAX17048\_MODE\_QUICK\_START\_BIT@{MAX17048\_MODE\_QUICK\_START\_BIT}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_MODE\_QUICK\_START\_BIT}{MAX17048\_MODE\_QUICK\_START\_BIT}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+MODE\+\_\+\+QUICK\+\_\+\+START\+\_\+\+BIT~(6)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00106}{106}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga43ccabd130769de4cf8a8e9494c0e7b2}\label{group__max17048_ga43ccabd130769de4cf8a8e9494c0e7b2}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_RCOMP0@{MAX17048\_RCOMP0}}
+\index{MAX17048\_RCOMP0@{MAX17048\_RCOMP0}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_RCOMP0}{MAX17048\_RCOMP0}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+RCOMP0~(0x97)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00098}{98}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gaeba2d9b65db01608dc4b7aa83dba098b}\label{group__max17048_gaeba2d9b65db01608dc4b7aa83dba098b}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_RESET\_LSB@{MAX17048\_RESET\_LSB}}
+\index{MAX17048\_RESET\_LSB@{MAX17048\_RESET\_LSB}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_RESET\_LSB}{MAX17048\_RESET\_LSB}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+RESET\+\_\+\+LSB~(0x00)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00097}{97}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gac1d259b1d06e87a61fad465d21782229}\label{group__max17048_gac1d259b1d06e87a61fad465d21782229}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_RESET\_MSB@{MAX17048\_RESET\_MSB}}
+\index{MAX17048\_RESET\_MSB@{MAX17048\_RESET\_MSB}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_RESET\_MSB}{MAX17048\_RESET\_MSB}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+RESET\+\_\+\+MSB~(0x54)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00096}{96}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga46960eef5e1b976c51ea1af855b9bc25}\label{group__max17048_ga46960eef5e1b976c51ea1af855b9bc25}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_SOC@{MAX17048\_SOC}}
+\index{MAX17048\_SOC@{MAX17048\_SOC}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_SOC}{MAX17048\_SOC}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+SOC~(0x04)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00083}{83}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gabf9c60ab8c227f18d5e9f3c612201504}\label{group__max17048_gabf9c60ab8c227f18d5e9f3c612201504}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_SOC\_RESOLUTION@{MAX17048\_SOC\_RESOLUTION}}
+\index{MAX17048\_SOC\_RESOLUTION@{MAX17048\_SOC\_RESOLUTION}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_SOC\_RESOLUTION}{MAX17048\_SOC\_RESOLUTION}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+SOC\+\_\+\+RESOLUTION~(256)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00118}{118}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga241953141359833dd14e661d74185a96}\label{group__max17048_ga241953141359833dd14e661d74185a96}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_STATE\_DISABLE@{MAX17048\_STATE\_DISABLE}}
+\index{MAX17048\_STATE\_DISABLE@{MAX17048\_STATE\_DISABLE}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_STATE\_DISABLE}{MAX17048\_STATE\_DISABLE}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+STATE\+\_\+\+DISABLE~0x00}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00137}{137}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga441bc1a8bd662acc1fbabc1819cd2d04}\label{group__max17048_ga441bc1a8bd662acc1fbabc1819cd2d04}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_STATE\_ENABLE@{MAX17048\_STATE\_ENABLE}}
+\index{MAX17048\_STATE\_ENABLE@{MAX17048\_STATE\_ENABLE}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_STATE\_ENABLE}{MAX17048\_STATE\_ENABLE}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+STATE\+\_\+\+ENABLE~0x01}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00136}{136}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga595d6834a4ce62954a8591f98a57d7ae}\label{group__max17048_ga595d6834a4ce62954a8591f98a57d7ae}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_STATUS@{MAX17048\_STATUS}}
+\index{MAX17048\_STATUS@{MAX17048\_STATUS}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_STATUS}{MAX17048\_STATUS}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+STATUS~(0x1A)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00091}{91}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gacd03419a0b4ceb021683b41867d3ffcf}\label{group__max17048_gacd03419a0b4ceb021683b41867d3ffcf}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_STATUS\_ENVR\_BIT@{MAX17048\_STATUS\_ENVR\_BIT}}
+\index{MAX17048\_STATUS\_ENVR\_BIT@{MAX17048\_STATUS\_ENVR\_BIT}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_STATUS\_ENVR\_BIT}{MAX17048\_STATUS\_ENVR\_BIT}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+STATUS\+\_\+\+ENVR\+\_\+\+BIT~(6)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00113}{113}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga5ce3ab301378af00056c7991fa11cff8}\label{group__max17048_ga5ce3ab301378af00056c7991fa11cff8}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_STATUS\_HD@{MAX17048\_STATUS\_HD}}
+\index{MAX17048\_STATUS\_HD@{MAX17048\_STATUS\_HD}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_STATUS\_HD}{MAX17048\_STATUS\_HD}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+STATUS\+\_\+\+HD~(1 $<$$<$ 3)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00157}{157}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga662ecc9f2a0f4421046bc331547f0634}\label{group__max17048_ga662ecc9f2a0f4421046bc331547f0634}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_STATUS\_SC@{MAX17048\_STATUS\_SC}}
+\index{MAX17048\_STATUS\_SC@{MAX17048\_STATUS\_SC}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_STATUS\_SC}{MAX17048\_STATUS\_SC}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+STATUS\+\_\+\+SC~(1 $<$$<$ 4)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00158}{158}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga13b183365621559d80afe793159b154a}\label{group__max17048_ga13b183365621559d80afe793159b154a}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_STATUS\_VH@{MAX17048\_STATUS\_VH}}
+\index{MAX17048\_STATUS\_VH@{MAX17048\_STATUS\_VH}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_STATUS\_VH}{MAX17048\_STATUS\_VH}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+STATUS\+\_\+\+VH~(1 $<$$<$ 0)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00154}{154}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gac70a43dec2cba274fa570cab47e7b9e0}\label{group__max17048_gac70a43dec2cba274fa570cab47e7b9e0}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_STATUS\_VL@{MAX17048\_STATUS\_VL}}
+\index{MAX17048\_STATUS\_VL@{MAX17048\_STATUS\_VL}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_STATUS\_VL}{MAX17048\_STATUS\_VL}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+STATUS\+\_\+\+VL~(1 $<$$<$ 1)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00155}{155}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gaae723a28d76e1363080dbc40d4e34d9c}\label{group__max17048_gaae723a28d76e1363080dbc40d4e34d9c}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_STATUS\_VR@{MAX17048\_STATUS\_VR}}
+\index{MAX17048\_STATUS\_VR@{MAX17048\_STATUS\_VR}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_STATUS\_VR}{MAX17048\_STATUS\_VR}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+STATUS\+\_\+\+VR~(1 $<$$<$ 2)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00156}{156}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga549981c6144a81a66a6ab83cba7df0e2}\label{group__max17048_ga549981c6144a81a66a6ab83cba7df0e2}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_TABLE@{MAX17048\_TABLE}}
+\index{MAX17048\_TABLE@{MAX17048\_TABLE}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_TABLE}{MAX17048\_TABLE}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+TABLE~(0x40)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00094}{94}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gaef4e284fb90732834b27ebd63563f8ab}\label{group__max17048_gaef4e284fb90732834b27ebd63563f8ab}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_UNLOCK\_LSB@{MAX17048\_UNLOCK\_LSB}}
+\index{MAX17048\_UNLOCK\_LSB@{MAX17048\_UNLOCK\_LSB}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_UNLOCK\_LSB}{MAX17048\_UNLOCK\_LSB}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+UNLOCK\+\_\+\+LSB~(0x57)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00100}{100}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga4a990895308dff6c78dd8610598a7d21}\label{group__max17048_ga4a990895308dff6c78dd8610598a7d21}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_UNLOCK\_MSB@{MAX17048\_UNLOCK\_MSB}}
+\index{MAX17048\_UNLOCK\_MSB@{MAX17048\_UNLOCK\_MSB}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_UNLOCK\_MSB}{MAX17048\_UNLOCK\_MSB}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+UNLOCK\+\_\+\+MSB~(0x4A)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00099}{99}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga381d1da4ebdb35c17c8c7a55a92a2f54}\label{group__max17048_ga381d1da4ebdb35c17c8c7a55a92a2f54}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_VALRT@{MAX17048\_VALRT}}
+\index{MAX17048\_VALRT@{MAX17048\_VALRT}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_VALRT}{MAX17048\_VALRT}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+VALRT~(0x14)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00088}{88}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga558b020c6f2a720bd7dd17929155ca2d}\label{group__max17048_ga558b020c6f2a720bd7dd17929155ca2d}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_VALRT\_MAX\_MV@{MAX17048\_VALRT\_MAX\_MV}}
+\index{MAX17048\_VALRT\_MAX\_MV@{MAX17048\_VALRT\_MAX\_MV}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_VALRT\_MAX\_MV}{MAX17048\_VALRT\_MAX\_MV}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+VALRT\+\_\+\+MAX\+\_\+\+MV~(MAX17048\+\_\+\+VALRT\+\_\+\+RESOLUTION $\ast$ 255)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00130}{130}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gac3b10685cd3fec0f4b0a0801aa8e2bda}\label{group__max17048_gac3b10685cd3fec0f4b0a0801aa8e2bda}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_VALRT\_MIN\_MV@{MAX17048\_VALRT\_MIN\_MV}}
+\index{MAX17048\_VALRT\_MIN\_MV@{MAX17048\_VALRT\_MIN\_MV}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_VALRT\_MIN\_MV}{MAX17048\_VALRT\_MIN\_MV}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+VALRT\+\_\+\+MIN\+\_\+\+MV~(MAX17048\+\_\+\+VALRT\+\_\+\+RESOLUTION $\ast$ 255)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00131}{131}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga1726fcc00f61e75fca060568b48f3e3e}\label{group__max17048_ga1726fcc00f61e75fca060568b48f3e3e}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_VALRT\_RESOLUTION@{MAX17048\_VALRT\_RESOLUTION}}
+\index{MAX17048\_VALRT\_RESOLUTION@{MAX17048\_VALRT\_RESOLUTION}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_VALRT\_RESOLUTION}{MAX17048\_VALRT\_RESOLUTION}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+VALRT\+\_\+\+RESOLUTION~(20)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00120}{120}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gab1767cad614514ad6fc97c08cd705532}\label{group__max17048_gab1767cad614514ad6fc97c08cd705532}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_VALUE\_RESET@{MAX17048\_VALUE\_RESET}}
+\index{MAX17048\_VALUE\_RESET@{MAX17048\_VALUE\_RESET}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_VALUE\_RESET}{MAX17048\_VALUE\_RESET}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+VALUE\+\_\+\+RESET~0x00}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00139}{139}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga7d2160fa5a8038a8e7e8782fb67984ad}\label{group__max17048_ga7d2160fa5a8038a8e7e8782fb67984ad}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_VALUE\_SET@{MAX17048\_VALUE\_SET}}
+\index{MAX17048\_VALUE\_SET@{MAX17048\_VALUE\_SET}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_VALUE\_SET}{MAX17048\_VALUE\_SET}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+VALUE\+\_\+\+SET~0x01}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00138}{138}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gad18d04ec118ab0962300eb72a365a089}\label{group__max17048_gad18d04ec118ab0962300eb72a365a089}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_VCELL@{MAX17048\_VCELL}}
+\index{MAX17048\_VCELL@{MAX17048\_VCELL}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_VCELL}{MAX17048\_VCELL}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+VCELL~(0x02)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00082}{82}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga6f0bd62f7d8985a536225b0ccfeabede}\label{group__max17048_ga6f0bd62f7d8985a536225b0ccfeabede}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_VCELL\_RESOLUTION@{MAX17048\_VCELL\_RESOLUTION}}
+\index{MAX17048\_VCELL\_RESOLUTION@{MAX17048\_VCELL\_RESOLUTION}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_VCELL\_RESOLUTION}{MAX17048\_VCELL\_RESOLUTION}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+VCELL\+\_\+\+RESOLUTION~(78125)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00116}{116}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gaeadf1d01748b9f2ce99cd650f5ac1f8a}\label{group__max17048_gaeadf1d01748b9f2ce99cd650f5ac1f8a}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_VERSION@{MAX17048\_VERSION}}
+\index{MAX17048\_VERSION@{MAX17048\_VERSION}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_VERSION}{MAX17048\_VERSION}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+VERSION~(0x08)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00085}{85}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga09f05759175772a874f58d227887b447}\label{group__max17048_ga09f05759175772a874f58d227887b447}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_VRESET\_DIS\_BIT@{MAX17048\_VRESET\_DIS\_BIT}}
+\index{MAX17048\_VRESET\_DIS\_BIT@{MAX17048\_VRESET\_DIS\_BIT}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_VRESET\_DIS\_BIT}{MAX17048\_VRESET\_DIS\_BIT}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+VRESET\+\_\+\+DIS\+\_\+\+BIT~(0)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00112}{112}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gafc6effc1d6d1447c98d622682d0a00c9}\label{group__max17048_gafc6effc1d6d1447c98d622682d0a00c9}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_VRESET\_ID@{MAX17048\_VRESET\_ID}}
+\index{MAX17048\_VRESET\_ID@{MAX17048\_VRESET\_ID}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_VRESET\_ID}{MAX17048\_VRESET\_ID}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+VRESET\+\_\+\+ID~(0x18)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00090}{90}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga9b02b31fa06c04f4afdfc9d816b343d9}\label{group__max17048_ga9b02b31fa06c04f4afdfc9d816b343d9}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_VRESET\_MV@{MAX17048\_VRESET\_MV}}
+\index{MAX17048\_VRESET\_MV@{MAX17048\_VRESET\_MV}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_VRESET\_MV}{MAX17048\_VRESET\_MV}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+VRESET\+\_\+\+MV~(MAX17048\+\_\+\+VRESET\+\_\+\+RESOLUTION $\ast$ 127)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00132}{132}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga74d47433955c7bd14775e8c3276b026c}\label{group__max17048_ga74d47433955c7bd14775e8c3276b026c}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_VRESET\_RESOLUTION@{MAX17048\_VRESET\_RESOLUTION}}
+\index{MAX17048\_VRESET\_RESOLUTION@{MAX17048\_VRESET\_RESOLUTION}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_VRESET\_RESOLUTION}{MAX17048\_VRESET\_RESOLUTION}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+VRESET\+\_\+\+RESOLUTION~(40)}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00122}{122}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga1e249efcbcc18a58d0ef97e7eb7dacc2}\label{group__max17048_ga1e249efcbcc18a58d0ef97e7eb7dacc2}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!MAX17048\_VRESET\_THRES@{MAX17048\_VRESET\_THRES}}
+\index{MAX17048\_VRESET\_THRES@{MAX17048\_VRESET\_THRES}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{MAX17048\_VRESET\_THRES}{MAX17048\_VRESET\_THRES}}
+{\footnotesize\ttfamily \#define MAX17048\+\_\+\+VRESET\+\_\+\+THRES~0x3F}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00143}{143}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga188c2af36326bc9adfcac7d5f8a42511}\label{group__max17048_ga188c2af36326bc9adfcac7d5f8a42511}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!RCOMP0@{RCOMP0}}
+\index{RCOMP0@{RCOMP0}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{RCOMP0}{RCOMP0}}
+{\footnotesize\ttfamily \#define RCOMP0~0x97}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00150}{150}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gafa8c9f869649af21f3e8bfa01182cdd6}\label{group__max17048_gafa8c9f869649af21f3e8bfa01182cdd6}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!TEMP\_CO\_DOWN@{TEMP\_CO\_DOWN}}
+\index{TEMP\_CO\_DOWN@{TEMP\_CO\_DOWN}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{TEMP\_CO\_DOWN}{TEMP\_CO\_DOWN}}
+{\footnotesize\ttfamily \#define TEMP\+\_\+\+CO\+\_\+\+DOWN~5.\+0}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00152}{152}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gae6d43dfbe91293feebc30004cae57beb}\label{group__max17048_gae6d43dfbe91293feebc30004cae57beb}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!TEMP\_CO\_UP@{TEMP\_CO\_UP}}
+\index{TEMP\_CO\_UP@{TEMP\_CO\_UP}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{TEMP\_CO\_UP}{TEMP\_CO\_UP}}
+{\footnotesize\ttfamily \#define TEMP\+\_\+\+CO\+\_\+\+UP~-\/0.\+5}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00151}{151}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{group__max17048_ga5328c547b89d1e336b44390abc4965d0}\label{group__max17048_ga5328c547b89d1e336b44390abc4965d0}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_interrupt\_callback\_t@{max17048\_interrupt\_callback\_t}}
+\index{max17048\_interrupt\_callback\_t@{max17048\_interrupt\_callback\_t}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_interrupt\_callback\_t}{max17048\_interrupt\_callback\_t}}
+{\footnotesize\ttfamily typedef void($\ast$ max17048\+\_\+interrupt\+\_\+callback\+\_\+t) (\mbox{\hyperlink{group__max17048_ga81bb645b77909f926785580bdea72b0f}{sl\+\_\+max17048\+\_\+irq\+\_\+source\+\_\+t}} irq, void $\ast$data)}
+
+
+
+MAX17048 interrupt callback function. 
+
+This callback function is executed from interrupt context when the user has enabled one of the MAX17048 interrupt sources. 
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00410}{410}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga680a8aa2a20465cfbcb7fdf9208c5e77}\label{group__max17048_ga680a8aa2a20465cfbcb7fdf9208c5e77}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_temp\_callback\_t@{max17048\_temp\_callback\_t}}
+\index{max17048\_temp\_callback\_t@{max17048\_temp\_callback\_t}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_temp\_callback\_t}{max17048\_temp\_callback\_t}}
+{\footnotesize\ttfamily typedef int32\+\_\+t($\ast$ max17048\+\_\+temp\+\_\+callback\+\_\+t) (void)}
+
+
+
+MAX17048 temperature external temperature measurement callback function. 
+
+This callback function is executed from interrupt context when the user opts to provide the battery back temperature through a mechanism other than the integrated EMU temperature sensor (e.\+g. an external temperature sensor or other means). The driver needs the battery pack temperature to periodically update the MAX17048 compensation factor (RCOMP).
+
+\begin{DoxyReturn}{Returns}
+Temperature, as a signed integer in degrees C. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00191}{191}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_ga81bb645b77909f926785580bdea72b0f}\label{group__max17048_ga81bb645b77909f926785580bdea72b0f}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!sl\_max17048\_irq\_source\_t@{sl\_max17048\_irq\_source\_t}}
+\index{sl\_max17048\_irq\_source\_t@{sl\_max17048\_irq\_source\_t}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{sl\_max17048\_irq\_source\_t}{sl\_max17048\_irq\_source\_t}}
+{\footnotesize\ttfamily typedef uint8\+\_\+t \mbox{\hyperlink{group__max17048_ga81bb645b77909f926785580bdea72b0f}{sl\+\_\+max17048\+\_\+irq\+\_\+source\+\_\+t}}}
+
+
+
+MAX17048 interrupt source enum. 
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00163}{163}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__max17048_ga3f9e19d54b68f884baa1de9580909b33}\label{group__max17048_ga3f9e19d54b68f884baa1de9580909b33}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_hibstate\_t@{max17048\_hibstate\_t}}
+\index{max17048\_hibstate\_t@{max17048\_hibstate\_t}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_hibstate\_t}{max17048\_hibstate\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__max17048_ga3f9e19d54b68f884baa1de9580909b33}{max17048\+\_\+hibstate\+\_\+t}}}
+
+
+
+MAX17048 hibernate state. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{activeMode@{activeMode}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!activeMode@{activeMode}}}\mbox{\Hypertarget{group__max17048_gga3f9e19d54b68f884baa1de9580909b33aa9827654cde2568f4f082c27746fa59f}\label{group__max17048_gga3f9e19d54b68f884baa1de9580909b33aa9827654cde2568f4f082c27746fa59f}} 
+active\+Mode&Device is in active mode. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{hibernateMode@{hibernateMode}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!hibernateMode@{hibernateMode}}}\mbox{\Hypertarget{group__max17048_gga3f9e19d54b68f884baa1de9580909b33a59f864cf7b64c780506d1d358f9613f1}\label{group__max17048_gga3f9e19d54b68f884baa1de9580909b33a59f864cf7b64c780506d1d358f9613f1}} 
+hibernate\+Mode&Device is in hibernate mode. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00172}{172}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+\mbox{\Hypertarget{group__max17048_gaee7df5f8d24946dd2a2ad4eaa647fddc}\label{group__max17048_gaee7df5f8d24946dd2a2ad4eaa647fddc}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!sl\_max17048\_irq\_source\_t\_enum@{sl\_max17048\_irq\_source\_t\_enum}}
+\index{sl\_max17048\_irq\_source\_t\_enum@{sl\_max17048\_irq\_source\_t\_enum}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{sl\_max17048\_irq\_source\_t\_enum}{sl\_max17048\_irq\_source\_t\_enum}}
+{\footnotesize\ttfamily enum sl\+\_\+max17048\+\_\+irq\+\_\+source\+\_\+t\+\_\+enum}
+
+
+
+Definition at line \mbox{\hyperlink{max17048_8h_source_l00163}{163}} of file \mbox{\hyperlink{max17048_8h_source}{max17048.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{group__max17048_ga3da20249b4ef2fbd8dbab8fe45971c18}\label{group__max17048_ga3da20249b4ef2fbd8dbab8fe45971c18}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_deinit@{max17048\_deinit}}
+\index{max17048\_deinit@{max17048\_deinit}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_deinit()}{max17048\_deinit()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+deinit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+De-\/initialize the MAX17048 driver. 
+
+This function does not write to any of the MAX17048 registers. Its sole purpose is to return the GPIO pin(s) used for the ALRTn and optional QSTRT pins to the disabled state.
+
+The proper way to de-\/initialize the MAX17048 would be to manually disable all of its interrupts (or set those with thresholds to min/max values that cannot be reached) and then place the device in sleep mode by calling \mbox{\hyperlink{group__max17048_gaa417efb663c06cd2240cdeb63846a47e}{max17048\+\_\+enter\+\_\+sleep()}}, which disables battery monitoring altogether.
+
+\begin{DoxyNote}{Note}
+The purpose of de-\/initialization is to shutdown the MAX17048 as part of a complete shutdown sequence for an EFM32/\+EFR32-\/based system. Because driver de-\/initialization disables interrupt recognition, it is no longer possible to detect a battery swap, even though the MAX17048 will do so and assert ALRTn. Leave the driver initialized to handle ALRTn assertion on battery swap, even if the MAX17048 has been placed in sleep mode.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+NOT\+\_\+\+INITIALIZED if the driver is not initialized. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga84261f39f5f2b4f65376469aa5af7534}\label{group__max17048_ga84261f39f5f2b4f65376469aa5af7534}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_disable\_auto\_hibernate@{max17048\_disable\_auto\_hibernate}}
+\index{max17048\_disable\_auto\_hibernate@{max17048\_disable\_auto\_hibernate}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_disable\_auto\_hibernate()}{max17048\_disable\_auto\_hibernate()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+disable\+\_\+auto\+\_\+hibernate (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Disables automatic hibernation by setting the activity and CRATE thresholds to 0x0. 
+
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga7b10be8d77646d016c1f42637d8fe551}\label{group__max17048_ga7b10be8d77646d016c1f42637d8fe551}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_disable\_empty\_interrupt@{max17048\_disable\_empty\_interrupt}}
+\index{max17048\_disable\_empty\_interrupt@{max17048\_disable\_empty\_interrupt}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_disable\_empty\_interrupt()}{max17048\_disable\_empty\_interrupt()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+disable\+\_\+empty\+\_\+interrupt (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Disables the MAX17048 empty alert interrupt and unregisters the the user-\/provided callback function. 
+
+The empty threshold alert interrupt is technically always active because it does not have a dedicated enable bit.
+
+As explained for the \mbox{\hyperlink{group__max17048_ga4496efacef0e093d718a236029780ecc}{max17048\+\_\+enable\+\_\+empty\+\_\+interrupt()}} function the empty percent level is specified as 32 -\/ ATHD, so setting a threshold of 1\% (ATHD = 31) should prevent the interrupt from being requested and the driver will ignore it.
+
+\begin{DoxyNote}{Note}
+Because the empty threshold interrupt cannot be disabled (e.\+g. there is a chance that in a very low-\/power system operation might be possible at 1\% SOC), the user should consider disabling all driver interrupts and placing the MCU in a low-\/power mode and polling SOC at a very slow rate if battery swap is possible.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga284f22aa25c9d4519842e8a2ac57c44f}\label{group__max17048_ga284f22aa25c9d4519842e8a2ac57c44f}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_disable\_reset\_interrupt@{max17048\_disable\_reset\_interrupt}}
+\index{max17048\_disable\_reset\_interrupt@{max17048\_disable\_reset\_interrupt}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_disable\_reset\_interrupt()}{max17048\_disable\_reset\_interrupt()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+disable\+\_\+reset\+\_\+interrupt (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Disables the MAX17048 reset alert interrupt and unregisters the user-\/provided callback function. 
+
+The reset alert interrupt is disabled by writing a 1 to the En\+Vr bit in the STATUS register.
+
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_gad7a770f000e304210f9816b29f3f1868}\label{group__max17048_gad7a770f000e304210f9816b29f3f1868}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_disable\_soc\_interrupt@{max17048\_disable\_soc\_interrupt}}
+\index{max17048\_disable\_soc\_interrupt@{max17048\_disable\_soc\_interrupt}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_disable\_soc\_interrupt()}{max17048\_disable\_soc\_interrupt()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+disable\+\_\+soc\+\_\+interrupt (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Disables the MAX17048 state-\/of-\/charge (SOC) interrupt and unregisters the user-\/provided callback function. 
+
+This function disables the SOC interrupt by writing a 0 to the ALSC bit in the MAX17048 CONFIG register.
+
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+NOT\+\_\+\+INITIALIZED if a callback has not previously been registered. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga3ceb5d1e51b85b9812f6e01c90f88324}\label{group__max17048_ga3ceb5d1e51b85b9812f6e01c90f88324}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_disable\_vhigh\_interrupt@{max17048\_disable\_vhigh\_interrupt}}
+\index{max17048\_disable\_vhigh\_interrupt@{max17048\_disable\_vhigh\_interrupt}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_disable\_vhigh\_interrupt()}{max17048\_disable\_vhigh\_interrupt()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+disable\+\_\+vhigh\+\_\+interrupt (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Disables the MAX17048 voltage high alert interrupt and unregisters the user-\/provided callback function. 
+
+The voltage high alert interrupt is technically always active because it does not have a dedicated enable bit.
+
+However, the high alert level is set by the VALRT register MAX field, and if it is set to a voltage higher than the maximum VCELL level, the interrupt will never be requested. Because each LSB of MAX corresponds to 20 mV, a value of 0x\+FF is 5.\+1V, which is greater than the maximum output voltage of a single Li+ cell.
+
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga5383af8dbe8910543f0cbd5cacb0b841}\label{group__max17048_ga5383af8dbe8910543f0cbd5cacb0b841}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_disable\_vlow\_interrupt@{max17048\_disable\_vlow\_interrupt}}
+\index{max17048\_disable\_vlow\_interrupt@{max17048\_disable\_vlow\_interrupt}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_disable\_vlow\_interrupt()}{max17048\_disable\_vlow\_interrupt()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+disable\+\_\+vlow\+\_\+interrupt (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Disables the MAX17048 voltage low alert interrupt and unregisters the user-\/provided callback function. 
+
+The voltage low alert interrupt is technically always active because it does not have a dedicated enable bit.
+
+However, the low alert level is set by the VALRT register MIN field, and if it is set to a voltage lower than the minimum VCELL level, the interrupt will never be requested. Because each LSB of MAX corresponds to 20 mV, a value of 0x0 is 0V, which a voltage at which the system should not even be running.
+
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_gac461439fc7a6add30ddf2bf7d530e3b7}\label{group__max17048_gac461439fc7a6add30ddf2bf7d530e3b7}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_enable\_auto\_hibernate@{max17048\_enable\_auto\_hibernate}}
+\index{max17048\_enable\_auto\_hibernate@{max17048\_enable\_auto\_hibernate}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_enable\_auto\_hibernate()}{max17048\_enable\_auto\_hibernate()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+enable\+\_\+auto\+\_\+hibernate (\begin{DoxyParamCaption}\item[{float}]{hib\+\_\+thr,  }\item[{uint32\+\_\+t}]{act\+\_\+thr }\end{DoxyParamCaption})}
+
+
+
+Enables MAX17048 automatic hibernation by setting the activity and CRATE (rate of discharge/charge) thresholds to non-\/min/max values. 
+
+Hibernate allows the MAX17048 to reduce its current draw from a typical of 23 uA in active mode to 4 uA or less by increasing the ADC sampling interval from 250 ms to 45 seconds.
+
+Automatic hibernation happens when the CRATE is less than the user-\/specified threshold. Similarly, exit from hibernate is automatic if any single VCELL reading exceeds the user-\/specified activity threshold.
+
+As the datasheet notes, writing 0x\+FFFF to HIBRT forces use of automatic hibernation; similarly, 0x0000 disables. It follows, then, that a hybrid use case is possible. Setting the HIBRT register HIBTHR and ACTTHR fields to 0x\+FF and 0x0, respectively, will keep the device in hibernate mode with no way to exit.
+
+\begin{DoxyNote}{Note}
+The driver does not allow a use case where hib\+\_\+thr = 0\% and act\+\_\+thr != 0x0 mV, in other words, hibernate is disabled but an activity level to cause exit from hibernate is specified. The datasheet does not specify what would happen in this case.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em hib\+\_\+thr} & CRATE threshold below which the MAX17048 enters hibernate mode as an percent.\\
+\hline
+\mbox{\texttt{ in}}  & {\em act\+\_\+thr} & Exit hibernate mode when VCELL changes by greater than the specified amount in millivolts.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+INVALID\+\_\+\+PARAMETER if hib\+\_\+thr = 0 and act\+\_\+thr != 0. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga4496efacef0e093d718a236029780ecc}\label{group__max17048_ga4496efacef0e093d718a236029780ecc}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_enable\_empty\_interrupt@{max17048\_enable\_empty\_interrupt}}
+\index{max17048\_enable\_empty\_interrupt@{max17048\_enable\_empty\_interrupt}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_enable\_empty\_interrupt()}{max17048\_enable\_empty\_interrupt()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+enable\+\_\+empty\+\_\+interrupt (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{athd,  }\item[{\mbox{\hyperlink{group__max17048_ga5328c547b89d1e336b44390abc4965d0}{max17048\+\_\+interrupt\+\_\+callback\+\_\+t}}}]{irq\+\_\+cb,  }\item[{void $\ast$}]{cb\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Enables the MAX17048 empty alert interrupt, sets its threshold, and registers a user-\/provided callback function to respond to it. 
+
+The empty threshold alert interrupt is technically always active because it does not have a dedicated enable bit.
+
+However, the alert threshold is set by the ATHD field in the CONFIG register and is defined as 32 -\/ ATHD. Because ATHD = 0x1C at POR, the empty threshold defaults to 4\%.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em athd} & Empty threshold specified as a percent between 1 and 32.\\
+\hline
+\mbox{\texttt{ in}}  & {\em irq\+\_\+cb} & User-\/defined function to respond to the SOC of charge falling below the specified empty threshold level.\\
+\hline
+\mbox{\texttt{ in}}  & {\em cb\+\_\+data} & Pointer to user data that will be passed to callback.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+INVALID\+\_\+\+PARAMETER if athd \texorpdfstring{$<$}{<} 1 or athd \texorpdfstring{$>$}{>} 32.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+NULL\+\_\+\+POINTER if irq\+\_\+cb or cb\+\_\+data is NULL.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+ALREADY\+\_\+\+INITIALIZED if a callback has already been initialized. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga55975d771f83912b68cd55b059a01e38}\label{group__max17048_ga55975d771f83912b68cd55b059a01e38}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_enable\_reset\_comparator@{max17048\_enable\_reset\_comparator}}
+\index{max17048\_enable\_reset\_comparator@{max17048\_enable\_reset\_comparator}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_enable\_reset\_comparator()}{max17048\_enable\_reset\_comparator()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+enable\+\_\+reset\+\_\+comparator (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})}
+
+
+
+Disabling the MAX17048 reset comparator in hibernate mode reduces current consumption by 0.\+5 uA. 
+
+The reset comparator is disabled by writing a 1 to the Dis bit in the VRESET/\+ID register.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em enable} & \begin{DoxyItemize}
+\item true -\/ Enable the reset comparator in hibernate mode. \item false -\/ Disable the reset comparator in hibernate mode.\end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga77d5f41ce5b13ed29b0cb796ccd2b723}\label{group__max17048_ga77d5f41ce5b13ed29b0cb796ccd2b723}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_enable\_reset\_interrupt@{max17048\_enable\_reset\_interrupt}}
+\index{max17048\_enable\_reset\_interrupt@{max17048\_enable\_reset\_interrupt}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_enable\_reset\_interrupt()}{max17048\_enable\_reset\_interrupt()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+enable\+\_\+reset\+\_\+interrupt (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{vreset\+\_\+mv,  }\item[{\mbox{\hyperlink{group__max17048_ga5328c547b89d1e336b44390abc4965d0}{max17048\+\_\+interrupt\+\_\+callback\+\_\+t}}}]{irq\+\_\+cb,  }\item[{void $\ast$}]{cb\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Enables the MAX17048 reset alert interrupt, sets its threshold, and registers a user-\/provided callback function to respond to it. 
+
+The reset alert interrupt is used to detect battery removal or a drop in the cell output voltage below which system functionality may be impaired. It is enabled by writing a 1 to the En\+Vr bit in the STATUS register.
+
+The reset threshold is a 7-\/bit value specified in units of 1 LSB = 40 mV.
+
+\begin{DoxyNote}{Note}
+The driver does not fully sanity check vreset, and it is possible for the user to specify a nonsensical value that constantly triggers the interrupt. For example, vreset = 0x7F corresponds to a reset voltage of 5.\+08V, which is greater than the maximum output level of a single Li+ cell.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em vreset\+\_\+mv} & Low voltage alert threshold in millivolts.\\
+\hline
+\mbox{\texttt{ in}}  & {\em irq\+\_\+cb} & User-\/defined function to respond to VCELL \texorpdfstring{$>$}{>} valrt\+\_\+max.\\
+\hline
+\mbox{\texttt{ in}}  & {\em cb\+\_\+data} & Pointer to user data that will be passed to callback.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+NULL\+\_\+\+POINTER if irq\+\_\+cb or cb\+\_\+data is NULL.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+ALREADY\+\_\+\+INITIALIZED if a callback has already been initialized.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+INVALID\+\_\+\+PARAMETER if vreset\+\_\+mv \texorpdfstring{$>$}{>} 5080. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_gaa8c520e91572655c43d29e586bfc2686}\label{group__max17048_gaa8c520e91572655c43d29e586bfc2686}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_enable\_soc\_interrupt@{max17048\_enable\_soc\_interrupt}}
+\index{max17048\_enable\_soc\_interrupt@{max17048\_enable\_soc\_interrupt}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_enable\_soc\_interrupt()}{max17048\_enable\_soc\_interrupt()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+enable\+\_\+soc\+\_\+interrupt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__max17048_ga5328c547b89d1e336b44390abc4965d0}{max17048\+\_\+interrupt\+\_\+callback\+\_\+t}}}]{irq\+\_\+cb,  }\item[{void $\ast$}]{cb\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Enables the MAX17048 state-\/of-\/charge (SOC) interrupt and registers a user-\/provided callback function to respond to it. 
+
+This function enables the SOC interrupt by writing a 1 to the ALSC bit in the MAX17048 CONFIG register. The interrupt is requested whenever SOC changes by at least 1\%.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em irq\+\_\+cb} & User-\/defined function to respond to the SOC interrupt.\\
+\hline
+\mbox{\texttt{ in}}  & {\em cb\+\_\+data} & Pointer to user data that will be passed to callback.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+NULL\+\_\+\+POINTER if irq\+\_\+cb or cb\+\_\+data is NULL.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+ALREADY\+\_\+\+INITIALIZED if a callback has already been initialized. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga2dc052e99940eb937d2648195ba8ec79}\label{group__max17048_ga2dc052e99940eb937d2648195ba8ec79}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_enable\_vhigh\_interrupt@{max17048\_enable\_vhigh\_interrupt}}
+\index{max17048\_enable\_vhigh\_interrupt@{max17048\_enable\_vhigh\_interrupt}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_enable\_vhigh\_interrupt()}{max17048\_enable\_vhigh\_interrupt()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+enable\+\_\+vhigh\+\_\+interrupt (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{valrt\+\_\+max\+\_\+mv,  }\item[{\mbox{\hyperlink{group__max17048_ga5328c547b89d1e336b44390abc4965d0}{max17048\+\_\+interrupt\+\_\+callback\+\_\+t}}}]{irq\+\_\+cb,  }\item[{void $\ast$}]{cb\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Enables the MAX17048 voltage high alert interrupt, sets its threshold, and registers a user-\/provided callback function to respond to it. 
+
+The voltage high alert interrupt is technically always active because it does not have a dedicated enable bit.
+
+However, the high alert level is set by the VALRT register MAX field, and if it is set to a voltage higher than the maximum VCELL level, the interrupt will never be requested. Because each LSB of MAX corresponds to 20 mV, a value of 0x\+FF is 5.\+1V, which is greater than the maximum output voltage of a single Li+ cell.
+
+\begin{DoxyNote}{Note}
+The driver does not sanity check valrt\+\_\+max. If the user sets valrt\+\_\+max to a nonsensical value, e.\+g. 0, the interrupt will trigger constantly. There is also no requirement that valrt\+\_\+max \texorpdfstring{$>$}{>} valrt\+\_\+min.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em valrt\+\_\+max\+\_\+mv} & High voltage alert threshold in millivolts.\\
+\hline
+\mbox{\texttt{ in}}  & {\em irq\+\_\+cb} & User-\/defined function to respond to VCELL \texorpdfstring{$>$}{>} valrt\+\_\+max.\\
+\hline
+\mbox{\texttt{ in}}  & {\em cb\+\_\+data} & Pointer to user data that will be passed to callback.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+NULL\+\_\+\+POINTER if irq\+\_\+cb or cb\+\_\+data is NULL.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+ALREADY\+\_\+\+INITIALIZED if a callback has already been initialized. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga44da5bcac4b8d24431134c43efc661db}\label{group__max17048_ga44da5bcac4b8d24431134c43efc661db}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_enable\_vlow\_interrupt@{max17048\_enable\_vlow\_interrupt}}
+\index{max17048\_enable\_vlow\_interrupt@{max17048\_enable\_vlow\_interrupt}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_enable\_vlow\_interrupt()}{max17048\_enable\_vlow\_interrupt()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+enable\+\_\+vlow\+\_\+interrupt (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{valrt\+\_\+min\+\_\+mv,  }\item[{\mbox{\hyperlink{group__max17048_ga5328c547b89d1e336b44390abc4965d0}{max17048\+\_\+interrupt\+\_\+callback\+\_\+t}}}]{irq\+\_\+cb,  }\item[{void $\ast$}]{cb\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Enables the MAX17048 voltage low alert interrupt, sets its threshold, and registers a user-\/provided callback function to respond to it. 
+
+The voltage low alert interrupt is technically always active because it does not have a dedicated enable bit.
+
+However, the low alert level is set by the VALRT register MIN field, and if it is set to a voltage lower than the minimum VCELL level, the interrupt will never be requested. Because each LSB of MIN corresponds to 20 mV, a value of 0x0 is 0V, which a voltage at which the system should not even be running.
+
+\begin{DoxyNote}{Note}
+The driver does not sanity check valrt\+\_\+min. If the user sets valrt\+\_\+min to a nonsensical value, e.\+g. 0x\+FF, the interrupt will trigger constantly. There is also no requirement that valrt\+\_\+max \texorpdfstring{$>$}{>} valrt\+\_\+min.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em valrt\+\_\+min\+\_\+mv} & Low voltage alert threshold in millivolts.\\
+\hline
+\mbox{\texttt{ in}}  & {\em irq\+\_\+cb} & User-\/defined function to respond to VCELL \texorpdfstring{$>$}{>} valrt\+\_\+max.\\
+\hline
+\mbox{\texttt{ in}}  & {\em cb\+\_\+data} & Pointer to user data that will be passed to callback.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+NULL\+\_\+\+POINTER if irq\+\_\+cb or cb\+\_\+data is NULL.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+ALREADY\+\_\+\+INITIALIZED if a callback has already been initialized. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_gaa417efb663c06cd2240cdeb63846a47e}\label{group__max17048_gaa417efb663c06cd2240cdeb63846a47e}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_enter\_sleep@{max17048\_enter\_sleep}}
+\index{max17048\_enter\_sleep@{max17048\_enter\_sleep}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_enter\_sleep()}{max17048\_enter\_sleep()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+enter\+\_\+sleep (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Places the MAX17048 into sleep mode. 
+
+Sleep mode offers the lowest current consumption, but it cannot be used as a substitute for hibernate mode. All monitoring is disabled in sleep mode. Any discharging (or charging) of the battery, which would happen even if the EFM32/\+EFR32 is in a low energy mode, would not be detected and would inject error into the SOC calculations that will accumulate over time.
+
+The driver places the MAX17048 in sleep mode by first writing a 1 to the En\+Sleep bit in the the MODE register and then by writing a 1 to the SLEEP bit in the CONFIG register.
+
+\begin{DoxyNote}{Note}
+Although sleep mode is not suitable for normal operation of the MAX17048, it would be appropriate in EM4 when the only possible wake-\/up event is a power-\/on reset (POR) caused by battery replacement.
+
+It is possible to force exit sleep mode by writing a 0 to the CONFIG register sleep bit. POR also exits sleep mode.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga6540b9afc85e8af172dd3fc3435bd95f}\label{group__max17048_ga6540b9afc85e8af172dd3fc3435bd95f}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_exit\_sleep@{max17048\_exit\_sleep}}
+\index{max17048\_exit\_sleep@{max17048\_exit\_sleep}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_exit\_sleep()}{max17048\_exit\_sleep()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+exit\+\_\+sleep (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Forces the MAX17048 to exit sleep mode. 
+
+Although the proper exit mechanism from sleep mode would be a POR, as this causes the device to quick start its battery SOC calculations, it is possible to force exit from sleep mode by writing a 0 to the SLEEP bit in the CONFIG register.
+
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_gaeea62c82e1684456b987571a306a9d0b}\label{group__max17048_gaeea62c82e1684456b987571a306a9d0b}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_force\_quick\_start@{max17048\_force\_quick\_start}}
+\index{max17048\_force\_quick\_start@{max17048\_force\_quick\_start}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_force\_quick\_start()}{max17048\_force\_quick\_start()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+force\+\_\+quick\+\_\+start (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Forces the MAX17048 to initiate a battery quick start. 
+
+In general, POR should handle most battery swap events. However, if the battery cannot reach a fully relaxed state during the initial 17 ms POR window, it is possible to manually force the MAX17048 to perform initial VCELL measurements.
+
+If the user has enabled hardware quick start by \#defining MAX17048\+\_\+\+CONFIG\+\_\+\+ENABLE\+\_\+\+HW\+\_\+\+QSTRT and specifying the GPIO pin to which the QSTRT input is connected, the driver will use this option as it offers the lowest latency. Otherwise, the driver will initiate quick start by writing a 1 to the Quick\+Start bit in the MODE register.
+
+\begin{DoxyNote}{Note}
+The rising edge on QSTRT initiates the quick start, however Maxim does not provide any timing specifications for the pin. Presumably, if QSTRT were to go low and then high again during the VCELL sampling window (which looks to be 17 ms based on the discussion of what happens after POR), another quick start would be initiated.
+\end{DoxyNote}
+For this reason, it would seem that the driver ought to keep QSTRT high for some nominal amount of time, maybe 1 ms, before de-\/asserting it. This should be implemented with a Sleeptimer one-\/shot software timer whose callback de-\/asserts the pin.
+
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga2ff3d5ffd024c3d275a9258848d8ef52}\label{group__max17048_ga2ff3d5ffd024c3d275a9258848d8ef52}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_force\_reset@{max17048\_force\_reset}}
+\index{max17048\_force\_reset@{max17048\_force\_reset}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_force\_reset()}{max17048\_force\_reset()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+force\+\_\+reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Forces the MAX17048 to initiate a power-\/on reset (POR). 
+
+In general, POR should be detected using the MAX17048 reset comparator and its associated interrupt. However, it is possible to manually initiate a POR by writing 0x5400 to the CMD register.
+
+\begin{DoxyNote}{Note}
+The MAX17048 will issue the reset immediately after the last bit of the command is clocked into the CMD register and will not ACK the transfer.
+
+The reset command forces all MAX17048 registers to their default values. The driver must update its private tracking variables to reflect this.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_gab4dc2d4edfa30523a67483e344f5b989}\label{group__max17048_gab4dc2d4edfa30523a67483e344f5b989}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_get\_activity\_threshold@{max17048\_get\_activity\_threshold}}
+\index{max17048\_get\_activity\_threshold@{max17048\_get\_activity\_threshold}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_get\_activity\_threshold()}{max17048\_get\_activity\_threshold()}}
+{\footnotesize\ttfamily uint32\+\_\+t max17048\+\_\+get\+\_\+activity\+\_\+threshold (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get the activity threshold level. 
+
+\begin{DoxyNote}{Note}
+The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 0x30 and is tracked in a private variable should it otherwise be changed.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item Activity threshold (VCELL level) in millivolts. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga1f3ff8a523f2a234df0e47965554160f}\label{group__max17048_ga1f3ff8a523f2a234df0e47965554160f}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_get\_crate@{max17048\_get\_crate}}
+\index{max17048\_get\_crate@{max17048\_get\_crate}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_get\_crate()}{max17048\_get\_crate()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+get\+\_\+crate (\begin{DoxyParamCaption}\item[{float $\ast$}]{crate }\end{DoxyParamCaption})}
+
+
+
+This function gets an approximate value for the average SOC rate of change. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em crate} & The average rate of change in SOC in \% as a floating point value. The CRATE register returns a value expressed at 1 LSB = 0.\+208\% per hour. The value does not specifically reflect current consumption and cannot be converted to a current.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SL\+\_\+\+STATUS\+\_\+\+OK if successful. Error code otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_gaf07d953475034869fee5623b842a5d26}\label{group__max17048_gaf07d953475034869fee5623b842a5d26}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_get\_empty\_threshold@{max17048\_get\_empty\_threshold}}
+\index{max17048\_get\_empty\_threshold@{max17048\_get\_empty\_threshold}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_get\_empty\_threshold()}{max17048\_get\_empty\_threshold()}}
+{\footnotesize\ttfamily uint8\+\_\+t max17048\+\_\+get\+\_\+empty\+\_\+threshold (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get the empty threshold. 
+
+\begin{DoxyNote}{Note}
+The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 4\% and is tracked in a private variable should it otherwise be changed.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item Empty threshold between 1\% and 32\%. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga66daaef0642f1f20fb6a7583a31df836}\label{group__max17048_ga66daaef0642f1f20fb6a7583a31df836}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_get\_hibernate\_state@{max17048\_get\_hibernate\_state}}
+\index{max17048\_get\_hibernate\_state@{max17048\_get\_hibernate\_state}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_get\_hibernate\_state()}{max17048\_get\_hibernate\_state()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+get\+\_\+hibernate\+\_\+state (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__max17048_ga3f9e19d54b68f884baa1de9580909b33}{max17048\+\_\+hibstate\+\_\+t}} $\ast$}]{hibstat }\end{DoxyParamCaption})}
+
+
+
+Check if the MAX17048 is in hibernate mode. 
+
+\begin{DoxyNote}{Note}
+The driver only polls the MAX17048 to determine if the device is in hibernate mode if the user has enabled it. By default, the driver manually enters/exits hibernate by writing the appropriate values to HIBRT upon EM2/3 entry/exit in response to Power Manager sl\+\_\+power\+\_\+manager\+\_\+subscribe\+\_\+em\+\_\+transition\+\_\+event() notifications.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em hibstat} & \begin{DoxyItemize}
+\item active\+Mode -\/ Device is in active mode \item hibernate\+Mode -\/ Device is in hibernate mode\end{DoxyItemize}
+\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga4d5512602578226a49a978c7e652d5ae}\label{group__max17048_ga4d5512602578226a49a978c7e652d5ae}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_get\_hibernate\_threshold@{max17048\_get\_hibernate\_threshold}}
+\index{max17048\_get\_hibernate\_threshold@{max17048\_get\_hibernate\_threshold}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_get\_hibernate\_threshold()}{max17048\_get\_hibernate\_threshold()}}
+{\footnotesize\ttfamily float max17048\+\_\+get\+\_\+hibernate\+\_\+threshold (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get the hibernate threshold level. 
+
+\begin{DoxyNote}{Note}
+The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 0x80 and is tracked in a private variable should it otherwise be changed.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item Hibernate threshold in charge/discharge in percent. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_gafca203ef5ad76c5b9d57929c4474527d}\label{group__max17048_gafca203ef5ad76c5b9d57929c4474527d}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_get\_id@{max17048\_get\_id}}
+\index{max17048\_get\_id@{max17048\_get\_id}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_get\_id()}{max17048\_get\_id()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+get\+\_\+id (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{id }\end{DoxyParamCaption})}
+
+
+
+Returns the one-\/time factory-\/programmable identifier value stored in the ID register. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em id} & The value stored in the ID register.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga85e3127bce3f3b2e6f5c3a5577b643ac}\label{group__max17048_ga85e3127bce3f3b2e6f5c3a5577b643ac}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_get\_production\_version@{max17048\_get\_production\_version}}
+\index{max17048\_get\_production\_version@{max17048\_get\_production\_version}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_get\_production\_version()}{max17048\_get\_production\_version()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+get\+\_\+production\+\_\+version (\begin{DoxyParamCaption}\item[{uint16\+\_\+t $\ast$}]{ver }\end{DoxyParamCaption})}
+
+
+
+Provides the production version of the MAX17048 by reading the contents of the VERSION register. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em ver} & The value stored in the VERSION register.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_gadbf4aa694f3692200f09d4c1bc4d42d7}\label{group__max17048_gadbf4aa694f3692200f09d4c1bc4d42d7}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_get\_reset\_threshold@{max17048\_get\_reset\_threshold}}
+\index{max17048\_get\_reset\_threshold@{max17048\_get\_reset\_threshold}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_get\_reset\_threshold()}{max17048\_get\_reset\_threshold()}}
+{\footnotesize\ttfamily uint32\+\_\+t max17048\+\_\+get\+\_\+reset\+\_\+threshold (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get the reset alert interrupt threshold. 
+
+\begin{DoxyNote}{Note}
+The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 0x4B and is tracked in a private variable should it otherwise be changed.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item Reset alert threshold in millivolts. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga6ac6d8d7bb558efbae9bb013b97bff22}\label{group__max17048_ga6ac6d8d7bb558efbae9bb013b97bff22}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_get\_soc@{max17048\_get\_soc}}
+\index{max17048\_get\_soc@{max17048\_get\_soc}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_get\_soc()}{max17048\_get\_soc()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+get\+\_\+soc (\begin{DoxyParamCaption}\item[{uint32\+\_\+t $\ast$}]{soc }\end{DoxyParamCaption})}
+
+
+
+This function returns SOC as an integer \%. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em soc} & The state of charge \mbox{[}0-\/100\%\mbox{]}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SL\+\_\+\+STATUS\+\_\+\+OK if successful. Error code otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga2e14c854a21af022ebd49b78b520e8d1}\label{group__max17048_ga2e14c854a21af022ebd49b78b520e8d1}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_get\_update\_interval@{max17048\_get\_update\_interval}}
+\index{max17048\_get\_update\_interval@{max17048\_get\_update\_interval}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_get\_update\_interval()}{max17048\_get\_update\_interval()}}
+{\footnotesize\ttfamily uint32\+\_\+t max17048\+\_\+get\+\_\+update\+\_\+interval (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get the RCOMP update interval. 
+
+This function returns the interval at which the driver updates the MAX17048 temperature compensation factor (RCOMP). It is the timeout rate of the Sleeptimer periodic software timer callback that recalculates RCOMP and sends the updated value to the MAX17048. $\ast$
+
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item Update rate in milliseconds. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_gaf66c5ab7163803d9d4f9b5c6beeb48c7}\label{group__max17048_gaf66c5ab7163803d9d4f9b5c6beeb48c7}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_get\_vcell@{max17048\_get\_vcell}}
+\index{max17048\_get\_vcell@{max17048\_get\_vcell}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_get\_vcell()}{max17048\_get\_vcell()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+get\+\_\+vcell (\begin{DoxyParamCaption}\item[{uint32\+\_\+t $\ast$}]{vcell }\end{DoxyParamCaption})}
+
+
+
+This function returns the cell voltage in millivolts. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em vcell} & The cell voltage expressed in millivolts as an integer. The function converts the raw output from the MAX17048 where 1 LSB = 78.\+125 u\+V/cell.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+SL\+\_\+\+STATUS\+\_\+\+OK if successful. Error code otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_gae239698bfaeec936f207d921b65e3caf}\label{group__max17048_gae239698bfaeec936f207d921b65e3caf}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_get\_vhigh\_threshold@{max17048\_get\_vhigh\_threshold}}
+\index{max17048\_get\_vhigh\_threshold@{max17048\_get\_vhigh\_threshold}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_get\_vhigh\_threshold()}{max17048\_get\_vhigh\_threshold()}}
+{\footnotesize\ttfamily uint32\+\_\+t max17048\+\_\+get\+\_\+vhigh\+\_\+threshold (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get the voltage high alert interrupt threshold. 
+
+\begin{DoxyNote}{Note}
+The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 0x\+FF and is tracked in a private variable should it otherwise be changed.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item High voltage alert threshold in millivolts. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga80360aaf5c8235fdfc1df138236231cf}\label{group__max17048_ga80360aaf5c8235fdfc1df138236231cf}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_get\_vlow\_threshold@{max17048\_get\_vlow\_threshold}}
+\index{max17048\_get\_vlow\_threshold@{max17048\_get\_vlow\_threshold}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_get\_vlow\_threshold()}{max17048\_get\_vlow\_threshold()}}
+{\footnotesize\ttfamily uint32\+\_\+t max17048\+\_\+get\+\_\+vlow\+\_\+threshold (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get the voltage low alert interrupt threshold. 
+
+\begin{DoxyNote}{Note}
+The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 0x0 and is tracked in a private variable should it otherwise be changed.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item Low voltage alert threshold in millivolts. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga46a4ac6a6d0d0f98d0cf6388a21d8214}\label{group__max17048_ga46a4ac6a6d0d0f98d0cf6388a21d8214}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_init@{max17048\_init}}
+\index{max17048\_init@{max17048\_init}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_init()}{max17048\_init()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+init (\begin{DoxyParamCaption}\item[{sl\+\_\+i2cspm\+\_\+t $\ast$}]{i2cspm }\end{DoxyParamCaption})}
+
+
+
+Initialize the MAX17048 driver with the values provided in the \mbox{\hyperlink{max17048__config_8h_source}{max17048\+\_\+config.\+h}} file. 
+
+This function does not write to any of the MAX17048 registers. It assigns the I2C used to communicate with the device, configures the GPIO(s) used for the ALRTn and optional QSTRT pin(s), and starts a software timer to trigger temperature (RCOMP) updates at the user-\/specified rate.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2cspm} & The I2\+CSPM instance to use.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Upon return, all interrupts from the MAX17048 are masked so that firmware can enable interrupts that are required, register their callback functions, and set relevant thresholds. Interrupts are globally unmasked by calling \mbox{\hyperlink{group__max17048_ga048dfd6319ccc78e656d5f2819357c7d}{max17048\+\_\+unmask\+\_\+interrupts()}}.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+ALREADY\+\_\+\+INITIALIZED the function has previously been called. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga03d04668c5e05b32e99b42edb87bacdd}\label{group__max17048_ga03d04668c5e05b32e99b42edb87bacdd}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_load\_model@{max17048\_load\_model}}
+\index{max17048\_load\_model@{max17048\_load\_model}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_load\_model()}{max17048\_load\_model()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+load\+\_\+model (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{model }\end{DoxyParamCaption})}
+
+
+
+Load a custom model into the MAX17048 and enable it. 
+
+This function unlocks the TABLE registers by writing 0x57 to address 0x3F and 0x4A to address 0x3E. While the model is unlocked, battery status is not updated. The TABLE registers should be loaded and re-\/locked as quickly as possible by writing 0x00 to address 0x3F and 0x00 to address 0x3E.
+
+\begin{DoxyNote}{Note}
+By definition, a custom model consists of 64 bytes, written to the MAX17048 TABLE registers 16 bits at a time.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em model} & A pointer to the 64-\/byte model array.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga6c4dd46a920d4d1e44bb868038c692fc}\label{group__max17048_ga6c4dd46a920d4d1e44bb868038c692fc}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_mask\_interrupts@{max17048\_mask\_interrupts}}
+\index{max17048\_mask\_interrupts@{max17048\_mask\_interrupts}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_mask\_interrupts()}{max17048\_mask\_interrupts()}}
+{\footnotesize\ttfamily void max17048\+\_\+mask\+\_\+interrupts (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Mask MAX17048 interrupts. 
+
+This disables the high-\/to-\/low edge detection on the GPIO pin connected to the MAX17048 ALRTn output. The MAX17048 itself does not have any way to globally enable/disable interrupts. \mbox{\Hypertarget{group__max17048_gaa1d1f3ab66a445b1289f38f1483b6425}\label{group__max17048_gaa1d1f3ab66a445b1289f38f1483b6425}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_register\_temperature\_callback@{max17048\_register\_temperature\_callback}}
+\index{max17048\_register\_temperature\_callback@{max17048\_register\_temperature\_callback}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_register\_temperature\_callback()}{max17048\_register\_temperature\_callback()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+register\+\_\+temperature\+\_\+callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__max17048_ga680a8aa2a20465cfbcb7fdf9208c5e77}{max17048\+\_\+temp\+\_\+callback\+\_\+t}}}]{temp\+\_\+cb }\end{DoxyParamCaption})}
+
+
+
+Register the temperature update callback for the MAX17048 driver. 
+
+This function is used to register a callback that periodically updates the temperature of the battery monitored by the MAX17048. By default, the driver uses the EMU temperature sensor on Series 2 EFM32/\+EFR32 devices.
+
+However, in order for this sensor to accurately reflect the battery temperature, the MCU must be underneath (e.\+g. on the side of the PCB opposite) or immediately adjacent to the battery.
+
+In cases where this is not possible, the battery temperature can be provided to the driver from another source, such as an external temperature sensor that is integrated with the battery or mounted in close proximity to it. The driver imposes no particular requirements on the source of the temperature other than that it is provided as a signed integer in degrees Celsius.
+
+\begin{DoxyNote}{Note}
+The driver permits only one temperature update callback function to be registered. Attempting to register another callback returns an error.
+\end{DoxyNote}
+Firmware can unregister the current callback function, in which case the driver will revert to using the EMU temperature sensor. This can be useful to further reduce overall current draw in cases where the system enters a low-\/power, quiescent state such that the temperature reported by the EMU sensor is effectively the same as the battery temperature.
+
+There is no attempt to synchronize expiration of the software timer that updates the MAX17048\textquotesingle{}s compensation factor (RCOMP) with registration of the user-\/provided callback function. If the software timer expires and no callback has been registered, the EMU sensor\textquotesingle{}s output is used.
+
+This can be a concern if the user callback function does not actually read the temperature from whatever alternate source is used but instead simply returns a value that is updated in some asynchronous fashion. If firmware does not seed the callback function with an accurate battery temperature, the MAX17408 could report an erroneous SOC.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em temp\+\_\+cb} & User-\/defined function to return the battery temperature to the driver.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+NULL\+\_\+\+POINTER if the callback is NULL.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+ALREADY\+\_\+\+INITIALIZED if a callback has already been initialized. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga93e51267fe944a8e78c730cc78e6f9d4}\label{group__max17048_ga93e51267fe944a8e78c730cc78e6f9d4}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_set\_activity\_threshold@{max17048\_set\_activity\_threshold}}
+\index{max17048\_set\_activity\_threshold@{max17048\_set\_activity\_threshold}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_set\_activity\_threshold()}{max17048\_set\_activity\_threshold()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+set\+\_\+activity\+\_\+threshold (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{act\+\_\+thr }\end{DoxyParamCaption})}
+
+
+
+Set the activity threshold level. 
+
+This function sets the VCELL threshold level evaluated my the MAX17048 to determine whether or not to exit hibernate mode.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em act\+\_\+thr} & Activity threshold (VCELL level change) in millivolts.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga129619245c3f1ae5b376c537d734a7ef}\label{group__max17048_ga129619245c3f1ae5b376c537d734a7ef}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_set\_empty\_threshold@{max17048\_set\_empty\_threshold}}
+\index{max17048\_set\_empty\_threshold@{max17048\_set\_empty\_threshold}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_set\_empty\_threshold()}{max17048\_set\_empty\_threshold()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+set\+\_\+empty\+\_\+threshold (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{athd }\end{DoxyParamCaption})}
+
+
+
+Set the empty threshold. 
+
+This function sets the level at which the empty threshold alert interrupt is requested.
+
+\begin{DoxyNote}{Note}
+Setting the empty level to 1\% effectively disables the threshold alert interrupt and will cause the driver to ignore it, which means that no callback function is executed.
+\end{DoxyNote}
+There is no requirement for a callback to be registered before changing the empty threshold. If one has not previously been registered, the driver will ignore the interrupt.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em athd} & Empty threshold specified as a percent between 1 and 32.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+INVALID\+\_\+\+PARAMETER if athd = 0 or athd \texorpdfstring{$>$}{>} 32. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_gaf0f4e9bbb181649b9655eb5643892710}\label{group__max17048_gaf0f4e9bbb181649b9655eb5643892710}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_set\_hibernate\_threshold@{max17048\_set\_hibernate\_threshold}}
+\index{max17048\_set\_hibernate\_threshold@{max17048\_set\_hibernate\_threshold}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_set\_hibernate\_threshold()}{max17048\_set\_hibernate\_threshold()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+set\+\_\+hibernate\+\_\+threshold (\begin{DoxyParamCaption}\item[{float}]{hib\+\_\+thr }\end{DoxyParamCaption})}
+
+
+
+Set the hibernate threshold level. 
+
+This function sets the CRATE threshold level evaluated my the MAX17048 to determine whether or not to enter hibernate mode.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em hib\+\_\+thr} & Hibernate threshold in charge/discharge in percent.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_gab3b238189efc62b2cbab34f6e75a11ec}\label{group__max17048_gab3b238189efc62b2cbab34f6e75a11ec}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_set\_reset\_threshold@{max17048\_set\_reset\_threshold}}
+\index{max17048\_set\_reset\_threshold@{max17048\_set\_reset\_threshold}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_set\_reset\_threshold()}{max17048\_set\_reset\_threshold()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+set\+\_\+reset\+\_\+threshold (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{vreset\+\_\+mv }\end{DoxyParamCaption})}
+
+
+
+Set the reset alert interrupt threshold. 
+
+This function sets the level at which the reset alert interrupt is requested.
+
+\begin{DoxyNote}{Note}
+The driver does not fully sanity check vreset, and it is possible for the user to specify a nonsensical value that constantly triggers the interrupt. For example, vreset = 0x7F corresponds to a reset voltage of 5.\+08V, which is greater than the maximum output level of a single Li+ cell.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em vreset\+\_\+mv} & Low voltage alert threshold in millivolts.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+INVALID\+\_\+\+PARAMETER if vreset\+\_\+mv \texorpdfstring{$>$}{>} 5080. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga474f195b19fba6d349818c42f0853ced}\label{group__max17048_ga474f195b19fba6d349818c42f0853ced}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_set\_update\_interval@{max17048\_set\_update\_interval}}
+\index{max17048\_set\_update\_interval@{max17048\_set\_update\_interval}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_set\_update\_interval()}{max17048\_set\_update\_interval()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+set\+\_\+update\+\_\+interval (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{interval }\end{DoxyParamCaption})}
+
+
+
+Set the RCOMP update interval. 
+
+This function sets the temperature compensation factor (RCOMP) update interval. During driver initialization, the value specified by MAX17048\+\_\+\+CONFIG\+\_\+\+RCOMP\+\_\+\+UPDATE\+\_\+\+INTERVAL\+\_\+\+MS is used and defaults to 1 minute (60000 ms). Effectively, it changes the timeout rate of the Sleeptimer periodic software timer callback that recalculates RCOMP and sends the updated value to the MAX17048.
+
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+INVALID\+\_\+\+PARAMETER if interval \texorpdfstring{$<$}{<} 1000 or interval \texorpdfstring{$>$}{>} 60000. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga2222b6efb1cd395ebe51e14aa5e22c88}\label{group__max17048_ga2222b6efb1cd395ebe51e14aa5e22c88}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_set\_vhigh\_threshold@{max17048\_set\_vhigh\_threshold}}
+\index{max17048\_set\_vhigh\_threshold@{max17048\_set\_vhigh\_threshold}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_set\_vhigh\_threshold()}{max17048\_set\_vhigh\_threshold()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+set\+\_\+vhigh\+\_\+threshold (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{valrt\+\_\+max\+\_\+mv }\end{DoxyParamCaption})}
+
+
+
+Set the voltage high alert interrupt threshold. 
+
+This function sets the level at which the voltage high alert interrupt is requested.
+
+\begin{DoxyNote}{Note}
+The driver does not sanity check valrt\+\_\+max. If the user sets valrt\+\_\+max to a nonsensical value, e.\+g. 0, the interrupt will trigger constantly. There is also no requirement that valrt\+\_\+max \texorpdfstring{$>$}{>} valrt\+\_\+min.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em valrt\+\_\+max\+\_\+mv} & High voltage alert threshold in millivolts.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga4bbe2d0282a213364c9b00cb6476a5f5}\label{group__max17048_ga4bbe2d0282a213364c9b00cb6476a5f5}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_set\_vlow\_threshold@{max17048\_set\_vlow\_threshold}}
+\index{max17048\_set\_vlow\_threshold@{max17048\_set\_vlow\_threshold}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_set\_vlow\_threshold()}{max17048\_set\_vlow\_threshold()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+set\+\_\+vlow\+\_\+threshold (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{valrt\+\_\+min\+\_\+mv }\end{DoxyParamCaption})}
+
+
+
+Set the voltage low alert interrupt threshold. 
+
+This function sets the level at which the voltage low alert interrupt is requested.
+
+\begin{DoxyNote}{Note}
+The driver does not sanity check valrt\+\_\+min. If the user sets valrt\+\_\+min to a nonsensical value, e.\+g. 0x\+FF, the interrupt will trigger constantly. There is also no requirement that valrt\+\_\+max \texorpdfstring{$>$}{>} valrt\+\_\+min.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em valrt\+\_\+min\+\_\+mv} & Low voltage alert threshold in millivolts.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success. \end{DoxyItemize}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__max17048_ga048dfd6319ccc78e656d5f2819357c7d}\label{group__max17048_ga048dfd6319ccc78e656d5f2819357c7d}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_unmask\_interrupts@{max17048\_unmask\_interrupts}}
+\index{max17048\_unmask\_interrupts@{max17048\_unmask\_interrupts}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_unmask\_interrupts()}{max17048\_unmask\_interrupts()}}
+{\footnotesize\ttfamily void max17048\+\_\+unmask\+\_\+interrupts (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Unmask MAX17048 interrupts. 
+
+This enables the high-\/to-\/low edge detection on the GPIO pin connected to the MAX17048 ALRTn output. The MAX17048 itself does not have any way to globally enable/disable interrupts. \mbox{\Hypertarget{group__max17048_ga42e42578f78e2d4d25ef8c875dc6f96e}\label{group__max17048_ga42e42578f78e2d4d25ef8c875dc6f96e}} 
+\index{-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}!max17048\_unregister\_temperature\_callback@{max17048\_unregister\_temperature\_callback}}
+\index{max17048\_unregister\_temperature\_callback@{max17048\_unregister\_temperature\_callback}!-\/ Fuel Gauge Sensor@{-\/ Fuel Gauge Sensor}}
+\doxysubsubsection{\texorpdfstring{max17048\_unregister\_temperature\_callback()}{max17048\_unregister\_temperature\_callback()}}
+{\footnotesize\ttfamily sl\+\_\+status\+\_\+t max17048\+\_\+unregister\+\_\+temperature\+\_\+callback (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Unregister the temperature update callback for the MAX17048 driver. 
+
+This is the opposite of \mbox{\hyperlink{group__max17048_gaa1d1f3ab66a445b1289f38f1483b6425}{max17048\+\_\+register\+\_\+temperature\+\_\+callback()}}. It unregisters the previously-\/registered temperature update callback function and causes the driver to revert to the output of the EMU temperature sensor when next updating the MAX17048\textquotesingle{}s RCOMP value.
+
+There is no attempt to unregister the user-\/provided callback function before expiration of the software timer that updates RCOMP. If the timer expires and the callback is still registered, it must provide a valid temperature to the driver.
+
+\begin{DoxyReturn}{Returns}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+OK on success.\end{DoxyItemize}
+\begin{DoxyItemize}
+\item SL\+\_\+\+STATUS\+\_\+\+NOT\+\_\+\+INITIALIZED if a callback has not previously been registered. \end{DoxyItemize}
+
+\end{DoxyReturn}

@@ -5,10 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: - Fuel Gauge Sensor</title>
+<title>Fuel Gauge MAX17048: - Fuel Gauge Sensor</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -21,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">My Project
+   <div id="projectname">Fuel Gauge MAX17048
    </div>
   </td>
  </tr>
@@ -47,6 +51,22 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('group__max17048.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -63,6 +83,7 @@ $(function() {
 
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
@@ -73,31 +94,165 @@ $(function() {
 <p>Driver for the max17048/max17049 Fuel Gauge.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gad18d04ec118ab0962300eb72a365a089"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gad18d04ec118ab0962300eb72a365a089">MAX17048_VCELL</a>&#160;&#160;&#160;(0x02)</td></tr>
+<tr class="separator:gad18d04ec118ab0962300eb72a365a089"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga46960eef5e1b976c51ea1af855b9bc25"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga46960eef5e1b976c51ea1af855b9bc25">MAX17048_SOC</a>&#160;&#160;&#160;(0x04)</td></tr>
+<tr class="separator:ga46960eef5e1b976c51ea1af855b9bc25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1f97d2c264bda1506bb394b76952d668"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga1f97d2c264bda1506bb394b76952d668">MAX17048_MODE</a>&#160;&#160;&#160;(0x06)</td></tr>
+<tr class="separator:ga1f97d2c264bda1506bb394b76952d668"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeadf1d01748b9f2ce99cd650f5ac1f8a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gaeadf1d01748b9f2ce99cd650f5ac1f8a">MAX17048_VERSION</a>&#160;&#160;&#160;(0x08)</td></tr>
+<tr class="separator:gaeadf1d01748b9f2ce99cd650f5ac1f8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga22ad66ab522c629bca5456cdd3d995ae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga22ad66ab522c629bca5456cdd3d995ae">MAX17048_HIBRT</a>&#160;&#160;&#160;(0x0A)</td></tr>
+<tr class="separator:ga22ad66ab522c629bca5456cdd3d995ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga72457691e72a85d539f4c78a271574b5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga72457691e72a85d539f4c78a271574b5">MAX17048_CONFIG</a>&#160;&#160;&#160;(0x0C)</td></tr>
+<tr class="separator:ga72457691e72a85d539f4c78a271574b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga381d1da4ebdb35c17c8c7a55a92a2f54"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga381d1da4ebdb35c17c8c7a55a92a2f54">MAX17048_VALRT</a>&#160;&#160;&#160;(0x14)</td></tr>
+<tr class="separator:ga381d1da4ebdb35c17c8c7a55a92a2f54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1909059608f46f80515b03891dd8ca2e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga1909059608f46f80515b03891dd8ca2e">MAX17048_CRATE</a>&#160;&#160;&#160;(0x16)</td></tr>
+<tr class="separator:ga1909059608f46f80515b03891dd8ca2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafc6effc1d6d1447c98d622682d0a00c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gafc6effc1d6d1447c98d622682d0a00c9">MAX17048_VRESET_ID</a>&#160;&#160;&#160;(0x18)</td></tr>
+<tr class="separator:gafc6effc1d6d1447c98d622682d0a00c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga595d6834a4ce62954a8591f98a57d7ae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga595d6834a4ce62954a8591f98a57d7ae">MAX17048_STATUS</a>&#160;&#160;&#160;(0x1A)</td></tr>
+<tr class="separator:ga595d6834a4ce62954a8591f98a57d7ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga568e86cb5e3b47028a76f0a5dac76d9c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga568e86cb5e3b47028a76f0a5dac76d9c">MAX17048_CMD</a>&#160;&#160;&#160;(0xFE)</td></tr>
+<tr class="separator:ga568e86cb5e3b47028a76f0a5dac76d9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3815765b79fb6afc16b7d799aca8e9cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga3815765b79fb6afc16b7d799aca8e9cb">MAX17048_LOCK_TABLE</a>&#160;&#160;&#160;(0x3E)</td></tr>
+<tr class="separator:ga3815765b79fb6afc16b7d799aca8e9cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga549981c6144a81a66a6ab83cba7df0e2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga549981c6144a81a66a6ab83cba7df0e2">MAX17048_TABLE</a>&#160;&#160;&#160;(0x40)</td></tr>
+<tr class="separator:ga549981c6144a81a66a6ab83cba7df0e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac1d259b1d06e87a61fad465d21782229"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gac1d259b1d06e87a61fad465d21782229">MAX17048_RESET_MSB</a>&#160;&#160;&#160;(0x54)</td></tr>
+<tr class="separator:gac1d259b1d06e87a61fad465d21782229"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeba2d9b65db01608dc4b7aa83dba098b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gaeba2d9b65db01608dc4b7aa83dba098b">MAX17048_RESET_LSB</a>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="separator:gaeba2d9b65db01608dc4b7aa83dba098b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga43ccabd130769de4cf8a8e9494c0e7b2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga43ccabd130769de4cf8a8e9494c0e7b2">MAX17048_RCOMP0</a>&#160;&#160;&#160;(0x97)</td></tr>
+<tr class="separator:ga43ccabd130769de4cf8a8e9494c0e7b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4a990895308dff6c78dd8610598a7d21"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga4a990895308dff6c78dd8610598a7d21">MAX17048_UNLOCK_MSB</a>&#160;&#160;&#160;(0x4A)</td></tr>
+<tr class="separator:ga4a990895308dff6c78dd8610598a7d21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaef4e284fb90732834b27ebd63563f8ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gaef4e284fb90732834b27ebd63563f8ab">MAX17048_UNLOCK_LSB</a>&#160;&#160;&#160;(0x57)</td></tr>
+<tr class="separator:gaef4e284fb90732834b27ebd63563f8ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga415d03ab36f399aae1f9ce5c90026393"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga415d03ab36f399aae1f9ce5c90026393">MAX17048_LOCK</a>&#160;&#160;&#160;(0x00)</td></tr>
+<tr class="separator:ga415d03ab36f399aae1f9ce5c90026393"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4ccb54fd5a224697735039625190dd59"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga4ccb54fd5a224697735039625190dd59">MAX17048_MODE_HIBSTAT_BIT</a>&#160;&#160;&#160;(4)</td></tr>
+<tr class="separator:ga4ccb54fd5a224697735039625190dd59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga11da4f14f9ba67ca9363147f21abd07f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga11da4f14f9ba67ca9363147f21abd07f">MAX17048_MODE_ENSLEEP_BIT</a>&#160;&#160;&#160;(5)</td></tr>
+<tr class="separator:ga11da4f14f9ba67ca9363147f21abd07f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae45ad80285d58ece1a4a17777f7bf4e8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gae45ad80285d58ece1a4a17777f7bf4e8">MAX17048_MODE_QUICK_START_BIT</a>&#160;&#160;&#160;(6)</td></tr>
+<tr class="separator:gae45ad80285d58ece1a4a17777f7bf4e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafd871248c9426ef0da5afa424e0db094"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gafd871248c9426ef0da5afa424e0db094">MAX17048_CONFIG_SLEEP_BIT</a>&#160;&#160;&#160;(7)</td></tr>
+<tr class="separator:gafd871248c9426ef0da5afa424e0db094"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf5ea4c5d61eaee40ec30cbf0eb24d6d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gaf5ea4c5d61eaee40ec30cbf0eb24d6d8">MAX17048_CONFIG_ALSC_BIT</a>&#160;&#160;&#160;(6)</td></tr>
+<tr class="separator:gaf5ea4c5d61eaee40ec30cbf0eb24d6d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5ddce076940ed01567fb0227405a60ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga5ddce076940ed01567fb0227405a60ed">MAX17048_CONFIG_ALRT_BIT</a>&#160;&#160;&#160;(5)</td></tr>
+<tr class="separator:ga5ddce076940ed01567fb0227405a60ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga09f05759175772a874f58d227887b447"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga09f05759175772a874f58d227887b447">MAX17048_VRESET_DIS_BIT</a>&#160;&#160;&#160;(0)</td></tr>
+<tr class="separator:ga09f05759175772a874f58d227887b447"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacd03419a0b4ceb021683b41867d3ffcf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gacd03419a0b4ceb021683b41867d3ffcf">MAX17048_STATUS_ENVR_BIT</a>&#160;&#160;&#160;(6)</td></tr>
+<tr class="separator:gacd03419a0b4ceb021683b41867d3ffcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6f0bd62f7d8985a536225b0ccfeabede"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga6f0bd62f7d8985a536225b0ccfeabede">MAX17048_VCELL_RESOLUTION</a>&#160;&#160;&#160;(78125)</td></tr>
+<tr class="separator:ga6f0bd62f7d8985a536225b0ccfeabede"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabf9c60ab8c227f18d5e9f3c612201504"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gabf9c60ab8c227f18d5e9f3c612201504">MAX17048_SOC_RESOLUTION</a>&#160;&#160;&#160;(256)</td></tr>
+<tr class="separator:gabf9c60ab8c227f18d5e9f3c612201504"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1726fcc00f61e75fca060568b48f3e3e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga1726fcc00f61e75fca060568b48f3e3e">MAX17048_VALRT_RESOLUTION</a>&#160;&#160;&#160;(20)</td></tr>
+<tr class="separator:ga1726fcc00f61e75fca060568b48f3e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga74d47433955c7bd14775e8c3276b026c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga74d47433955c7bd14775e8c3276b026c">MAX17048_VRESET_RESOLUTION</a>&#160;&#160;&#160;(40)</td></tr>
+<tr class="separator:ga74d47433955c7bd14775e8c3276b026c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3a139f579b94dfe65748abadaaff185b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga3a139f579b94dfe65748abadaaff185b">MAX17048_CRATE_RESOLUTION</a>&#160;&#160;&#160;(0.208)</td></tr>
+<tr class="separator:ga3a139f579b94dfe65748abadaaff185b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7762094927fa353cb3d55ef1d2068af4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga7762094927fa353cb3d55ef1d2068af4">MAX17048_HIBTHR_RESOLUTION</a>&#160;&#160;&#160;(0.208)</td></tr>
+<tr class="separator:ga7762094927fa353cb3d55ef1d2068af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac7721869818d616c7c742f15de5037de"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gac7721869818d616c7c742f15de5037de">MAX17048_ACTTHR_RESOLUTION</a>&#160;&#160;&#160;(1250)</td></tr>
+<tr class="separator:gac7721869818d616c7c742f15de5037de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga558b020c6f2a720bd7dd17929155ca2d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga558b020c6f2a720bd7dd17929155ca2d">MAX17048_VALRT_MAX_MV</a>&#160;&#160;&#160;(MAX17048_VALRT_RESOLUTION * 255)</td></tr>
+<tr class="separator:ga558b020c6f2a720bd7dd17929155ca2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac3b10685cd3fec0f4b0a0801aa8e2bda"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gac3b10685cd3fec0f4b0a0801aa8e2bda">MAX17048_VALRT_MIN_MV</a>&#160;&#160;&#160;(MAX17048_VALRT_RESOLUTION * 255)</td></tr>
+<tr class="separator:gac3b10685cd3fec0f4b0a0801aa8e2bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9b02b31fa06c04f4afdfc9d816b343d9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga9b02b31fa06c04f4afdfc9d816b343d9">MAX17048_VRESET_MV</a>&#160;&#160;&#160;(MAX17048_VRESET_RESOLUTION * 127)</td></tr>
+<tr class="separator:ga9b02b31fa06c04f4afdfc9d816b343d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacb6b70341ad64db0b4498c8684d77a4a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gacb6b70341ad64db0b4498c8684d77a4a">MAX17048_HIBTHR_PERCENT</a>&#160;&#160;&#160;(MAX17048_HIBTHR_RESOLUTION * 255)</td></tr>
+<tr class="separator:gacb6b70341ad64db0b4498c8684d77a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga39c59dc67da0d7e5aafa195402551b95"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga39c59dc67da0d7e5aafa195402551b95">MAX17048_ACTTHR_MV</a>&#160;&#160;&#160;(MAX17048_ACTTHR_RESOLUTION * 255)</td></tr>
+<tr class="separator:ga39c59dc67da0d7e5aafa195402551b95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga441bc1a8bd662acc1fbabc1819cd2d04"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga441bc1a8bd662acc1fbabc1819cd2d04">MAX17048_STATE_ENABLE</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="separator:ga441bc1a8bd662acc1fbabc1819cd2d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga241953141359833dd14e661d74185a96"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga241953141359833dd14e661d74185a96">MAX17048_STATE_DISABLE</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="separator:ga241953141359833dd14e661d74185a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7d2160fa5a8038a8e7e8782fb67984ad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga7d2160fa5a8038a8e7e8782fb67984ad">MAX17048_VALUE_SET</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="separator:ga7d2160fa5a8038a8e7e8782fb67984ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab1767cad614514ad6fc97c08cd705532"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gab1767cad614514ad6fc97c08cd705532">MAX17048_VALUE_RESET</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="separator:gab1767cad614514ad6fc97c08cd705532"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab481f77fe686d4ba0d8275b6e932b3d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gab481f77fe686d4ba0d8275b6e932b3d8">MAX17048_ALERT_VH_VAL</a>&#160;&#160;&#160;0xC8</td></tr>
+<tr class="separator:gab481f77fe686d4ba0d8275b6e932b3d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga08d740374874ff55410ba5ed63f22ae3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga08d740374874ff55410ba5ed63f22ae3">MAX17048_ALERT_VL_VAL</a>&#160;&#160;&#160;0xAF</td></tr>
+<tr class="separator:ga08d740374874ff55410ba5ed63f22ae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1e249efcbcc18a58d0ef97e7eb7dacc2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga1e249efcbcc18a58d0ef97e7eb7dacc2">MAX17048_VRESET_THRES</a>&#160;&#160;&#160;0x3F</td></tr>
+<tr class="separator:ga1e249efcbcc18a58d0ef97e7eb7dacc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2c541a15e57c3e60a661cb98eec9847a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga2c541a15e57c3e60a661cb98eec9847a">MAX17048_ALERT_PIN_SET</a>&#160;&#160;&#160;0x01</td></tr>
+<tr class="separator:ga2c541a15e57c3e60a661cb98eec9847a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga294f2b8f7aa400a3c4697f283ebd5aae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga294f2b8f7aa400a3c4697f283ebd5aae">MAX17048_ALERT_PIN_RESET</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="separator:ga294f2b8f7aa400a3c4697f283ebd5aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab90e33c0b08115b56e5b751058d6fbb8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gab90e33c0b08115b56e5b751058d6fbb8">MAX17048_I2C_ADDRESS</a>&#160;&#160;&#160;0x36</td></tr>
+<tr class="separator:gab90e33c0b08115b56e5b751058d6fbb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga188c2af36326bc9adfcac7d5f8a42511"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga188c2af36326bc9adfcac7d5f8a42511">RCOMP0</a>&#160;&#160;&#160;0x97</td></tr>
+<tr class="separator:ga188c2af36326bc9adfcac7d5f8a42511"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae6d43dfbe91293feebc30004cae57beb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gae6d43dfbe91293feebc30004cae57beb">TEMP_CO_UP</a>&#160;&#160;&#160;-0.5</td></tr>
+<tr class="separator:gae6d43dfbe91293feebc30004cae57beb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafa8c9f869649af21f3e8bfa01182cdd6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gafa8c9f869649af21f3e8bfa01182cdd6">TEMP_CO_DOWN</a>&#160;&#160;&#160;5.0</td></tr>
+<tr class="separator:gafa8c9f869649af21f3e8bfa01182cdd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga13b183365621559d80afe793159b154a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga13b183365621559d80afe793159b154a">MAX17048_STATUS_VH</a>&#160;&#160;&#160;(1 &lt;&lt; 0)</td></tr>
+<tr class="separator:ga13b183365621559d80afe793159b154a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac70a43dec2cba274fa570cab47e7b9e0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gac70a43dec2cba274fa570cab47e7b9e0">MAX17048_STATUS_VL</a>&#160;&#160;&#160;(1 &lt;&lt; 1)</td></tr>
+<tr class="separator:gac70a43dec2cba274fa570cab47e7b9e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaae723a28d76e1363080dbc40d4e34d9c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#gaae723a28d76e1363080dbc40d4e34d9c">MAX17048_STATUS_VR</a>&#160;&#160;&#160;(1 &lt;&lt; 2)</td></tr>
+<tr class="separator:gaae723a28d76e1363080dbc40d4e34d9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5ce3ab301378af00056c7991fa11cff8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga5ce3ab301378af00056c7991fa11cff8">MAX17048_STATUS_HD</a>&#160;&#160;&#160;(1 &lt;&lt; 3)</td></tr>
+<tr class="separator:ga5ce3ab301378af00056c7991fa11cff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga662ecc9f2a0f4421046bc331547f0634"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga662ecc9f2a0f4421046bc331547f0634">MAX17048_STATUS_SC</a>&#160;&#160;&#160;(1 &lt;&lt; 4)</td></tr>
+<tr class="separator:ga662ecc9f2a0f4421046bc331547f0634"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7ad22ac7251eec063c2aaf2adc723471"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga7ad22ac7251eec063c2aaf2adc723471">MAX17048_ENUM</a>(name)&#160;&#160;&#160;typedef uint8_t name; enum name##_enum</td></tr>
+<tr class="separator:ga7ad22ac7251eec063c2aaf2adc723471"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:ga81bb645b77909f926785580bdea72b0f"><td class="memItemLeft" align="right" valign="top">typedef uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga81bb645b77909f926785580bdea72b0f">sl_max17048_irq_source_t</a></td></tr>
+<tr class="memdesc:ga81bb645b77909f926785580bdea72b0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">MAX17048 interrupt source enum.  <a href="group__max17048.html#ga81bb645b77909f926785580bdea72b0f">More...</a><br /></td></tr>
+<tr class="separator:ga81bb645b77909f926785580bdea72b0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga680a8aa2a20465cfbcb7fdf9208c5e77"><td class="memItemLeft" align="right" valign="top">typedef int32_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga680a8aa2a20465cfbcb7fdf9208c5e77">max17048_temp_callback_t</a>) (void)</td></tr>
 <tr class="memdesc:ga680a8aa2a20465cfbcb7fdf9208c5e77"><td class="mdescLeft">&#160;</td><td class="mdescRight">MAX17048 temperature external temperature measurement callback function.  <a href="group__max17048.html#ga680a8aa2a20465cfbcb7fdf9208c5e77">More...</a><br /></td></tr>
 <tr class="separator:ga680a8aa2a20465cfbcb7fdf9208c5e77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5328c547b89d1e336b44390abc4965d0"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga5328c547b89d1e336b44390abc4965d0">max17048_interrupt_callback_t</a>) (sl_max17048_irq_source_t irq, void *data)</td></tr>
+<tr class="memitem:ga5328c547b89d1e336b44390abc4965d0"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga5328c547b89d1e336b44390abc4965d0">max17048_interrupt_callback_t</a>) (<a class="el" href="group__max17048.html#ga81bb645b77909f926785580bdea72b0f">sl_max17048_irq_source_t</a> irq, void *data)</td></tr>
 <tr class="memdesc:ga5328c547b89d1e336b44390abc4965d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">MAX17048 interrupt callback function.  <a href="group__max17048.html#ga5328c547b89d1e336b44390abc4965d0">More...</a><br /></td></tr>
 <tr class="separator:ga5328c547b89d1e336b44390abc4965d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:ga3f9e19d54b68f884baa1de9580909b33"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga3f9e19d54b68f884baa1de9580909b33">max17048_hibstate_t</a> { <a class="el" href="group__max17048.html#gga3f9e19d54b68f884baa1de9580909b33aa9827654cde2568f4f082c27746fa59f">activeMode</a> = 0
-, <a class="el" href="group__max17048.html#gga3f9e19d54b68f884baa1de9580909b33a59f864cf7b64c780506d1d358f9613f1">hibernateMode</a> = 1
+<tr class="memitem:gaee7df5f8d24946dd2a2ad4eaa647fddc"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>sl_max17048_irq_source_t_enum</b> { <br />
+&#160;&#160;<b>IRQ_VCELL_HIGH</b> = 0
+, <br />
+&#160;&#160;<b>IRQ_VCELL_LOW</b> = 1
+, <br />
+&#160;&#160;<b>IRQ_RESET</b> = 2
+, <br />
+&#160;&#160;<b>IRQ_EMPTY</b> = 3
+, <br />
+&#160;&#160;<b>IRQ_SOC</b> = 4
+<br />
+ }</td></tr>
+<tr class="separator:gaee7df5f8d24946dd2a2ad4eaa647fddc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3f9e19d54b68f884baa1de9580909b33"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga3f9e19d54b68f884baa1de9580909b33">max17048_hibstate_t</a> { <br />
+&#160;&#160;<a class="el" href="group__max17048.html#gga3f9e19d54b68f884baa1de9580909b33aa9827654cde2568f4f082c27746fa59f">activeMode</a> = 0
+, <br />
+&#160;&#160;<a class="el" href="group__max17048.html#gga3f9e19d54b68f884baa1de9580909b33a59f864cf7b64c780506d1d358f9613f1">hibernateMode</a> = 1
+<br />
  }</td></tr>
 <tr class="memdesc:ga3f9e19d54b68f884baa1de9580909b33"><td class="mdescLeft">&#160;</td><td class="mdescRight">MAX17048 hibernate state.  <a href="group__max17048.html#ga3f9e19d54b68f884baa1de9580909b33">More...</a><br /></td></tr>
 <tr class="separator:ga3f9e19d54b68f884baa1de9580909b33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gacf8057a06dab423031f8e07cf7e80027"><td class="memItemLeft" align="right" valign="top"><a id="gacf8057a06dab423031f8e07cf7e80027" name="gacf8057a06dab423031f8e07cf7e80027"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MAX17048_ENUM</b> (sl_max17048_irq_source_t)</td></tr>
-<tr class="memdesc:gacf8057a06dab423031f8e07cf7e80027"><td class="mdescLeft">&#160;</td><td class="mdescRight">MAX17048 interrupt source enum. <br /></td></tr>
-<tr class="separator:gacf8057a06dab423031f8e07cf7e80027"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga46a4ac6a6d0d0f98d0cf6388a21d8214"><td class="memItemLeft" align="right" valign="top">sl_status_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga46a4ac6a6d0d0f98d0cf6388a21d8214">max17048_init</a> (sl_i2cspm_t *i2cspm)</td></tr>
-<tr class="memdesc:ga46a4ac6a6d0d0f98d0cf6388a21d8214"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the MAX17048 driver with the values provided in the <a class="el" href="max17048__config_8h.html" title="MAX17048 Driver Configuration.">max17048_config.h</a> file.  <a href="group__max17048.html#ga46a4ac6a6d0d0f98d0cf6388a21d8214">More...</a><br /></td></tr>
+<tr class="memdesc:ga46a4ac6a6d0d0f98d0cf6388a21d8214"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the MAX17048 driver with the values provided in the <a class="el" href="max17048__config_8h_source.html">max17048_config.h</a> file.  <a href="group__max17048.html#ga46a4ac6a6d0d0f98d0cf6388a21d8214">More...</a><br /></td></tr>
 <tr class="separator:ga46a4ac6a6d0d0f98d0cf6388a21d8214"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3da20249b4ef2fbd8dbab8fe45971c18"><td class="memItemLeft" align="right" valign="top">sl_status_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__max17048.html#ga3da20249b4ef2fbd8dbab8fe45971c18">max17048_deinit</a> (void)</td></tr>
 <tr class="memdesc:ga3da20249b4ef2fbd8dbab8fe45971c18"><td class="mdescLeft">&#160;</td><td class="mdescRight">De-initialize the MAX17048 driver.  <a href="group__max17048.html#ga3da20249b4ef2fbd8dbab8fe45971c18">More...</a><br /></td></tr>
@@ -256,7 +411,940 @@ int main( void )
 
   ...
 
-} </pre> <h2 class="groupheader">Typedef Documentation</h2>
+} </pre> <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ga39c59dc67da0d7e5aafa195402551b95" name="ga39c59dc67da0d7e5aafa195402551b95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga39c59dc67da0d7e5aafa195402551b95">&#9670;&nbsp;</a></span>MAX17048_ACTTHR_MV</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_ACTTHR_MV&#160;&#160;&#160;(MAX17048_ACTTHR_RESOLUTION * 255)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00134">134</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gac7721869818d616c7c742f15de5037de" name="gac7721869818d616c7c742f15de5037de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac7721869818d616c7c742f15de5037de">&#9670;&nbsp;</a></span>MAX17048_ACTTHR_RESOLUTION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_ACTTHR_RESOLUTION&#160;&#160;&#160;(1250)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00128">128</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga294f2b8f7aa400a3c4697f283ebd5aae" name="ga294f2b8f7aa400a3c4697f283ebd5aae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga294f2b8f7aa400a3c4697f283ebd5aae">&#9670;&nbsp;</a></span>MAX17048_ALERT_PIN_RESET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_ALERT_PIN_RESET&#160;&#160;&#160;0x00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00146">146</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga2c541a15e57c3e60a661cb98eec9847a" name="ga2c541a15e57c3e60a661cb98eec9847a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2c541a15e57c3e60a661cb98eec9847a">&#9670;&nbsp;</a></span>MAX17048_ALERT_PIN_SET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_ALERT_PIN_SET&#160;&#160;&#160;0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00145">145</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gab481f77fe686d4ba0d8275b6e932b3d8" name="gab481f77fe686d4ba0d8275b6e932b3d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab481f77fe686d4ba0d8275b6e932b3d8">&#9670;&nbsp;</a></span>MAX17048_ALERT_VH_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_ALERT_VH_VAL&#160;&#160;&#160;0xC8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00141">141</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga08d740374874ff55410ba5ed63f22ae3" name="ga08d740374874ff55410ba5ed63f22ae3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga08d740374874ff55410ba5ed63f22ae3">&#9670;&nbsp;</a></span>MAX17048_ALERT_VL_VAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_ALERT_VL_VAL&#160;&#160;&#160;0xAF</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00142">142</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga568e86cb5e3b47028a76f0a5dac76d9c" name="ga568e86cb5e3b47028a76f0a5dac76d9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga568e86cb5e3b47028a76f0a5dac76d9c">&#9670;&nbsp;</a></span>MAX17048_CMD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_CMD&#160;&#160;&#160;(0xFE)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00092">92</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga72457691e72a85d539f4c78a271574b5" name="ga72457691e72a85d539f4c78a271574b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga72457691e72a85d539f4c78a271574b5">&#9670;&nbsp;</a></span>MAX17048_CONFIG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_CONFIG&#160;&#160;&#160;(0x0C)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00087">87</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga5ddce076940ed01567fb0227405a60ed" name="ga5ddce076940ed01567fb0227405a60ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5ddce076940ed01567fb0227405a60ed">&#9670;&nbsp;</a></span>MAX17048_CONFIG_ALRT_BIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_CONFIG_ALRT_BIT&#160;&#160;&#160;(5)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00111">111</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gaf5ea4c5d61eaee40ec30cbf0eb24d6d8" name="gaf5ea4c5d61eaee40ec30cbf0eb24d6d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf5ea4c5d61eaee40ec30cbf0eb24d6d8">&#9670;&nbsp;</a></span>MAX17048_CONFIG_ALSC_BIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_CONFIG_ALSC_BIT&#160;&#160;&#160;(6)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00110">110</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gafd871248c9426ef0da5afa424e0db094" name="gafd871248c9426ef0da5afa424e0db094"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafd871248c9426ef0da5afa424e0db094">&#9670;&nbsp;</a></span>MAX17048_CONFIG_SLEEP_BIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_CONFIG_SLEEP_BIT&#160;&#160;&#160;(7)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00109">109</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga1909059608f46f80515b03891dd8ca2e" name="ga1909059608f46f80515b03891dd8ca2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1909059608f46f80515b03891dd8ca2e">&#9670;&nbsp;</a></span>MAX17048_CRATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_CRATE&#160;&#160;&#160;(0x16)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00089">89</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga3a139f579b94dfe65748abadaaff185b" name="ga3a139f579b94dfe65748abadaaff185b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3a139f579b94dfe65748abadaaff185b">&#9670;&nbsp;</a></span>MAX17048_CRATE_RESOLUTION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_CRATE_RESOLUTION&#160;&#160;&#160;(0.208)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00124">124</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga7ad22ac7251eec063c2aaf2adc723471" name="ga7ad22ac7251eec063c2aaf2adc723471"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7ad22ac7251eec063c2aaf2adc723471">&#9670;&nbsp;</a></span>MAX17048_ENUM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_ENUM</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">name</td><td>)</td>
+          <td>&#160;&#160;&#160;typedef uint8_t name; enum name##_enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00160">160</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga22ad66ab522c629bca5456cdd3d995ae" name="ga22ad66ab522c629bca5456cdd3d995ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga22ad66ab522c629bca5456cdd3d995ae">&#9670;&nbsp;</a></span>MAX17048_HIBRT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_HIBRT&#160;&#160;&#160;(0x0A)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00086">86</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gacb6b70341ad64db0b4498c8684d77a4a" name="gacb6b70341ad64db0b4498c8684d77a4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacb6b70341ad64db0b4498c8684d77a4a">&#9670;&nbsp;</a></span>MAX17048_HIBTHR_PERCENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_HIBTHR_PERCENT&#160;&#160;&#160;(MAX17048_HIBTHR_RESOLUTION * 255)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00133">133</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga7762094927fa353cb3d55ef1d2068af4" name="ga7762094927fa353cb3d55ef1d2068af4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7762094927fa353cb3d55ef1d2068af4">&#9670;&nbsp;</a></span>MAX17048_HIBTHR_RESOLUTION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_HIBTHR_RESOLUTION&#160;&#160;&#160;(0.208)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00126">126</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gab90e33c0b08115b56e5b751058d6fbb8" name="gab90e33c0b08115b56e5b751058d6fbb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab90e33c0b08115b56e5b751058d6fbb8">&#9670;&nbsp;</a></span>MAX17048_I2C_ADDRESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_I2C_ADDRESS&#160;&#160;&#160;0x36</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00148">148</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga415d03ab36f399aae1f9ce5c90026393" name="ga415d03ab36f399aae1f9ce5c90026393"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga415d03ab36f399aae1f9ce5c90026393">&#9670;&nbsp;</a></span>MAX17048_LOCK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_LOCK&#160;&#160;&#160;(0x00)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00101">101</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga3815765b79fb6afc16b7d799aca8e9cb" name="ga3815765b79fb6afc16b7d799aca8e9cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3815765b79fb6afc16b7d799aca8e9cb">&#9670;&nbsp;</a></span>MAX17048_LOCK_TABLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_LOCK_TABLE&#160;&#160;&#160;(0x3E)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00093">93</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga1f97d2c264bda1506bb394b76952d668" name="ga1f97d2c264bda1506bb394b76952d668"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1f97d2c264bda1506bb394b76952d668">&#9670;&nbsp;</a></span>MAX17048_MODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_MODE&#160;&#160;&#160;(0x06)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00084">84</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga11da4f14f9ba67ca9363147f21abd07f" name="ga11da4f14f9ba67ca9363147f21abd07f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga11da4f14f9ba67ca9363147f21abd07f">&#9670;&nbsp;</a></span>MAX17048_MODE_ENSLEEP_BIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_MODE_ENSLEEP_BIT&#160;&#160;&#160;(5)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00105">105</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga4ccb54fd5a224697735039625190dd59" name="ga4ccb54fd5a224697735039625190dd59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4ccb54fd5a224697735039625190dd59">&#9670;&nbsp;</a></span>MAX17048_MODE_HIBSTAT_BIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_MODE_HIBSTAT_BIT&#160;&#160;&#160;(4)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00104">104</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gae45ad80285d58ece1a4a17777f7bf4e8" name="gae45ad80285d58ece1a4a17777f7bf4e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae45ad80285d58ece1a4a17777f7bf4e8">&#9670;&nbsp;</a></span>MAX17048_MODE_QUICK_START_BIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_MODE_QUICK_START_BIT&#160;&#160;&#160;(6)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00106">106</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga43ccabd130769de4cf8a8e9494c0e7b2" name="ga43ccabd130769de4cf8a8e9494c0e7b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga43ccabd130769de4cf8a8e9494c0e7b2">&#9670;&nbsp;</a></span>MAX17048_RCOMP0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_RCOMP0&#160;&#160;&#160;(0x97)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00098">98</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gaeba2d9b65db01608dc4b7aa83dba098b" name="gaeba2d9b65db01608dc4b7aa83dba098b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaeba2d9b65db01608dc4b7aa83dba098b">&#9670;&nbsp;</a></span>MAX17048_RESET_LSB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_RESET_LSB&#160;&#160;&#160;(0x00)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00097">97</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gac1d259b1d06e87a61fad465d21782229" name="gac1d259b1d06e87a61fad465d21782229"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac1d259b1d06e87a61fad465d21782229">&#9670;&nbsp;</a></span>MAX17048_RESET_MSB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_RESET_MSB&#160;&#160;&#160;(0x54)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00096">96</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga46960eef5e1b976c51ea1af855b9bc25" name="ga46960eef5e1b976c51ea1af855b9bc25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga46960eef5e1b976c51ea1af855b9bc25">&#9670;&nbsp;</a></span>MAX17048_SOC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_SOC&#160;&#160;&#160;(0x04)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00083">83</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gabf9c60ab8c227f18d5e9f3c612201504" name="gabf9c60ab8c227f18d5e9f3c612201504"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabf9c60ab8c227f18d5e9f3c612201504">&#9670;&nbsp;</a></span>MAX17048_SOC_RESOLUTION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_SOC_RESOLUTION&#160;&#160;&#160;(256)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00118">118</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga241953141359833dd14e661d74185a96" name="ga241953141359833dd14e661d74185a96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga241953141359833dd14e661d74185a96">&#9670;&nbsp;</a></span>MAX17048_STATE_DISABLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_STATE_DISABLE&#160;&#160;&#160;0x00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00137">137</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga441bc1a8bd662acc1fbabc1819cd2d04" name="ga441bc1a8bd662acc1fbabc1819cd2d04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga441bc1a8bd662acc1fbabc1819cd2d04">&#9670;&nbsp;</a></span>MAX17048_STATE_ENABLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_STATE_ENABLE&#160;&#160;&#160;0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00136">136</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga595d6834a4ce62954a8591f98a57d7ae" name="ga595d6834a4ce62954a8591f98a57d7ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga595d6834a4ce62954a8591f98a57d7ae">&#9670;&nbsp;</a></span>MAX17048_STATUS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_STATUS&#160;&#160;&#160;(0x1A)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00091">91</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gacd03419a0b4ceb021683b41867d3ffcf" name="gacd03419a0b4ceb021683b41867d3ffcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacd03419a0b4ceb021683b41867d3ffcf">&#9670;&nbsp;</a></span>MAX17048_STATUS_ENVR_BIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_STATUS_ENVR_BIT&#160;&#160;&#160;(6)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00113">113</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga5ce3ab301378af00056c7991fa11cff8" name="ga5ce3ab301378af00056c7991fa11cff8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5ce3ab301378af00056c7991fa11cff8">&#9670;&nbsp;</a></span>MAX17048_STATUS_HD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_STATUS_HD&#160;&#160;&#160;(1 &lt;&lt; 3)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00157">157</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga662ecc9f2a0f4421046bc331547f0634" name="ga662ecc9f2a0f4421046bc331547f0634"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga662ecc9f2a0f4421046bc331547f0634">&#9670;&nbsp;</a></span>MAX17048_STATUS_SC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_STATUS_SC&#160;&#160;&#160;(1 &lt;&lt; 4)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00158">158</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga13b183365621559d80afe793159b154a" name="ga13b183365621559d80afe793159b154a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga13b183365621559d80afe793159b154a">&#9670;&nbsp;</a></span>MAX17048_STATUS_VH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_STATUS_VH&#160;&#160;&#160;(1 &lt;&lt; 0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00154">154</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gac70a43dec2cba274fa570cab47e7b9e0" name="gac70a43dec2cba274fa570cab47e7b9e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac70a43dec2cba274fa570cab47e7b9e0">&#9670;&nbsp;</a></span>MAX17048_STATUS_VL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_STATUS_VL&#160;&#160;&#160;(1 &lt;&lt; 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00155">155</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gaae723a28d76e1363080dbc40d4e34d9c" name="gaae723a28d76e1363080dbc40d4e34d9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaae723a28d76e1363080dbc40d4e34d9c">&#9670;&nbsp;</a></span>MAX17048_STATUS_VR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_STATUS_VR&#160;&#160;&#160;(1 &lt;&lt; 2)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00156">156</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga549981c6144a81a66a6ab83cba7df0e2" name="ga549981c6144a81a66a6ab83cba7df0e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga549981c6144a81a66a6ab83cba7df0e2">&#9670;&nbsp;</a></span>MAX17048_TABLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_TABLE&#160;&#160;&#160;(0x40)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00094">94</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gaef4e284fb90732834b27ebd63563f8ab" name="gaef4e284fb90732834b27ebd63563f8ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaef4e284fb90732834b27ebd63563f8ab">&#9670;&nbsp;</a></span>MAX17048_UNLOCK_LSB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_UNLOCK_LSB&#160;&#160;&#160;(0x57)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00100">100</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga4a990895308dff6c78dd8610598a7d21" name="ga4a990895308dff6c78dd8610598a7d21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4a990895308dff6c78dd8610598a7d21">&#9670;&nbsp;</a></span>MAX17048_UNLOCK_MSB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_UNLOCK_MSB&#160;&#160;&#160;(0x4A)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00099">99</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga381d1da4ebdb35c17c8c7a55a92a2f54" name="ga381d1da4ebdb35c17c8c7a55a92a2f54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga381d1da4ebdb35c17c8c7a55a92a2f54">&#9670;&nbsp;</a></span>MAX17048_VALRT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_VALRT&#160;&#160;&#160;(0x14)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00088">88</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga558b020c6f2a720bd7dd17929155ca2d" name="ga558b020c6f2a720bd7dd17929155ca2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga558b020c6f2a720bd7dd17929155ca2d">&#9670;&nbsp;</a></span>MAX17048_VALRT_MAX_MV</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_VALRT_MAX_MV&#160;&#160;&#160;(MAX17048_VALRT_RESOLUTION * 255)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00130">130</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gac3b10685cd3fec0f4b0a0801aa8e2bda" name="gac3b10685cd3fec0f4b0a0801aa8e2bda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac3b10685cd3fec0f4b0a0801aa8e2bda">&#9670;&nbsp;</a></span>MAX17048_VALRT_MIN_MV</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_VALRT_MIN_MV&#160;&#160;&#160;(MAX17048_VALRT_RESOLUTION * 255)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00131">131</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga1726fcc00f61e75fca060568b48f3e3e" name="ga1726fcc00f61e75fca060568b48f3e3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1726fcc00f61e75fca060568b48f3e3e">&#9670;&nbsp;</a></span>MAX17048_VALRT_RESOLUTION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_VALRT_RESOLUTION&#160;&#160;&#160;(20)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00120">120</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gab1767cad614514ad6fc97c08cd705532" name="gab1767cad614514ad6fc97c08cd705532"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab1767cad614514ad6fc97c08cd705532">&#9670;&nbsp;</a></span>MAX17048_VALUE_RESET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_VALUE_RESET&#160;&#160;&#160;0x00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00139">139</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga7d2160fa5a8038a8e7e8782fb67984ad" name="ga7d2160fa5a8038a8e7e8782fb67984ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7d2160fa5a8038a8e7e8782fb67984ad">&#9670;&nbsp;</a></span>MAX17048_VALUE_SET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_VALUE_SET&#160;&#160;&#160;0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00138">138</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gad18d04ec118ab0962300eb72a365a089" name="gad18d04ec118ab0962300eb72a365a089"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad18d04ec118ab0962300eb72a365a089">&#9670;&nbsp;</a></span>MAX17048_VCELL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_VCELL&#160;&#160;&#160;(0x02)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00082">82</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga6f0bd62f7d8985a536225b0ccfeabede" name="ga6f0bd62f7d8985a536225b0ccfeabede"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6f0bd62f7d8985a536225b0ccfeabede">&#9670;&nbsp;</a></span>MAX17048_VCELL_RESOLUTION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_VCELL_RESOLUTION&#160;&#160;&#160;(78125)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00116">116</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gaeadf1d01748b9f2ce99cd650f5ac1f8a" name="gaeadf1d01748b9f2ce99cd650f5ac1f8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaeadf1d01748b9f2ce99cd650f5ac1f8a">&#9670;&nbsp;</a></span>MAX17048_VERSION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_VERSION&#160;&#160;&#160;(0x08)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00085">85</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga09f05759175772a874f58d227887b447" name="ga09f05759175772a874f58d227887b447"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga09f05759175772a874f58d227887b447">&#9670;&nbsp;</a></span>MAX17048_VRESET_DIS_BIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_VRESET_DIS_BIT&#160;&#160;&#160;(0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00112">112</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gafc6effc1d6d1447c98d622682d0a00c9" name="gafc6effc1d6d1447c98d622682d0a00c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafc6effc1d6d1447c98d622682d0a00c9">&#9670;&nbsp;</a></span>MAX17048_VRESET_ID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_VRESET_ID&#160;&#160;&#160;(0x18)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00090">90</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga9b02b31fa06c04f4afdfc9d816b343d9" name="ga9b02b31fa06c04f4afdfc9d816b343d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9b02b31fa06c04f4afdfc9d816b343d9">&#9670;&nbsp;</a></span>MAX17048_VRESET_MV</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_VRESET_MV&#160;&#160;&#160;(MAX17048_VRESET_RESOLUTION * 127)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00132">132</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga74d47433955c7bd14775e8c3276b026c" name="ga74d47433955c7bd14775e8c3276b026c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga74d47433955c7bd14775e8c3276b026c">&#9670;&nbsp;</a></span>MAX17048_VRESET_RESOLUTION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_VRESET_RESOLUTION&#160;&#160;&#160;(40)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00122">122</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga1e249efcbcc18a58d0ef97e7eb7dacc2" name="ga1e249efcbcc18a58d0ef97e7eb7dacc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1e249efcbcc18a58d0ef97e7eb7dacc2">&#9670;&nbsp;</a></span>MAX17048_VRESET_THRES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX17048_VRESET_THRES&#160;&#160;&#160;0x3F</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00143">143</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga188c2af36326bc9adfcac7d5f8a42511" name="ga188c2af36326bc9adfcac7d5f8a42511"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga188c2af36326bc9adfcac7d5f8a42511">&#9670;&nbsp;</a></span>RCOMP0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define RCOMP0&#160;&#160;&#160;0x97</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00150">150</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gafa8c9f869649af21f3e8bfa01182cdd6" name="gafa8c9f869649af21f3e8bfa01182cdd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafa8c9f869649af21f3e8bfa01182cdd6">&#9670;&nbsp;</a></span>TEMP_CO_DOWN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TEMP_CO_DOWN&#160;&#160;&#160;5.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00152">152</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gae6d43dfbe91293feebc30004cae57beb" name="gae6d43dfbe91293feebc30004cae57beb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae6d43dfbe91293feebc30004cae57beb">&#9670;&nbsp;</a></span>TEMP_CO_UP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TEMP_CO_UP&#160;&#160;&#160;-0.5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00151">151</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
 <a id="ga5328c547b89d1e336b44390abc4965d0" name="ga5328c547b89d1e336b44390abc4965d0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga5328c547b89d1e336b44390abc4965d0">&#9670;&nbsp;</a></span>max17048_interrupt_callback_t</h2>
 
@@ -264,13 +1352,15 @@ int main( void )
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* max17048_interrupt_callback_t) (sl_max17048_irq_source_t irq, void *data)</td>
+          <td class="memname">typedef void(* max17048_interrupt_callback_t) (<a class="el" href="group__max17048.html#ga81bb645b77909f926785580bdea72b0f">sl_max17048_irq_source_t</a> irq, void *data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>MAX17048 interrupt callback function. </p>
 <p >This callback function is executed from interrupt context when the user has enabled one of the MAX17048 interrupt sources. </p>
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00410">410</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
 
 </div>
 </div>
@@ -289,6 +1379,26 @@ int main( void )
 <p>MAX17048 temperature external temperature measurement callback function. </p>
 <p >This callback function is executed from interrupt context when the user opts to provide the battery back temperature through a mechanism other than the integrated EMU temperature sensor (e.g. an external temperature sensor or other means). The driver needs the battery pack temperature to periodically update the MAX17048 compensation factor (RCOMP).</p>
 <dl class="section return"><dt>Returns</dt><dd>Temperature, as a signed integer in degrees C. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00191">191</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="ga81bb645b77909f926785580bdea72b0f" name="ga81bb645b77909f926785580bdea72b0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga81bb645b77909f926785580bdea72b0f">&#9670;&nbsp;</a></span>sl_max17048_irq_source_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint8_t <a class="el" href="group__max17048.html#ga81bb645b77909f926785580bdea72b0f">sl_max17048_irq_source_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MAX17048 interrupt source enum. </p>
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00163">163</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
 
 </div>
 </div>
@@ -312,6 +1422,24 @@ int main( void )
 <tr><td class="fieldname"><a id="gga3f9e19d54b68f884baa1de9580909b33a59f864cf7b64c780506d1d358f9613f1" name="gga3f9e19d54b68f884baa1de9580909b33a59f864cf7b64c780506d1d358f9613f1"></a>hibernateMode&#160;</td><td class="fielddoc"><p >Device is in hibernate mode. </p>
 </td></tr>
 </table>
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00172">172</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
+
+</div>
+</div>
+<a id="gaee7df5f8d24946dd2a2ad4eaa647fddc" name="gaee7df5f8d24946dd2a2ad4eaa647fddc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaee7df5f8d24946dd2a2ad4eaa647fddc">&#9670;&nbsp;</a></span>sl_max17048_irq_source_t_enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum sl_max17048_irq_source_t_enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="max17048_8h_source.html#l00163">163</a> of file <a class="el" href="max17048_8h_source.html">max17048.h</a>.</p>
 
 </div>
 </div>
@@ -391,9 +1519,9 @@ int main( void )
 <p >As explained for the <a class="el" href="group__max17048.html#ga4496efacef0e093d718a236029780ecc" title="Enables the MAX17048 empty alert interrupt, sets its threshold, and registers a user-provided callbac...">max17048_enable_empty_interrupt()</a> function the empty percent level is specified as 32 - ATHD, so setting a threshold of 1% (ATHD = 31) should prevent the interrupt from being requested and the driver will ignore it.</p>
 <dl class="section note"><dt>Note</dt><dd>Because the empty threshold interrupt cannot be disabled (e.g. there is a chance that in a very low-power system operation might be possible at 1% SOC), the user should consider disabling all driver interrupts and placing the MCU in a low-power mode and polling SOC at a very slow rate if battery swap is possible.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>SL_STATUS_OK on success.</li>
+<li>SL_STATUS_OK on success. </li>
 </ul>
-Disables the MAX17048 empty alert interrupt and unregisters the the user-provided callback function. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -416,9 +1544,9 @@ Disables the MAX17048 empty alert interrupt and unregisters the the user-provide
 <p>Disables the MAX17048 reset alert interrupt and unregisters the user-provided callback function. </p>
 <p >The reset alert interrupt is disabled by writing a 1 to the EnVr bit in the STATUS register.</p>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>SL_STATUS_OK on success.</li>
+<li>SL_STATUS_OK on success. </li>
 </ul>
-Disables the MAX17048 reset alert interrupt and unregisters the user-provided callback function. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -444,9 +1572,9 @@ Disables the MAX17048 reset alert interrupt and unregisters the user-provided ca
 <li>SL_STATUS_OK on success.</li>
 </ul>
 <ul>
-<li>SL_STATUS_NOT_INITIALIZED if a callback has not previously been registered.</li>
+<li>SL_STATUS_NOT_INITIALIZED if a callback has not previously been registered. </li>
 </ul>
-Disables the MAX17048 state-of-charge (SOC) interrupt and unregisters the user-provided callback function. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -544,9 +1672,9 @@ Disables the MAX17048 state-of-charge (SOC) interrupt and unregisters the user-p
 <li>SL_STATUS_OK on success.</li>
 </ul>
 <ul>
-<li>SL_STATUS_INVALID_PARAMETER if hib_thr = 0 and act_thr != 0.</li>
+<li>SL_STATUS_INVALID_PARAMETER if hib_thr = 0 and act_thr != 0. </li>
 </ul>
-Enables MAX17048 automatic hibernation by setting the activity and CRATE (rate of discharge/charge) thresholds to non-min/max values. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -603,9 +1731,9 @@ Enables MAX17048 automatic hibernation by setting the activity and CRATE (rate o
 <li>SL_STATUS_NULL_POINTER if irq_cb or cb_data is NULL.</li>
 </ul>
 <ul>
-<li>SL_STATUS_ALREADY_INITIALIZED if a callback has already been initialized.</li>
+<li>SL_STATUS_ALREADY_INITIALIZED if a callback has already been initialized. </li>
 </ul>
-Enables the MAX17048 empty alert interrupt, sets its threshold, and registers a user-provided callback function to respond to it. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -638,9 +1766,9 @@ Enables the MAX17048 empty alert interrupt, sets its threshold, and registers a 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>SL_STATUS_OK on success.</li>
+<li>SL_STATUS_OK on success. </li>
 </ul>
-Disabling the MAX17048 reset comparator in hibernate mode reduces current consumption by 0.5 uA. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -698,9 +1826,9 @@ Disabling the MAX17048 reset comparator in hibernate mode reduces current consum
 <li>SL_STATUS_ALREADY_INITIALIZED if a callback has already been initialized.</li>
 </ul>
 <ul>
-<li>SL_STATUS_INVALID_PARAMETER if vreset_mv &gt; 5080.</li>
+<li>SL_STATUS_INVALID_PARAMETER if vreset_mv &gt; 5080. </li>
 </ul>
-Enables the MAX17048 reset alert interrupt, sets its threshold, and registers a user-provided callback function to respond to it. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -746,9 +1874,9 @@ Enables the MAX17048 reset alert interrupt, sets its threshold, and registers a 
 <li>SL_STATUS_NULL_POINTER if irq_cb or cb_data is NULL.</li>
 </ul>
 <ul>
-<li>SL_STATUS_ALREADY_INITIALIZED if a callback has already been initialized.</li>
+<li>SL_STATUS_ALREADY_INITIALIZED if a callback has already been initialized. </li>
 </ul>
-Enables the MAX17048 state-of-charge (SOC) interrupt and registers a user-provided callback function to respond to it. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -803,9 +1931,9 @@ Enables the MAX17048 state-of-charge (SOC) interrupt and registers a user-provid
 <li>SL_STATUS_NULL_POINTER if irq_cb or cb_data is NULL.</li>
 </ul>
 <ul>
-<li>SL_STATUS_ALREADY_INITIALIZED if a callback has already been initialized.</li>
+<li>SL_STATUS_ALREADY_INITIALIZED if a callback has already been initialized. </li>
 </ul>
-Enables the MAX17048 voltage high alert interrupt, sets its threshold, and registers a user-provided callback function to respond to it. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -889,9 +2017,9 @@ Enables the MAX17048 voltage high alert interrupt, sets its threshold, and regis
 <dd>
 It is possible to force exit sleep mode by writing a 0 to the CONFIG register sleep bit. POR also exits sleep mode.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>SL_STATUS_OK on success.</li>
+<li>SL_STATUS_OK on success. </li>
 </ul>
-Places the MAX17048 into sleep mode. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -995,9 +2123,9 @@ The reset command forces all MAX17048 registers to their default values. The dri
 <p>Get the activity threshold level. </p>
 <dl class="section note"><dt>Note</dt><dd>The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 0x30 and is tracked in a private variable should it otherwise be changed.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>Activity threshold (VCELL level) in millivolts.</li>
+<li>Activity threshold (VCELL level) in millivolts. </li>
 </ul>
-Get the activity threshold level. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -1047,9 +2175,9 @@ Get the activity threshold level. </dd></dl>
 <p>Get the empty threshold. </p>
 <dl class="section note"><dt>Note</dt><dd>The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 4% and is tracked in a private variable should it otherwise be changed.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>Empty threshold between 1% and 32%.</li>
+<li>Empty threshold between 1% and 32%. </li>
 </ul>
-Get the empty threshold. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -1082,9 +2210,9 @@ Get the empty threshold. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>SL_STATUS_OK on success.</li>
+<li>SL_STATUS_OK on success. </li>
 </ul>
-Check if the MAX17048 is in hibernate mode. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -1107,9 +2235,9 @@ Check if the MAX17048 is in hibernate mode. </dd></dl>
 <p>Get the hibernate threshold level. </p>
 <dl class="section note"><dt>Note</dt><dd>The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 0x80 and is tracked in a private variable should it otherwise be changed.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>Hibernate threshold in charge/discharge in percent.</li>
+<li>Hibernate threshold in charge/discharge in percent. </li>
 </ul>
-Get the hibernate threshold level. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -1137,9 +2265,9 @@ Get the hibernate threshold level. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>SL_STATUS_OK on success.</li>
+<li>SL_STATUS_OK on success. </li>
 </ul>
-Returns the one-time factory-programmable identifier value stored in the ID register. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -1167,9 +2295,9 @@ Returns the one-time factory-programmable identifier value stored in the ID regi
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>SL_STATUS_OK on success.</li>
+<li>SL_STATUS_OK on success. </li>
 </ul>
-Provides the production version of the MAX17048 by reading the contents of the VERSION register. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -1192,9 +2320,9 @@ Provides the production version of the MAX17048 by reading the contents of the V
 <p>Get the reset alert interrupt threshold. </p>
 <dl class="section note"><dt>Note</dt><dd>The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 0x4B and is tracked in a private variable should it otherwise be changed.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>Reset alert threshold in millivolts.</li>
+<li>Reset alert threshold in millivolts. </li>
 </ul>
-Get the reset alert interrupt threshold. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -1221,8 +2349,7 @@ Get the reset alert interrupt threshold. </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>SL_STATUS_OK if successful. Error code otherwise.</dd></dl>
-<p>This function returns SOC as an integer %. </p>
+<dl class="section return"><dt>Returns</dt><dd>SL_STATUS_OK if successful. Error code otherwise. </dd></dl>
 
 </div>
 </div>
@@ -1297,9 +2424,9 @@ Get the reset alert interrupt threshold. </dd></dl>
 <p>Get the voltage high alert interrupt threshold. </p>
 <dl class="section note"><dt>Note</dt><dd>The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 0xFF and is tracked in a private variable should it otherwise be changed.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>High voltage alert threshold in millivolts.</li>
+<li>High voltage alert threshold in millivolts. </li>
 </ul>
-Get the voltage high alert interrupt threshold. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -1322,9 +2449,9 @@ Get the voltage high alert interrupt threshold. </dd></dl>
 <p>Get the voltage low alert interrupt threshold. </p>
 <dl class="section note"><dt>Note</dt><dd>The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 0x0 and is tracked in a private variable should it otherwise be changed.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>Low voltage alert threshold in millivolts.</li>
+<li>Low voltage alert threshold in millivolts. </li>
 </ul>
-Get the voltage low alert interrupt threshold. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -1344,7 +2471,7 @@ Get the voltage low alert interrupt threshold. </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Initialize the MAX17048 driver with the values provided in the <a class="el" href="max17048__config_8h.html" title="MAX17048 Driver Configuration.">max17048_config.h</a> file. </p>
+<p>Initialize the MAX17048 driver with the values provided in the <a class="el" href="max17048__config_8h_source.html">max17048_config.h</a> file. </p>
 <p >This function does not write to any of the MAX17048 registers. It assigns the I2C used to communicate with the device, configures the GPIO(s) used for the ALRTn and optional QSTRT pin(s), and starts a software timer to trigger temperature (RCOMP) updates at the user-specified rate.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1357,9 +2484,9 @@ Get the voltage low alert interrupt threshold. </dd></dl>
 <li>SL_STATUS_OK on success.</li>
 </ul>
 <ul>
-<li>SL_STATUS_ALREADY_INITIALIZED the function has previously been called.</li>
+<li>SL_STATUS_ALREADY_INITIALIZED the function has previously been called. </li>
 </ul>
-Initialize the MAX17048 driver with the values provided in the <a class="el" href="max17048__config_8h.html" title="MAX17048 Driver Configuration.">max17048_config.h</a> file. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -1484,9 +2611,9 @@ Initialize the MAX17048 driver with the values provided in the <a class="el" hre
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>SL_STATUS_OK on success.</li>
+<li>SL_STATUS_OK on success. </li>
 </ul>
-Set the activity threshold level. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -1520,9 +2647,9 @@ Set the activity threshold level. </dd></dl>
 <li>SL_STATUS_OK on success.</li>
 </ul>
 <ul>
-<li>SL_STATUS_INVALID_PARAMETER if athd = 0 or athd &gt; 32.</li>
+<li>SL_STATUS_INVALID_PARAMETER if athd = 0 or athd &gt; 32. </li>
 </ul>
-Set the empty threshold. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -1551,9 +2678,9 @@ Set the empty threshold. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>SL_STATUS_OK on success.</li>
+<li>SL_STATUS_OK on success. </li>
 </ul>
-Set the hibernate threshold level. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -1586,9 +2713,9 @@ Set the hibernate threshold level. </dd></dl>
 <li>SL_STATUS_OK on success.</li>
 </ul>
 <ul>
-<li>SL_STATUS_INVALID_PARAMETER if vreset_mv &gt; 5080.</li>
+<li>SL_STATUS_INVALID_PARAMETER if vreset_mv &gt; 5080. </li>
 </ul>
-Set the reset alert interrupt threshold. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -1646,9 +2773,9 @@ Set the reset alert interrupt threshold. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>SL_STATUS_OK on success.</li>
+<li>SL_STATUS_OK on success. </li>
 </ul>
-Set the voltage high alert interrupt threshold. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -1678,9 +2805,9 @@ Set the voltage high alert interrupt threshold. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><ul>
-<li>SL_STATUS_OK on success.</li>
+<li>SL_STATUS_OK on success. </li>
 </ul>
-Set the voltage low alert interrupt threshold. </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -1735,9 +2862,12 @@ Set the voltage low alert interrupt threshold. </dd></dl>
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Thu Mar 24 2022 15:04:12 for Fuel Gauge MAX17048 by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
 </body>
 </html>
