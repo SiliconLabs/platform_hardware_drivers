@@ -1,43 +1,40 @@
-/**************************************************************************//**
+/***************************************************************************//**
  * @file app.c
- * @brief Application interface provided to main().
- * @version 1.0.0
-*******************************************************************************
-* # License
-* <b>Copyright 2021 Silicon Laboratories Inc. www.silabs.com</b>
-*******************************************************************************
-*
-* SPDX-License-Identifier: Zlib
-*
-* The licensor of this software is Silicon Laboratories Inc.
-*
-* This software is provided \'as-is\', without any express or implied
-* warranty. In no event will the authors be held liable for any damages
-* arising from the use of this software.
-*
-* Permission is granted to anyone to use this software for any purpose,
-* including commercial applications, and to alter it and redistribute it
-* freely, subject to the following restrictions:
-*
-* 1. The origin of this software must not be misrepresented; you must not
-*    claim that you wrote the original software. If you use this software
-*    in a product, an acknowledgment in the product documentation would be
-*    appreciated but is not required.
-* 2. Altered source versions must be plainly marked as such, and must not be
-*    misrepresented as being the original software.
-* 3. This notice may not be removed or altered from any source distribution.
-*
-*******************************************************************************
-* # Experimental Quality
-* This code has not been formally tested and is provided as-is. It is not
-* suitable for production environments. In addition, this code will not be
-* maintained and there may be no bug maintenance planned for these resources.
-* Silicon Labs may update projects from time to time.
-******************************************************************************/
-#include "app_log.h"
-#include "magnetic_buzzer.h"
-#include "sl_simple_button.h"
+ * @brief Top level application functions
+ *******************************************************************************
+ * # License
+ * <b>Copyright 2022 Silicon Laboratories Inc. www.silabs.com</b>
+ *******************************************************************************
+ *
+ * SPDX-License-Identifier: Zlib
+ *
+ * The licensor of this software is Silicon Laboratories Inc.
+ *
+ * This software is provided \'as-is\', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ *    claim that you wrote the original software. If you use this software
+ *    in a product, an acknowledgment in the product documentation would be
+ *    appreciated but is not required.
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ *    misrepresented as being the original software.
+ * 3. This notice may not be removed or altered from any source distribution.
+ *
+ *******************************************************************************
+ * EXPERIMENTAL QUALITY
+ * This code has not been formally tested and is provided as-is. It is not
+ * suitable for production environments. This code will not be maintained.
+ ******************************************************************************/
+#include "buzzer.h"
 #include "sl_simple_button_instances.h"
+#include "app_log.h"
+#include "sl_sleeptimer.h"
 
 /*******************************************************************************
  *****************************    DEFINE     ***********************************
@@ -104,10 +101,16 @@ void app_init(void)
   // initialize the buzzer
   retval = buzzer_init(&buzzer);
   if(retval == SL_STATUS_OK){
-      app_log("configuration successfully \r\n");
+    app_log("configuration successfully \r\n");
   }
   else{
-      app_log("configure failed return %04x \r\n", retval);
+    app_log("configure failed return %04x \r\n", retval);
+  }
+
+  // Sets the buzzer volume level to 60%
+  retval = buzzer_set_volume(&buzzer, buzzer_VOL60);
+  if(retval != SL_STATUS_OK){
+    app_log("Failed to set the buzzer volume. Return %04x \r\n", retval);
   }
 }
 
@@ -120,7 +123,7 @@ void app_process_action(void)
 
   retval = buzzer_play_melody(&buzzer_melody);
   if(retval != SL_STATUS_OK){
-      app_log("Play melody failed return %04x \r\n", retval);
+    app_log("Play melody failed return %04x \r\n", retval);
   }
 
   sl_sleeptimer_delay_millisecond(10000);
@@ -132,13 +135,14 @@ void app_process_action(void)
 void sl_button_on_change(const sl_button_t *handle)
 {
   buzzer_volume_t volume;
+
   if((handle == &sl_button_btn0) &&
       (sl_button_get_state(handle) == SL_SIMPLE_BUTTON_RELEASED)) {
 
       buzzer_get_volume(&buzzer, &volume);
 
       if(++volume > buzzer_VOL100){
-          volume = buzzer_VOL0;
+        volume = buzzer_VOL0;
       }
 
       buzzer_set_volume(&buzzer, volume);

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="dir_619a81ad29a4b41c30712238698673ac" kind="dir">
+    <compoundname>D:/my_ws/doxygen/buzzer</compoundname>
+    <innerfile refid="buzzer_8h">buzzer.h</innerfile>
+    <innerfile refid="buzzer__pwm_8h">buzzer_pwm.h</innerfile>
+    <innerfile refid="buzzer__pwm__config_8h">buzzer_pwm_config.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/my_ws/doxygen/buzzer/"/>
+  </compounddef>
+</doxygen>
