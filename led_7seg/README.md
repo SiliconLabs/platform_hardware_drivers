@@ -1,4 +1,10 @@
 # 7-Segment LED driver #
+![Type badge](https://img.shields.io/badge/Type-Hardware%20Driver-green)
+![Technology badge](https://img.shields.io/badge/Technology-Platform-green)
+![License badge](https://img.shields.io/badge/License-zlib-green)
+![SDK badge](https://img.shields.io/badge/SDK-v3.1.1-green)
+![GCC badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/led_7seg_gcc.json)
+[![GitHub](https://img.shields.io/badge/Mikroe-UT%20M%207%20SEG%20R%20CLICK-green)](https://www.mikroe.com/ut-m-7-seg-r-click)
 
 ## Description ##
 

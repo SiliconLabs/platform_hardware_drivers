@@ -1,4 +1,8 @@
 # Ir Array AMG8833 Driver #
+![License badge](https://img.shields.io/badge/License-zlib-green)
+![SDK badge](https://img.shields.io/badge/SDK-v3.2.3-green)
+![GCC badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/ir_array_amg88xx_gcc.json)
+[![GitHub](https://img.shields.io/badge/Sparkfun-Grid%20EYE%20Infrared%20Array-green)](https://www.sparkfun.com/products/14607)
 
 ## Overview ##
 

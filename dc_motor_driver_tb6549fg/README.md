@@ -1,4 +1,8 @@
 # DC motor driver #
+![License badge](https://img.shields.io/badge/License-zlib-green)
+![SDK badge](https://img.shields.io/badge/SDK-v3.2.1-green)
+![GCC badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/dc_motor_driver_tb6549fg_gcc.json)
+[![GitHub](https://img.shields.io/badge/Mikroe-DC%20MOTOR%203%20Click-green)](https://www.mikroe.com/dc-motor-3-click)
 
 ## Summary ##
 

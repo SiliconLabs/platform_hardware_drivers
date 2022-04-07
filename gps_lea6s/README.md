@@ -1,4 +1,10 @@
 # GPS Driver #
+![Type badge](https://img.shields.io/badge/Type-Hardware%20Driver-green)
+![Technology badge](https://img.shields.io/badge/Technology-Platform-green)
+![License badge](https://img.shields.io/badge/License-zlib-green)
+![SDK badge](https://img.shields.io/badge/SDK-v3.1.1-green)
+![GCC badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/gps_lea6s_gcc.json)
+[![GitHub](https://img.shields.io/badge/Mikroe-GPS%20Click-green)](https://www.mikroe.com/gps-click)
 
 ## Overview ##
 This project shows the implementation of a GPS module that outputs NMEA 0183 sentences. The NMEA 0183 standard is from the [National Marine Electronics Association](https://www.nmea.org/).

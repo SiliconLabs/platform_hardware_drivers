@@ -1,6 +1,10 @@
 # PN71x0 NCI NFC Controller Driver
+![Type badge](https://img.shields.io/badge/Type-Hardware%20Driver-green)
+![Technology badge](https://img.shields.io/badge/Technology-Platform-green)
+![License badge](https://img.shields.io/badge/License-zlib-green)
+[![GitHub](https://img.shields.io/badge/Mikroe-NFC%20CLICK-green)](https://www.mikroe.com/nfc-click)
 
-Driver to enable EFR/EFM devices to work with [PN7120](https://www.nxp.com/products/rfid-nfc/nfc-hf/nfc-readers/nfc-controller-with-integrated-firmware-and-nci-interface-for-home-appliances:PN7120) and [PN7150](https://www.nxp.com/products/rfid-nfc/nfc-hf/nfc-readers/high-performance-nfc-controller-with-integrated-firmware-for-smart-devices:PN7150) NFC Controller. 
+Driver to enable EFR/EFM devices to work with [PN7120](https://www.nxp.com/products/rfid-nfc/nfc-hf/nfc-readers/nfc-controller-with-integrated-firmware-and-nci-interface-for-home-appliances:PN7120) and [PN7150](https://www.nxp.com/products/rfid-nfc/nfc-hf/nfc-readers/high-performance-nfc-controller-with-integrated-firmware-for-smart-devices:PN7150) NFC Controller.
 
 **Note: This driver will not work without the NCI library.**
 

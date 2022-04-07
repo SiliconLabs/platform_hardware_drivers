@@ -1,4 +1,10 @@
 # Biometric Driver #
+![Type badge](https://img.shields.io/badge/Type-Hardware%20Driver-green)
+![Technology badge](https://img.shields.io/badge/Technology-Platform-green)
+![License badge](https://img.shields.io/badge/License-zlib-green)
+![SDK badge](https://img.shields.io/badge/SDK-v3.1.0-green)
+![GCC badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/bio_sensor_maxm86161_gcc.json)
+[![GitHub](https://img.shields.io/badge/Mikroe-HEART%20RATE%202%20CLICK-green)](https://www.mikroe.com/heart-rate-2-click)
 
 ## Summary ##
 

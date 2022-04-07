@@ -1,4 +1,8 @@
 # Stepper Motor Driver
+![License badge](https://img.shields.io/badge/License-zlib-green)
+![SDK badge](https://img.shields.io/badge/SDK-v4.0.0-green)
+![GCC badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/stepper_motor_a4988_gcc.json)
+[![GitHub](https://img.shields.io/badge/Mikroe-STEPPER%202%20CLICK-green)](https://www.mikroe.com/stepper-2-click)
 
 ## Summary
 
