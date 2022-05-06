@@ -1047,8 +1047,8 @@ sl_status_t max17048_get_hibernate_state(max17048_hibstate_t *hibstat);
  *   replacement.
  *
  * @note
- *   It is possible to force exit sleep mode by writing a 0 to the
- *   CONFIG register sleep bit. POR also exits sleep mode.
+ *   It is possible to force exit from sleep mode by writing a 0 to
+ *   the CONFIG register sleep bit. POR also exits sleep mode.
  *
  * @return
  *   @li @ref SL_STATUS_OK on success.
