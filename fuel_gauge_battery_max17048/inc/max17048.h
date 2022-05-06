@@ -180,7 +180,7 @@ typedef enum {
  *
  * @details
  *   This callback function is executed from interrupt context when the user
- *   opts to provide the battery back temperature through a mechanism other
+ *   opts to provide the battery pack temperature through a mechanism other
  *   than the integrated EMU temperature sensor (e.g. an external temperature
  *   sensor or other means). The driver needs the battery pack temperature
  *   to periodically update the MAX17048 compensation factor (RCOMP).
