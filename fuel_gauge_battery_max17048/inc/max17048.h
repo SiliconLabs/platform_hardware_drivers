@@ -690,7 +690,7 @@ uint32_t max17048_get_vhigh_threshold(void);
  *   However, the low alert level is set by the VALRT register MIN field,
  *   and if it is set to a voltage lower than the minimum VCELL level,
  *   the interrupt will never be requested. Because each LSB of MIN
- *   corresponds to 20 mV, a value of 0x0 is 0V, which a voltage at
+ *   corresponds to 20 mV, a value of 0x0 is 0V, which is a voltage at
  *   which the system should not even be running.
  *
  * @note
