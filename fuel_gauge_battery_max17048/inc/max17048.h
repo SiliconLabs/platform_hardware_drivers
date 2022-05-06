@@ -1119,10 +1119,9 @@ sl_status_t max17048_force_reset(void);
  *   discussion of what happens after POR), another quick start would
  *   be initiated.
  *
- *   For this reason, it would seem that the driver ought to keep
- *   QSTRT high for some nominal amount of time, maybe 1 ms, before
- *   de-asserting it. This should be implemented with a Sleeptimer
- *   one-shot software timer whose callback de-asserts the pin.
+ *   For this reason, it driver keeps QSTRT high for 1 ms before
+ *   de-asserting it. This is implemented with a Sleeptimer one-shot
+ *   software timer whose callback de-asserts the pin.
  *
  * @return
  *   @li @ref SL_STATUS_OK on success.
