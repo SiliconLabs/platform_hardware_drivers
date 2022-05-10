@@ -100,16 +100,15 @@ void app_init(void)
 
   // initialize the buzzer
   retval = buzzer_init(&buzzer);
-  if(retval == SL_STATUS_OK){
+  if (retval == SL_STATUS_OK) {
     app_log("configuration successfully \r\n");
-  }
-  else{
+  } else {
     app_log("configure failed return %04x \r\n", retval);
   }
 
   // Sets the buzzer volume level to 60%
   retval = buzzer_set_volume(&buzzer, buzzer_VOL60);
-  if(retval != SL_STATUS_OK){
+  if (retval != SL_STATUS_OK) {
     app_log("Failed to set the buzzer volume. Return %04x \r\n", retval);
   }
 }
@@ -122,7 +121,7 @@ void app_process_action(void)
   sl_status_t retval;
 
   retval = buzzer_play_melody(&buzzer_melody);
-  if(retval != SL_STATUS_OK){
+  if (retval != SL_STATUS_OK) {
     app_log("Play melody failed return %04x \r\n", retval);
   }
 
@@ -136,12 +135,12 @@ void sl_button_on_change(const sl_button_t *handle)
 {
   buzzer_volume_t volume;
 
-  if((handle == &sl_button_btn0) &&
-      (sl_button_get_state(handle) == SL_SIMPLE_BUTTON_RELEASED)) {
+  if ((handle == &sl_button_btn0) 
+     && (sl_button_get_state(handle) == SL_SIMPLE_BUTTON_RELEASED)) {
 
       buzzer_get_volume(&buzzer, &volume);
 
-      if(++volume > buzzer_VOL100){
+      if (++volume > buzzer_VOL100) {
         volume = buzzer_VOL0;
       }
 

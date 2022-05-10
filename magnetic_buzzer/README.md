@@ -154,6 +154,7 @@ The attached code is used for the [BGM220 Explorer Kit](https://www.silabs.com/d
 // TIMER4 CC0 on PB04
 #define BUZZER_PWM_OUTPUT_PORT                  gpioPortB
 #define BUZZER_PWM_OUTPUT_PIN                   4
+#define BUZZER_PWM_OUTPUT_LOC                   0
 ```
 
-**Note:** there may be dependencies that need to be resolved when changing the target architecture.
+**Note:** There may be dependencies that need to be resolved when changing the target architecture.

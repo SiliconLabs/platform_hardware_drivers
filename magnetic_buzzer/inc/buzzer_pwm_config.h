@@ -57,6 +57,7 @@ extern "C" {
 // TIMER4 CC0 on PB04
 #define BUZZER_PWM_OUTPUT_PORT                  gpioPortB
 #define BUZZER_PWM_OUTPUT_PIN                   4
+#define BUZZER_PWM_OUTPUT_LOC                   0
 
 #ifdef __cplusplus
 }

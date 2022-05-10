@@ -34,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="242" column="13" declfile="D:/my_ws/doxygen/buzzer/buzzer.h" declline="242" declcolumn="13"/>
+        <location file="D:/doxygen/src/buzzer.h" line="242" column="13" declfile="D:/doxygen/src/buzzer.h" declline="242" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="group__buzzer_1ga364c48d9fafdf3014a5ef726b65eeff5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>sl_status_t</type>
@@ -64,7 +64,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="256" column="13" declfile="D:/my_ws/doxygen/buzzer/buzzer.h" declline="256" declcolumn="13"/>
+        <location file="D:/doxygen/src/buzzer.h" line="256" column="13" declfile="D:/doxygen/src/buzzer.h" declline="256" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="group__buzzer_1ga3913df8a799979fe11487e207eadc5af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>sl_status_t</type>
@@ -110,7 +110,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="277" column="13" declfile="D:/my_ws/doxygen/buzzer/buzzer.h" declline="277" declcolumn="13"/>
+        <location file="D:/doxygen/src/buzzer.h" line="277" column="13" declfile="D:/doxygen/src/buzzer.h" declline="277" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="group__buzzer_1gab81ee7f51de0c50ff3888e8cbe214b8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>sl_status_t</type>
@@ -156,7 +156,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="298" column="13" declfile="D:/my_ws/doxygen/buzzer/buzzer.h" declline="298" declcolumn="13"/>
+        <location file="D:/doxygen/src/buzzer.h" line="298" column="13" declfile="D:/doxygen/src/buzzer.h" declline="298" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="group__buzzer_1ga889998e04d4677cd794ef26156175466" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>sl_status_t</type>
@@ -210,7 +210,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="319" column="13" declfile="D:/my_ws/doxygen/buzzer/buzzer.h" declline="319" declcolumn="13"/>
+        <location file="D:/doxygen/src/buzzer.h" line="319" column="13" declfile="D:/doxygen/src/buzzer.h" declline="319" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="group__buzzer_1ga64abb2a4bb49379433463bf7028453ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>sl_status_t</type>
@@ -240,7 +240,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="335" column="13" declfile="D:/my_ws/doxygen/buzzer/buzzer.h" declline="335" declcolumn="13"/>
+        <location file="D:/doxygen/src/buzzer.h" line="335" column="13" declfile="D:/doxygen/src/buzzer.h" declline="335" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="group__buzzer_1ga065e5230d7083f471a50b11d67240f7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>sl_status_t</type>
@@ -270,7 +270,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="349" column="13" declfile="D:/my_ws/doxygen/buzzer/buzzer.h" declline="349" declcolumn="13"/>
+        <location file="D:/doxygen/src/buzzer.h" line="349" column="13" declfile="D:/doxygen/src/buzzer.h" declline="349" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="group__buzzer_1gaf9eed3e51b7fcbcb460a153ac52f231a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>sl_status_t</type>
@@ -312,7 +312,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="366" column="13" declfile="D:/my_ws/doxygen/buzzer/buzzer.h" declline="366" declcolumn="13"/>
+        <location file="D:/doxygen/src/buzzer.h" line="366" column="13" declfile="D:/doxygen/src/buzzer.h" declline="366" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="group__buzzer_1ga148532c25a2f83d7c32442266ce289c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -331,7 +331,7 @@
 <para>PWM polarity active high</para>
 <para>PWM polarity active low</para>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" line="107" column="1" bodyfile="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" bodystart="107" bodyend="112"/>
+        <location file="D:/doxygen/src/buzzer_pwm.h" line="107" column="1" bodyfile="D:/doxygen/src/buzzer_pwm.h" bodystart="107" bodyend="112"/>
       </memberdef>
       <memberdef kind="function" id="group__buzzer_1gae08b6502f9d42dd52323e4fd04454dbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>sl_status_t</type>
@@ -373,7 +373,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" line="146" column="13" declfile="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" declline="146" declcolumn="13"/>
+        <location file="D:/doxygen/src/buzzer_pwm.h" line="146" column="13" declfile="D:/doxygen/src/buzzer_pwm.h" declline="146" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="group__buzzer_1ga13ce7c8bc26578da1dbc4176f28e95b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>sl_status_t</type>
@@ -403,7 +403,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" line="158" column="13" declfile="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" declline="158" declcolumn="13"/>
+        <location file="D:/doxygen/src/buzzer_pwm.h" line="159" column="13" declfile="D:/doxygen/src/buzzer_pwm.h" declline="159" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="group__buzzer_1ga66b8b79768398d514ed9720cd384ba1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -431,7 +431,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" line="167" column="6" declfile="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" declline="167" declcolumn="6"/>
+        <location file="D:/doxygen/src/buzzer_pwm.h" line="168" column="6" declfile="D:/doxygen/src/buzzer_pwm.h" declline="168" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="group__buzzer_1ga024a35ec28b876272f3a68a00b09df91" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -459,7 +459,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" line="176" column="6" declfile="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" declline="176" declcolumn="6"/>
+        <location file="D:/doxygen/src/buzzer_pwm.h" line="177" column="6" declfile="D:/doxygen/src/buzzer_pwm.h" declline="177" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="group__buzzer_1gabf9d9e49f5334c66d90bc46a80c99b8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -499,7 +499,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" line="189" column="6" declfile="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" declline="189" declcolumn="6"/>
+        <location file="D:/doxygen/src/buzzer_pwm.h" line="190" column="6" declfile="D:/doxygen/src/buzzer_pwm.h" declline="190" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="group__buzzer_1ga13bdd9b74e02528ba4b8feb995cb15c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>uint8_t</type>
@@ -529,7 +529,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" line="202" column="9" declfile="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" declline="202" declcolumn="9"/>
+        <location file="D:/doxygen/src/buzzer_pwm.h" line="203" column="9" declfile="D:/doxygen/src/buzzer_pwm.h" declline="203" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="group__buzzer_1ga231f363b372f5388f210d0c3205aa3ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -569,7 +569,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" line="214" column="6" declfile="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" declline="214" declcolumn="6"/>
+        <location file="D:/doxygen/src/buzzer_pwm.h" line="215" column="6" declfile="D:/doxygen/src/buzzer_pwm.h" declline="215" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="group__buzzer_1ga7537b0ed4354d42214c17b82f881af94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>uint32_t</type>
@@ -599,7 +599,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" line="227" column="10" declfile="D:/my_ws/doxygen/buzzer/buzzer_pwm.h" declline="227" declcolumn="10"/>
+        <location file="D:/doxygen/src/buzzer_pwm.h" line="228" column="10" declfile="D:/doxygen/src/buzzer_pwm.h" declline="228" declcolumn="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

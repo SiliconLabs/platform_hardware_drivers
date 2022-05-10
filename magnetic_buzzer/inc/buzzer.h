@@ -102,7 +102,7 @@ typedef struct
 {
   buzzer_pwm_instance_t pwm;    /**< PWM instance */
   buzzer_pwm_config_t config;   /**< PWM configuration */
-  buzzer_volume_t volume;   /**< buzzer volume level */
+  buzzer_volume_t volume;       /**< buzzer volume level */
 } buzzer_t;
 
 /***************************************************************************//**
@@ -137,10 +137,10 @@ typedef struct {
  ******************************************************************************/
 #define BUZZER_FREQ  4000
 
-#if defined (SL_PWM_OUTPUT_LOC)
-#define BUZZER_PWM_OUTPUT_LOCATION  SL_PWM_OUTPUT_LOC
+#if defined (BUZZER_PWM_OUTPUT_LOC)
+#define BUZZER_PWM_OUTPUT_LOCATION  BUZZER_PWM_OUTPUT_LOC
 #else
-#define  BUZZER_PWM_OUTPUT_LOCATION  0 //0 for compatibility
+#define  BUZZER_PWM_OUTPUT_LOCATION  0 // 0 for compatibility
 #endif
 
 /***************************************************************************//**
@@ -217,7 +217,7 @@ typedef struct {
 #define BUZZER_NOTE_REST            1000
 
 // End of melody marker
-#define BUZZER_END_MELODY {BUZZER_NOTE_REST, 0x07D0}
+#define BUZZER_END_MELODY           {BUZZER_NOTE_REST, 0x07D0}
 
 /** @} (end addtogroup buzzer_freq) */
 

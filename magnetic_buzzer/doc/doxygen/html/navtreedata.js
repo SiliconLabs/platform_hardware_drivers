@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "Buzzer", "index.html", [
+  [ "Buzzer driver", "index.html", [
     [ "Modules", "modules.html", "modules" ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],

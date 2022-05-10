@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="113" column="13" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="113" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="113" column="13" bodyfile="D:/doxygen/src/buzzer.h" bodystart="113" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="group___buzzer_1ga22500cb8ca310967d94c301b94964790" prot="public" static="no" mutable="no">
         <type>uint16_t</type>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="114" column="13" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="114" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="114" column="13" bodyfile="D:/doxygen/src/buzzer.h" bodystart="114" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -40,7 +40,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="112" column="1" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="112" bodyend="115"/>
+    <location file="D:/doxygen/src/buzzer.h" line="112" column="1" bodyfile="D:/doxygen/src/buzzer.h" bodystart="112" bodyend="115"/>
     <listofallmembers>
       <member refid="group___buzzer_1ga22500cb8ca310967d94c301b94964790" prot="public" virt="non-virtual"><scope>buzzer_note_t</scope><name>duration</name></member>
       <member refid="group___buzzer_1ga41c41caea32bf30f77f70ade95763f40" prot="public" virt="non-virtual"><scope>buzzer_note_t</scope><name>note</name></member>

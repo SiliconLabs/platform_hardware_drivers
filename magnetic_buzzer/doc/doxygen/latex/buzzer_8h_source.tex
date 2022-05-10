@@ -1,5 +1,5 @@
 \hypertarget{buzzer_8h_source}{}\doxysection{buzzer.\+h}
-\label{buzzer_8h_source}\index{D:/my\_ws/doxygen/buzzer/buzzer.h@{D:/my\_ws/doxygen/buzzer/buzzer.h}}
+\label{buzzer_8h_source}\index{D:/doxygen/src/buzzer.h@{D:/doxygen/src/buzzer.h}}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00001}00001 \textcolor{comment}{/***************************************************************************/}}
@@ -34,7 +34,7 @@
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00102}00102 \{}
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00103}\mbox{\hyperlink{group___buzzer_gaaf0d31641473ec9c5a03d128961cc91d}{00103}}   \mbox{\hyperlink{structbuzzer__pwm__instance__t}{buzzer\_pwm\_instance\_t}} \mbox{\hyperlink{group___buzzer_gaaf0d31641473ec9c5a03d128961cc91d}{pwm}};    }
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00104}\mbox{\hyperlink{group___buzzer_ga399c98024d133d2eaee38ddcf9547a18}{00104}}   \mbox{\hyperlink{structbuzzer__pwm__config__t}{buzzer\_pwm\_config\_t}} \mbox{\hyperlink{group___buzzer_ga399c98024d133d2eaee38ddcf9547a18}{config}};   }
-\DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00105}\mbox{\hyperlink{group___buzzer_ga4cae2a8a201c31a49e69b14e7f3900ec}{00105}}   \mbox{\hyperlink{group___buzzer_ga098bd7ee5be45b675db7728bc702bb91}{buzzer\_volume\_t}} \mbox{\hyperlink{group___buzzer_ga4cae2a8a201c31a49e69b14e7f3900ec}{volume}};   }
+\DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00105}\mbox{\hyperlink{group___buzzer_ga4cae2a8a201c31a49e69b14e7f3900ec}{00105}}   \mbox{\hyperlink{group___buzzer_ga098bd7ee5be45b675db7728bc702bb91}{buzzer\_volume\_t}} \mbox{\hyperlink{group___buzzer_ga4cae2a8a201c31a49e69b14e7f3900ec}{volume}};       }
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00106}00106 \} \mbox{\hyperlink{structbuzzer__t}{buzzer\_t}};}
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00107}00107 }
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00108}00108 \textcolor{comment}{/***************************************************************************/}}
@@ -54,10 +54,10 @@
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00132}00132 \textcolor{comment}{/***************************************************************************/}}
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00138}\mbox{\hyperlink{group__buzzer__cfg_ga53157b0c521fcb6114549b588626560d}{00138}} \textcolor{preprocessor}{\#define BUZZER\_FREQ  4000}}
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00139}00139 }
-\DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00140}00140 \textcolor{preprocessor}{\#if defined (SL\_PWM\_OUTPUT\_LOC)}}
-\DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00141}00141 \textcolor{preprocessor}{\#define BUZZER\_PWM\_OUTPUT\_LOCATION  SL\_PWM\_OUTPUT\_LOC}}
+\DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00140}00140 \textcolor{preprocessor}{\#if defined (BUZZER\_PWM\_OUTPUT\_LOC)}}
+\DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00141}00141 \textcolor{preprocessor}{\#define BUZZER\_PWM\_OUTPUT\_LOCATION  BUZZER\_PWM\_OUTPUT\_LOC}}
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00142}00142 \textcolor{preprocessor}{\#else}}
-\DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00143}00143 \textcolor{preprocessor}{\#define  BUZZER\_PWM\_OUTPUT\_LOCATION  0 }\textcolor{comment}{//0 for compatibility}}
+\DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00143}00143 \textcolor{preprocessor}{\#define  BUZZER\_PWM\_OUTPUT\_LOCATION  0 }\textcolor{comment}{// 0 for compatibility}}
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00144}00144 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00145}00145 }
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00146}00146 \textcolor{comment}{/***************************************************************************/}}
@@ -119,7 +119,7 @@
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00217}00217 \textcolor{preprocessor}{\#define BUZZER\_NOTE\_REST            1000}}
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00218}00218 }
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00219}00219 \textcolor{comment}{// End of melody marker}}
-\DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00220}00220 \textcolor{preprocessor}{\#define BUZZER\_END\_MELODY \{BUZZER\_NOTE\_REST, 0x07D0\}}}
+\DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00220}00220 \textcolor{preprocessor}{\#define BUZZER\_END\_MELODY           \{BUZZER\_NOTE\_REST, 0x07D0\}}}
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00221}00221 }
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00224}00224 \textcolor{comment}{/***************************************************************************/}}
 \DoxyCodeLine{\Hypertarget{buzzer_8h_source_l00230}00230 \textcolor{comment}{/***************************************************************************/}}

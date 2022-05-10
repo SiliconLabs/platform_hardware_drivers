@@ -101,6 +101,7 @@
     <member refid="buzzer__pwm__config_8h_1a6cb5507b701b9401a83319e95a7de182" kind="define"><name>BUZZER_PWM_OUTPUT_CHANNEL</name></member>
     <member refid="buzzer__pwm__config_8h_1af9c97f2f6010fd2155067554ba6932c5" kind="define"><name>BUZZER_PWM_OUTPUT_PORT</name></member>
     <member refid="buzzer__pwm__config_8h_1ae19b5cec3624647b0b4294220938ba85" kind="define"><name>BUZZER_PWM_OUTPUT_PIN</name></member>
+    <member refid="buzzer__pwm__config_8h_1ab7f12d879117749f48dcfb6377c91979" kind="define"><name>BUZZER_PWM_OUTPUT_LOC</name></member>
   </compound>
   <compound refid="group__buzzer__cfg" kind="group"><name>buzzer_cfg</name>
     <member refid="group__buzzer__cfg_1ga53157b0c521fcb6114549b588626560d" kind="define"><name>BUZZER_FREQ</name></member>
@@ -182,6 +183,6 @@
     <member refid="group__buzzer_1ga231f363b372f5388f210d0c3205aa3ff" kind="function"><name>buzzer_pwm_set_frequency</name></member>
     <member refid="group__buzzer_1ga7537b0ed4354d42214c17b82f881af94" kind="function"><name>buzzer_pwm_get_frequency</name></member>
   </compound>
-  <compound refid="dir_619a81ad29a4b41c30712238698673ac" kind="dir"><name>D:/my_ws/doxygen/buzzer</name>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>D:/doxygen/src</name>
   </compound>
 </doxygenindex>

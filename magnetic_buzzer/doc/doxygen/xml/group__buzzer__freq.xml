@@ -13,7 +13,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="187" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="187" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="187" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="187" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1gabde0e7d15f71abf30074ef47c1ce5e2a" prot="public" static="no">
         <name>BUZZER_NOTE_Db6</name>
@@ -24,7 +24,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="188" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="188" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="188" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="188" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga94510a7f6067aea3b3a4603604932e70" prot="public" static="no">
         <name>BUZZER_NOTE_D6</name>
@@ -35,7 +35,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="189" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="189" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="189" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="189" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga602903c358263b2d9e0321b4d3799b58" prot="public" static="no">
         <name>BUZZER_NOTE_Eb6</name>
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="190" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="190" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="190" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="190" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga7d25a4bae2c589ad6f7abf5d28cfcd80" prot="public" static="no">
         <name>BUZZER_NOTE_E6</name>
@@ -57,7 +57,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="191" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="191" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="191" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="191" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga59ee6260fe67dc36983a79f97570bc1c" prot="public" static="no">
         <name>BUZZER_NOTE_F6</name>
@@ -68,7 +68,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="192" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="192" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="192" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="192" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga9790e43eca334e861a2dbc1605ea7ab9" prot="public" static="no">
         <name>BUZZER_NOTE_Gb6</name>
@@ -79,7 +79,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="193" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="193" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="193" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="193" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga276a17c83201c384c94cf3f0297630e9" prot="public" static="no">
         <name>BUZZER_NOTE_G6</name>
@@ -90,7 +90,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="194" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="194" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="194" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="194" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga5e44172490525b06a41687601d4e48a5" prot="public" static="no">
         <name>BUZZER_NOTE_Ab6</name>
@@ -101,7 +101,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="195" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="195" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="195" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="195" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1gaee83886fdd82bf56ce40bd658f8ff238" prot="public" static="no">
         <name>BUZZER_NOTE_A6</name>
@@ -112,7 +112,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="196" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="196" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="196" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="196" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga62eae4eb3647bc7033e3de20b7e96265" prot="public" static="no">
         <name>BUZZER_NOTE_Bb6</name>
@@ -123,7 +123,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="197" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="197" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="197" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="197" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga4e4d81ba78a05200d9e9e151e71af971" prot="public" static="no">
         <name>BUZZER_NOTE_B6</name>
@@ -134,7 +134,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="198" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="198" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="198" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="198" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1gabbe8b5a22ad7f43f14ae2324555a983b" prot="public" static="no">
         <name>BUZZER_NOTE_C7</name>
@@ -145,7 +145,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="199" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="199" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="199" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="199" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga1a5467b822b00128587419ebb05d585e" prot="public" static="no">
         <name>BUZZER_NOTE_Db7</name>
@@ -156,7 +156,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="200" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="200" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="200" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="200" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1gaa7acee47ddaede425c60f7e0a3348df1" prot="public" static="no">
         <name>BUZZER_NOTE_D7</name>
@@ -167,7 +167,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="201" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="201" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="201" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="201" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga8cbc856da8bbb9e5c9e2033b05abeb4e" prot="public" static="no">
         <name>BUZZER_NOTE_Eb7</name>
@@ -178,7 +178,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="202" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="202" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="202" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="202" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1gaf6ae811adae54cccb4f5bc11556edc58" prot="public" static="no">
         <name>BUZZER_NOTE_E7</name>
@@ -189,7 +189,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="203" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="203" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="203" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="203" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga1522f57fd1ab483e5e16c62b823a3142" prot="public" static="no">
         <name>BUZZER_NOTE_F7</name>
@@ -200,7 +200,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="204" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="204" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="204" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="204" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1gab52f10cbffbb076b37e1e742066408e5" prot="public" static="no">
         <name>BUZZER_NOTE_Gb7</name>
@@ -211,7 +211,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="205" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="205" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="205" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="205" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga34eb7f2b4b7ccf2bea9b00f0af8d1570" prot="public" static="no">
         <name>BUZZER_NOTE_G7</name>
@@ -222,7 +222,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="206" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="206" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="206" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="206" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1gaab771bf1e72b78e46edfaaf168aa1d05" prot="public" static="no">
         <name>BUZZER_NOTE_Ab7</name>
@@ -233,7 +233,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="207" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="207" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="207" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="207" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga0a9a974b70eb610e428bdd5f9f6e7d26" prot="public" static="no">
         <name>BUZZER_NOTE_A7</name>
@@ -244,7 +244,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="208" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="208" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="208" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="208" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1gad096d06ffae57be635324d744c3a5589" prot="public" static="no">
         <name>BUZZER_NOTE_Bb7</name>
@@ -255,7 +255,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="209" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="209" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="209" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="209" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga66b4e4d38ea5efb04f1cd15e8bdfad4c" prot="public" static="no">
         <name>BUZZER_NOTE_B7</name>
@@ -266,7 +266,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="210" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="210" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="210" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="210" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1gaa829ecdc89e4e4b336e1f5b61bb6d726" prot="public" static="no">
         <name>BUZZER_NOTE_C8</name>
@@ -277,7 +277,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="211" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="211" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="211" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="211" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga023431292a3374d8a35aab50f6c7167c" prot="public" static="no">
         <name>BUZZER_NOTE_Db8</name>
@@ -288,7 +288,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="212" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="212" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="212" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="212" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga402f883087ec354d4eb4c8f01c97017e" prot="public" static="no">
         <name>BUZZER_NOTE_D8</name>
@@ -299,7 +299,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="213" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="213" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="213" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="213" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1gaebef788281ff4d82476488772ab19274" prot="public" static="no">
         <name>BUZZER_NOTE_Eb8</name>
@@ -310,7 +310,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="214" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="214" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="214" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="214" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga5b7dff0ced6e608cd6ba51efd9965603" prot="public" static="no">
         <name>BUZZER_NOTE_REST</name>
@@ -321,7 +321,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="217" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="217" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="217" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="217" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="group__buzzer__freq_1ga8ca9a8d1f043bf6fb5a540a5483534d3" prot="public" static="no">
         <name>BUZZER_END_MELODY</name>
@@ -332,7 +332,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="220" column="9" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="220" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="220" column="9" bodyfile="D:/doxygen/src/buzzer.h" bodystart="220" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

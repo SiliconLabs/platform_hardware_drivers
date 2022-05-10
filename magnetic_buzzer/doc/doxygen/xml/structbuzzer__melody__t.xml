@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="122" column="23" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="122" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="122" column="23" bodyfile="D:/doxygen/src/buzzer.h" bodystart="122" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="group___buzzer_1ga87b368a8e6f3427282679f5a4d873355" prot="public" static="no" mutable="no">
         <type>uint16_t</type>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="123" column="12" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="123" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="123" column="12" bodyfile="D:/doxygen/src/buzzer.h" bodystart="123" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="group___buzzer_1gac901f1c3158766223b27e8a3f6fc979f" prot="public" static="no" mutable="no">
         <type><ref refid="structbuzzer__t" kindref="compound">buzzer_t</ref> *</type>
@@ -47,7 +47,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="124" column="12" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="124" bodyend="-1"/>
+        <location file="D:/doxygen/src/buzzer.h" line="124" column="12" bodyfile="D:/doxygen/src/buzzer.h" bodystart="124" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -89,7 +89,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="D:/my_ws/doxygen/buzzer/buzzer.h" line="121" column="1" bodyfile="D:/my_ws/doxygen/buzzer/buzzer.h" bodystart="121" bodyend="125"/>
+    <location file="D:/doxygen/src/buzzer.h" line="121" column="1" bodyfile="D:/doxygen/src/buzzer.h" bodystart="121" bodyend="125"/>
     <listofallmembers>
       <member refid="group___buzzer_1gac901f1c3158766223b27e8a3f6fc979f" prot="public" virt="non-virtual"><scope>buzzer_melody_t</scope><name>buzzer</name></member>
       <member refid="group___buzzer_1ga87b368a8e6f3427282679f5a4d873355" prot="public" virt="non-virtual"><scope>buzzer_melody_t</scope><name>len</name></member>
