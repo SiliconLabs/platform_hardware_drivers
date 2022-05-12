@@ -1,6 +1,6 @@
 /***************************************************************************//**
 * @file max17048.c
-* @brief Driver for the max17048/max17049 Fuel Gauge
+* @brief Driver for the MAX17048/9 Fuel Gauge
 ********************************************************************************
 * # License
 * <b>Copyright 2022 Silicon Laboratories Inc. www.silabs.com</b>
@@ -79,7 +79,7 @@ static sl_status_t max17048_clear_reset_indicator_bit(void);
 
 /***************************************************************************//**
  * @brief
- *    Read a block of data from the max17048.
+ *    Read a block of data from the MAX17048.
  *
  * @param[in] reg_addr
  *    The first register to begin reading from
@@ -125,7 +125,7 @@ static sl_status_t max17048_clear_reset_indicator_bit(void);
 
 /***************************************************************************//**
  * @brief
- *    Write a block of data to the max17048.
+ *    Write a block of data to the MAX17048.
  *
  * @param[in] reg_addr
  *    The first register to begin writing to
@@ -402,7 +402,7 @@ static sl_status_t max17048_clear_alert_condition(uint8_t alert_condition,
   return status;
 }
 /***************************************************************************//**
- *  Initializes the max17048/max1749 - fuel gauge.
+ *  Initialize the MAX17048.
  ******************************************************************************/
 sl_status_t max17048_init(sl_i2cspm_t *i2cspm)
 {
@@ -468,7 +468,7 @@ sl_status_t max17048_init(sl_i2cspm_t *i2cspm)
 }
 
 /***************************************************************************//**
- *  De-initialize the MAX17048 driver.
+ *  De-initialize the MAX17048.
  ******************************************************************************/
 sl_status_t max17048_deinit(void)
 {
@@ -661,8 +661,10 @@ void max17048_mask_interrupts(void)
  ******************************************************************************/
 void max17048_unmask_interrupts(void)
 {
-  // Need to clear interrupt flag for the ALRT pin 
-  // in case an edge was detected while the interrupt was disabled
+  /*
+   * Clear ALRT pin interrupt flag in case an edge was detected while
+   * the interrupt was disabled.
+   */
   GPIO_IntClear(1 << MAX17048_CONFIG_ALRT_PIN);
   GPIO_IntEnable(1 << MAX17048_CONFIG_ALRT_PIN);
 }
@@ -721,7 +723,7 @@ sl_status_t max17048_disable_soc_interrupt(void)
 }
 
 /***************************************************************************//**
- *  Enables the MAX17048 empty alert interrupt, sets its threshold.
+ * Enables the MAX17048 empty alert interrupt and sets its threshold.
  ******************************************************************************/
 sl_status_t max17048_enable_empty_interrupt(uint8_t athd,
                                           max17048_interrupt_callback_t irq_cb,
@@ -1247,7 +1249,6 @@ sl_status_t max17048_enter_sleep(void)
   return status;
 }
 
-
 /***************************************************************************//**
  *  Forces the MAX17048 to exit sleep mode.
  ******************************************************************************/
@@ -1343,7 +1344,7 @@ sl_status_t max17048_load_model(const uint8_t *model)
 }
 
 /***************************************************************************//**
- *  Read the ID of th IC.
+ *  Read the MAX17048 device ID.
  ******************************************************************************/
 sl_status_t max17048_get_id(uint8_t *id)
 {
@@ -1357,7 +1358,7 @@ sl_status_t max17048_get_id(uint8_t *id)
 }
 
 /***************************************************************************//**
- *  Read the product version of IC.
+ *  Read the MAX17048 production version.
  ******************************************************************************/
 sl_status_t max17048_get_production_version(uint16_t *ver)
 {
