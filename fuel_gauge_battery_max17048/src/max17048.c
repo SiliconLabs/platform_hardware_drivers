@@ -210,7 +210,7 @@ static void max17048_temp_timer_callback(sl_sleeptimer_timer_handle_t *handle, v
 
   temp = max17048_temp_callback();
 
-  if(temp > 20) {
+  if (temp > 20) {
     rcomp = RCOMP0 + (temp - 20) * TEMP_CO_UP;
   } else {
     rcomp = RCOMP0 + (temp - 20) * TEMP_CO_DOWN;
