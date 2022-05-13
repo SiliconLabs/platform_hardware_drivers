@@ -979,7 +979,7 @@ uint32_t max17048_get_vlow_threshold(void)
 }
 
 /***************************************************************************//**
- *  Enables the voltage reset alert interrupt, sets its threshold.
+ *  Enable the voltage reset alert interrupt and set its threshold.
  ******************************************************************************/
 sl_status_t max17048_enable_reset_interrupt(uint32_t vreset_mv,
                                             max17048_interrupt_callback_t irq_cb,
