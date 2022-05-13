@@ -849,7 +849,7 @@ sl_status_t max17048_enable_vhigh_interrupt(uint32_t valrt_max_mv,
 }
 
 /***************************************************************************//**
- *  Disables the voltage high alert interrupt and unregister the
+ *  Disable the voltage high alert interrupt and unregister the
  *  user-provided callback function.
  ******************************************************************************/
 sl_status_t max17048_disable_vhigh_interrupt(void)
@@ -932,7 +932,7 @@ sl_status_t max17048_enable_vlow_interrupt(uint32_t valrt_min_mv,
 }
 
 /***************************************************************************//**
- *  Disables the voltage low alert interrupt and unregister the
+ *  Disable the voltage low alert interrupt and unregister the
  *  user-provided callback function.
  ******************************************************************************/
 sl_status_t max17048_disable_vlow_interrupt(void)
