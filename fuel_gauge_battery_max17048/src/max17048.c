@@ -813,7 +813,8 @@ uint8_t max17048_get_empty_threshold(void)
 }
 
 /***************************************************************************//**
- *  Set thresholds of the voltage alert in millivolts.
+ *  Enable the voltage high alert interrupt, sets its threshold, and
+ *  register a user-provided callback function to respond to it.
  ******************************************************************************/
 sl_status_t max17048_enable_vhigh_interrupt(uint32_t valrt_max_mv,
                                             max17048_interrupt_callback_t irq_cb,
@@ -848,8 +849,8 @@ sl_status_t max17048_enable_vhigh_interrupt(uint32_t valrt_max_mv,
 }
 
 /***************************************************************************//**
- *  Disables the MAX17048 voltage high alert interrupt and
- *  unregisters the user-provided callback function.
+ *  Disables the voltage high alert interrupt and unregister the
+ *  user-provided callback function.
  ******************************************************************************/
 sl_status_t max17048_disable_vhigh_interrupt(void)
 {
@@ -895,8 +896,8 @@ uint32_t max17048_get_vhigh_threshold(void)
 }
 
 /***************************************************************************//**
- *  Enables the MAX17048 voltage low alert interrupt, sets its threshold,
- *  and registers a user-provided callback function to respond to it.
+ *  Enable the voltage low alert interrupt, sets its threshold, and
+ *  register a user-provided callback function to respond to it.
  ******************************************************************************/
 sl_status_t max17048_enable_vlow_interrupt(uint32_t valrt_min_mv,
                                            max17048_interrupt_callback_t irq_cb,
@@ -931,8 +932,8 @@ sl_status_t max17048_enable_vlow_interrupt(uint32_t valrt_min_mv,
 }
 
 /***************************************************************************//**
- *  Disables the MAX17048 voltage low alert interrupt and
- *  unregisters the user-provided callback function.
+ *  Disables the voltage low alert interrupt and unregister the
+ *  user-provided callback function.
  ******************************************************************************/
 sl_status_t max17048_disable_vlow_interrupt(void)
 {
