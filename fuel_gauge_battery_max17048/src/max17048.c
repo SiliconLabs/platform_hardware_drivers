@@ -726,8 +726,8 @@ sl_status_t max17048_disable_soc_interrupt(void)
  * Enables the MAX17048 empty alert interrupt and sets its threshold.
  ******************************************************************************/
 sl_status_t max17048_enable_empty_interrupt(uint8_t athd,
-                                          max17048_interrupt_callback_t irq_cb,
-                                          void *cb_data)
+                                            max17048_interrupt_callback_t irq_cb,
+                                            void *cb_data)
 {
   sl_status_t status;
   uint8_t buffer[2];
