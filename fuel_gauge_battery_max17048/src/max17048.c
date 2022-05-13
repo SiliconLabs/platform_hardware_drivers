@@ -1185,6 +1185,7 @@ sl_status_t max17048_set_activity_threshold(uint32_t act_thr)
   if (act_thr > MAX17048_ACTTHR_MV) {
     act_thr = MAX17048_ACTTHR_MV;
   }
+
   // Update the private global variable to track
   max17048_actthr_tracking = act_thr * 1000 / MAX17048_ACTTHR_RESOLUTION;
   buffer[0] = max17048_hibthr_tracking; // Get the HibThr register
