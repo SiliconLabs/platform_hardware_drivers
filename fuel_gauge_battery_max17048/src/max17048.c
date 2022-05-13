@@ -782,7 +782,7 @@ sl_status_t max17048_disable_empty_interrupt(void)
 }
 
 /***************************************************************************//**
- *  Set the empty threshold in percents.
+ *  Set the empty alert threshold.
  ******************************************************************************/
 sl_status_t max17048_set_empty_threshold(uint8_t athd)
 {
@@ -805,7 +805,7 @@ sl_status_t max17048_set_empty_threshold(uint8_t athd)
 }
 
 /***************************************************************************//**
- *  Get the empty threshold in percents.
+ *  Get the empty threshold.
  ******************************************************************************/
 uint8_t max17048_get_empty_threshold(void)
 {
