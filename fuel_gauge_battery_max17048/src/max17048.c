@@ -960,6 +960,7 @@ sl_status_t max17048_set_vlow_threshold(uint32_t valrt_min_mv)
   if (valrt_min_mv > MAX17048_VALRT_MIN_MV) {
     valrt_min_mv = MAX17048_VALRT_MIN_MV;
   }
+
   buffer[1] = max17048_valrt_max_tracking; // Get the VALRT.MAX register
   // Update the private global variable to track
   max17048_valrt_min_tracking = valrt_min_mv / MAX17048_VALRT_RESOLUTION;
