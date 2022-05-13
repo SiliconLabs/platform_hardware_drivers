@@ -670,7 +670,7 @@ void max17048_unmask_interrupts(void)
 }
 
 /***************************************************************************//**
- *  Enable/disable alerting when SOC changes.
+ *  Enable alerting when SOC changes.
  ******************************************************************************/
 sl_status_t max17048_enable_soc_interrupt(max17048_interrupt_callback_t irq_cb,
                                           void *cb_data)
