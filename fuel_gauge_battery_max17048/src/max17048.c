@@ -723,7 +723,7 @@ sl_status_t max17048_disable_soc_interrupt(void)
 }
 
 /***************************************************************************//**
- * Enables the MAX17048 empty alert interrupt and sets its threshold.
+ * Enables the empty alert interrupt and set its threshold.
  ******************************************************************************/
 sl_status_t max17048_enable_empty_interrupt(uint8_t athd,
                                             max17048_interrupt_callback_t irq_cb,
@@ -760,7 +760,7 @@ sl_status_t max17048_enable_empty_interrupt(uint8_t athd,
 }
 
 /***************************************************************************//**
- *  Set the empty threshold.
+ * Disable the empty alert interrupt by setting its threshold to 1%
  ******************************************************************************/
 sl_status_t max17048_disable_empty_interrupt(void)
 {
