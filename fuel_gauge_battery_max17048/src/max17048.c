@@ -1269,7 +1269,7 @@ sl_status_t max17048_exit_sleep(void)
   return status;
 }
 /***************************************************************************//**
- *  Forces the MAX17048 to initiate a power-on reset (POR).
+ *  Force the MAX17048 to initiate a power-on reset (POR).
  ******************************************************************************/
 sl_status_t max17048_force_reset(void)
 {
@@ -1284,7 +1284,7 @@ sl_status_t max17048_force_reset(void)
 }
 
 /***************************************************************************//**
- *  Forces the MAX17048 to initiate a battery quick start.
+ *  Force the MAX17048 to initiate a battery quick start.
  ******************************************************************************/
 sl_status_t max17048_force_quick_start(void)
 {
