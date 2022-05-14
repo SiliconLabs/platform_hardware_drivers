@@ -1212,12 +1212,10 @@ sl_status_t max17048_enable_reset_comparator(bool enable)
   uint8_t buffer[2];
 
   if (enable) {
-    // Set DIS bit in the VRESET register to o disable 
-    // the analog comparator in hibernate mode
+    // VRESET_DIS = 1 to disable the comparator in hibernate mode
     max17048_vreset_tracking |= (1 << MAX17048_VRESET_DIS_BIT);
   } else {
-    // Clear DIS bit in the VRESET register to o enable 
-    // the analog comparator in hibernate mode
+    // VRESET_DIS = 0 to keep the comparator enabled in hibernate mode
     max17048_vreset_tracking  &= ~(1 << MAX17048_VRESET_DIS_BIT);
   }
 
