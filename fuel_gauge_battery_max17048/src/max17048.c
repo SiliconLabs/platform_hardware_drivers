@@ -1259,9 +1259,9 @@ sl_status_t max17048_exit_sleep(void)
   sl_status_t status;
   uint8_t buffer[2];
 
-  buffer[0] = max17048_rcomp_tracking;  // Get MSB-CONFIG register
-  // Clear SLEEP bit in the LSB-CONFIG register 
-  // to force the IC to exit sleep mode
+  // Set CONFIG upper byte
+  buffer[0] = max17048_rcomp_tracking;
+  // Clear SLEEP in CONFIG lower byte to exit sleep mode
   max17048_athd_tracking &= ~(1 << MAX17048_CONFIG_SLEEP_BIT);
   buffer[1] = max17048_athd_tracking | (1 << MAX17048_CONFIG_ALRT_BIT); // Writing 1 to ALRT bit does not actually set ALRT
   status = max17048_write_register_block(MAX17048_CONFIG, (uint8_t*) buffer, 2);
