@@ -1226,7 +1226,7 @@ sl_status_t max17048_enable_reset_comparator(bool enable)
 }
 
 /***************************************************************************//**
- *  Forces the MAX17048 to enter sleep mode.
+ *  Force the MAX17048 to enter sleep mode.
  ******************************************************************************/
 sl_status_t max17048_enter_sleep(void)
 {
