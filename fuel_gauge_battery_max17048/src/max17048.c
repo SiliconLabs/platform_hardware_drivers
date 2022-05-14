@@ -1236,6 +1236,7 @@ sl_status_t max17048_enter_sleep(void)
   // Set EnSleep bit in the MSB-MODE register to enable sleep mode
   buffer[0] = 1 << MAX17048_MODE_ENSLEEP_BIT;
   status = max17048_write_register_block(MAX17048_MODE, (uint8_t*) buffer, 2);
+
   if (status != SL_STATUS_OK) {
     return status;
   }
