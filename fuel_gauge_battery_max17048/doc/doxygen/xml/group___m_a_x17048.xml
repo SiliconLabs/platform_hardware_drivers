@@ -1,0 +1,2326 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.3" xml:lang="en-US">
+  <compounddef id="group___m_a_x17048" kind="group">
+    <compoundname>MAX17048</compoundname>
+    <title>- Fuel Gauge Sensor</title>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="group___m_a_x17048_1gaee7df5f8d24946dd2a2ad4eaa647fddc" prot="public" static="no" strong="no">
+        <type></type>
+        <name>sl_max17048_irq_source_t_enum</name>
+        <enumvalue id="group___m_a_x17048_1ggaee7df5f8d24946dd2a2ad4eaa647fddcaf9cfc82e56f36a038eaccadc1bd440f6" prot="public">
+          <name>IRQ_VCELL_HIGH</name>
+          <initializer>=  0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group___m_a_x17048_1ggaee7df5f8d24946dd2a2ad4eaa647fddca55165772b76d00b5517625b9d9b5882a" prot="public">
+          <name>IRQ_VCELL_LOW</name>
+          <initializer>=  1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group___m_a_x17048_1ggaee7df5f8d24946dd2a2ad4eaa647fddcab62fd39419981629a9b33aef460ba31a" prot="public">
+          <name>IRQ_RESET</name>
+          <initializer>=  2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group___m_a_x17048_1ggaee7df5f8d24946dd2a2ad4eaa647fddcae08e332388208a2521ea3c35a1523e00" prot="public">
+          <name>IRQ_EMPTY</name>
+          <initializer>=  3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group___m_a_x17048_1ggaee7df5f8d24946dd2a2ad4eaa647fddcaf045dd73d798bae093525b59bf279542" prot="public">
+          <name>IRQ_SOC</name>
+          <initializer>=  4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="163" column="43" bodyfile="D:/doxygen/src/max17048.h" bodystart="163" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="enum" id="group___m_a_x17048_1ga3f9e19d54b68f884baa1de9580909b33" prot="public" static="no" strong="no">
+        <type></type>
+        <name>max17048_hibstate_t</name>
+        <enumvalue id="group___m_a_x17048_1gga3f9e19d54b68f884baa1de9580909b33aa9827654cde2568f4f082c27746fa59f" prot="public">
+          <name>activeMode</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>Device is in active mode. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group___m_a_x17048_1gga3f9e19d54b68f884baa1de9580909b33a59f864cf7b64c780506d1d358f9613f1" prot="public">
+          <name>hibernateMode</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>Device is in hibernate mode. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>MAX17048 hibernate state. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="172" column="1" bodyfile="D:/doxygen/src/max17048.h" bodystart="172" bodyend="175"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="group___m_a_x17048_1ga81bb645b77909f926785580bdea72b0f" prot="public" static="no">
+        <type>uint8_t</type>
+        <definition>typedef uint8_t sl_max17048_irq_source_t</definition>
+        <argsstring></argsstring>
+        <name>sl_max17048_irq_source_t</name>
+        <briefdescription>
+<para>MAX17048 interrupt source enum. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="163" column="18" bodyfile="D:/doxygen/src/max17048.h" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group___m_a_x17048_1ga680a8aa2a20465cfbcb7fdf9208c5e77" prot="public" static="no">
+        <type>int32_t(*</type>
+        <definition>typedef int32_t(* max17048_temp_callback_t) (void)</definition>
+        <argsstring>)(void)</argsstring>
+        <name>max17048_temp_callback_t</name>
+        <briefdescription>
+<para>MAX17048 temperature external temperature measurement callback function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This callback function is executed from interrupt context when the user opts to provide the battery pack temperature through a mechanism other than the integrated EMU temperature sensor (e.g. an external temperature sensor or other means). The driver needs the battery pack temperature to periodically update the MAX17048 compensation factor (RCOMP).</para>
+<para><simplesect kind="return"><para>Temperature, as a signed integer in degrees C. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="191" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group___m_a_x17048_1ga5328c547b89d1e336b44390abc4965d0" prot="public" static="no">
+        <type>void(*</type>
+        <definition>typedef void(* max17048_interrupt_callback_t) (sl_max17048_irq_source_t irq, void *data)</definition>
+        <argsstring>)(sl_max17048_irq_source_t irq, void *data)</argsstring>
+        <name>max17048_interrupt_callback_t</name>
+        <briefdescription>
+<para>MAX17048 interrupt callback function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This callback function is executed from interrupt context when the user has enabled one of the MAX17048 interrupt sources. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="410" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="410" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group___m_a_x17048_1ga46a4ac6a6d0d0f98d0cf6388a21d8214" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_init</definition>
+        <argsstring>(sl_i2cspm_t *i2cspm)</argsstring>
+        <name>max17048_init</name>
+        <param>
+          <type>sl_i2cspm_t *</type>
+          <declname>i2cspm</declname>
+        </param>
+        <briefdescription>
+<para>Initialize the MAX17048 driver with the values provided in the <ref refid="max17048__config_8h_source" kindref="compound">max17048_config.h</ref> file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function does not write to any of the MAX17048 registers. It assigns the I2C used to communicate with the device, configures the GPIO(s) used for the ALRTn and optional QSTRT pin(s), and starts a software timer to trigger temperature (RCOMP) updates at the user-specified rate.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">i2cspm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The I2CSPM instance to use.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>Upon return, all interrupts from the MAX17048 are masked so that firmware can enable interrupts that are required, register their callback functions, and set relevant thresholds. Interrupts are globally unmasked by calling <ref refid="group___m_a_x17048_1ga048dfd6319ccc78e656d5f2819357c7d" kindref="member">max17048_unmask_interrupts()</ref>.</para>
+</simplesect>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_ALREADY_INITIALIZED the function has previously been called. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="220" column="13" declfile="D:/doxygen/src/max17048.h" declline="220" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga3da20249b4ef2fbd8dbab8fe45971c18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_deinit</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_deinit</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>De-initialize the MAX17048 driver. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function does not write to any of the MAX17048 registers. Its sole purpose is to return the GPIO pin(s) used for the ALRTn and optional QSTRT pins to the disabled state.</para>
+<para>The proper way to de-initialize the MAX17048 would be to manually disable all of its interrupts (or set those with thresholds to min/max values that cannot be reached) and then place the device in sleep mode by calling <ref refid="group___m_a_x17048_1gaa417efb663c06cd2240cdeb63846a47e" kindref="member">max17048_enter_sleep()</ref>, which disables battery monitoring altogether.</para>
+<para><simplesect kind="note"><para>The purpose of de-initialization is to shutdown the MAX17048 as part of a complete shutdown sequence for an EFM32/EFR32-based system. Because driver de-initialization disables interrupt recognition, it is no longer possible to detect a battery swap, even though the MAX17048 will do so and assert ALRTn. Leave the driver initialized to handle ALRTn assertion on battery swap, even if the MAX17048 has been placed in sleep mode.</para>
+</simplesect>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_NOT_INITIALIZED if the driver is not initialized. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="251" column="13" declfile="D:/doxygen/src/max17048.h" declline="251" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1gaf66c5ab7163803d9d4f9b5c6beeb48c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_get_vcell</definition>
+        <argsstring>(uint32_t *vcell)</argsstring>
+        <name>max17048_get_vcell</name>
+        <param>
+          <type>uint32_t *</type>
+          <declname>vcell</declname>
+        </param>
+        <briefdescription>
+<para>This function returns the cell voltage in millivolts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">vcell</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The cell voltage expressed in millivolts as an integer. The function converts the raw output from the MAX17048 where 1 LSB = 78.125 uV/cell.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>SL_STATUS_OK if successful. Error code otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="262" column="13" declfile="D:/doxygen/src/max17048.h" declline="262" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga6ac6d8d7bb558efbae9bb013b97bff22" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_get_soc</definition>
+        <argsstring>(uint32_t *soc)</argsstring>
+        <name>max17048_get_soc</name>
+        <param>
+          <type>uint32_t *</type>
+          <declname>soc</declname>
+        </param>
+        <briefdescription>
+<para>This function returns SOC as an integer %. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">soc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The state of charge [0-100%]</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>SL_STATUS_OK if successful. Error code otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="271" column="13" declfile="D:/doxygen/src/max17048.h" declline="271" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga1f3ff8a523f2a234df0e47965554160f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_get_crate</definition>
+        <argsstring>(float *crate)</argsstring>
+        <name>max17048_get_crate</name>
+        <param>
+          <type>float *</type>
+          <declname>crate</declname>
+        </param>
+        <briefdescription>
+<para>This function gets an approximate value for the average SOC rate of change. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">crate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The average rate of change in SOC in % as a floating point value. The CRATE register returns a value expressed at 1 LSB = 0.208% per hour. The value does not specifically reflect current consumption and cannot be converted to a current.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>SL_STATUS_OK if successful. Error code otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="284" column="13" declfile="D:/doxygen/src/max17048.h" declline="284" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1gaa1d1f3ab66a445b1289f38f1483b6425" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_register_temperature_callback</definition>
+        <argsstring>(max17048_temp_callback_t temp_cb)</argsstring>
+        <name>max17048_register_temperature_callback</name>
+        <param>
+          <type><ref refid="group___m_a_x17048_1ga680a8aa2a20465cfbcb7fdf9208c5e77" kindref="member">max17048_temp_callback_t</ref></type>
+          <declname>temp_cb</declname>
+        </param>
+        <briefdescription>
+<para>Register the temperature update callback for the MAX17048 driver. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is used to register a callback that periodically updates the temperature of the battery monitored by the MAX17048. By default, the driver uses the EMU temperature sensor on Series 2 EFM32/EFR32 devices.</para>
+<para>However, in order for this sensor to accurately reflect the battery temperature, the MCU must be underneath (e.g. on the side of the PCB opposite) or immediately adjacent to the battery.</para>
+<para>In cases where this is not possible, the battery temperature can be provided to the driver from another source, such as an external temperature sensor that is integrated with the battery or mounted in close proximity to it. The driver imposes no particular requirements on the source of the temperature other than that it is provided as a signed integer in degrees Celsius.</para>
+<para><simplesect kind="note"><para>The driver permits only one temperature update callback function to be registered. Attempting to register another callback returns an error.</para>
+</simplesect>
+Firmware can unregister the current callback function, in which case the driver will revert to using the EMU temperature sensor. This can be useful to further reduce overall current draw in cases where the system enters a low-power, quiescent state such that the temperature reported by the EMU sensor is effectively the same as the battery temperature.</para>
+<para>There is no attempt to synchronize expiration of the software timer that updates the MAX17048&apos;s compensation factor (RCOMP) with registration of the user-provided callback function. If the software timer expires and no callback has been registered, the EMU sensor&apos;s output is used.</para>
+<para>This can be a concern if the user callback function does not actually read the temperature from whatever alternate source is used but instead simply returns a value that is updated in some asynchronous fashion. If firmware does not seed the callback function with an accurate battery temperature, the MAX17408 could report an erroneous SOC.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">temp_cb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>User-defined function to return the battery temperature to the driver.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_NULL_POINTER if the callback is NULL.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_ALREADY_INITIALIZED if a callback has already been initialized. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="341" column="13" declfile="D:/doxygen/src/max17048.h" declline="341" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga42e42578f78e2d4d25ef8c875dc6f96e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_unregister_temperature_callback</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_unregister_temperature_callback</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Unregister the temperature update callback for the MAX17048 driver. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This is the opposite of <ref refid="group___m_a_x17048_1gaa1d1f3ab66a445b1289f38f1483b6425" kindref="member">max17048_register_temperature_callback()</ref>. It unregisters the previously-registered temperature update callback function and causes the driver to revert to the output of the EMU temperature sensor when next updating the MAX17048&apos;s RCOMP value.</para>
+<para>There is no attempt to unregister the user-provided callback function before expiration of the software timer that updates RCOMP. If the timer expires and the callback is still registered, it must provide a valid temperature to the driver.</para>
+<para><simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_NOT_INITIALIZED if a callback has not previously been registered. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="365" column="13" declfile="D:/doxygen/src/max17048.h" declline="365" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga474f195b19fba6d349818c42f0853ced" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_set_update_interval</definition>
+        <argsstring>(uint32_t interval)</argsstring>
+        <name>max17048_set_update_interval</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>interval</declname>
+        </param>
+        <briefdescription>
+<para>Set the RCOMP update interval. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sets the temperature compensation factor (RCOMP) update interval. During driver initialization, the value specified by MAX17048_CONFIG_RCOMP_UPDATE_INTERVAL_MS is used and defaults to 1 minute (60000 ms). Effectively, it changes the timeout rate of the Sleeptimer periodic software timer callback that recalculates RCOMP and sends the updated value to the MAX17048.</para>
+<para><simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_INVALID_PARAMETER if interval &lt; 1000 or interval &gt; 60000. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="385" column="13" declfile="D:/doxygen/src/max17048.h" declline="385" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga2e14c854a21af022ebd49b78b520e8d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t max17048_get_update_interval</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_get_update_interval</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get the RCOMP update interval. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function returns the interval at which the driver updates the MAX17048 temperature compensation factor (RCOMP). It is the timeout rate of the Sleeptimer periodic software timer callback that recalculates RCOMP and sends the updated value to the MAX17048. *</para>
+<para><simplesect kind="return"><para><itemizedlist>
+<listitem><para>Update rate in milliseconds. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="400" column="10" declfile="D:/doxygen/src/max17048.h" declline="400" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga6c4dd46a920d4d1e44bb868038c692fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void max17048_mask_interrupts</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_mask_interrupts</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Mask MAX17048 interrupts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This disables the high-to-low edge detection on the GPIO pin connected to the MAX17048 ALRTn output. The MAX17048 itself does not have any way to globally enable/disable interrupts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="422" column="6" declfile="D:/doxygen/src/max17048.h" declline="422" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga048dfd6319ccc78e656d5f2819357c7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void max17048_unmask_interrupts</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_unmask_interrupts</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Unmask MAX17048 interrupts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This enables the high-to-low edge detection on the GPIO pin connected to the MAX17048 ALRTn output. The MAX17048 itself does not have any way to globally enable/disable interrupts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="433" column="6" declfile="D:/doxygen/src/max17048.h" declline="433" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1gaa8c520e91572655c43d29e586bfc2686" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_enable_soc_interrupt</definition>
+        <argsstring>(max17048_interrupt_callback_t irq_cb, void *cb_data)</argsstring>
+        <name>max17048_enable_soc_interrupt</name>
+        <param>
+          <type><ref refid="group___m_a_x17048_1ga5328c547b89d1e336b44390abc4965d0" kindref="member">max17048_interrupt_callback_t</ref></type>
+          <declname>irq_cb</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>cb_data</declname>
+        </param>
+        <briefdescription>
+<para>Enables the MAX17048 state-of-charge (SOC) interrupt and registers a user-provided callback function to respond to it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function enables the SOC interrupt by writing a 1 to the ALSC bit in the MAX17048 CONFIG register. The interrupt is requested whenever SOC changes by at least 1%.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">irq_cb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>User-defined function to respond to the SOC interrupt.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">cb_data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to user data that will be passed to callback.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_NULL_POINTER if irq_cb or cb_data is NULL.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_ALREADY_INITIALIZED if a callback has already been initialized. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="459" column="13" declfile="D:/doxygen/src/max17048.h" declline="459" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1gad7a770f000e304210f9816b29f3f1868" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_disable_soc_interrupt</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_disable_soc_interrupt</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Disables the MAX17048 state-of-charge (SOC) interrupt and unregisters the user-provided callback function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function disables the SOC interrupt by writing a 0 to the ALSC bit in the MAX17048 CONFIG register.</para>
+<para><simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_NOT_INITIALIZED if a callback has not previously been registered. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="477" column="13" declfile="D:/doxygen/src/max17048.h" declline="477" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga4496efacef0e093d718a236029780ecc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_enable_empty_interrupt</definition>
+        <argsstring>(uint8_t athd, max17048_interrupt_callback_t irq_cb, void *cb_data)</argsstring>
+        <name>max17048_enable_empty_interrupt</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>athd</declname>
+        </param>
+        <param>
+          <type><ref refid="group___m_a_x17048_1ga5328c547b89d1e336b44390abc4965d0" kindref="member">max17048_interrupt_callback_t</ref></type>
+          <declname>irq_cb</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>cb_data</declname>
+        </param>
+        <briefdescription>
+<para>Enables the MAX17048 empty alert interrupt, sets its threshold, and registers a user-provided callback function to respond to it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The empty threshold alert interrupt is technically always active because it does not have a dedicated enable bit.</para>
+<para>However, the alert threshold is set by the ATHD field in the CONFIG register and is defined as 32 - ATHD. Because ATHD = 0x1C at POR, the empty threshold defaults to 4%.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">athd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Empty threshold specified as a percent between 1 and 32.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">irq_cb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>User-defined function to respond to the SOC of charge falling below the specified empty threshold level.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">cb_data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to user data that will be passed to callback.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_INVALID_PARAMETER if athd &lt; 1 or athd &gt; 32.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_NULL_POINTER if irq_cb or cb_data is NULL.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_ALREADY_INITIALIZED if a callback has already been initialized. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="512" column="13" declfile="D:/doxygen/src/max17048.h" declline="512" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga7b10be8d77646d016c1f42637d8fe551" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_disable_empty_interrupt</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_disable_empty_interrupt</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Disables the MAX17048 empty alert interrupt and unregisters the the user-provided callback function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The empty threshold alert interrupt is technically always active because it does not have a dedicated enable bit.</para>
+<para>As explained for the <ref refid="group___m_a_x17048_1ga4496efacef0e093d718a236029780ecc" kindref="member">max17048_enable_empty_interrupt()</ref> function the empty percent level is specified as 32 - ATHD, so setting a threshold of 1% (ATHD = 31) should prevent the interrupt from being requested and the driver will ignore it.</para>
+<para><simplesect kind="note"><para>Because the empty threshold interrupt cannot be disabled (e.g. there is a chance that in a very low-power system operation might be possible at 1% SOC), the user should consider disabling all driver interrupts and placing the MCU in a low-power mode and polling SOC at a very slow rate if battery swap is possible.</para>
+</simplesect>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_NOT_INITIALIZED if a callback has not previously been registered. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="543" column="13" declfile="D:/doxygen/src/max17048.h" declline="543" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga129619245c3f1ae5b376c537d734a7ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_set_empty_threshold</definition>
+        <argsstring>(uint8_t athd)</argsstring>
+        <name>max17048_set_empty_threshold</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>athd</declname>
+        </param>
+        <briefdescription>
+<para>Set the empty threshold. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sets the level at which the empty threshold alert interrupt is requested.</para>
+<para><simplesect kind="note"><para>Setting the empty level to 1% effectively disables the threshold alert interrupt and will cause the driver to ignore it, which means that no callback function is executed.</para>
+</simplesect>
+There is no requirement for a callback to be registered before changing the empty threshold. If one has not previously been registered, the driver will ignore the interrupt.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">athd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Empty threshold specified as a percent between 1 and 32.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_INVALID_PARAMETER if athd = 0 or athd &gt; 32. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="570" column="13" declfile="D:/doxygen/src/max17048.h" declline="570" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1gaf07d953475034869fee5623b842a5d26" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t max17048_get_empty_threshold</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_get_empty_threshold</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get the empty threshold. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 4% and is tracked in a private variable should it otherwise be changed.</para>
+</simplesect>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>Empty threshold between 1% and 32%. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="584" column="9" declfile="D:/doxygen/src/max17048.h" declline="584" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga2dc052e99940eb937d2648195ba8ec79" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_enable_vhigh_interrupt</definition>
+        <argsstring>(uint32_t valrt_max_mv, max17048_interrupt_callback_t irq_cb, void *cb_data)</argsstring>
+        <name>max17048_enable_vhigh_interrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>valrt_max_mv</declname>
+        </param>
+        <param>
+          <type><ref refid="group___m_a_x17048_1ga5328c547b89d1e336b44390abc4965d0" kindref="member">max17048_interrupt_callback_t</ref></type>
+          <declname>irq_cb</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>cb_data</declname>
+        </param>
+        <briefdescription>
+<para>Enables the MAX17048 voltage high alert interrupt, sets its threshold, and registers a user-provided callback function to respond to it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The voltage high alert interrupt is technically always active because it does not have a dedicated enable bit.</para>
+<para>However, the high alert level is set by the VALRT register MAX field, and if it is set to a voltage higher than the maximum VCELL level, the interrupt will never be requested. Because each LSB of MAX corresponds to 20 mV, a value of 0xFF is 5.1V, which is greater than the maximum output voltage of a single Li+ cell.</para>
+<para><simplesect kind="note"><para>The driver does not sanity check valrt_max. If the user sets valrt_max to a nonsensical value, e.g. 0, the interrupt will trigger constantly. There is also no requirement that valrt_max &gt; valrt_min.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">valrt_max_mv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>High voltage alert threshold in millivolts.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">irq_cb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>User-defined function to respond to VCELL &gt; valrt_max.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">cb_data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to user data that will be passed to callback.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_NULL_POINTER if irq_cb or cb_data is NULL.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_ALREADY_INITIALIZED if a callback has already been initialized. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="624" column="13" declfile="D:/doxygen/src/max17048.h" declline="624" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga3ceb5d1e51b85b9812f6e01c90f88324" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_disable_vhigh_interrupt</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_disable_vhigh_interrupt</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Disables the MAX17048 voltage high alert interrupt and unregisters the user-provided callback function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The voltage high alert interrupt is technically always active because it does not have a dedicated enable bit.</para>
+<para>However, the high alert level is set by the VALRT register MAX field, and if it is set to a voltage higher than the maximum VCELL level, the interrupt will never be requested. Because each LSB of MAX corresponds to 20 mV, a value of 0xFF is 5.1V, which is greater than the maximum output voltage of a single Li+ cell.</para>
+<para><simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_NOT_INITIALIZED if a callback has not previously been registered. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="649" column="13" declfile="D:/doxygen/src/max17048.h" declline="649" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga2222b6efb1cd395ebe51e14aa5e22c88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_set_vhigh_threshold</definition>
+        <argsstring>(uint32_t valrt_max_mv)</argsstring>
+        <name>max17048_set_vhigh_threshold</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>valrt_max_mv</declname>
+        </param>
+        <briefdescription>
+<para>Set the voltage high alert interrupt threshold. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sets the level at which the voltage high alert interrupt is requested.</para>
+<para><simplesect kind="note"><para>The driver does not sanity check valrt_max. If the user sets valrt_max to a nonsensical value, e.g. 0, the interrupt will trigger constantly. There is also no requirement that valrt_max &gt; valrt_min.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">valrt_max_mv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>High voltage alert threshold in millivolts.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="671" column="13" declfile="D:/doxygen/src/max17048.h" declline="671" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1gae239698bfaeec936f207d921b65e3caf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t max17048_get_vhigh_threshold</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_get_vhigh_threshold</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get the voltage high alert interrupt threshold. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 0xFF and is tracked in a private variable should it otherwise be changed.</para>
+</simplesect>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>High voltage alert threshold in millivolts. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="685" column="10" declfile="D:/doxygen/src/max17048.h" declline="685" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga44da5bcac4b8d24431134c43efc661db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_enable_vlow_interrupt</definition>
+        <argsstring>(uint32_t valrt_min_mv, max17048_interrupt_callback_t irq_cb, void *cb_data)</argsstring>
+        <name>max17048_enable_vlow_interrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>valrt_min_mv</declname>
+        </param>
+        <param>
+          <type><ref refid="group___m_a_x17048_1ga5328c547b89d1e336b44390abc4965d0" kindref="member">max17048_interrupt_callback_t</ref></type>
+          <declname>irq_cb</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>cb_data</declname>
+        </param>
+        <briefdescription>
+<para>Enables the MAX17048 voltage low alert interrupt, sets its threshold, and registers a user-provided callback function to respond to it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The voltage low alert interrupt is technically always active because it does not have a dedicated enable bit.</para>
+<para>However, the low alert level is set by the VALRT register MIN field, and if it is set to a voltage lower than the minimum VCELL level, the interrupt will never be requested. Because each LSB of MIN corresponds to 20 mV, a value of 0x0 is 0V, which is a voltage at which the system should not even be running.</para>
+<para><simplesect kind="note"><para>The driver does not sanity check valrt_min. If the user sets valrt_min to a nonsensical value, e.g. 0xFF, the interrupt will trigger constantly. There is also no requirement that valrt_max &gt; valrt_min.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">valrt_min_mv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Low voltage alert threshold in millivolts.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">irq_cb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>User-defined function to respond to VCELL &gt; valrt_max.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">cb_data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to user data that will be passed to callback.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_NULL_POINTER if irq_cb or cb_data is NULL.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_ALREADY_INITIALIZED if a callback has already been initialized. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="725" column="13" declfile="D:/doxygen/src/max17048.h" declline="725" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga5383af8dbe8910543f0cbd5cacb0b841" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_disable_vlow_interrupt</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_disable_vlow_interrupt</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Disables the MAX17048 voltage low alert interrupt and unregisters the user-provided callback function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The voltage low alert interrupt is technically always active because it does not have a dedicated enable bit.</para>
+<para>However, the low alert level is set by the VALRT register MIN field, and if it is set to a voltage lower than the minimum VCELL level, the interrupt will never be requested. Because each LSB of MAX corresponds to 20 mV, a value of 0x0 is 0V, which a voltage at which the system should not even be running.</para>
+<para><simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_NOT_INITIALIZED if a callback has not previously been registered. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="750" column="13" declfile="D:/doxygen/src/max17048.h" declline="750" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga4bbe2d0282a213364c9b00cb6476a5f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_set_vlow_threshold</definition>
+        <argsstring>(uint32_t valrt_min_mv)</argsstring>
+        <name>max17048_set_vlow_threshold</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>valrt_min_mv</declname>
+        </param>
+        <briefdescription>
+<para>Set the voltage low alert interrupt threshold. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sets the level at which the voltage low alert interrupt is requested.</para>
+<para><simplesect kind="note"><para>The driver does not sanity check valrt_min. If the user sets valrt_min to a nonsensical value, e.g. 0xFF, the interrupt will trigger constantly. There is also no requirement that valrt_max &gt; valrt_min.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">valrt_min_mv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Low voltage alert threshold in millivolts.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="772" column="13" declfile="D:/doxygen/src/max17048.h" declline="772" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga80360aaf5c8235fdfc1df138236231cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t max17048_get_vlow_threshold</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_get_vlow_threshold</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get the voltage low alert interrupt threshold. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 0x0 and is tracked in a private variable should it otherwise be changed.</para>
+</simplesect>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>Low voltage alert threshold in millivolts. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="786" column="10" declfile="D:/doxygen/src/max17048.h" declline="786" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga77d5f41ce5b13ed29b0cb796ccd2b723" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_enable_reset_interrupt</definition>
+        <argsstring>(uint32_t vreset_mv, max17048_interrupt_callback_t irq_cb, void *cb_data)</argsstring>
+        <name>max17048_enable_reset_interrupt</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>vreset_mv</declname>
+        </param>
+        <param>
+          <type><ref refid="group___m_a_x17048_1ga5328c547b89d1e336b44390abc4965d0" kindref="member">max17048_interrupt_callback_t</ref></type>
+          <declname>irq_cb</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>cb_data</declname>
+        </param>
+        <briefdescription>
+<para>Enables the MAX17048 reset alert interrupt, sets its threshold, and registers a user-provided callback function to respond to it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The reset alert interrupt is used to detect battery removal or a drop in the cell output voltage below which system functionality may be impaired. It is enabled by writing a 1 to the EnVr bit in the STATUS register.</para>
+<para>The reset threshold is a 7-bit value specified in units of 1 LSB = 40 mV.</para>
+<para><simplesect kind="note"><para>The driver does not fully sanity check vreset, and it is possible for the user to specify a nonsensical value that constantly triggers the interrupt. For example, vreset = 0x7F corresponds to a reset voltage of 5.08V, which is greater than the maximum output level of a single Li+ cell.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">vreset_mv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Low voltage alert threshold in millivolts.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">irq_cb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>User-defined function to respond to VCELL &gt; valrt_max.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">cb_data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to user data that will be passed to callback.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_NULL_POINTER if irq_cb or cb_data is NULL.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_ALREADY_INITIALIZED if a callback has already been initialized.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_INVALID_PARAMETER if vreset_mv &gt; 5080. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="828" column="13" declfile="D:/doxygen/src/max17048.h" declline="828" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga284f22aa25c9d4519842e8a2ac57c44f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_disable_reset_interrupt</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_disable_reset_interrupt</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Disables the MAX17048 reset alert interrupt and unregisters the user-provided callback function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The reset alert interrupt is disabled by writing a 1 to the EnVr bit in the STATUS register.</para>
+<para><simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_NOT_INITIALIZED if a callback has not previously been registered. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="847" column="13" declfile="D:/doxygen/src/max17048.h" declline="847" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1gab3b238189efc62b2cbab34f6e75a11ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_set_reset_threshold</definition>
+        <argsstring>(uint32_t vreset_mv)</argsstring>
+        <name>max17048_set_reset_threshold</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>vreset_mv</declname>
+        </param>
+        <briefdescription>
+<para>Set the reset alert interrupt threshold. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sets the level at which the reset alert interrupt is requested.</para>
+<para><simplesect kind="note"><para>The driver does not fully sanity check vreset, and it is possible for the user to specify a nonsensical value that constantly triggers the interrupt. For example, vreset = 0x7F corresponds to a reset voltage of 5.08V, which is greater than the maximum output level of a single Li+ cell.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">vreset_mv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Low voltage alert threshold in millivolts.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_INVALID_PARAMETER if vreset_mv &gt; 5080. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="872" column="13" declfile="D:/doxygen/src/max17048.h" declline="872" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1gadbf4aa694f3692200f09d4c1bc4d42d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t max17048_get_reset_threshold</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_get_reset_threshold</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get the reset alert interrupt threshold. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 0x4B and is tracked in a private variable should it otherwise be changed.</para>
+</simplesect>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>Reset alert threshold in millivolts. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="886" column="10" declfile="D:/doxygen/src/max17048.h" declline="886" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1gac461439fc7a6add30ddf2bf7d530e3b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_enable_auto_hibernate</definition>
+        <argsstring>(float hib_thr, uint32_t act_thr)</argsstring>
+        <name>max17048_enable_auto_hibernate</name>
+        <param>
+          <type>float</type>
+          <declname>hib_thr</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>act_thr</declname>
+        </param>
+        <briefdescription>
+<para>Enables MAX17048 automatic hibernation by setting the activity and CRATE (rate of discharge/charge) thresholds to non-min/max values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Hibernate allows the MAX17048 to reduce its current draw from a typical of 23 uA in active mode to 4 uA or less by increasing the ADC sampling interval from 250 ms to 45 seconds.</para>
+<para>Automatic hibernation happens when the CRATE is less than the user-specified threshold. Similarly, exit from hibernate is automatic if any single VCELL reading exceeds the user-specified activity threshold.</para>
+<para>As the datasheet notes, writing 0xFFFF to HIBRT forces use of automatic hibernation; similarly, 0x0000 disables. It follows, then, that a hybrid use case is possible. Setting the HIBRT register HIBTHR and ACTTHR fields to 0xFF and 0x0, respectively, will keep the device in hibernate mode with no way to exit.</para>
+<para><simplesect kind="note"><para>The driver does not allow a use case where hib_thr = 0% and act_thr != 0x0 mV, in other words, hibernate is disabled but an activity level to cause exit from hibernate is specified. The datasheet does not specify what would happen in this case.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">hib_thr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>CRATE threshold below which the MAX17048 enters hibernate mode as an percent.</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">act_thr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Exit hibernate mode when VCELL changes by greater than the specified amount in millivolts.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success.</para>
+</listitem>
+</itemizedlist>
+<itemizedlist>
+<listitem><para>SL_STATUS_INVALID_PARAMETER if hib_thr = 0 and act_thr != 0. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="929" column="13" declfile="D:/doxygen/src/max17048.h" declline="929" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga84261f39f5f2b4f65376469aa5af7534" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_disable_auto_hibernate</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_disable_auto_hibernate</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Disables automatic hibernation by setting the activity and CRATE thresholds to 0x0. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="939" column="13" declfile="D:/doxygen/src/max17048.h" declline="939" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1gaf0f4e9bbb181649b9655eb5643892710" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_set_hibernate_threshold</definition>
+        <argsstring>(float hib_thr)</argsstring>
+        <name>max17048_set_hibernate_threshold</name>
+        <param>
+          <type>float</type>
+          <declname>hib_thr</declname>
+        </param>
+        <briefdescription>
+<para>Set the hibernate threshold level. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sets the CRATE threshold level evaluated my the MAX17048 to determine whether or not to enter hibernate mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">hib_thr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Hibernate threshold in charge/discharge in percent.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="955" column="13" declfile="D:/doxygen/src/max17048.h" declline="955" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga4d5512602578226a49a978c7e652d5ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float max17048_get_hibernate_threshold</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_get_hibernate_threshold</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get the hibernate threshold level. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 0x80 and is tracked in a private variable should it otherwise be changed.</para>
+</simplesect>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>Hibernate threshold in charge/discharge in percent. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="969" column="7" declfile="D:/doxygen/src/max17048.h" declline="969" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga93e51267fe944a8e78c730cc78e6f9d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_set_activity_threshold</definition>
+        <argsstring>(uint32_t act_thr)</argsstring>
+        <name>max17048_set_activity_threshold</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>act_thr</declname>
+        </param>
+        <briefdescription>
+<para>Set the activity threshold level. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sets the VCELL threshold level evaluated my the MAX17048 to determine whether or not to exit hibernate mode.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">act_thr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Activity threshold (VCELL level change) in millivolts.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="985" column="13" declfile="D:/doxygen/src/max17048.h" declline="985" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1gab4dc2d4edfa30523a67483e344f5b989" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t max17048_get_activity_threshold</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_get_activity_threshold</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get the activity threshold level. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>The driver does not poll the MAX17048 to retrieve this value. At initialization it is assumed to be the default level of 0x30 and is tracked in a private variable should it otherwise be changed.</para>
+</simplesect>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>Activity threshold (VCELL level) in millivolts. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="999" column="10" declfile="D:/doxygen/src/max17048.h" declline="999" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga55975d771f83912b68cd55b059a01e38" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_enable_reset_comparator</definition>
+        <argsstring>(bool enable)</argsstring>
+        <name>max17048_enable_reset_comparator</name>
+        <param>
+          <type>bool</type>
+          <declname>enable</declname>
+        </param>
+        <briefdescription>
+<para>Disabling the MAX17048 reset comparator in hibernate mode reduces current consumption by 0.5 uA. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The reset comparator is disabled by writing a 1 to the Dis bit in the VRESET/ID register.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">enable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><itemizedlist>
+<listitem><para>true - Enable the reset comparator in hibernate mode. </para>
+</listitem>
+<listitem><para>false - Disable the reset comparator in hibernate mode.</para>
+</listitem>
+</itemizedlist>
+</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="1017" column="13" declfile="D:/doxygen/src/max17048.h" declline="1017" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga66daaef0642f1f20fb6a7583a31df836" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_get_hibernate_state</definition>
+        <argsstring>(max17048_hibstate_t *hibstat)</argsstring>
+        <name>max17048_get_hibernate_state</name>
+        <param>
+          <type><ref refid="group___m_a_x17048_1ga3f9e19d54b68f884baa1de9580909b33" kindref="member">max17048_hibstate_t</ref> *</type>
+          <declname>hibstat</declname>
+        </param>
+        <briefdescription>
+<para>Check if the MAX17048 is in hibernate mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>The driver only polls the MAX17048 to determine if the device is in hibernate mode if the user has enabled it. By default, the driver manually enters/exits hibernate by writing the appropriate values to HIBRT upon EM2/3 entry/exit in response to Power Manager sl_power_manager_subscribe_em_transition_event() notifications.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">hibstat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><itemizedlist>
+<listitem><para>activeMode - Device is in active mode </para>
+</listitem>
+<listitem><para>hibernateMode - Device is in hibernate mode</para>
+</listitem>
+</itemizedlist>
+</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="1037" column="13" declfile="D:/doxygen/src/max17048.h" declline="1037" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1gaa417efb663c06cd2240cdeb63846a47e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_enter_sleep</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_enter_sleep</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Places the MAX17048 into sleep mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Sleep mode offers the lowest current consumption, but it cannot be used as a substitute for hibernate mode. All monitoring is disabled in sleep mode. Any discharging (or charging) of the battery, which would happen even if the EFM32/EFR32 is in a low energy mode, would not be detected and would inject error into the SOC calculations that will accumulate over time.</para>
+<para>The driver places the MAX17048 in sleep mode by first writing a 1 to the EnSleep bit in the the MODE register and then by writing a 1 to the SLEEP bit in the CONFIG register.</para>
+<para><simplesect kind="note"><para>Although sleep mode is not suitable for normal operation of the MAX17048, it would be appropriate in EM4 when the only possible wake-up event is a power-on reset (POR) caused by battery replacement.</para>
+</simplesect>
+<simplesect kind="note"><para>It is possible to force exit from sleep mode by writing a 0 to the CONFIG register SLEEP bit. POR also exits sleep mode.</para>
+</simplesect>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="1068" column="13" declfile="D:/doxygen/src/max17048.h" declline="1068" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga6540b9afc85e8af172dd3fc3435bd95f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_exit_sleep</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_exit_sleep</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Forces the MAX17048 to exit sleep mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Although the proper exit mechanism from sleep mode would be a POR, as this causes the device to quick start its battery SOC calculations, it is possible to force exit from sleep mode by writing a 0 to the SLEEP bit in the CONFIG register.</para>
+<para><simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="1083" column="13" declfile="D:/doxygen/src/max17048.h" declline="1083" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga2ff3d5ffd024c3d275a9258848d8ef52" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_force_reset</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_force_reset</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Forces the MAX17048 to initiate a power-on reset (POR). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>In general, POR should be detected using the MAX17048 reset comparator and its associated interrupt. However, it is possible to manually initiate a POR by writing 0x5400 to the CMD register.</para>
+<para><simplesect kind="note"><para>The MAX17048 will issue the reset immediately after the last bit of the command is clocked into the CMD register and will not ACK the transfer.</para>
+</simplesect>
+<simplesect kind="note"><para>The reset command forces all MAX17048 registers to their default values. The driver must update its private tracking variables to reflect this.</para>
+</simplesect>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="1107" column="13" declfile="D:/doxygen/src/max17048.h" declline="1107" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1gaeea62c82e1684456b987571a306a9d0b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_force_quick_start</definition>
+        <argsstring>(void)</argsstring>
+        <name>max17048_force_quick_start</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Forces the MAX17048 to initiate a battery quick start. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>In general, POR should handle most battery swap events. However, if the battery cannot reach a fully relaxed state during the initial 17 ms POR window, it is possible to manually force the MAX17048 to perform initial VCELL measurements.</para>
+<para>If the user has enabled hardware quick start by #defining MAX17048_CONFIG_ENABLE_HW_QSTRT and specifying the GPIO pin to which the QSTRT input is connected, the driver will use this option as it offers the lowest latency. Otherwise, the driver will initiate quick start by writing a 1 to the QuickStart bit in the MODE register.</para>
+<para><simplesect kind="note"><para>The rising edge on QSTRT initiates the quick start, however Maxim does not provide any timing specifications for the pin. Presumably, if QSTRT were to go low and then high again during the VCELL sampling window (which looks to be 17 ms based on the discussion of what happens after POR), another quick start would be initiated.</para>
+</simplesect>
+For this reason, it driver keeps QSTRT high for 1 ms before de-asserting it. This is implemented with a Sleeptimer one-shot software timer whose callback de-asserts the pin.</para>
+<para><simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="1141" column="13" declfile="D:/doxygen/src/max17048.h" declline="1141" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga03d04668c5e05b32e99b42edb87bacdd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_load_model</definition>
+        <argsstring>(const uint8_t *model)</argsstring>
+        <name>max17048_load_model</name>
+        <param>
+          <type>const uint8_t *</type>
+          <declname>model</declname>
+        </param>
+        <briefdescription>
+<para>Load a custom model into the MAX17048 and enable it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function unlocks the TABLE registers by writing 0x57 to address 0x3F and 0x4A to address 0x3E. While the model is unlocked, battery status is not updated. The TABLE registers are loaded and re-locked as quickly as possible by writing 0x00 to address 0x3F and 0x00 to address 0x3E.</para>
+<para><simplesect kind="note"><para>By definition, a custom model consists of 64 bytes, written to the MAX17048 TABLE registers 16 bits at a time.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">model</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to the 64-byte model array.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="1164" column="13" declfile="D:/doxygen/src/max17048.h" declline="1164" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1gafca203ef5ad76c5b9d57929c4474527d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_get_id</definition>
+        <argsstring>(uint8_t *id)</argsstring>
+        <name>max17048_get_id</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Returns the one-time factory-programmable identifier value stored in the ID register. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value stored in the ID register.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="1177" column="13" declfile="D:/doxygen/src/max17048.h" declline="1177" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="group___m_a_x17048_1ga85e3127bce3f3b2e6f5c3a5577b643ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sl_status_t</type>
+        <definition>sl_status_t max17048_get_production_version</definition>
+        <argsstring>(uint16_t *ver)</argsstring>
+        <name>max17048_get_production_version</name>
+        <param>
+          <type>uint16_t *</type>
+          <declname>ver</declname>
+        </param>
+        <briefdescription>
+<para>Provides the production version of the MAX17048 by reading the contents of the VERSION register. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">ver</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value stored in the VERSION register.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><itemizedlist>
+<listitem><para>SL_STATUS_OK on success. </para>
+</listitem>
+</itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="1190" column="13" declfile="D:/doxygen/src/max17048.h" declline="1190" declcolumn="13"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group___m_a_x17048_1gad18d04ec118ab0962300eb72a365a089" prot="public" static="no">
+        <name>MAX17048_VCELL</name>
+        <initializer>(0x02)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="88" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga46960eef5e1b976c51ea1af855b9bc25" prot="public" static="no">
+        <name>MAX17048_SOC</name>
+        <initializer>(0x04)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="89" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga1f97d2c264bda1506bb394b76952d668" prot="public" static="no">
+        <name>MAX17048_MODE</name>
+        <initializer>(0x06)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="90" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1gaeadf1d01748b9f2ce99cd650f5ac1f8a" prot="public" static="no">
+        <name>MAX17048_VERSION</name>
+        <initializer>(0x08)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="91" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga22ad66ab522c629bca5456cdd3d995ae" prot="public" static="no">
+        <name>MAX17048_HIBRT</name>
+        <initializer>(0x0A)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="92" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga72457691e72a85d539f4c78a271574b5" prot="public" static="no">
+        <name>MAX17048_CONFIG</name>
+        <initializer>(0x0C)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="93" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga381d1da4ebdb35c17c8c7a55a92a2f54" prot="public" static="no">
+        <name>MAX17048_VALRT</name>
+        <initializer>(0x14)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="94" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga1909059608f46f80515b03891dd8ca2e" prot="public" static="no">
+        <name>MAX17048_CRATE</name>
+        <initializer>(0x16)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="95" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1gafc6effc1d6d1447c98d622682d0a00c9" prot="public" static="no">
+        <name>MAX17048_VRESET_ID</name>
+        <initializer>(0x18)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="96" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga595d6834a4ce62954a8591f98a57d7ae" prot="public" static="no">
+        <name>MAX17048_STATUS</name>
+        <initializer>(0x1A)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="97" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga568e86cb5e3b47028a76f0a5dac76d9c" prot="public" static="no">
+        <name>MAX17048_CMD</name>
+        <initializer>(0xFE)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="98" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga3815765b79fb6afc16b7d799aca8e9cb" prot="public" static="no">
+        <name>MAX17048_LOCK_TABLE</name>
+        <initializer>(0x3E)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="99" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga549981c6144a81a66a6ab83cba7df0e2" prot="public" static="no">
+        <name>MAX17048_TABLE</name>
+        <initializer>(0x40)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="100" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga9955de550d905c4084ec11fc7d9bca32" prot="public" static="no">
+        <name>MAX17048_RESET_UPPER_BYTE</name>
+        <initializer>(0x54)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="102" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1gac7dde769e390a5fe36bdb3d5865c7aae" prot="public" static="no">
+        <name>MAX17048_RESET_LOWER_BYTE</name>
+        <initializer>(0x00)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="103" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga43ccabd130769de4cf8a8e9494c0e7b2" prot="public" static="no">
+        <name>MAX17048_RCOMP0</name>
+        <initializer>(0x97)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="104" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1gabce42f0771b71890c73246b4c15b7ae1" prot="public" static="no">
+        <name>MAX17048_UNLOCK_UPPER_BYTE</name>
+        <initializer>(0x4A)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="105" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga18d3a68c08cb89b4c9e96020e363739d" prot="public" static="no">
+        <name>MAX17048_UNLOCK_LOWER_BYTE</name>
+        <initializer>(0x57)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="106" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga415d03ab36f399aae1f9ce5c90026393" prot="public" static="no">
+        <name>MAX17048_LOCK</name>
+        <initializer>(0x00)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="107" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga21c7272fcd79c87475e5ad2998bab87e" prot="public" static="no">
+        <name>MAX17048_MODE_HIBSTAT</name>
+        <initializer>(1 &lt;&lt; 4)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="110" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga32cb6c39e1a2353b4fc5c60b7d162f0d" prot="public" static="no">
+        <name>MAX17048_MODE_ENSLEEP</name>
+        <initializer>(1 &lt;&lt; 5)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="111" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga8033ee361e239254a4a1bd762fc705d4" prot="public" static="no">
+        <name>MAX17048_MODE_QUICK_START</name>
+        <initializer>(1 &lt;&lt; 6)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="112" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga4b78520e5c9c22ae01ed7f2dc1b66488" prot="public" static="no">
+        <name>MAX17048_CONFIG_ALRT</name>
+        <initializer>(1 &lt;&lt; 5)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="115" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga8c0549215686af1f6e4a221c67e82526" prot="public" static="no">
+        <name>MAX17048_CONFIG_ALSC</name>
+        <initializer>(1 &lt;&lt; 6)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="116" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga9e7356f488cb416dff4e701e1d7ec53a" prot="public" static="no">
+        <name>MAX17048_CONFIG_SLEEP</name>
+        <initializer>(1 &lt;&lt; 7)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="117" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga2da326174e04ead4f165b6d94779c7f9" prot="public" static="no">
+        <name>MAX17048_STATUS_RI</name>
+        <initializer>(1 &lt;&lt; 0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="120" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1gafb35403a4fa4d97a7a9c2d2c9b583d70" prot="public" static="no">
+        <name>MAX17048_STATUS_ENVR</name>
+        <initializer>(1 &lt;&lt; 6)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="121" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga0f962a3c7b6d5524900bffb72205758e" prot="public" static="no">
+        <name>MAX17048_ALERT_VH</name>
+        <initializer>(1 &lt;&lt; 0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="124" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga4110bd8855b3c5c9a9435b5a8c9912a2" prot="public" static="no">
+        <name>MAX17048_ALERT_VL</name>
+        <initializer>(1 &lt;&lt; 1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="125" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1gaf3c3c0a4243067010b17df8dc7d631ce" prot="public" static="no">
+        <name>MAX17048_ALERT_VR</name>
+        <initializer>(1 &lt;&lt; 2)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="126" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1gafc11ecf3cb7be5c29c3ac7440d84809e" prot="public" static="no">
+        <name>MAX17048_ALERT_HD</name>
+        <initializer>(1 &lt;&lt; 3)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="127" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1gaf441f20633e027c58d7838dac019db20" prot="public" static="no">
+        <name>MAX17048_ALERT_SC</name>
+        <initializer>(1 &lt;&lt; 4)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="128" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga6fefa1d2963f1d6517af0f1876662fec" prot="public" static="no">
+        <name>MAX17048_ALERT_SHIFT</name>
+        <initializer>(1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="129" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga7388a43c725b673ee571d182668189a6" prot="public" static="no">
+        <name>MAX17048_VRESET_DIS</name>
+        <initializer>(1 &lt;&lt; 0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="132" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga89727665efe3e3de5ee8b37f4490eaa9" prot="public" static="no">
+        <name>MAX17048_VRESET_SHIFT</name>
+        <initializer>(1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="133" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga6f0bd62f7d8985a536225b0ccfeabede" prot="public" static="no">
+        <name>MAX17048_VCELL_RESOLUTION</name>
+        <initializer>(78125)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="136" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1gabf9c60ab8c227f18d5e9f3c612201504" prot="public" static="no">
+        <name>MAX17048_SOC_RESOLUTION</name>
+        <initializer>(256)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="138" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga1726fcc00f61e75fca060568b48f3e3e" prot="public" static="no">
+        <name>MAX17048_VALRT_RESOLUTION</name>
+        <initializer>(20)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="140" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga74d47433955c7bd14775e8c3276b026c" prot="public" static="no">
+        <name>MAX17048_VRESET_RESOLUTION</name>
+        <initializer>(40)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="142" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga3a139f579b94dfe65748abadaaff185b" prot="public" static="no">
+        <name>MAX17048_CRATE_RESOLUTION</name>
+        <initializer>(0.208)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="144" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga7762094927fa353cb3d55ef1d2068af4" prot="public" static="no">
+        <name>MAX17048_HIBTHR_RESOLUTION</name>
+        <initializer>(0.208)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="146" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1gac7721869818d616c7c742f15de5037de" prot="public" static="no">
+        <name>MAX17048_ACTTHR_RESOLUTION</name>
+        <initializer>(1250)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="148" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga558b020c6f2a720bd7dd17929155ca2d" prot="public" static="no">
+        <name>MAX17048_VALRT_MAX_MV</name>
+        <initializer>(MAX17048_VALRT_RESOLUTION * 255)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="150" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1gac3b10685cd3fec0f4b0a0801aa8e2bda" prot="public" static="no">
+        <name>MAX17048_VALRT_MIN_MV</name>
+        <initializer>(MAX17048_VALRT_RESOLUTION * 255)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="151" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga9b02b31fa06c04f4afdfc9d816b343d9" prot="public" static="no">
+        <name>MAX17048_VRESET_MV</name>
+        <initializer>(MAX17048_VRESET_RESOLUTION * 127)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="152" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1gacb6b70341ad64db0b4498c8684d77a4a" prot="public" static="no">
+        <name>MAX17048_HIBTHR_PERCENT</name>
+        <initializer>(MAX17048_HIBTHR_RESOLUTION * 255)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="153" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga39c59dc67da0d7e5aafa195402551b95" prot="public" static="no">
+        <name>MAX17048_ACTTHR_MV</name>
+        <initializer>(MAX17048_ACTTHR_RESOLUTION * 255)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="154" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga188c2af36326bc9adfcac7d5f8a42511" prot="public" static="no">
+        <name>RCOMP0</name>
+        <initializer>(0x97)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="156" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1gae6d43dfbe91293feebc30004cae57beb" prot="public" static="no">
+        <name>TEMP_CO_UP</name>
+        <initializer>(-0.5)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="157" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1gafa8c9f869649af21f3e8bfa01182cdd6" prot="public" static="no">
+        <name>TEMP_CO_DOWN</name>
+        <initializer>(5.0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="158" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group___m_a_x17048_1ga7ad22ac7251eec063c2aaf2adc723471" prot="public" static="no">
+        <name>MAX17048_ENUM</name>
+        <param><defname>name</defname></param>
+        <initializer>typedef uint8_t name; enum name##_enum</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/src/max17048.h" line="160" column="9" bodyfile="D:/doxygen/src/max17048.h" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Driver for the MAX17048/MAX17049 Fuel Gauge. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><linebreak/>
+ </para>
+<sect1 id="group___m_a_x17048_1max17048_example">
+<title>MAX17048 example</title>
+<para>Basic example for performing measurement: <linebreak/>
+ <linebreak/>
+ <verbatim>#include &quot;sl_i2cspm_instances.h&quot;
+#include &quot;max17048.h&quot;
+
+int main( void )
+{
+
+  ...
+
+  uint8_t id;
+  uint32_t soc;
+  uint32_t vcell;
+
+  max17048_init(sl_i2cspm_sensor_env);
+  // read the ID
+  max17048_get_id(&amp;id);
+  max17048_get_vcell(&amp;vcell);
+  max17048_get_soc(&amp;soc);
+
+  ...
+
+} </verbatim> </para>
+</sect1>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

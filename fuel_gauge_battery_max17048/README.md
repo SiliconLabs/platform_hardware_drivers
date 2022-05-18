@@ -4,6 +4,10 @@
 
 This project shows the implementation of an I2C Fuel Gauge driver using the MAX17048EVKIT Evalue Kit from the Maxim Integrated with the EFR32xG21 Radio Board and the Wireless Starter Kit Mainboard.
 
+The block diagram of this example is shown in the image below:
+
+![overview](doc/images/overview.png)
+
 ## Gecko SDK Version ##
 
 GSDK v4.0.2
@@ -18,9 +22,11 @@ GSDK v4.0.2
 
 - [Lithium Ion Battery](https://www.sparkfun.com/products/13851)
 
+- A high power resistor (e.g 220Ω/5W) is as the load of the battery.
+
 ## Connections Required ##
 
-We can use some [Wire Jumpers Female to Female](https://www.mikroe.com/wire-jumpers-female-to-female-30cm-10pcs) to connect between the EFR32xG21 Wireless Starter Kit and the MAX17048XEVKIT Evalue Kit, and between the MAX17048XEVKIT Evalue Kit and the Lithium Ion Battery as shown below.
+We can use some [Wire Jumpers Female to Female](https://www.mikroe.com/wire-jumpers-female-to-female-30cm-10pcs) to connect between the EFR32xG21 Wireless Starter Kit and the MAX17048XEVKIT Evalue Kit, and between the MAX17048XEVKIT Evalue Kit to the Lithium Ion Battery and the load as shown below.
 
 ![connection](doc/images/connection.png)
 
@@ -94,9 +100,9 @@ The APIs of the driver can be grouped into as follows:
   
      The driver is using an I2C module that is connected to the MAX17048. This function does not write to any of the MAX17048 registers.
 
-     For initialization, It assigns the I2C used to communicate with the device, configures the GPIO(s) used for the ALRTn and optional QSTRT pin(s), and starts a software timer to trigger temperature (RCOMP) updates at the user-specified rate.
+     For initialization, it assigns the I2C used to communicate with the device, configures the GPIO(s) used for the ALRTn and optional QSTRT pin(s), and starts a software timer to trigger temperature (RCOMP) updates at the user-specified rate.
 
-     For de-initialization, Its sole purpose is to return the GPIO pin(s) used for the ALRTn and optional QSTRT pins to the disabled state. Manually disable all of its interrupts (or set those with thresholds to min/max values that cannot be reached) and then place the device in sleep mode by calling max17048_enter_sleep(), which disables battery monitoring altogether.
+     For de-initialization, its sole purpose is to return the GPIO pin(s) used for the ALRTn and optional QSTRT pins to the disabled state. Manually disable all of its interrupts (or set those with thresholds to min/max values that cannot be reached) and then place the device in sleep mode by calling max17048_enter_sleep(), which disables battery monitoring altogether.
 
      - Initalize the MAX17048 driver with the values provided in the max17048_config.h file:
 
@@ -134,7 +140,7 @@ The APIs of the driver can be grouped into as follows:
 
 3. Temperature measurement
 
-     The MAX17048 requires updates to the RCOMP temperature compensation factor at least once every minute. The driver create a periodic Sleeptimer software timer that retrieves the temperature and updates the MAX17048 CONFIG register with an updated RCOMP value calculated from the temperature. The driver allows the user to select one of two temperature measurement options that is used upon expiration of the periodic Sleeptimer: EMU temperature sensor or User-provided temperature measurement callback function.
+     The MAX17048 requires updates to the RCOMP temperature compensation factor at least once every minute. The driver creates a periodic Sleeptimer software timer that retrieves the temperature and updates the MAX17048 CONFIG register with an updated RCOMP value calculated from the temperature. The driver allows the user to select one of two temperature measurement options that is used upon expiration of the periodic Sleeptimer: EMU temperature sensor or User-provided temperature measurement callback function.
 
      Some of the APIs in this group can be listed as:
 
@@ -170,7 +176,7 @@ The APIs of the driver can be grouped into as follows:
 
 4. Interrupt Management
 
-     The MAX17048 has several interrupt sources. The state of these interrupts is determined by polling the STATUS register in response to assertion of the active-low ALRTn pin. The driver use a GPIO pin to connect to the MAX17048 active-low ALRTn pin. The MAX17048 does not have a global interrupt enable/disable bit. However, assertion of the active-low ALRTn pin is controlled by the ALRT global alert status bit in the CONFIG register. After clearing the specific alert source by writing a 0 to its corresponding STATUS register bit, it is also necessary to write a 0 to the CONFIG register ALRT bit to 0 to de-assert the ALRTn pin.
+     The MAX17048 has several interrupt sources. The state of these interrupts is determined by polling the STATUS register in response to assertion of the active-low ALRTn pin. The driver uses a GPIO pin to connect to the MAX17048 active-low ALRTn pin. The MAX17048 does not have a global interrupt enable/disable bit. However, assertion of the active-low ALRTn pin is controlled by the ALRT global alert status bit in the CONFIG register. After clearing the specific alert source by writing a 0 to its corresponding STATUS register bit, it is also necessary to write a 0 to the CONFIG register ALRT bit to 0 to de-assert the ALRTn pin.
 
      The driver provides a way to enable and register callbacks for the following interrupts:
 

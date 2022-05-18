@@ -37,17 +37,22 @@
 
 #include <stdint.h>
 #include <stddef.h>
+
+#include "em_gpio.h"
+#include "gpiointerrupt.h"
+#include "tempdrv.h"
+
 #include "sl_status.h"
 #include "sl_i2cspm.h"
-#include "tempdrv.h"
+#include "sl_sleeptimer.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /***************************************************************************//**
- * @addtogroup max17048 - Fuel Gauge Sensor
- * @brief Driver for the max17048/max17049 Fuel Gauge
+ * @addtogroup MAX17048 - Fuel Gauge Sensor
+ * @brief Driver for the MAX17048/MAX17049 Fuel Gauge
 
 
    @n @section max17048_example MAX17048 example
@@ -63,6 +68,7 @@ extern "C" {
 
      ...
 
+     uint8_t id;
      uint32_t soc;
      uint32_t vcell;
 
@@ -93,38 +99,52 @@ extern "C" {
 #define MAX17048_LOCK_TABLE           (0x3E)   // Address of lock register
 #define MAX17048_TABLE                (0x40)   // Address of TABLE register
 
-#define MAX17048_RESET_MSB            (0x54)   // MSB - Reset value
-#define MAX17048_RESET_LSB            (0x00)   // LSB - Reset value
+#define MAX17048_RESET_UPPER_BYTE     (0x54)   // Upper byte of reset value
+#define MAX17048_RESET_LOWER_BYTE     (0x00)   // Lower byte of reset value
 #define MAX17048_RCOMP0               (0x97)   // POR value of RCOMP
-#define MAX17048_UNLOCK_MSB           (0x4A)   // MSB - Unlock value
-#define MAX17048_UNLOCK_LSB           (0x57)   // LSB - Unlock value
+#define MAX17048_UNLOCK_UPPER_BYTE    (0x4A)   // Upper byte of unlock value
+#define MAX17048_UNLOCK_LOWER_BYTE    (0x57)   // Lower byte of unlock value
 #define MAX17048_LOCK                 (0x00)   // Lock value
 
-/* MODE Register */
-#define MAX17048_MODE_HIBSTAT_BIT     (4)
-#define MAX17048_MODE_ENSLEEP_BIT     (5)
-#define MAX17048_MODE_QUICK_START_BIT (6)
+// MODE Register
+#define MAX17048_MODE_HIBSTAT         (1 << 4)
+#define MAX17048_MODE_ENSLEEP         (1 << 5)
+#define MAX17048_MODE_QUICK_START     (1 << 6)
 
-/* CONFIG Register */
-#define MAX17048_CONFIG_SLEEP_BIT     (7)
-#define MAX17048_CONFIG_ALSC_BIT      (6)
-#define MAX17048_CONFIG_ALRT_BIT      (5)
-#define MAX17048_VRESET_DIS_BIT       (0)
-#define MAX17048_STATUS_ENVR_BIT      (6)
+// CONFIG Register
+#define MAX17048_CONFIG_ALRT          (1 << 5)
+#define MAX17048_CONFIG_ALSC          (1 << 6)
+#define MAX17048_CONFIG_SLEEP         (1 << 7)
 
-/* VCELL resolution in nanoVolts (78.125 uV) */
+// STATUS Register
+#define MAX17048_STATUS_RI            (1 << 0)
+#define MAX17048_STATUS_ENVR          (1 << 6)
+
+// ALERT Condition
+#define MAX17048_ALERT_VH            (1 << 0)
+#define MAX17048_ALERT_VL            (1 << 1)
+#define MAX17048_ALERT_VR            (1 << 2)
+#define MAX17048_ALERT_HD            (1 << 3)
+#define MAX17048_ALERT_SC            (1 << 4)
+#define MAX17048_ALERT_SHIFT         (1)
+
+// VRESET register
+#define MAX17048_VRESET_DIS           (1 << 0)
+#define MAX17048_VRESET_SHIFT         (1)
+
+// VCELL resolution in nanoVolts (78.125 uV)
 #define MAX17048_VCELL_RESOLUTION     (78125)
-/* SOC resolution (1%/256)*/
+// SOC resolution (1%/256)
 #define MAX17048_SOC_RESOLUTION       (256)
-/* VALRT resolution in mV */
+// VALRT resolution in mV
 #define MAX17048_VALRT_RESOLUTION     (20)
-/* VRESET resolution in mV */
+// VRESET resolution in mV
 #define MAX17048_VRESET_RESOLUTION    (40)
-/* CRATE resolution in %/hr */
+// CRATE resolution in %/hr
 #define MAX17048_CRATE_RESOLUTION     (0.208)
-/* Hibernate threshold resolution in %/hr */
+// Hibernate threshold resolution in %/hr
 #define MAX17048_HIBTHR_RESOLUTION    (0.208)
-/* Active threshold resolution in microVolts (1.25mV) */
+// Active threshold resolution in microVolts (1.25mV)
 #define MAX17048_ACTTHR_RESOLUTION    (1250)
 
 #define MAX17048_VALRT_MAX_MV         (MAX17048_VALRT_RESOLUTION * 255)
@@ -133,29 +153,9 @@ extern "C" {
 #define MAX17048_HIBTHR_PERCENT       (MAX17048_HIBTHR_RESOLUTION * 255)
 #define MAX17048_ACTTHR_MV            (MAX17048_ACTTHR_RESOLUTION * 255)
 
-#define MAX17048_STATE_ENABLE         0x01
-#define MAX17048_STATE_DISABLE        0x00
-#define MAX17048_VALUE_SET            0x01
-#define MAX17048_VALUE_RESET          0x00
-
-#define MAX17048_ALERT_VH_VAL         0xC8 // 4.00 V
-#define MAX17048_ALERT_VL_VAL         0xAF // 3.50 V
-#define MAX17048_VRESET_THRES         0x3F // 2.5 V
-
-#define MAX17048_ALERT_PIN_SET        0x01
-#define MAX17048_ALERT_PIN_RESET      0x00
-
-#define MAX17048_I2C_ADDRESS          0x36 // I2C address
-
-#define RCOMP0                        0x97
-#define TEMP_CO_UP                    -0.5
-#define TEMP_CO_DOWN                  5.0
-
-#define MAX17048_STATUS_VH            (1 << 0)
-#define MAX17048_STATUS_VL            (1 << 1)
-#define MAX17048_STATUS_VR            (1 << 2)
-#define MAX17048_STATUS_HD            (1 << 3)
-#define MAX17048_STATUS_SC            (1 << 4)
+#define RCOMP0                        (0x97)
+#define TEMP_CO_UP                    (-0.5)
+#define TEMP_CO_DOWN                  (5.0)
 
 #define MAX17048_ENUM(name) typedef uint8_t name; enum name##_enum
 
@@ -407,7 +407,8 @@ uint32_t max17048_get_update_interval(void);
  *   This callback function is executed from interrupt context when the user
  *   has enabled one of the MAX17048 interrupt sources.
  ******************************************************************************/
-typedef void (*max17048_interrupt_callback_t)(sl_max17048_irq_source_t irq, void *data);
+typedef void (*max17048_interrupt_callback_t)(sl_max17048_irq_source_t irq, 
+                                              void *data);
 
 /***************************************************************************//**
  * @brief
@@ -508,10 +509,9 @@ sl_status_t max17048_disable_soc_interrupt(void);
  *   @li @ref SL_STATUS_ALREADY_INITIALIZED if a callback has already been
  *     initialized.
  ******************************************************************************/
-sl_status_t max17048_enable_empty_interrupt(
-    uint8_t athd,
-    max17048_interrupt_callback_t irq_cb,
-    void *cb_data);
+sl_status_t max17048_enable_empty_interrupt(uint8_t athd,
+                                            max17048_interrupt_callback_t irq_cb,
+                                            void *cb_data);
 
 /***************************************************************************//**
  * @brief
@@ -536,6 +536,9 @@ sl_status_t max17048_enable_empty_interrupt(
  *
  * @return
  *   @li @ref SL_STATUS_OK on success.
+ *
+ *   @li @ref SL_STATUS_NOT_INITIALIZED if a callback has not previously
+ *     been registered.
  ******************************************************************************/
 sl_status_t max17048_disable_empty_interrupt(void);
 
@@ -639,6 +642,9 @@ sl_status_t max17048_enable_vhigh_interrupt(uint32_t valrt_max_mv,
  *
  * @return
  *   @li @ref SL_STATUS_OK on success.
+ *
+ *   @li @ref SL_STATUS_NOT_INITIALIZED if a callback has not previously
+ *     been registered.
  ******************************************************************************/
 sl_status_t max17048_disable_vhigh_interrupt(void);
 
@@ -737,6 +743,9 @@ sl_status_t max17048_enable_vlow_interrupt(uint32_t valrt_min_mv,
  *
  * @return
  *   @li @ref SL_STATUS_OK on success.
+ *
+ *   @li @ref SL_STATUS_NOT_INITIALIZED if a callback has not previously
+ *     been registered.
  ******************************************************************************/
 sl_status_t max17048_disable_vlow_interrupt(void);
 
@@ -831,6 +840,9 @@ sl_status_t max17048_enable_reset_interrupt(uint32_t vreset_mv,
  *
  * @return
  *   @li @ref SL_STATUS_OK on success.
+ *
+ *   @li @ref SL_STATUS_NOT_INITIALIZED if a callback has not previously
+ *     been registered.
  ******************************************************************************/
 sl_status_t max17048_disable_reset_interrupt(void);
 
@@ -1177,7 +1189,7 @@ sl_status_t max17048_get_id(uint8_t *id);
  ******************************************************************************/
 sl_status_t max17048_get_production_version(uint16_t *ver);
 
-/** @} (end addtogroup max17048) */
+/** @} (end addtogroup MAX17048) */
 #ifdef __cplusplus
 }
 #endif

@@ -38,7 +38,7 @@
 #include "app_log.h"
 
 static void max17048_soc_callback(sl_max17048_irq_source_t source,
-                                    void *data);
+                                  void *data);
 /***************************************************************************//**
  * Initialize application.
  ******************************************************************************/
@@ -57,7 +57,7 @@ void app_init(void)
   // Read and print the device ID
   status = max17048_get_id(&id);
   app_log_status(status);
-  app_log("\nid: 0x%x\r\n", id);
+  app_log("\nID: 0x%x\r\n", id);
 
   // Read and print the device version
   status = max17048_get_production_version(&version);
@@ -100,6 +100,7 @@ static void max17048_soc_callback(sl_max17048_irq_source_t source,
   uint32_t soc, vcell;
   float crate;
 
+  app_log("\nSOC interrupt >\r\n");
   // Read and print the battery state of charge
   status = max17048_get_soc(&soc);
   app_log_status(status);

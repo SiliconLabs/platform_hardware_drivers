@@ -24,14 +24,14 @@
 */
 var NAVTREE =
 [
-  [ "Fuel Gauge MAX17048", "index.html", [
+  [ "Fuel Gauge driver", "index.html", [
     [ "Modules", "modules.html", "modules" ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"group__max17048.html"
+"group___m_a_x17048.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

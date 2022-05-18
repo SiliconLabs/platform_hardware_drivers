@@ -1,71 +1,72 @@
 \hypertarget{max17048__config_8h_source}{}\doxysection{max17048\+\_\+config.\+h}
-\label{max17048__config_8h_source}\index{D:/my\_ws/doxygen/max17048/source/max17048\_config.h@{D:/my\_ws/doxygen/max17048/source/max17048\_config.h}}
+\label{max17048__config_8h_source}\index{D:/doxygen/src/max17048\_config.h@{D:/doxygen/src/max17048\_config.h}}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00001}00001 \textcolor{comment}{/***************************************************************************/}}
 \DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00035}00035 \textcolor{preprocessor}{\#ifndef MAX17048\_CONFIG\_H\_}}
 \DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00036}00036 \textcolor{preprocessor}{\#define MAX17048\_CONFIG\_H\_}}
 \DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00037}00037 }
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00038}00038 \textcolor{preprocessor}{\#include "{}sl\_status.h"{}}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00039}00039 }
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00040}00040 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00041}00041 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00042}00042 \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00043}00043 }
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00044}00044 \textcolor{comment}{// User-\/specified stabilization delay}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00045}00045 \textcolor{preprocessor}{\#define MAX17048\_CONFIG\_STABILIZATION\_DELAY 0}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00046}00046 }
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00047}00047 \textcolor{comment}{// I2C module used; note that I2CSPM handles the transfers}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00048}00048 \textcolor{preprocessor}{\#define MAX17048\_CONFIG\_I2C      I2C0}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00049}00049 }
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00050}00050 \textcolor{comment}{/*}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00051}00051 \textcolor{comment}{ * GPIO port/pin used for the ALRTn interrupt pin.  This should almost}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00052}00052 \textcolor{comment}{ * always be a port A/B pin so that it can detect a falling edge while}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00053}00053 \textcolor{comment}{ * in EM2/3.  If the application firmware does not need to use EM2/3,}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00054}00054 \textcolor{comment}{ * then a port C/D pin could be used.}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00055}00055 \textcolor{comment}{ */}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00056}00056 \textcolor{preprocessor}{\#define MAX17048\_CONFIG\_ALRT\_PORT   gpioPortC}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00057}00057 \textcolor{preprocessor}{\#define MAX17048\_CONFIG\_ALRT\_PIN    1}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00058}00058 }
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00059}00059 \textcolor{comment}{/*}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00060}00060 \textcolor{comment}{ * In order for the MAX17048 to accurately track state of charge}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00061}00061 \textcolor{comment}{ * (SOC), it must periodically compensate for battery temperature}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00062}00062 \textcolor{comment}{ * changes.  The datasheet specifies that this be done no less than}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00063}00063 \textcolor{comment}{ * once per minute.}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00064}00064 \textcolor{comment}{ *}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00065}00065 \textcolor{comment}{ * The driver calculates and updates the RCOMP factor at a rate of}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00066}00066 \textcolor{comment}{ * 1000 ms <= MAX17048\_CONFIG\_RCOMP\_UPDATE\_INTERVAL\_MS <= 60000 ms}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00067}00067 \textcolor{comment}{ * and defaults to 1 minute (60000 ms = 1 minute).}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00068}00068 \textcolor{comment}{ */}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00069}00069 \textcolor{preprocessor}{\#define MAX17048\_CONFIG\_RCOMP\_UPDATE\_INTERVAL\_MS    60000}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00070}00070 }
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00071}00071 \textcolor{comment}{/*}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00072}00072 \textcolor{comment}{ * The MAX17048/9 has a manual input (QSTRT) to force a battery quick}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00073}00073 \textcolor{comment}{ * start, which is the initial measurement of cell voltage (VCELL) and}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00074}00074 \textcolor{comment}{ * state of charge (SOC).  In certain circumstances, quick start is}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00075}00075 \textcolor{comment}{ * necessary if the bouncing associated initial power-\/up or battery}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00076}00076 \textcolor{comment}{ * swap results in an erroneous initial reading of SOC.}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00077}00077 \textcolor{comment}{ *}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00078}00078 \textcolor{comment}{ * If enabled, quick start support is conditionally compiled into the}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00079}00079 \textcolor{comment}{ * driver. The user must also designate a GPIO pin to connect to the}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00080}00080 \textcolor{comment}{ * QSTRT pin on the MAX17048/9 to manually initiate quick start.}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00081}00081 \textcolor{comment}{ *}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00082}00082 \textcolor{comment}{ * The QSTRT pin can be any MCU GPIO pin, including a port C/D pin,}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00083}00083 \textcolor{comment}{ * because it is an output that is toggled under software control.}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00084}00084 \textcolor{comment}{ */}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00085}00085 \textcolor{preprocessor}{\#define MAX17048\_CONFIG\_ENABLE\_HW\_QSTRT     0}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00086}00086 }
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00087}00087 \textcolor{preprocessor}{\#ifdef MAX17048\_CONFIG\_ENABLE\_HW\_QSTRT}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00088}00088 }
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00089}00089 \textcolor{preprocessor}{\#define MAX17048\_CONFIG\_ENABLE\_QSTRT\_PORT   gpioPortC}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00090}00090 \textcolor{preprocessor}{\#define MAX17048\_CONFIG\_ENABLE\_QSTRT\_PIN    2}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00091}00091 }
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00092}00092 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MAX17048\_CONFIG\_ENABLE\_HW\_QSTRT */}\textcolor{preprocessor}{}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00093}00093 }
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00094}00094 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00095}00095 \}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00096}00096 \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00097}00097 }
-\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00098}00098 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MAX17048\_CONFIG\_H\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00038}00038 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00039}00039 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00040}00040 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00042}00042 \textcolor{comment}{// MAX17048/9 default I2C address. Can be different on custom devices.}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00043}00043 \textcolor{preprocessor}{\#define MAX17048\_I2C\_ADDRESS                0x36}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00045}00045 \textcolor{comment}{// User-\/specified stabilization delay}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00046}00046 \textcolor{preprocessor}{\#define MAX17048\_CONFIG\_STABILIZATION\_DELAY 0}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00048}00048 \textcolor{comment}{// I2C module used; note that I2CSPM handles the transfers}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00049}00049 \textcolor{preprocessor}{\#define MAX17048\_CONFIG\_I2C                 I2C0}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00051}00051 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00052}00052 \textcolor{comment}{ * GPIO port/pin used for the ALRTn interrupt pin.  This should almost}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00053}00053 \textcolor{comment}{ * always be a port A/B pin so that it can detect a falling edge while}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00054}00054 \textcolor{comment}{ * in EM2/3.  If the application firmware does not need to use EM2/3,}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00055}00055 \textcolor{comment}{ * then a port C/D pin could be used.}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00056}00056 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00057}00057 \textcolor{preprocessor}{\#define MAX17048\_CONFIG\_ALRT\_PORT           gpioPortC}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00058}00058 \textcolor{preprocessor}{\#define MAX17048\_CONFIG\_ALRT\_PIN            1}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00059}00059 }
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00060}00060 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00061}00061 \textcolor{comment}{ * In order for the MAX17048 to accurately track state of charge}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00062}00062 \textcolor{comment}{ * (SOC), it must periodically compensate for battery temperature}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00063}00063 \textcolor{comment}{ * changes.  The datasheet specifies that this be done no less than}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00064}00064 \textcolor{comment}{ * once per minute.}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00065}00065 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00066}00066 \textcolor{comment}{ * The driver calculates and updates the RCOMP factor at a rate of}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00067}00067 \textcolor{comment}{ * 1000 ms <= MAX17048\_CONFIG\_RCOMP\_UPDATE\_INTERVAL\_MS <= 60000 ms}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00068}00068 \textcolor{comment}{ * and defaults to 1 minute (60000 ms = 1 minute).}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00069}00069 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00070}00070 \textcolor{preprocessor}{\#define MAX17048\_CONFIG\_RCOMP\_UPDATE\_INTERVAL\_MS    60000}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00072}00072 \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00073}00073 \textcolor{comment}{ * The MAX17048/9 has a manual input (QSTRT) to force a battery quick}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00074}00074 \textcolor{comment}{ * start, which is the initial measurement of cell voltage (VCELL) and}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00075}00075 \textcolor{comment}{ * state of charge (SOC).  In certain circumstances, quick start is}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00076}00076 \textcolor{comment}{ * necessary if the bouncing associated initial power-\/up or battery}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00077}00077 \textcolor{comment}{ * swap results in an erroneous initial reading of SOC.}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00078}00078 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00079}00079 \textcolor{comment}{ * If enabled, quick start support is conditionally compiled into the}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00080}00080 \textcolor{comment}{ * driver. The user must also designate a GPIO pin to connect to the}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00081}00081 \textcolor{comment}{ * QSTRT pin on the MAX17048/9 to manually initiate quick start.}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00082}00082 \textcolor{comment}{ *}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00083}00083 \textcolor{comment}{ * The QSTRT pin can be any MCU GPIO pin, including a port C/D pin,}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00084}00084 \textcolor{comment}{ * because it is an output that is toggled under software control.}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00085}00085 \textcolor{comment}{ */}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00086}00086 \textcolor{preprocessor}{\#define MAX17048\_CONFIG\_ENABLE\_HW\_QSTRT     1}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00087}00087 }
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00088}00088 \textcolor{preprocessor}{\#ifdef MAX17048\_CONFIG\_ENABLE\_HW\_QSTRT}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00089}00089 }
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00090}00090 \textcolor{preprocessor}{\#define MAX17048\_CONFIG\_ENABLE\_QSTRT\_PORT   gpioPortC}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00091}00091 \textcolor{preprocessor}{\#define MAX17048\_CONFIG\_ENABLE\_QSTRT\_PIN    2}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00092}00092 }
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00093}00093 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MAX17048\_CONFIG\_ENABLE\_HW\_QSTRT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00094}00094 }
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00095}00095 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00096}00096 \}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00097}00097 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00098}00098 }
+\DoxyCodeLine{\Hypertarget{max17048__config_8h_source_l00099}00099 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* MAX17048\_CONFIG\_H\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}
