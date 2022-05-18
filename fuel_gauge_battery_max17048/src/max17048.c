@@ -304,44 +304,44 @@ static void max17048_alrt_pin_callback(uint8_t pin)
     // Check alert condition
     max17048_get_alert_condition(&alert_condition);
 
-    if ((alert_condition & MAX17048_ALERT_VR) != 0) {
+    if ((alert_condition & MAX17048_STATUS_VR) != 0) {
       /*
        * Process RESET alert callback because battery
        * has changed or there has been POR
        */
       callback = max17048_interrupt_callback[IRQ_RESET];
       callback(IRQ_RESET, max17048_callback_data[IRQ_RESET]);
-      max17048_clear_alert_condition(alert_condition, MAX17048_ALERT_VR);
+      max17048_clear_alert_condition(alert_condition, MAX17048_STATUS_VR);
     }
-    else if ((alert_condition & MAX17048_ALERT_HD) != 0) {
+    else if ((alert_condition & MAX17048_STATUS_HD) != 0) {
       // Cell nearing empty; may need to place system in ultra-low-power state
       callback = max17048_interrupt_callback[IRQ_EMPTY];
       callback(IRQ_EMPTY, max17048_callback_data[IRQ_EMPTY]);
-      max17048_clear_alert_condition(alert_condition, MAX17048_ALERT_HD);
+      max17048_clear_alert_condition(alert_condition, MAX17048_STATUS_HD);
     }
-    else if ((alert_condition & MAX17048_ALERT_VL) != 0) {
+    else if ((alert_condition & MAX17048_STATUS_VL) != 0) {
       /*
        * Voltage low alert; may need to set parameters for reduced
        * energy use before reaching empty threshold
        */
       callback = max17048_interrupt_callback[IRQ_VCELL_LOW];
       callback(IRQ_VCELL_LOW, max17048_callback_data[IRQ_VCELL_LOW]);
-      max17048_clear_alert_condition(alert_condition, MAX17048_ALERT_VL);
+      max17048_clear_alert_condition(alert_condition, MAX17048_STATUS_VL);
     }
-    else if ((alert_condition & MAX17048_ALERT_VH) != 0) {
+    else if ((alert_condition & MAX17048_STATUS_VH) != 0) {
       /*
        * Voltage high alert; may indicate battery is full charged
        * and need to place charging IC in maintenance/trickle charge state
        */
       callback = max17048_interrupt_callback[IRQ_VCELL_HIGH];
       callback(IRQ_VCELL_HIGH, max17048_callback_data[IRQ_VCELL_HIGH]);
-      max17048_clear_alert_condition(alert_condition, MAX17048_ALERT_VH);
+      max17048_clear_alert_condition(alert_condition, MAX17048_STATUS_VH);
     }
-    else if ((alert_condition & MAX17048_ALERT_SC) != 0) {
+    else if ((alert_condition & MAX17048_STATUS_SC) != 0) {
       // SOC changed by 1%; lowest priority interrupt
       callback = max17048_interrupt_callback[IRQ_SOC];
       callback(IRQ_SOC, max17048_callback_data[IRQ_SOC]);
-      max17048_clear_alert_condition(alert_condition, MAX17048_ALERT_SC);
+      max17048_clear_alert_condition(alert_condition, MAX17048_STATUS_SC);
     }
 
     // Clears the ALRT status bit to release the ALRT pin.
@@ -353,15 +353,16 @@ static void max17048_alrt_pin_callback(uint8_t pin)
  * @brief This function identifies which alert condition was met.
  *
  * @param[out] alert_condition
- *   These bits are set when they are cause an alert. Values:
- *   - <b>Bit 0:</b> (voltage high) is set when VCELL has been above
+ *   These bits are set when they are cause an alert. 
+ *   Values in the STATUS register:
+ *   - <b>Bit 1:</b> (voltage high) is set when VCELL has been above
  *     ALRT.VALRTMAX.
- *   - <b>Bit 1:</b> (voltage low) is set when VCELL has been below
+ *   - <b>Bit 2:</b> (voltage low) is set when VCELL has been below
  *     ALRT.VALRTMIN.
- *   - <b>Bit 2:</b> (voltage reset) is set after the device has been reset if
+ *   - <b>Bit 3:</b> (voltage reset) is set after the device has been reset if
  *     EnVr is set.
- *   - <b>Bit 3:</b> (SOC low) is set when SOC crosses the value in CONFIG.ATHD.
- *   - <b>Bit 4:</b> (1% SOC change) is set when SOC changes by at least 1% if
+ *   - <b>Bit 4:</b> (SOC low) is set when SOC crosses the value in CONFIG.ATHD.
+ *   - <b>Bit 5:</b> (1% SOC change) is set when SOC changes by at least 1% if
  *     CONFIG.ALSC is set.
  *
  * @return SL_STATUS_OK if successful. Error code otherwise.
@@ -373,7 +374,7 @@ static sl_status_t max17048_get_alert_condition(uint8_t *alert_condition)
 
   status = max17048_read_register(MAX17048_STATUS, buffer);
   if (status == SL_STATUS_OK) {
-    *alert_condition = (buffer[0] >> MAX17048_ALERT_SHIFT) & 0x1F;
+    *alert_condition = buffer[0];
   }
 
   return status;
@@ -463,7 +464,6 @@ static sl_status_t max17048_clear_alert_condition(uint8_t alert_condition,
    * no issue with writing it to 0 again when the device is running normally.
    */
   buffer[0] = alert_condition & ~source;
-  buffer[0] <<= MAX17048_ALERT_SHIFT;
   status = max17048_write_register(MAX17048_STATUS, buffer);
 
   return status;

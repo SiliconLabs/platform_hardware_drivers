@@ -118,15 +118,12 @@ extern "C" {
 
 // STATUS Register
 #define MAX17048_STATUS_RI            (1 << 0)
+#define MAX17048_STATUS_VH            (1 << 1)
+#define MAX17048_STATUS_VL            (1 << 2)
+#define MAX17048_STATUS_VR            (1 << 3)
+#define MAX17048_STATUS_HD            (1 << 4)
+#define MAX17048_STATUS_SC            (1 << 5)
 #define MAX17048_STATUS_ENVR          (1 << 6)
-
-// ALERT Condition
-#define MAX17048_ALERT_VH            (1 << 0)
-#define MAX17048_ALERT_VL            (1 << 1)
-#define MAX17048_ALERT_VR            (1 << 2)
-#define MAX17048_ALERT_HD            (1 << 3)
-#define MAX17048_ALERT_SC            (1 << 4)
-#define MAX17048_ALERT_SHIFT         (1)
 
 // VRESET register
 #define MAX17048_VRESET_DIS           (1 << 0)
