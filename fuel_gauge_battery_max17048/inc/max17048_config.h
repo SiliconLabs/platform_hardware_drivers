@@ -40,13 +40,13 @@ extern "C" {
 #endif
 
 // MAX17048/9 default I2C address. Can be different on custom devices.
-#define MAX17048_I2C_ADDRESS                0x36
+#define MAX17048_I2C_ADDRESS                        0x36
 
 // User-specified stabilization delay
-#define MAX17048_CONFIG_STABILIZATION_DELAY 0
+#define MAX17048_CONFIG_STABILIZATION_DELAY         0
 
 // I2C module used; note that I2CSPM handles the transfers
-#define MAX17048_CONFIG_I2C                 I2C0
+#define MAX17048_CONFIG_I2C                         I2C0
 
 /*
  * GPIO port/pin used for the ALRTn interrupt pin.  This should almost
@@ -54,8 +54,8 @@ extern "C" {
  * in EM2/3.  If the application firmware does not need to use EM2/3,
  * then a port C/D pin could be used.
  */
-#define MAX17048_CONFIG_ALRT_PORT           gpioPortC
-#define MAX17048_CONFIG_ALRT_PIN            1
+#define MAX17048_CONFIG_ALRT_PORT                   gpioPortC
+#define MAX17048_CONFIG_ALRT_PIN                    1
 
 /*
  * In order for the MAX17048 to accurately track state of charge
@@ -83,12 +83,12 @@ extern "C" {
  * The QSTRT pin can be any MCU GPIO pin, including a port C/D pin,
  * because it is an output that is toggled under software control.
  */
-#define MAX17048_CONFIG_ENABLE_HW_QSTRT     1
+#define MAX17048_CONFIG_ENABLE_HW_QSTRT             1
 
 #ifdef MAX17048_CONFIG_ENABLE_HW_QSTRT
 
-#define MAX17048_CONFIG_ENABLE_QSTRT_PORT   gpioPortC
-#define MAX17048_CONFIG_ENABLE_QSTRT_PIN    2
+#define MAX17048_CONFIG_ENABLE_QSTRT_PORT           gpioPortC
+#define MAX17048_CONFIG_ENABLE_QSTRT_PIN            2
 
 #endif /* MAX17048_CONFIG_ENABLE_HW_QSTRT */
 

@@ -35,10 +35,6 @@
 #include "max17048.h"
 #include "max17048_config.h"
 
-#if (defined(SL_CATALOG_POWER_MANAGER_PRESENT))
-#include "sl_power_manager.h"
-#endif
-
 /** @cond DO_NOT_INCLUDE_WITH_DOXYGEN */
 
 // Global variables
@@ -205,7 +201,6 @@ static sl_status_t max17048_write_register(uint8_t reg_addr,
     return SL_STATUS_TRANSMIT;
   }
 
-
   return SL_STATUS_OK;
 }
 
@@ -297,56 +292,51 @@ static void max17048_quick_start_callback(sl_sleeptimer_timer_handle_t *handle,
  ******************************************************************************/
 static void max17048_alrt_pin_callback(uint8_t pin)
 {
+  (void)pin;
   max17048_interrupt_callback_t callback;
   uint8_t alert_condition = 0;
 
-  if (pin == MAX17048_CONFIG_ALRT_PIN) {
-    // Check alert condition
-    max17048_get_alert_condition(&alert_condition);
+  // Check alert condition
+  max17048_get_alert_condition(&alert_condition);
 
-    if ((alert_condition & MAX17048_STATUS_VR) != 0) {
-      /*
-       * Process RESET alert callback because battery
-       * has changed or there has been POR
-       */
-      callback = max17048_interrupt_callback[IRQ_RESET];
-      callback(IRQ_RESET, max17048_callback_data[IRQ_RESET]);
-      max17048_clear_alert_condition(alert_condition, MAX17048_STATUS_VR);
-    }
-    else if ((alert_condition & MAX17048_STATUS_HD) != 0) {
-      // Cell nearing empty; may need to place system in ultra-low-power state
-      callback = max17048_interrupt_callback[IRQ_EMPTY];
-      callback(IRQ_EMPTY, max17048_callback_data[IRQ_EMPTY]);
-      max17048_clear_alert_condition(alert_condition, MAX17048_STATUS_HD);
-    }
-    else if ((alert_condition & MAX17048_STATUS_VL) != 0) {
-      /*
-       * Voltage low alert; may need to set parameters for reduced
-       * energy use before reaching empty threshold
-       */
-      callback = max17048_interrupt_callback[IRQ_VCELL_LOW];
-      callback(IRQ_VCELL_LOW, max17048_callback_data[IRQ_VCELL_LOW]);
-      max17048_clear_alert_condition(alert_condition, MAX17048_STATUS_VL);
-    }
-    else if ((alert_condition & MAX17048_STATUS_VH) != 0) {
-      /*
-       * Voltage high alert; may indicate battery is full charged
-       * and need to place charging IC in maintenance/trickle charge state
-       */
-      callback = max17048_interrupt_callback[IRQ_VCELL_HIGH];
-      callback(IRQ_VCELL_HIGH, max17048_callback_data[IRQ_VCELL_HIGH]);
-      max17048_clear_alert_condition(alert_condition, MAX17048_STATUS_VH);
-    }
-    else if ((alert_condition & MAX17048_STATUS_SC) != 0) {
-      // SOC changed by 1%; lowest priority interrupt
-      callback = max17048_interrupt_callback[IRQ_SOC];
-      callback(IRQ_SOC, max17048_callback_data[IRQ_SOC]);
-      max17048_clear_alert_condition(alert_condition, MAX17048_STATUS_SC);
-    }
-
-    // Clears the ALRT status bit to release the ALRT pin.
-    max17048_clear_alert_status_bit();
+  if ((alert_condition & MAX17048_STATUS_VR) != 0) {
+    /*
+     * Process RESET alert callback because battery
+     * has changed or there has been POR
+     */
+    callback = max17048_interrupt_callback[IRQ_RESET];
+    callback(IRQ_RESET, max17048_callback_data[IRQ_RESET]);
+    max17048_clear_alert_condition(alert_condition, MAX17048_STATUS_VR);
+  } else if ((alert_condition & MAX17048_STATUS_HD) != 0) {
+    // Cell nearing empty; may need to place system in ultra-low-power state
+    callback = max17048_interrupt_callback[IRQ_EMPTY];
+    callback(IRQ_EMPTY, max17048_callback_data[IRQ_EMPTY]);
+    max17048_clear_alert_condition(alert_condition, MAX17048_STATUS_HD);
+  } else if ((alert_condition & MAX17048_STATUS_VL) != 0) {
+    /*
+     * Voltage low alert; may need to set parameters for reduced
+     * energy use before reaching empty threshold
+     */
+    callback = max17048_interrupt_callback[IRQ_VCELL_LOW];
+    callback(IRQ_VCELL_LOW, max17048_callback_data[IRQ_VCELL_LOW]);
+    max17048_clear_alert_condition(alert_condition, MAX17048_STATUS_VL);
+  } else if ((alert_condition & MAX17048_STATUS_VH) != 0) {
+    /*
+     * Voltage high alert; may indicate battery is full charged
+     * and need to place charging IC in maintenance/trickle charge state
+     */
+    callback = max17048_interrupt_callback[IRQ_VCELL_HIGH];
+    callback(IRQ_VCELL_HIGH, max17048_callback_data[IRQ_VCELL_HIGH]);
+    max17048_clear_alert_condition(alert_condition, MAX17048_STATUS_VH);
+  } else if ((alert_condition & MAX17048_STATUS_SC) != 0) {
+    // SOC changed by 1%; lowest priority interrupt
+    callback = max17048_interrupt_callback[IRQ_SOC];
+    callback(IRQ_SOC, max17048_callback_data[IRQ_SOC]);
+    max17048_clear_alert_condition(alert_condition, MAX17048_STATUS_SC);
   }
+
+  // Clears the ALRT status bit to release the ALRT pin.
+  max17048_clear_alert_status_bit();
 }
 
 /***************************************************************************//**
@@ -495,7 +485,8 @@ sl_status_t max17048_init(sl_i2cspm_t *i2cspm)
                     true,
                     true);
   // Register the callback function that is invoked when interrupt occurs
-  GPIOINT_CallbackRegister(MAX17048_CONFIG_ALRT_PIN, max17048_alrt_pin_callback);
+  GPIOINT_CallbackRegister(MAX17048_CONFIG_ALRT_PIN,
+                           max17048_alrt_pin_callback);
 
 #ifdef MAX17048_CONFIG_ENABLE_HW_QSTRT
   GPIO_PinModeSet(MAX17048_CONFIG_ENABLE_QSTRT_PORT,
@@ -508,7 +499,8 @@ sl_status_t max17048_init(sl_i2cspm_t *i2cspm)
    * 1000 ms <= MAX17048_CONFIG_RCOMP_UPDATE_INTERVAL_MS <= 60000 ms
    * and defaults to 1 minute (60000 ms = 1 minute).
    */
-  if ((max17048_rcomp_update_interval < 1000) || (max17048_rcomp_update_interval > 60000)) {
+  if ((max17048_rcomp_update_interval < 1000) 
+      || (max17048_rcomp_update_interval > 60000)) {
     return SL_STATUS_INVALID_RANGE;
   }
 
@@ -552,7 +544,7 @@ sl_status_t max17048_deinit(void)
 #ifdef MAX17048_CONFIG_ENABLE_HW_QSTRT
   GPIO_PinModeSet(MAX17048_CONFIG_ENABLE_QSTRT_PORT,
                   MAX17048_CONFIG_ENABLE_QSTRT_PIN,
-                  gpioModeDisabled ,
+                  gpioModeDisabled,
                   0);
 #endif
 
@@ -609,7 +601,8 @@ sl_status_t max17048_get_vcell(uint32_t *vcell)
 }
 
 /***************************************************************************//**
- *  Read the SOC register and return the state-of-charge as an integer (0 - 100%).
+ *  Read the SOC register and return the state-of-charge 
+ *  as an integer (0 - 100%).
  ******************************************************************************/
 sl_status_t max17048_get_soc(uint32_t *soc)
 {
@@ -692,9 +685,9 @@ sl_status_t max17048_set_update_interval(uint32_t interval)
   }
 
   /*
-  * Get the temperature, update the RCOMP value before restarting Sleeptimer
-  * with the new update interval.
-  */
+   * Get the temperature, update the RCOMP value before restarting Sleeptimer
+   * with the new update interval.
+   */
   max17048_temp_timer_callback(NULL, NULL);
 
   max17048_rcomp_update_interval = interval;
@@ -746,12 +739,12 @@ sl_status_t max17048_enable_soc_interrupt(max17048_interrupt_callback_t irq_cb,
   sl_status_t status;
   uint8_t buffer[2];
 
-  if (irq_cb == NULL || cb_data == NULL) {
+  if ((irq_cb == NULL) || (cb_data == NULL)) {
     return SL_STATUS_NULL_POINTER;
   }
 
-  if (max17048_interrupt_callback[IRQ_SOC] != NULL
-      || max17048_callback_data[IRQ_SOC] != NULL) {
+  if ((max17048_interrupt_callback[IRQ_SOC] != NULL)
+      || (max17048_callback_data[IRQ_SOC] != NULL)) {
     return SL_STATUS_ALREADY_INITIALIZED;
   }
 
@@ -781,8 +774,8 @@ sl_status_t max17048_disable_soc_interrupt(void)
   sl_status_t status;
   uint8_t buffer[2];
 
-  if (max17048_interrupt_callback[IRQ_SOC] == NULL
-      || max17048_callback_data[IRQ_SOC] == NULL) {
+  if ((max17048_interrupt_callback[IRQ_SOC] == NULL)
+      || (max17048_callback_data[IRQ_SOC] == NULL)) {
     return SL_STATUS_NOT_INITIALIZED;
   }
 
@@ -821,8 +814,8 @@ sl_status_t max17048_enable_empty_interrupt(uint8_t athd,
     return SL_STATUS_NULL_POINTER;
   }
 
-  if (max17048_interrupt_callback[IRQ_EMPTY] != NULL
-      || max17048_callback_data[IRQ_EMPTY] != NULL) {
+  if ((max17048_interrupt_callback[IRQ_EMPTY] != NULL)
+      || (max17048_callback_data[IRQ_EMPTY] != NULL)) {
     return SL_STATUS_ALREADY_INITIALIZED;
   }
 
@@ -850,8 +843,8 @@ sl_status_t max17048_disable_empty_interrupt(void)
   sl_status_t status;
   uint8_t buffer[2];
 
-  if (max17048_interrupt_callback[IRQ_EMPTY] == NULL
-      || max17048_callback_data[IRQ_EMPTY] == NULL) {
+  if ((max17048_interrupt_callback[IRQ_EMPTY] == NULL)
+      || (max17048_callback_data[IRQ_EMPTY] == NULL)) {
     return SL_STATUS_NOT_INITIALIZED;
   }
 
@@ -923,8 +916,8 @@ sl_status_t max17048_enable_vhigh_interrupt(uint32_t valrt_max_mv,
     return SL_STATUS_NULL_POINTER;
   }
 
-  if (max17048_interrupt_callback[IRQ_VCELL_HIGH] != NULL
-      || max17048_callback_data[IRQ_VCELL_HIGH] != NULL) {
+  if ((max17048_interrupt_callback[IRQ_VCELL_HIGH] != NULL)
+      || (max17048_callback_data[IRQ_VCELL_HIGH] != NULL)) {
     return SL_STATUS_ALREADY_INITIALIZED;
   }
 
@@ -953,8 +946,8 @@ sl_status_t max17048_disable_vhigh_interrupt(void)
   sl_status_t status;
   uint8_t buffer[2];
 
-  if (max17048_interrupt_callback[IRQ_VCELL_HIGH] == NULL
-      || max17048_callback_data[IRQ_VCELL_HIGH] == NULL) {
+  if ((max17048_interrupt_callback[IRQ_VCELL_HIGH] == NULL)
+      || (max17048_callback_data[IRQ_VCELL_HIGH] == NULL)) {
     return SL_STATUS_NOT_INITIALIZED;
   }
 
@@ -1018,8 +1011,8 @@ sl_status_t max17048_enable_vlow_interrupt(uint32_t valrt_min_mv,
     return SL_STATUS_NULL_POINTER;
   }
 
-  if (max17048_interrupt_callback[IRQ_VCELL_LOW] != NULL
-     || max17048_callback_data[IRQ_VCELL_LOW] != NULL) {
+  if ((max17048_interrupt_callback[IRQ_VCELL_LOW] != NULL)
+     || (max17048_callback_data[IRQ_VCELL_LOW] != NULL)) {
     return SL_STATUS_ALREADY_INITIALIZED;
   }
 
@@ -1050,8 +1043,8 @@ sl_status_t max17048_disable_vlow_interrupt(void)
   sl_status_t status;
   uint8_t buffer[2];
 
-  if (max17048_interrupt_callback[IRQ_VCELL_LOW] == NULL
-      || max17048_callback_data[IRQ_VCELL_LOW] == NULL) {
+  if ((max17048_interrupt_callback[IRQ_VCELL_LOW] == NULL)
+      || (max17048_callback_data[IRQ_VCELL_LOW] == NULL)) {
     return SL_STATUS_NOT_INITIALIZED;
   }
 
@@ -1115,8 +1108,8 @@ sl_status_t max17048_enable_reset_interrupt(uint32_t vreset_mv,
     return SL_STATUS_NULL_POINTER;
   }
 
-  if (max17048_interrupt_callback[IRQ_RESET] != NULL
-      || max17048_callback_data[IRQ_RESET] != NULL) {
+  if ((max17048_interrupt_callback[IRQ_RESET] != NULL)
+      || (max17048_callback_data[IRQ_RESET] != NULL)) {
     return SL_STATUS_ALREADY_INITIALIZED;
   }
 
@@ -1164,8 +1157,8 @@ sl_status_t max17048_disable_reset_interrupt(void)
   sl_status_t status;
   uint8_t buffer[2];
 
-  if (max17048_interrupt_callback[IRQ_RESET] == NULL
-      || max17048_callback_data[IRQ_RESET] == NULL) {
+  if ((max17048_interrupt_callback[IRQ_RESET] == NULL)
+      || (max17048_callback_data[IRQ_RESET] == NULL)) {
     return SL_STATUS_NOT_INITIALIZED;
   }
 
@@ -1356,7 +1349,7 @@ sl_status_t max17048_enable_reset_comparator(bool enable)
     max17048_vreset_tracking |= MAX17048_VRESET_DIS;
   } else {
     // VRESET_DIS = 0 to keep the comparator enabled in hibernate mode
-    max17048_vreset_tracking  &= ~MAX17048_VRESET_DIS;
+    max17048_vreset_tracking &= ~MAX17048_VRESET_DIS;
   }
 
   // Update the VRESET register
@@ -1421,8 +1414,17 @@ sl_status_t max17048_force_reset(void)
   sl_status_t status;
   uint8_t buffer[2];
 
-  buffer[0] = MAX17048_RESET_UPPER_BYTE ;
-  buffer[1] = MAX17048_RESET_LOWER_BYTE ;
+  // Force all tracking variables to their default values
+  max17048_config_lower_tracking = 0x1C;
+  max17048_rcomp_tracking = 0x97;
+  max17048_valrt_max_tracking = 0xFF;
+  max17048_valrt_min_tracking = 0x00;
+  max17048_vreset_tracking = 0x96;
+  max17048_hibthr_tracking = 0x80;
+  max17048_actthr_tracking = 0x30;
+
+  buffer[0] = MAX17048_RESET_UPPER_BYTE;
+  buffer[1] = MAX17048_RESET_LOWER_BYTE;
   status = max17048_write_register(MAX17048_CMD, buffer);
 
   return status;

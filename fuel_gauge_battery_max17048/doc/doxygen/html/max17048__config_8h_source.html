@@ -94,13 +94,13 @@ $(document).ready(function(){initNavTree('max17048__config_8h_source.html',''); 
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">// MAX17048/9 default I2C address. Can be different on custom devices.</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#define MAX17048_I2C_ADDRESS                0x36</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#define MAX17048_I2C_ADDRESS                        0x36</span></div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">// User-specified stabilization delay</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#define MAX17048_CONFIG_STABILIZATION_DELAY 0</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#define MAX17048_CONFIG_STABILIZATION_DELAY         0</span></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">// I2C module used; note that I2CSPM handles the transfers</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#define MAX17048_CONFIG_I2C                 I2C0</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#define MAX17048_CONFIG_I2C                         I2C0</span></div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">/*</span></div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment"> * GPIO port/pin used for the ALRTn interrupt pin.  This should almost</span></div>
@@ -108,8 +108,8 @@ $(document).ready(function(){initNavTree('max17048__config_8h_source.html',''); 
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment"> * in EM2/3.  If the application firmware does not need to use EM2/3,</span></div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment"> * then a port C/D pin could be used.</span></div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#define MAX17048_CONFIG_ALRT_PORT           gpioPortC</span></div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#define MAX17048_CONFIG_ALRT_PIN            1</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#define MAX17048_CONFIG_ALRT_PORT                   gpioPortC</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#define MAX17048_CONFIG_ALRT_PIN                    1</span></div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">/*</span></div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment"> * In order for the MAX17048 to accurately track state of charge</span></div>
@@ -137,12 +137,12 @@ $(document).ready(function(){initNavTree('max17048__config_8h_source.html',''); 
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment"> * The QSTRT pin can be any MCU GPIO pin, including a port C/D pin,</span></div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment"> * because it is an output that is toggled under software control.</span></div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="preprocessor">#define MAX17048_CONFIG_ENABLE_HW_QSTRT     1</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="preprocessor">#define MAX17048_CONFIG_ENABLE_HW_QSTRT             1</span></div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="preprocessor">#ifdef MAX17048_CONFIG_ENABLE_HW_QSTRT</span></div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="preprocessor">#define MAX17048_CONFIG_ENABLE_QSTRT_PORT   gpioPortC</span></div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">#define MAX17048_CONFIG_ENABLE_QSTRT_PIN    2</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="preprocessor">#define MAX17048_CONFIG_ENABLE_QSTRT_PORT           gpioPortC</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">#define MAX17048_CONFIG_ENABLE_QSTRT_PIN            2</span></div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">#endif </span><span class="comment">/* MAX17048_CONFIG_ENABLE_HW_QSTRT */</span><span class="preprocessor"></span></div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
@@ -157,7 +157,7 @@ $(document).ready(function(){initNavTree('max17048__config_8h_source.html',''); 
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><b>max17048_config.h</b></li>
-    <li class="footer">Generated on Wed May 18 2022 16:52:28 for Fuel Gauge driver by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+    <li class="footer">Generated on Mon May 30 2022 18:31:49 for Fuel Gauge driver by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>
 </body>

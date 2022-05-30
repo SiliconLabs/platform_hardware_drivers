@@ -94,6 +94,8 @@ You can either import the provided **max17048_simple.sls** project file or start
 
 A detailed description of each function can be found in [doc/doxygen](doc/doxygen/html/modules.html).
 
+**Note:** When Power Manager is used, I2C transfers to and from the MAX17048 always complete because the driver adds a Power Manager requirement that prevents EM2 or EM3 entry. In cases where Power Manager is not used, it may be desirable to mark sections of code that call driver functions as atomic or critical if an interrupt can cause entry into EM2 or EM3.
+
 The APIs of the driver can be grouped into as follows:
 
 1. Initialization:

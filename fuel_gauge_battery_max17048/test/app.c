@@ -32,13 +32,13 @@
 * as a demonstration for evaluation purposes only. This code will be maintained
 * at the sole discretion of Silicon Labs.
 *******************************************************************************/
-
 #include "sl_i2cspm_instances.h"
 #include "max17048.h"
 #include "app_log.h"
 
 static void max17048_soc_callback(sl_max17048_irq_source_t source,
                                   void *data);
+
 /***************************************************************************//**
  * Initialize application.
  ******************************************************************************/

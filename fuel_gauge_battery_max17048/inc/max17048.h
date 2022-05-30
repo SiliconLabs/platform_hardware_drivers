@@ -45,6 +45,9 @@
 #include "sl_status.h"
 #include "sl_i2cspm.h"
 #include "sl_sleeptimer.h"
+#if (defined(SL_CATALOG_POWER_MANAGER_PRESENT))
+#include "sl_power_manager.h"
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -53,6 +56,13 @@ extern "C" {
 /***************************************************************************//**
  * @addtogroup MAX17048 - Fuel Gauge Sensor
  * @brief Driver for the MAX17048/MAX17049 Fuel Gauge
+ * 
+ * @note When Power Manager is used, I2C transfers to and from the MAX17048
+ *       always complete because the driver adds a Power Manager requirement
+ *       that prevents EM2 or EM3 entry. In cases where Power Manager is not
+ *       used, it may be desirable to mark sections of code that call
+ *       driver functions as atomic or critical if an interrupt can 
+ *       cause entry into EM2 or EM3.
 
 
    @n @section max17048_example MAX17048 example
@@ -63,7 +73,7 @@ extern "C" {
    #include "sl_i2cspm_instances.h"
    #include "max17048.h"
 
-   int main( void )
+   int main(void)
    {
 
      ...
@@ -72,10 +82,13 @@ extern "C" {
      uint32_t soc;
      uint32_t vcell;
 
+     // Initialize the max17048
      max17048_init(sl_i2cspm_sensor_env);
-     // read the ID
+     // Read the ID
      max17048_get_id(&id);
+     // Read the battery voltage
      max17048_get_vcell(&vcell);
+     // Read the battery state of charge
      max17048_get_soc(&soc);
 
      ...
@@ -706,7 +719,7 @@ uint32_t max17048_get_vhigh_threshold(void);
  *   Low voltage alert threshold in millivolts.
  *
  * @param[in] irq_cb
- *   User-defined function to respond to VCELL > valrt_max.
+ *   User-defined function to respond to VCELL < valrt_min.
  *
  * @param[in] cb_data
  *   Pointer to user data that will be passed to callback.
