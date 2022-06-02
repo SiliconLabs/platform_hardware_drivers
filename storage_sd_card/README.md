@@ -48,13 +48,14 @@ You can either import the provided **storage_sd_card.sls** project file or start
 
    - Install the following components:
 
-     - **[Application] > [Utility] > [Log]**.
-     - **[Application] > [Utility] > [Assert]**.
      - **[Platform] > [Driver] > [SPIDRV]** with the default instance name: **mikroe**.
      - **[Services] > [IO Stream] > [IO Stream: USART]** with the default instance name: **vcom**.
      - **[Services] > [Sleep Timer]**. Then set **Enable wallclock funtionality**.
 
         ![sleeptimer_wallclock](images/sleeptimer_wallclock.png)
+
+     - **[Application] > [Utility] > [Log]**.
+     - **[Application] > [Utility] > [Assert]**.
 
 4. Build and flash the project to your device.
 
