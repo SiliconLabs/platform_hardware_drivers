@@ -50,6 +50,7 @@ sl_status_t sdc_platform_spi_init(void)
                   gpioModeInputPullFilter,
                   1);
 
+  // Start a periodic timer 1 ms to generate card control timing
   status = sl_sleeptimer_start_periodic_timer_ms(&disk_timerproc_timer_handle,
                                                  1,
                                                  disk_timerproc_timer_callback,

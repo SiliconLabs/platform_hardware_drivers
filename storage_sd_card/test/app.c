@@ -45,8 +45,6 @@
 #include "sl_sleeptimer.h"
 #endif
 
-#define _ENABLE_FORMAT_SD
-
 static const char str[] = "Silabs SD Card I/O Example via SPI!\r\n";
 static const char* fst[] = {"", "FAT12", "FAT16", "FAT32", "exFAT"};
 
@@ -89,14 +87,6 @@ void app_init(void)
           (time_data >> 11) & 0x1f,
           (time_data >> 5) & 0x3f,
           (time_data << 1) & 0x1f);
-#endif
-
-#ifdef _ENABLE_FORMAT_SD
-  // Format the default drive with default parameters
-  app_log("SD Card is formatting...\n\r");
-  ret_code = f_mkfs("", &fmt_opt, f_work, sizeof(f_work));
-  app_assert_status(ret_code);
-  app_log("Format completed\n\n\r");
 #endif
 
   // Give a work area to the default drive

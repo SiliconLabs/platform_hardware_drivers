@@ -98,6 +98,10 @@ Use a terminal program, such as the Console that is integrated in Simplicity Stu
 
 ![testing_format](images/testing.png)
 
+Unmount the SD Card. Use a micro Card Reader to read files from SD Card on your computer. You should expect a similar output to the one below.
+
+![content_file](images/content_file.png)
+
 ## .sls Projects Used ##
 
 [storage_sd_card.sls](/SimplicityStudio/storage_sd_card.sls)

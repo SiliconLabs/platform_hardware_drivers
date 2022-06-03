@@ -44,9 +44,6 @@
 extern "C" {
 #endif
 
-#define  _USE_WRITE
-#define  _USE_IOCTL
-
 /***************************************************************************//**
  * @brief Inidialize a SD Card.
  *
