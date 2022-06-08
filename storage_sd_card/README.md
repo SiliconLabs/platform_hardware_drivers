@@ -34,7 +34,7 @@ The microSD cick board can just be "clicked" into its place. Be sure that the bo
 
 To test this application, you should connect the BMG220 Explorer Kit Board to the PC using a microUSB cable.
 
-You can either import the provided **storage_sd_card.sls** project file or start with an empty example project as basis:
+You can either import the provided **storage_sd_card_simple.sls** project file or start with an empty example project as basis:
 
 1. Create a "Platform - Empty C Project" project for the "BGM220 Explorer Kit Board" using Simplicity Studio v5. Use the default project settings. Be sure to connect and select the BGM220 Explorer Kit Board from the "Debug Adapters" on the left before creating a project.
 
@@ -78,7 +78,7 @@ The dependency diagram is shown below.
 - File and Directory Management
 - Volume Management and System Configuration
 
-For more information about FatFS, see [FatFS](http://elm-chan.org/fsw/ff/00index_e.html).
+For more information about the APIs of FatFS Module, see [FatFS](http://elm-chan.org/fsw/ff/00index_e.html).
 
 **Storage Device Controls Generic Media**: implements the generic media access interface by consuming storage device specific storage device control implementations.
 
@@ -104,4 +104,4 @@ Unmount the SD Card. Use a micro Card Reader to read files from the SD Card on y
 
 ## .sls Projects Used ##
 
-[storage_sd_card.sls](/SimplicityStudio/storage_sd_card.sls)
+[storage_sd_card_simple.sls](/SimplicityStudio/storage_sd_card_simple.sls)

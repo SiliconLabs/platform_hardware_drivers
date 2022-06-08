@@ -60,9 +60,6 @@ void app_init(void)
   DWORD fre_clust;
   FRESULT ret_code;
   UINT bw, br;
-#ifdef _ENABLE_FORMAT_SD
-  MKFS_PARM fmt_opt = {FM_FAT32, 0, 0, 0, 0};
-#endif
 
 #if !FF_FS_NORTC && !FF_FS_READONLY
   DWORD time_data;
