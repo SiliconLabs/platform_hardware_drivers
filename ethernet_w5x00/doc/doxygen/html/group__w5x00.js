@@ -1,0 +1,88 @@
+var group__w5x00 =
+[
+    [ "W5x00_CH_SIZE", "group__w5x00.html#ga9636104d66d8dd03d641e628b1a72976", null ],
+    [ "W5x00_MAX_SOCK_NUM", "group__w5x00.html#ga9117fc6270089b95280b32368f878fee", null ],
+    [ "SnIR", "group__w5x00.html#ga9478d138f1fbcc041470d6078fdcf8b6", [
+      [ "SnIR_SEND_OK", "group__w5x00.html#gga9478d138f1fbcc041470d6078fdcf8b6ab9b13a1698acfb4a1eedf506151fd986", null ],
+      [ "SnIR_TIMEOUT", "group__w5x00.html#gga9478d138f1fbcc041470d6078fdcf8b6a50eb0ff2d8de1ec1ccb7c659a4f6ca09", null ],
+      [ "SnIR_RECV", "group__w5x00.html#gga9478d138f1fbcc041470d6078fdcf8b6a5b2f416d88302a21d5c023708d1f78cd", null ],
+      [ "SnIR_DISCON", "group__w5x00.html#gga9478d138f1fbcc041470d6078fdcf8b6a175220b451c56cf8444129d41f27cfda", null ],
+      [ "SnIR_CON", "group__w5x00.html#gga9478d138f1fbcc041470d6078fdcf8b6a2455bbd3887f79a1c4838a569f6a33fc", null ]
+    ] ],
+    [ "SnMR", "group__w5x00.html#gaf1c05f00b63e0ab9f8828107c261fd3d", [
+      [ "SnMR_CLOSE", "group__w5x00.html#ggaf1c05f00b63e0ab9f8828107c261fd3daaebfdf2469461649d84694695ac3c6f5", null ],
+      [ "SnMR_TCP", "group__w5x00.html#ggaf1c05f00b63e0ab9f8828107c261fd3dac6a5d2ccff9d0208c40270ac6b2ebb79", null ],
+      [ "SnMR_UDP", "group__w5x00.html#ggaf1c05f00b63e0ab9f8828107c261fd3da5a5a8d5e0f995fed06a5e6206846f99e", null ],
+      [ "SnMR_IPRAW", "group__w5x00.html#ggaf1c05f00b63e0ab9f8828107c261fd3da04b54c8ab39d22f4f9d99a6862bf5a30", null ],
+      [ "SnMR_MACRAW", "group__w5x00.html#ggaf1c05f00b63e0ab9f8828107c261fd3da9d5e216d93b105a7dcffded402ff1e12", null ],
+      [ "SnMR_PPPOE", "group__w5x00.html#ggaf1c05f00b63e0ab9f8828107c261fd3da67ad06e2631ccc31eb7b6d3b92ab2ea2", null ],
+      [ "SnMR_ND", "group__w5x00.html#ggaf1c05f00b63e0ab9f8828107c261fd3daa64ba5eb3683eb156b8afd6d6d2bc0a9", null ],
+      [ "SnMR_MULTI", "group__w5x00.html#ggaf1c05f00b63e0ab9f8828107c261fd3dabffc37498e6ef8d40f99ba74e74a14da", null ]
+    ] ],
+    [ "SnSR", "group__w5x00.html#gac56d8f5d524fd0d18edc1ef54eeb517e", [
+      [ "SnSR_CLOSED", "group__w5x00.html#ggac56d8f5d524fd0d18edc1ef54eeb517eaba602363e1df96f8ffdbedd5d1677494", null ],
+      [ "SnSR_INIT", "group__w5x00.html#ggac56d8f5d524fd0d18edc1ef54eeb517eafa5ffe5e506db7c0f7e79cec6d1285c6", null ],
+      [ "SnSR_LISTEN", "group__w5x00.html#ggac56d8f5d524fd0d18edc1ef54eeb517eaf3791b824037f9dd24f2c6cb4f6a4a6d", null ],
+      [ "SnSR_SYNSENT", "group__w5x00.html#ggac56d8f5d524fd0d18edc1ef54eeb517ea88df98bbd6711f5e3a450bb1c04db864", null ],
+      [ "SnSR_SYNRECV", "group__w5x00.html#ggac56d8f5d524fd0d18edc1ef54eeb517ea89cfe49677f296e6521533e992f85ecb", null ],
+      [ "SnSR_ESTABLISHED", "group__w5x00.html#ggac56d8f5d524fd0d18edc1ef54eeb517ea839e8c21e8935cec405dcf05a570e1b8", null ],
+      [ "SnSR_FIN_WAIT", "group__w5x00.html#ggac56d8f5d524fd0d18edc1ef54eeb517ea1c6e87fe9dea8f6548a91ae933847ccf", null ],
+      [ "SnSR_CLOSING", "group__w5x00.html#ggac56d8f5d524fd0d18edc1ef54eeb517ea17e3ca2aff4a34514044aa1bee346642", null ],
+      [ "SnSR_TIME_WAIT", "group__w5x00.html#ggac56d8f5d524fd0d18edc1ef54eeb517ea80c85963afe5d6c583273143a56075ec", null ],
+      [ "SnSR_CLOSE_WAIT", "group__w5x00.html#ggac56d8f5d524fd0d18edc1ef54eeb517ea164c05babb82fbddebfbd20ec5db1ade", null ],
+      [ "SnSR_LAST_ACK", "group__w5x00.html#ggac56d8f5d524fd0d18edc1ef54eeb517ea2ba84c3cba68ba05fd5fe1c7e3a21ea8", null ],
+      [ "SnSR_UDP", "group__w5x00.html#ggac56d8f5d524fd0d18edc1ef54eeb517eaf48340f88036931a18f6d2830aea8912", null ],
+      [ "SnSR_IPRAW", "group__w5x00.html#ggac56d8f5d524fd0d18edc1ef54eeb517ead2ccfbc7ae5f3931c692635278ca3216", null ],
+      [ "SnSR_MACRAW", "group__w5x00.html#ggac56d8f5d524fd0d18edc1ef54eeb517ea282cfeabfcde2cef155be597b589f23e", null ],
+      [ "SnSR_PPPOE", "group__w5x00.html#ggac56d8f5d524fd0d18edc1ef54eeb517ea81dfe255ad0c7bec62e4555ae732299a", null ]
+    ] ],
+    [ "SockCMD", "group__w5x00.html#ga8e86ec24bd81fbf5556f4cd1dc09cc3b", [
+      [ "Sock_OPEN", "group__w5x00.html#gga8e86ec24bd81fbf5556f4cd1dc09cc3ba2d1805f0a4f7657b8e0bbfa28eea22c9", null ],
+      [ "Sock_LISTEN", "group__w5x00.html#gga8e86ec24bd81fbf5556f4cd1dc09cc3bab322601c32fba205ae7e7ccf47b1c665", null ],
+      [ "Sock_CONNECT", "group__w5x00.html#gga8e86ec24bd81fbf5556f4cd1dc09cc3ba42ed63e8474d671224da940a8552e0b9", null ],
+      [ "Sock_DISCON", "group__w5x00.html#gga8e86ec24bd81fbf5556f4cd1dc09cc3ba0cd98008ecfb95780569fe14444d62fe", null ],
+      [ "Sock_CLOSE", "group__w5x00.html#gga8e86ec24bd81fbf5556f4cd1dc09cc3bae358e09e9ac34e7490fb2683e2c788e0", null ],
+      [ "Sock_SEND", "group__w5x00.html#gga8e86ec24bd81fbf5556f4cd1dc09cc3ba73a60cc20be22b44d47178a6a57c2648", null ],
+      [ "Sock_SEND_MAC", "group__w5x00.html#gga8e86ec24bd81fbf5556f4cd1dc09cc3ba40b14d6445cf866fa99bf08acbe3892f", null ],
+      [ "Sock_SEND_KEEP", "group__w5x00.html#gga8e86ec24bd81fbf5556f4cd1dc09cc3ba160b55d9a8e94d27272ae4142dea8a9f", null ],
+      [ "Sock_RECV", "group__w5x00.html#gga8e86ec24bd81fbf5556f4cd1dc09cc3baf15e40b37930c8e7065b4a0c3b356358", null ]
+    ] ],
+    [ "W5x00Chip", "group__w5x00.html#ga00bab62b85a9198300200a9988788359", [
+      [ "W5x00_UNKNOWN", "group__w5x00.html#gga00bab62b85a9198300200a9988788359a4ae3b2fb766ebbdcc5adbfd7b324bb67", null ],
+      [ "W5x00_W5100", "group__w5x00.html#gga00bab62b85a9198300200a9988788359a0b3dd3b67f028731370c42306924699e", null ],
+      [ "W5x00_W5200", "group__w5x00.html#gga00bab62b85a9198300200a9988788359a3cb86201d65d4654b1be4532be7cbeb1", null ],
+      [ "W5x00_W5500", "group__w5x00.html#gga00bab62b85a9198300200a9988788359af7e1ee22410c10c7db6b1e738dcdddda", null ]
+    ] ],
+    [ "W5x00Linkstatus", "group__w5x00.html#ga3a41c8fe738e92ade19ab60fb1b1c075", [
+      [ "UNKNOWN", "group__w5x00.html#gga3a41c8fe738e92ade19ab60fb1b1c075a6ce26a62afab55d7606ad4e92428b30c", null ],
+      [ "LINK_ON", "group__w5x00.html#gga3a41c8fe738e92ade19ab60fb1b1c075a6186ed9ec6b467e4c28eaafbce45ac22", null ],
+      [ "LINK_OFF", "group__w5x00.html#gga3a41c8fe738e92ade19ab60fb1b1c075ae3ffd11cffbf974a7e16f23ec970e5db", null ]
+    ] ],
+    [ "w5x00_exec_cmd_socket", "group__w5x00.html#ga1c214969fe7a197bc3fef9300059e038", null ],
+    [ "w5x00_get_CH_BASE_MSB", "group__w5x00.html#gaa5a48f0d2dfcd36cc88984192e2497db", null ],
+    [ "w5x00_get_chip", "group__w5x00.html#gab4f4e98b90802c139c36d18525d3fafa", null ],
+    [ "w5x00_get_gateway_ip", "group__w5x00.html#gab9efe36caf70122d654716bfa5372d2d", null ],
+    [ "w5x00_get_ip_address", "group__w5x00.html#ga6584abf9dde2b9d3e31599df20ebb344", null ],
+    [ "w5x00_get_link_status", "group__w5x00.html#ga41b064c33b32a8eefcfaacb1f096c361", null ],
+    [ "w5x00_get_mac_address", "group__w5x00.html#ga53971645c2e014ba23c1e4443decadbd", null ],
+    [ "w5x00_get_RBASE", "group__w5x00.html#gadf5e995f4877e380cd7da87cf0602084", null ],
+    [ "w5x00_get_SBASE", "group__w5x00.html#ga019d6b4fc6a4ba44f64fe7fb9fa66653", null ],
+    [ "w5x00_get_SMASK", "group__w5x00.html#gaeba24d832c01b30932d42aca665691b2", null ],
+    [ "w5x00_get_SSIZE", "group__w5x00.html#ga08c2157926cff9a8a067e89bcbca8760", null ],
+    [ "w5x00_get_subnet_mask", "group__w5x00.html#ga2af4f8c3eff4683989801df58d341078", null ],
+    [ "w5x00_has_offset_address_mapping", "group__w5x00.html#gac45c42d980c900775939f755bd47873a", null ],
+    [ "w5x00_init", "group__w5x00.html#ga16654c70ce92bcf536d0e38c35608954", null ],
+    [ "w5x00_read", "group__w5x00.html#ga668ec717ad5e4da896dd43ac45818382", null ],
+    [ "w5x00_readSn", "group__w5x00.html#gac838cf01992f995fe48ab92b22d9bbe3", null ],
+    [ "w5x00_readSn_buf", "group__w5x00.html#gadc9d4e616c58a673bbeddeb8484f2722", null ],
+    [ "w5x00_set_gateway_ip", "group__w5x00.html#ga28e6d626bdcafef6ae3856f38e893bb1", null ],
+    [ "w5x00_set_ip_address", "group__w5x00.html#ga04bf61b1063a5a630e6087f151dc3e8d", null ],
+    [ "w5x00_set_mac_address", "group__w5x00.html#gaf21d0f4f9f178d527f0ee41002bb5e30", null ],
+    [ "w5x00_set_retransmission_count", "group__w5x00.html#ga5b2464f38898808bd09a7d45923b778a", null ],
+    [ "w5x00_set_retransmission_time", "group__w5x00.html#ga617161fa66a2217221f314d5c8d3b244", null ],
+    [ "w5x00_set_subnet_mask", "group__w5x00.html#gac116a1dd4bb790e449e4d8613f8693a1", null ],
+    [ "w5x00_soft_reset", "group__w5x00.html#ga202325d969bf0f338c395b73d3555e5d", null ],
+    [ "w5x00_write", "group__w5x00.html#ga7b0f84677edc111177e7dd2b783d83f0", null ],
+    [ "w5x00_writeSn", "group__w5x00.html#gad00da2f33ef23f282db5285586ecb7b1", null ],
+    [ "w5x00_writeSn_buf", "group__w5x00.html#gaa9e94608920b00db35b8741902eb949f", null ]
+];
