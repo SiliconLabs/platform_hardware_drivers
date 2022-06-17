@@ -106,10 +106,10 @@ typedef struct {
  * @return
  *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure.
  ******************************************************************************/
-sl_status_t w5x00_dhcp_request_dhcp_lease(  w5x00_dhcp_t *dhcp,
-                                            uint8_t *mac,
-                                            unsigned long timeout,
-                                            unsigned long response_timeout);
+sl_status_t w5x00_dhcp_request_dhcp_lease(w5x00_dhcp_t *dhcp,
+                                          uint8_t *mac,
+                                          unsigned long timeout,
+                                          unsigned long response_timeout);
 
 /***************************************************************************//**
  * @brief

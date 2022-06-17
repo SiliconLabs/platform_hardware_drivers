@@ -93,9 +93,9 @@ sl_status_t w5x00_ethernet_udp_stop(w5x00_ethernet_udp_t *e_udp)
 /***************************************************************************//**
  * Ethernet UDP Begin Packet.
  ******************************************************************************/
-sl_status_t w5x00_ethernet_udp_begin_packet(  w5x00_ethernet_udp_t *e_udp,
-                                              w5x00_ip4_addr_t *ip,
-                                              uint16_t port)
+sl_status_t w5x00_ethernet_udp_begin_packet(w5x00_ethernet_udp_t *e_udp,
+                                            w5x00_ip4_addr_t *ip,
+                                            uint16_t port)
 {
   if (e_udp == NULL) {
     return SL_STATUS_INVALID_PARAMETER;
@@ -200,9 +200,9 @@ int w5x00_ethernet_udp_read_byte(w5x00_ethernet_udp_t *e_udp)
 /***************************************************************************//**
  * Ethernet UDP Read To Buffer.
  ******************************************************************************/
-int w5x00_ethernet_udp_read( w5x00_ethernet_udp_t *e_udp,
-                             uint8_t *buffer,
-                             size_t len)
+int w5x00_ethernet_udp_read(w5x00_ethernet_udp_t *e_udp,
+                            uint8_t *buffer,
+                            size_t len)
 {
   if (e_udp == NULL) {
     return -1;
@@ -270,9 +270,9 @@ sl_status_t w5x00_ethernet_udp_flush(w5x00_ethernet_udp_t *e_udp)
 /***************************************************************************//**
  * Ethernet UDP Begin Multicast.
  ******************************************************************************/
-sl_status_t w5x00_ethernet_udp_begin_multicast( w5x00_ethernet_udp_t *e_udp,
-                                                w5x00_ip4_addr_t ip,
-                                                uint16_t port)
+sl_status_t w5x00_ethernet_udp_begin_multicast(w5x00_ethernet_udp_t *e_udp,
+                                               w5x00_ip4_addr_t ip,
+                                               uint16_t port)
 {
   if (e_udp == NULL) {
     return SL_STATUS_INVALID_PARAMETER;

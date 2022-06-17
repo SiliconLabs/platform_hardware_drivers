@@ -63,16 +63,16 @@ sl_status_t w5x00_ethernet_server_begin(w5x00_ethernet_server_t *ss)
   if (ss == NULL) {
     return SL_STATUS_INVALID_PARAMETER;
   }
-	uint8_t sockindex = w5x00_socket_begin(SnMR_TCP, ss->port);
-	if (sockindex < W5x00_MAX_SOCK_NUM) {
-		if (w5x00_socket_listen(sockindex)) {
+  uint8_t sockindex = w5x00_socket_begin(SnMR_TCP, ss->port);
+  if (sockindex < W5x00_MAX_SOCK_NUM) {
+    if (w5x00_socket_listen(sockindex)) {
       ss->server_port[sockindex] = ss->port;
-		} else {
-		    w5x00_socket_disconnect(sockindex);
-		}
-		return SL_STATUS_OK;
-	}
-	return SL_STATUS_FAIL;
+    } else {
+      w5x00_socket_disconnect(sockindex);
+    }
+    return SL_STATUS_OK;
+  }
+  return SL_STATUS_FAIL;
 }
 
 /***************************************************************************//**
@@ -80,76 +80,77 @@ sl_status_t w5x00_ethernet_server_begin(w5x00_ethernet_server_t *ss)
  ******************************************************************************/
 w5x00_ethernet_client_t w5x00_ethernet_server_accept(w5x00_ethernet_server_t *ss)
 {
-	bool listening = false;
-	uint8_t sockindex = W5x00_MAX_SOCK_NUM;
-	enum W5x00Chip chip;
-	uint8_t maxindex=W5x00_MAX_SOCK_NUM;
-	w5x00_ethernet_client_t client;
+  bool listening = false;
+  uint8_t sockindex = W5x00_MAX_SOCK_NUM;
+  enum W5x00Chip chip;
+  uint8_t maxindex=W5x00_MAX_SOCK_NUM;
+  w5x00_ethernet_client_t client;
 
-	client.sockindex = W5x00_MAX_SOCK_NUM;
+  client.sockindex = W5x00_MAX_SOCK_NUM;
   if (ss == NULL) {
     return client;
   }
-	chip = w5x00_get_chip();
-	if (chip == W5x00_UNKNOWN) {
+  chip = w5x00_get_chip();
+  if (chip == W5x00_UNKNOWN) {
     return client;
-	}
+  }
 #if W5x00_MAX_SOCK_NUM > 4
-	if (chip == W5x00_W5100) {
+  if (chip == W5x00_W5100) {
     maxindex = 4; // W5100 chip never supports more than 4 sockets
-	}
+  }
 #endif
-	for (uint8_t i=0; i < maxindex; i++) {
-		if (ss->server_port[i] == ss->port) {
-			uint8_t stat = w5x00_socket_status(i);
-			if (sockindex == W5x00_MAX_SOCK_NUM &&
-			  (stat == SnSR_ESTABLISHED
-			   || stat == SnSR_CLOSE_WAIT)) {
-				// Return the connected client even if no data received.
-				// Some protocols like FTP expect the server to send the
-				// first data.
-				sockindex = i;
-				ss->server_port[i] = 0; // only return the client once
-			} else if (stat == SnSR_LISTEN) {
-				listening = true;
-			} else if (stat == SnSR_CLOSED) {
+  for (uint8_t i=0; i < maxindex; i++) {
+    if (ss->server_port[i] == ss->port) {
+      uint8_t stat = w5x00_socket_status(i);
+      if (sockindex == W5x00_MAX_SOCK_NUM &&
+        (stat == SnSR_ESTABLISHED
+         || stat == SnSR_CLOSE_WAIT)) {
+        // Return the connected client even if no data received.
+        // Some protocols like FTP expect the server to send the
+        // first data.
+        sockindex = i;
+        ss->server_port[i] = 0; // only return the client once
+      } else if (stat == SnSR_LISTEN) {
+        listening = true;
+      } else if (stat == SnSR_CLOSED) {
         ss->server_port[i] = 0;
-			}
-		}
-	}
-	if (!listening) w5x00_ethernet_server_begin(ss);
-	client.sockindex = sockindex;
-	return client;
+      }
+    }
+  }
+  if (!listening) w5x00_ethernet_server_begin(ss);
+  client.sockindex = sockindex;
+  return client;
 }
 
 /***************************************************************************//**
  * Ethernet Server Write.
  ******************************************************************************/
 int w5x00_ethernet_server_write(w5x00_ethernet_server_t *ss,
-                                const uint8_t *buffer, size_t size)
+                                const uint8_t *buffer,
+                                size_t size)
 {
   enum W5x00Chip chip;
-	uint8_t maxindex = W5x00_MAX_SOCK_NUM;
+  uint8_t maxindex = W5x00_MAX_SOCK_NUM;
 
-	if (ss == NULL) {
+  if (ss == NULL) {
     return -1;
   }
-	chip = w5x00_get_chip();
-	if (chip == W5x00_UNKNOWN) {
+  chip = w5x00_get_chip();
+  if (chip == W5x00_UNKNOWN) {
     return 0;
-	}
+  }
 #if W5x00_MAX_SOCK_NUM > 4
-	if (chip == W5x00_W5100) {
+  if (chip == W5x00_W5100) {
     maxindex = 4; // W5100 chip never supports more than 4 sockets
-	}
+  }
 #endif
-	w5x00_ethernet_server_accept(ss);
-	for (uint8_t i=0; i < maxindex; i++) {
-		if (ss->server_port[i] == ss->port) {
-			if (w5x00_socket_status(i) == SnSR_ESTABLISHED) {
-				w5x00_socket_send(i, buffer, size);
-			}
-		}
-	}
-	return size;
+  w5x00_ethernet_server_accept(ss);
+  for (uint8_t i=0; i < maxindex; i++) {
+    if (ss->server_port[i] == ss->port) {
+      if (w5x00_socket_status(i) == SnSR_ESTABLISHED) {
+        w5x00_socket_send(i, buffer, size);
+      }
+    }
+  }
+  return size;
 }

@@ -97,9 +97,9 @@ sl_status_t w5x00_ethernet_client_init(w5x00_ethernet_client_t *c,
  * @return
  *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure.
  ******************************************************************************/
-sl_status_t w5x00_ethernet_client_connect_host( w5x00_ethernet_client_t *c,
-                                                const char *host,
-                                                uint16_t port);
+sl_status_t w5x00_ethernet_client_connect_host(w5x00_ethernet_client_t *c,
+                                               const char *host,
+                                               uint16_t port);
 
 /***************************************************************************//**
  * @brief
@@ -113,9 +113,9 @@ sl_status_t w5x00_ethernet_client_connect_host( w5x00_ethernet_client_t *c,
  * @return
  *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure.
  ******************************************************************************/
-sl_status_t w5x00_ethernet_client_connect( w5x00_ethernet_client_t *c,
-                                           w5x00_ip4_addr_t ip,
-                                           uint16_t port);
+sl_status_t w5x00_ethernet_client_connect(w5x00_ethernet_client_t *c,
+                                          w5x00_ip4_addr_t ip,
+                                          uint16_t port);
 
 /***************************************************************************//**
  * @brief
@@ -169,9 +169,9 @@ int w5x00_ethernet_client_available(w5x00_ethernet_client_t *c);
  *    >=0 Size of read data.
  *    <0  Error is occurred when reading data.
  ******************************************************************************/
-int w5x00_ethernet_client_read( w5x00_ethernet_client_t *c,
-                                uint8_t *buf,
-                                size_t size);
+int w5x00_ethernet_client_read(w5x00_ethernet_client_t *c,
+                               uint8_t *buf,
+                               size_t size);
 /***************************************************************************//**
  * @brief
  *    Get the first byte in the receive queue

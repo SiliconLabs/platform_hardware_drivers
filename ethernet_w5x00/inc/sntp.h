@@ -65,8 +65,8 @@ extern "C" {
 typedef struct
 {
   w5x00_ethernet_t *eth;            /// Ethernet object reference
-	w5x00_ethernet_udp_t udp_socket;  /// UDP socket
-	uint32_t epoch_timestamp;         /// Epoch timestamp
+  w5x00_ethernet_udp_t udp_socket;  /// UDP socket
+  uint32_t epoch_timestamp;         /// Epoch timestamp
 } w5x00_sntp_t;
 
 /***************************************************************************//**
@@ -107,10 +107,10 @@ sl_status_t w5x00_sntp_init(w5x00_sntp_t *sntp, w5x00_ethernet_t *eth);
  * @return
  *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure.
  ******************************************************************************/
-sl_status_t w5x00_sntp_update_timestamp(  w5x00_sntp_t *sntp,
-                                          w5x00_ip4_addr_t server_ip,
-                                          uint16_t port,
-                                          uint16_t timeout);
+sl_status_t w5x00_sntp_update_timestamp(w5x00_sntp_t *sntp,
+                                        w5x00_ip4_addr_t server_ip,
+                                        uint16_t port,
+                                        uint16_t timeout);
 
 /***************************************************************************//**
  * @brief

@@ -109,7 +109,8 @@ w5x00_ethernet_client_t w5x00_ethernet_server_accept(w5x00_ethernet_server_t *ss
  *    <0: Error is occurred
  ******************************************************************************/
 int w5x00_ethernet_server_write(w5x00_ethernet_server_t *ss,
-                                const uint8_t *buffer, size_t size);
+                                const uint8_t *buffer,
+                                size_t size);
 
 /** @} (end group DNS) */
 #ifdef __cplusplus

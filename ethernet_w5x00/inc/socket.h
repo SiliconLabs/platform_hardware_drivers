@@ -132,9 +132,9 @@ w5x00_socket_t w5x00_socket_begin(uint8_t protocol, uint16_t port);
  *      < @ref W5x00_MAX_SOCK_NUM on success
  *      = @ref W5x00_MAX_SOCK_NUM on failure
  ******************************************************************************/
-w5x00_socket_t w5x00_socket_begin_multicast(  uint8_t protocol,
-                                              w5x00_ip4_addr_t ip,
-                                              uint16_t port);
+w5x00_socket_t w5x00_socket_begin_multicast(uint8_t protocol,
+                                            w5x00_ip4_addr_t ip,
+                                            uint16_t port);
 /***************************************************************************//**
  * @brief
  *    Get the socket status
@@ -250,9 +250,9 @@ uint8_t w5x00_socket_peek(w5x00_socket_t s);
  * @return
  *    Size of the sending data
  ******************************************************************************/
-uint16_t w5x00_socket_send( w5x00_socket_t s,
-                            const uint8_t * buf,
-                            uint16_t len);
+uint16_t w5x00_socket_send(w5x00_socket_t s,
+                           const uint8_t * buf,
+                           uint16_t len);
 /***************************************************************************//**
  * @brief
  *    Get available size of socket send queue
@@ -277,10 +277,10 @@ uint16_t w5x00_socket_send_available(w5x00_socket_t s);
  * @return
  *    Size of written data
  ******************************************************************************/
-uint16_t w5x00_socket_buffer_data(  w5x00_socket_t s,
-                                    uint16_t offset,
-                                    const uint8_t* buf,
-                                    uint16_t len);
+uint16_t w5x00_socket_buffer_data(w5x00_socket_t s,
+                                  uint16_t offset,
+                                  const uint8_t* buf,
+                                  uint16_t len);
 
 /***************************************************************************//**
  * @brief
@@ -294,9 +294,9 @@ uint16_t w5x00_socket_buffer_data(  w5x00_socket_t s,
  * @return
  *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure.
  ******************************************************************************/
-sl_status_t w5x00_socket_begin_udp( w5x00_socket_t s,
-                              w5x00_ip4_addr_t *ip,
-                              uint16_t port);
+sl_status_t w5x00_socket_begin_udp(w5x00_socket_t s,
+                                   w5x00_ip4_addr_t *ip,
+                                   uint16_t port);
 
 /***************************************************************************//**
  * @brief

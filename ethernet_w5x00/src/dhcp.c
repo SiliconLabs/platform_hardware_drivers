@@ -177,14 +177,14 @@ typedef struct _RIP_MSG_FIXED
 // Private function declarations
 
 static void print_byte(char * buf, uint8_t n );
-static void send_dhcp_message(  w5x00_dhcp_t *dhcp,
-                                uint8_t messageType,
-                                uint16_t secondsElapsed);
+static void send_dhcp_message(w5x00_dhcp_t *dhcp,
+                              uint8_t messageType,
+                              uint16_t secondsElapsed);
 static void reset_dhcp_lease(w5x00_dhcp_t *dhcp);
 static sl_status_t request_dhcp_lease(w5x00_dhcp_t *dhcp);
-static uint8_t parse_dhcp_response( w5x00_dhcp_t *dhcp,
-                                    unsigned long response_timeout,
-                                    uint32_t *transaction_id);
+static uint8_t parse_dhcp_response(w5x00_dhcp_t *dhcp,
+                                   unsigned long response_timeout,
+                                   uint32_t *transaction_id);
 
 // -----------------------------------------------------------------------------
 // Public function definitions
@@ -192,10 +192,10 @@ static uint8_t parse_dhcp_response( w5x00_dhcp_t *dhcp,
 /***************************************************************************//**
  * DHCP Begin.
  ******************************************************************************/
-sl_status_t w5x00_dhcp_request_dhcp_lease(  w5x00_dhcp_t *dhcp,
-                                            uint8_t *mac,
-                                            unsigned long timeout,
-                                            unsigned long response_timeout)
+sl_status_t w5x00_dhcp_request_dhcp_lease(w5x00_dhcp_t *dhcp,
+                                          uint8_t *mac,
+                                          unsigned long timeout,
+                                          unsigned long response_timeout)
 {
   if (dhcp == NULL || mac == NULL) {
     return SL_STATUS_INVALID_PARAMETER;
@@ -257,7 +257,7 @@ enum W5x00_DHCP_CHECK w5x00_dhcp_check_lease(w5x00_dhcp_t *dhcp)
   if (dhcp->renew_in_sec == 0
       && dhcp->dhcp_state == STATE_DHCP_LEASED) {
     dhcp->dhcp_state = STATE_DHCP_REREQUEST;
-    if ( SL_STATUS_OK == request_dhcp_lease(dhcp) ) {
+    if (SL_STATUS_OK == request_dhcp_lease(dhcp) ) {
       rc = W5x00_DHCP_CHECK_RENEW_OK;
     } else {
       rc = W5x00_DHCP_CHECK_RENEW_FAIL;
@@ -396,9 +396,9 @@ static sl_status_t request_dhcp_lease(w5x00_dhcp_t *dhcp)
   return result;
 }
 
-static void send_dhcp_message(  w5x00_dhcp_t *dhcp,
-                                uint8_t messageType,
-                                uint16_t secondsElapsed)
+static void send_dhcp_message(w5x00_dhcp_t *dhcp,
+                              uint8_t messageType,
+                              uint16_t secondsElapsed)
 {
   uint8_t buffer[32];
   memset(buffer, 0, 32);
@@ -529,9 +529,9 @@ static void send_dhcp_message(  w5x00_dhcp_t *dhcp,
   w5x00_ethernet_udp_end_packet(&dhcp->udp_socket);
 }
 
-static uint8_t parse_dhcp_response( w5x00_dhcp_t *dhcp,
-                                    unsigned long response_timeout,
-                                    uint32_t *transaction_id)
+static uint8_t parse_dhcp_response(w5x00_dhcp_t *dhcp,
+                                   unsigned long response_timeout,
+                                   uint32_t *transaction_id)
 {
   uint8_t type = 0;
   uint8_t opt_len = 0;

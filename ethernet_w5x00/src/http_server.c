@@ -224,9 +224,9 @@ static void mid(char* src, char* s1, char* s2, char* sub);
 /***************************************************************************//**
  * HTTP Server Init.
  ******************************************************************************/
-sl_status_t w5x00_http_server_init( w5x00_http_server_t *http,
-                                    uint16_t port,
-                                    const w5x00_http_server_callback_t *callback)
+sl_status_t w5x00_http_server_init(w5x00_http_server_t *http,
+                                   uint16_t port,
+                                   const w5x00_http_server_callback_t *callback)
 {
   int i;
 
@@ -678,10 +678,10 @@ static void http_process_handler(w5x00_http_server_t *http,
 
       if (p_http_request->type == PTYPE_CGI)
       {
-        content_found = http->callback->get_cgi_handler( (const char *)uri_name,
-                                                         uri_buf,
-                                                         &file_len);
-        if ( content_found
+        content_found = http->callback->get_cgi_handler((const char *)uri_name,
+                                                        uri_buf,
+                                                        &file_len);
+        if (content_found
             && (file_len <= (W5x00_HTTP_SERVER_BUFFER_SIZE-(strlen(RES_CGIHEAD_OK)+8))))
         {
           send_http_response_cgi(socket->socknum,
@@ -781,17 +781,17 @@ static void http_process_handler(w5x00_http_server_t *http,
       if (p_http_request->type == PTYPE_CGI)  // HTTP POST Method; CGI Process
       {
         file_len = sizeof(uri_buf);
-        content_found = http->callback->post_cgi_handler( (const char *)uri_name,
-                                                          get_content_body((const char *)p_http_request->uri),
-                                                          uri_buf,
-                                                          &file_len);
+        content_found = http->callback->post_cgi_handler((const char *)uri_name,
+                                                         get_content_body((const char *)p_http_request->uri),
+                                                         uri_buf,
+                                                         &file_len);
 #ifdef W5x00_HTTP_SERVER_DEBUG
         w5x00_log_printf("> HTTPSocket[%d] : [CGI: %s] / Response len [ %ld ]byte\r\n",
                                               socket->socknum,
                                               content_found ? "Content found":"Content not found",
                                               file_len);
 #endif
-        if ( content_found
+        if (content_found
             && (file_len <= (W5x00_HTTP_SERVER_BUFFER_SIZE - (strlen(RES_CGIHEAD_OK) + 8))))
         {
           send_http_response_cgi(socket->socknum,
@@ -837,7 +837,7 @@ static const char *get_content_body(const char *uri)
 
   start = end = uri;
   while (*uri) {
-    if (   (uri[0] == '\r' && uri[1] == '\n')
+    if ((uri[0] == '\r' && uri[1] == '\n')
         || (uri[0] == '\n' && uri[1] == '\r')) { // line ending with <cr><lf>
       if (end == start) { // checking for empty line
         if (uri[2]) {
@@ -848,7 +848,7 @@ static const char *get_content_body(const char *uri)
       }
       end = start = &uri[2];
       uri += 2;
-    } else if ( uri[0] == '\n'
+    } else if (uri[0] == '\n'
               && uri[1] != '\r') {  // line ending with <lf>
         if (end == start) { // checking for empty line
           if (uri[1]) {
@@ -871,7 +871,7 @@ static const char *get_content_body(const char *uri)
  @brief convert escape characters(%XX) to ASCII character
  */
 static void unescape_http_url(
-  char * url  /**< pointer to be converted ( escape characters )*/
+  char * url  /**< pointer to be converted (escape characters )*/
   )
 {
   int x, y;

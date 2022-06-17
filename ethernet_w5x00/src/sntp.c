@@ -59,10 +59,10 @@
 #define TRUNCATED        -3
 #define INVALID_RESPONSE -4
 
-static int process_response(  w5x00_ethernet_udp_t *udp_socket,
-                              uint16_t timeout,
-                              uint8_t *packet_buffer,
-                              int size);
+static int process_response(w5x00_ethernet_udp_t *udp_socket,
+                            uint16_t timeout,
+                            uint8_t *packet_buffer,
+                            int size);
 
 /***************************************************************************//**
  * SNTP Begin.
@@ -91,10 +91,10 @@ sl_status_t w5x00_sntp_update_timestamp_from_host(w5x00_sntp_t *sntp,
     return SL_STATUS_INVALID_PARAMETER;
   }
   w5x00_dns_init(&dns_client, sntp->eth->dns_server_address);
-  if (SL_STATUS_OK != w5x00_dns_get_host_by_name(  &dns_client,
-                                                   host,
-                                                   &remote_addr,
-                                                   timeout)) {
+  if (SL_STATUS_OK != w5x00_dns_get_host_by_name(&dns_client,
+                                                 host,
+                                                 &remote_addr,
+                                                 timeout)) {
     return SL_STATUS_FAIL;
   }
   return w5x00_sntp_update_timestamp(sntp, remote_addr, port, timeout);
@@ -124,9 +124,9 @@ sl_status_t w5x00_sntp_update_timestamp(w5x00_sntp_t *sntp,
     w5x00_log_print_ip(&server_ip);
     w5x00_log_printf("\r\n");
     // Send DNS request
-    ret = w5x00_ethernet_udp_begin_packet( &sntp->udp_socket,
-                                           &server_ip,
-                                           port);
+    ret = w5x00_ethernet_udp_begin_packet(&sntp->udp_socket,
+                                          &server_ip,
+                                          port);
     if (ret == SL_STATUS_OK) {
       memset(packet_buffer, 0, NTP_PACKET_SIZE);
       // Initialize values needed to form NTP request
@@ -140,9 +140,9 @@ sl_status_t w5x00_sntp_update_timestamp(w5x00_sntp_t *sntp,
       packet_buffer[13]  = 0x4E;
       packet_buffer[14]  = 49;
       packet_buffer[15]  = 52;
-      len = w5x00_ethernet_udp_write( &sntp->udp_socket,
-                                      packet_buffer,
-                                      sizeof(packet_buffer));
+      len = w5x00_ethernet_udp_write(&sntp->udp_socket,
+                                     packet_buffer,
+                                     sizeof(packet_buffer));
       if (len != 0) {
         // And finally send the request
         ret = w5x00_ethernet_udp_end_packet(&sntp->udp_socket);
@@ -191,10 +191,10 @@ sl_status_t w5x00_sntp_update_timestamp(w5x00_sntp_t *sntp,
   return SL_STATUS_FAIL;
 }
 
-static int process_response(  w5x00_ethernet_udp_t *udp_socket,
-                              uint16_t timeout,
-                              uint8_t *packet_buffer,
-                              int size)
+static int process_response(w5x00_ethernet_udp_t *udp_socket,
+                            uint16_t timeout,
+                            uint8_t *packet_buffer,
+                            int size)
 {
   uint32_t start_time = w5x00_get_tick_ms();
 
@@ -211,9 +211,9 @@ static int process_response(  w5x00_ethernet_udp_t *udp_socket,
     return TRUNCATED;
   }
 
-  if(size == w5x00_ethernet_udp_read( udp_socket,
-                                      packet_buffer,
-                                      size)) {
+  if(size == w5x00_ethernet_udp_read(udp_socket,
+                                     packet_buffer,
+                                     size)) {
     return SUCCESS;
   }
 

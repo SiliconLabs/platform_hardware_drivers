@@ -40,8 +40,8 @@
 #include <stdint.h>
 #include "w5x00.h"
 
-#ifndef	HTTP_SERVER_H__
-#define	HTTP_SERVER_H__
+#ifndef  HTTP_SERVER_H__
+#define  HTTP_SERVER_H__
 
 #ifdef __cplusplus
 extern "C" {
@@ -71,15 +71,15 @@ enum STATE_HTTP {
 };
 
 /// HTTP Simple Return Value
-#define HTTP_FAILED					0
-#define HTTP_OK						  1
-#define HTTP_RESET					2
+#define HTTP_FAILED         0
+#define HTTP_OK             1
+#define HTTP_RESET          2
 
 /// HTTP Content NAME length
-#define W5x00_HTTP_SERVER_MAX_CONTENT_NAME_LEN		128
+#define W5x00_HTTP_SERVER_MAX_CONTENT_NAME_LEN    128
 
 /// HTTP Timeout
-#define HTTP_MAX_TIMEOUT_SEC		                  3			// Sec.
+#define HTTP_MAX_TIMEOUT_SEC                      3      // Sec.
 
 /// HTTP Max URI size
 #ifndef W5x00_HTTP_SERVER_MAX_URI_SIZE
@@ -112,12 +112,12 @@ typedef struct
  ******************************************************************************/
 typedef struct
 {
-  w5x00_socket_t   socknum;                                  /// Soket number
-	uint8_t sock_status;                                       /// Socket status
-	uint8_t file_name[W5x00_HTTP_SERVER_MAX_CONTENT_NAME_LEN]; /// Content file name
-	uint32_t file_id;                                          /// Content file ID
-	uint32_t file_len;                                         /// Content file total length
-	uint32_t file_offset;                                      /// Content file offset
+  w5x00_socket_t socknum;                                    /// Soket number
+  uint8_t sock_status;                                       /// Socket status
+  uint8_t file_name[W5x00_HTTP_SERVER_MAX_CONTENT_NAME_LEN]; /// Content file name
+  uint32_t file_id;                                          /// Content file ID
+  uint32_t file_len;                                         /// Content file total length
+  uint32_t file_offset;                                      /// Content file offset
 } w5x00_http_socket_t;
 
 /***************************************************************************//**
@@ -146,9 +146,9 @@ typedef void (*w5x00_http_wdt_reset)(void);
  *    1 on success
  *    0 on failure
  ******************************************************************************/
-typedef uint8_t (*w5x00_http_open_web_content_t)( const char *content_name,
-                                                  uint32_t *file_id,
-                                                  uint32_t *file_len);
+typedef uint8_t (*w5x00_http_open_web_content_t)(const char *content_name,
+                                                 uint32_t *file_id,
+                                                 uint32_t *file_len);
 /***************************************************************************//**
  * @brief
  *    Read content file callback type (HTTP GET request)
@@ -163,10 +163,10 @@ typedef uint8_t (*w5x00_http_open_web_content_t)( const char *content_name,
  * @return
  *    Size of read data
  ******************************************************************************/
-typedef uint16_t (*w5x00_http_read_web_content_t)(  uint32_t file_id,
-                                                    uint8_t *buf,
-                                                    uint32_t offset,
-                                                    uint16_t size);
+typedef uint16_t (*w5x00_http_read_web_content_t)(uint32_t file_id,
+                                                  uint8_t *buf,
+                                                  uint32_t offset,
+                                                  uint16_t size);
 /***************************************************************************//**
  * @brief
  *    Close content file callback type (HTTP GET request)
@@ -188,9 +188,9 @@ typedef void (*w5x00_http_close_web_content_t)(uint32_t file_id);
  *    1 on success
  *    0 on failure
  ******************************************************************************/
-typedef uint8_t (*w5x00_http_get_cgi_handler_t)(  const char *uri_name,
-                                                  uint8_t *buf,
-                                                  uint32_t *file_len);
+typedef uint8_t (*w5x00_http_get_cgi_handler_t)(const char *uri_name,
+                                                uint8_t *buf,
+                                                uint32_t *file_len);
 
 /***************************************************************************//**
  * @brief
@@ -207,10 +207,10 @@ typedef uint8_t (*w5x00_http_get_cgi_handler_t)(  const char *uri_name,
  *    1 on success
  *    0 on failure
  ******************************************************************************/
-typedef uint8_t (*w5x00_http_post_cgi_handler_t)( const char *uri_name,
-                                                  const char *body,
-                                                  uint8_t *buf,
-                                                  uint32_t *file_len);
+typedef uint8_t (*w5x00_http_post_cgi_handler_t)(const char *uri_name,
+                                                 const char *body,
+                                                 uint8_t *buf,
+                                                 uint32_t *file_len);
 typedef struct
 {
   w5x00_http_server_restart_t server_restart;       /// Request restart server
@@ -246,9 +246,9 @@ typedef struct
  * @param callback
  *    Callback struct define by #w5x00_http_server_callback_t
  ******************************************************************************/
-sl_status_t w5x00_http_server_init( w5x00_http_server_t *http,
-                                    uint16_t port,
-                                    const w5x00_http_server_callback_t *callback);
+sl_status_t w5x00_http_server_init(w5x00_http_server_t *http,
+                                   uint16_t port,
+                                   const w5x00_http_server_callback_t *callback);
 
 /***************************************************************************//**
  * @brief

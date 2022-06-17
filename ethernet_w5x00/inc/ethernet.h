@@ -57,10 +57,10 @@ enum EthernetLinkStatus {
 };
 
 enum EthernetHardwareStatus {
-	EthernetNoHardware,   /*!< Ethernet chip is not detected */
-	EthernetW5100,        /*!< Ethernet chip is W5100 */
-	EthernetW5200,        /*!< Ethernet chip is W5200 */
-	EthernetW5500         /*!< Ethernet chip is W5500 */
+  EthernetNoHardware,   /*!< Ethernet chip is not detected */
+  EthernetW5100,        /*!< Ethernet chip is W5100 */
+  EthernetW5200,        /*!< Ethernet chip is W5200 */
+  EthernetW5500         /*!< Ethernet chip is W5500 */
 };
 
 /***************************************************************************//**

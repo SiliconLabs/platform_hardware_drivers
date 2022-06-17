@@ -37,8 +37,8 @@
  *
  ******************************************************************************/
 
-#ifndef	W5X00_H_
-#define	W5X00_H_
+#ifndef W5X00_H_
+#define W5X00_H_
 
 #include <stdbool.h>
 #include "w5x00_config.h"

@@ -125,7 +125,7 @@ Macros</h2></td></tr>
 <tr class="memitem:gafa53bd9e6fa813fd8e3e9f228e39a072"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___utils.html#gafa53bd9e6fa813fd8e3e9f228e39a072">w5x00_ip4_addr_set_byte</a>(ipaddr,  idx,  val)&#160;&#160;&#160;  ((uint8_t*)(&amp;(ipaddr)-&gt;addr))[idx] = val;</td></tr>
 <tr class="memdesc:gafa53bd9e6fa813fd8e3e9f228e39a072"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set one byte from the 4-byte address.  <a href="group___utils.html#gafa53bd9e6fa813fd8e3e9f228e39a072">More...</a><br /></td></tr>
 <tr class="separator:gafa53bd9e6fa813fd8e3e9f228e39a072"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga51799f5ebb4c7228ef7e95c247030f42"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___utils.html#ga51799f5ebb4c7228ef7e95c247030f42">htons</a>(x)&#160;&#160;&#160;( (((x) &amp; 0xFF)&lt;&lt;8) | (((x)&gt;&gt;8) &amp; 0xFF) )</td></tr>
+<tr class="memitem:ga51799f5ebb4c7228ef7e95c247030f42"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___utils.html#ga51799f5ebb4c7228ef7e95c247030f42">htons</a>(x)&#160;&#160;&#160;((((x) &amp; 0xFF)&lt;&lt;8) | (((x)&gt;&gt;8) &amp; 0xFF))</td></tr>
 <tr class="memdesc:ga51799f5ebb4c7228ef7e95c247030f42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert u16 to TCP/IP network byte order (which is big-endian).  <a href="group___utils.html#ga51799f5ebb4c7228ef7e95c247030f42">More...</a><br /></td></tr>
 <tr class="separator:ga51799f5ebb4c7228ef7e95c247030f42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gada37feda716b4ba89cf9dba34288141d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___utils.html#gada37feda716b4ba89cf9dba34288141d">ntohs</a>(x)&#160;&#160;&#160;<a class="el" href="group___utils.html#ga51799f5ebb4c7228ef7e95c247030f42">htons</a>(x)</td></tr>
@@ -162,10 +162,10 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">                   ( ((x)&lt;&lt;24 &amp; 0xFF000000UL) | \</div>
-<div class="line">                   ((x)&lt;&lt; 8 &amp; 0x00FF0000UL) | \</div>
-<div class="line">                   ((x)&gt;&gt; 8 &amp; 0x0000FF00UL) | \</div>
-<div class="line">                   ((x)&gt;&gt;24 &amp; 0x000000FFUL) )</div>
+<b>Value:</b><div class="fragment"><div class="line">                  (((x)&lt;&lt;24 &amp; 0xFF000000UL) | \</div>
+<div class="line">                  ((x)&lt;&lt; 8 &amp; 0x00FF0000UL) | \</div>
+<div class="line">                  ((x)&gt;&gt; 8 &amp; 0x0000FF00UL) | \</div>
+<div class="line">                  ((x)&gt;&gt;24 &amp; 0x000000FFUL) )</div>
 </div><!-- fragment -->
 <p>Convert u32 to TCP/IP network byte order (which is big-endian). </p>
 
@@ -184,7 +184,7 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">x</td><td>)</td>
-          <td>&#160;&#160;&#160;( (((x) &amp; 0xFF)&lt;&lt;8) | (((x)&gt;&gt;8) &amp; 0xFF) )</td>
+          <td>&#160;&#160;&#160;((((x) &amp; 0xFF)&lt;&lt;8) | (((x)&gt;&gt;8) &amp; 0xFF))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -512,11 +512,11 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cp</td><td>IP address in ascii representation (e.g. "127.0.0.1") </td></tr>
-    <tr><td class="paramname">addr</td><td>pointer to which to save the ip address in network order </td></tr>
+    <tr><td class="paramname">addr</td><td>Pointer to which to save the ip address in network order </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if cp could be converted to addr, 0 on failure </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true If cp could be converted to addr, 0 on failure </dd></dl>
 
 </div>
 </div>
@@ -525,7 +525,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Jun 16 2022 18:22:16 for Wiznet W5x00 Ethernet Driver by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+    <li class="footer">Generated on Fri Jun 17 2022 10:31:14 for Wiznet W5x00 Ethernet Driver by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>
 </body>

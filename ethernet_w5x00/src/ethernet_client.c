@@ -60,9 +60,9 @@ sl_status_t w5x00_ethernet_client_init(w5x00_ethernet_client_t *c,
 /***************************************************************************//**
  * Ethernet Client Connect Host.
  ******************************************************************************/
-sl_status_t w5x00_ethernet_client_connect_host( w5x00_ethernet_client_t *c,
-                                                const char *host,
-                                                uint16_t port)
+sl_status_t w5x00_ethernet_client_connect_host(w5x00_ethernet_client_t *c,
+                                               const char *host,
+                                               uint16_t port)
 {
   w5x00_dns_t dns_client; // Look up the host first
   w5x00_ip4_addr_t remote_addr;
@@ -92,9 +92,9 @@ sl_status_t w5x00_ethernet_client_connect_host( w5x00_ethernet_client_t *c,
 /***************************************************************************//**
  * Ethernet Client Connect.
  ******************************************************************************/
-sl_status_t w5x00_ethernet_client_connect( w5x00_ethernet_client_t *c,
-                                           w5x00_ip4_addr_t ip,
-                                           uint16_t port)
+sl_status_t w5x00_ethernet_client_connect(w5x00_ethernet_client_t *c,
+                                          w5x00_ip4_addr_t ip,
+                                          uint16_t port)
 {
   if (c == NULL) {
     return SL_STATUS_INVALID_PARAMETER;
@@ -173,9 +173,9 @@ int w5x00_ethernet_client_available(w5x00_ethernet_client_t *c)
 /***************************************************************************//**
  * Ethernet Client Read.
  ******************************************************************************/
-int w5x00_ethernet_client_read( w5x00_ethernet_client_t *c,
-                                uint8_t *buf,
-                                size_t size)
+int w5x00_ethernet_client_read(w5x00_ethernet_client_t *c,
+                               uint8_t *buf,
+                               size_t size)
 {
   if (c->sockindex >= W5x00_MAX_SOCK_NUM) return 0;
   return w5x00_socket_recv(c->sockindex, buf, size);
@@ -247,10 +247,10 @@ bool w5x00_ethernet_client_connected(w5x00_ethernet_client_t *c)
   if (c->sockindex >= W5x00_MAX_SOCK_NUM) return 0;
 
   uint8_t s = w5x00_socket_status(c->sockindex);
-  return !( s == SnSR_LISTEN
-            || s == SnSR_CLOSED
-            || s == SnSR_FIN_WAIT
-            || (s == SnSR_CLOSE_WAIT && !w5x00_ethernet_client_available(c)));
+  return !(s == SnSR_LISTEN
+           || s == SnSR_CLOSED
+           || s == SnSR_FIN_WAIT
+           || (s == SnSR_CLOSE_WAIT && !w5x00_ethernet_client_available(c)));
 }
 
 /***************************************************************************//**

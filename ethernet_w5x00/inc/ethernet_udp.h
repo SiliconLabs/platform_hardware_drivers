@@ -86,8 +86,8 @@ sl_status_t ethernet_udp_init(w5x00_ethernet_udp_t *e_udp);
  * @return
  *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure.
  ******************************************************************************/
-sl_status_t w5x00_ethernet_udp_begin( w5x00_ethernet_udp_t *e_udp,
-                                      uint16_t port);
+sl_status_t w5x00_ethernet_udp_begin(w5x00_ethernet_udp_t *e_udp,
+                                     uint16_t port);
 
 /***************************************************************************//**
  * @brief
@@ -187,9 +187,9 @@ int w5x00_ethernet_udp_write(w5x00_ethernet_udp_t *e,
  *    Number of read bytes on success
  *    -1 on failure
  ******************************************************************************/
-int w5x00_ethernet_udp_read( w5x00_ethernet_udp_t *e_udp,
-                             uint8_t *buffer,
-                             size_t len);
+int w5x00_ethernet_udp_read(w5x00_ethernet_udp_t *e_udp,
+                            uint8_t *buffer,
+                            size_t len);
 
 /***************************************************************************//**
  * @brief
@@ -224,9 +224,9 @@ sl_status_t w5x00_ethernet_udp_flush(w5x00_ethernet_udp_t *e_udp);
  * @return
  *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure.
  ******************************************************************************/
-sl_status_t w5x00_ethernet_udp_begin_multicast( w5x00_ethernet_udp_t *e_udp,
-                                                w5x00_ip4_addr_t ip,
-                                                uint16_t port);
+sl_status_t w5x00_ethernet_udp_begin_multicast(w5x00_ethernet_udp_t *e_udp,
+                                               w5x00_ip4_addr_t ip,
+                                               uint16_t port);
 
 /** @} (end group UDP) */
 #ifdef __cplusplus

@@ -123,7 +123,7 @@ typedef struct w5x00_ip4_addr w5x00_ip4_addr_t;
  * @brief
      Convert u16 to TCP/IP network byte order (which is big-endian).
  ******************************************************************************/
-#define htons(x) ( (((x) & 0xFF)<<8) | (((x)>>8) & 0xFF) )
+#define htons(x) ((((x) & 0xFF)<<8) | (((x)>>8) & 0xFF))
 
 /***************************************************************************//**
  * @brief
@@ -135,10 +135,10 @@ typedef struct w5x00_ip4_addr w5x00_ip4_addr_t;
  * @brief
      Convert u32 to TCP/IP network byte order (which is big-endian).
  ******************************************************************************/
-#define htonl(x) ( ((x)<<24 & 0xFF000000UL) | \
-                   ((x)<< 8 & 0x00FF0000UL) | \
-                   ((x)>> 8 & 0x0000FF00UL) | \
-                   ((x)>>24 & 0x000000FFUL) )
+#define htonl(x) (((x)<<24 & 0xFF000000UL) | \
+                  ((x)<< 8 & 0x00FF0000UL) | \
+                  ((x)>> 8 & 0x0000FF00UL) | \
+                  ((x)>>24 & 0x000000FFUL) )
 
 /***************************************************************************//**
  * @brief
@@ -154,9 +154,12 @@ typedef struct w5x00_ip4_addr w5x00_ip4_addr_t;
  *    This replaces inet_addr, the return value from which
  *    cannot distinguish between failure and a local broadcast address.
  *
- * @param cp IP address in ascii representation (e.g. "127.0.0.1")
- * @param addr pointer to which to save the ip address in network order
- * @return true if cp could be converted to addr, 0 on failure
+ * @param cp
+ *    IP address in ascii representation (e.g. "127.0.0.1")
+ * @param addr
+ *    Pointer to which to save the ip address in network order
+ * @return true
+ *    If cp could be converted to addr, 0 on failure
  ******************************************************************************/
 bool w5x00_ip4addr_aton(const char *cp, w5x00_ip4_addr_t *addr);
 

@@ -64,9 +64,9 @@ extern "C" {
  ******************************************************************************/
 typedef struct
 {
-	w5x00_ip4_addr_t dns_server;      /// DNS server ip address
-	uint16_t request_id;              /// Request ID
-	w5x00_ethernet_udp_t udp_socket;  /// UDP socket
+  w5x00_ip4_addr_t dns_server;      /// DNS server ip address
+  uint16_t request_id;              /// Request ID
+  w5x00_ethernet_udp_t udp_socket;  /// UDP socket
 } w5x00_dns_t;
 
 /***************************************************************************//**
@@ -96,10 +96,10 @@ sl_status_t w5x00_dns_init(w5x00_dns_t *dns,
  * @return
  *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure.
  ******************************************************************************/
-sl_status_t w5x00_dns_get_host_by_name(   w5x00_dns_t *dns,
-                                          const char *a_hostname,
-                                          w5x00_ip4_addr_t *a_result,
-                                          uint16_t timeout);
+sl_status_t w5x00_dns_get_host_by_name(w5x00_dns_t *dns,
+                                       const char *a_hostname,
+                                       w5x00_ip4_addr_t *a_result,
+                                       uint16_t timeout);
 /** @} (end group DNS) */
 #ifdef __cplusplus
 }

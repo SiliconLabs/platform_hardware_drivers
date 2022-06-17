@@ -84,9 +84,9 @@
 // Private function declarations
 
 static uint16_t build_request(w5x00_dns_t *dns, const char* a_name);
-static uint16_t process_response( w5x00_dns_t *dns,
-                                  uint16_t a_timeout,
-                                  w5x00_ip4_addr_t *a_address);
+static uint16_t process_response(w5x00_dns_t *dns,
+                                 uint16_t a_timeout,
+                                 w5x00_ip4_addr_t *a_address);
 
 // -----------------------------------------------------------------------------
 // Public function definitions
@@ -105,10 +105,10 @@ sl_status_t w5x00_dns_init(w5x00_dns_t *dns,
   return SL_STATUS_OK;
 }
 
-sl_status_t w5x00_dns_get_host_by_name( w5x00_dns_t *dns,
-                                        const char *a_hostname,
-                                        w5x00_ip4_addr_t *a_result,
-                                        uint16_t timeout)
+sl_status_t w5x00_dns_get_host_by_name(w5x00_dns_t *dns,
+                                       const char *a_hostname,
+                                       w5x00_ip4_addr_t *a_result,
+                                       uint16_t timeout)
 {
   int ret = 0;
   sl_status_t result;
@@ -275,9 +275,9 @@ static uint16_t build_request(w5x00_dns_t *dns, const char* a_name)
 }
 
 
-static uint16_t process_response( w5x00_dns_t *dns,
-                                  uint16_t a_timeout,
-                                  w5x00_ip4_addr_t *a_address)
+static uint16_t process_response(w5x00_dns_t *dns,
+                                 uint16_t a_timeout,
+                                 w5x00_ip4_addr_t *a_address)
 {
   uint32_t start_time = w5x00_get_tick_ms();
 
@@ -298,7 +298,7 @@ static uint16_t process_response( w5x00_dns_t *dns,
   } header;
 
   // Check that it's a response from the right server and the right port
-  if ( (dns->dns_server.addr != dns->udp_socket.remote_ip.addr)
+  if ((dns->dns_server.addr != dns->udp_socket.remote_ip.addr)
       || (dns->udp_socket.remote_port != DNS_PORT) ) {
     // It's not from who we expected
     return INVALID_SERVER;
@@ -322,7 +322,7 @@ static uint16_t process_response( w5x00_dns_t *dns,
   }
   // Check for any errors in the response (or in our request)
   // although we don't do anything to get round these
-  if ( (header_flags & TRUNCATION_FLAG) || (header_flags & RESP_MASK) ) {
+  if ((header_flags & TRUNCATION_FLAG) || (header_flags & RESP_MASK) ) {
     // Mark the entire packet as read
     w5x00_ethernet_udp_flush(&dns->udp_socket); // FIXME
     return -5; //INVALID_RESPONSE;
@@ -408,7 +408,7 @@ static uint16_t process_response( w5x00_dns_t *dns,
                             (uint8_t*)&header_flags,
                             sizeof(header_flags));
 
-    if ( (htons(answerType) == TYPE_A) && (htons(answerClass) == CLASS_IN) ) {
+    if ((htons(answerType) == TYPE_A) && (htons(answerClass) == CLASS_IN) ) {
       if (htons(header_flags) != 4) {
         // It's a weird size
         // Mark the entire packet as read
