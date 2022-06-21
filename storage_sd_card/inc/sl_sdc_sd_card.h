@@ -47,7 +47,7 @@ extern "C" {
 #endif
 
 /***************************************************************************//**
- * @brief Initialize a SD Card.
+ * @brief Initialize an SD Card.
  *
  * @return Status of Disk Functions
  ******************************************************************************/
@@ -71,7 +71,7 @@ DSTATUS sd_card_disk_status(void);
  *   Start sector in LBA
  *
  * @param[in] count
- *   Number of sectors to read (1..128)
+ *   Number of sectors to read
  *
  * @return Status of Disk Functions
  ******************************************************************************/
@@ -88,7 +88,7 @@ dresult_t sd_card_disk_read(BYTE* buff, LBA_t sector, UINT count);
  *   Start sector in LBA
  *
  * @param[in] count
- *   Number of sectors to write (1..128)
+ *   Number of sectors to write
  *
  * @return Status of Disk Functions
  ******************************************************************************/

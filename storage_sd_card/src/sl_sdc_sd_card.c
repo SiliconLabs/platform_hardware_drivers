@@ -62,12 +62,12 @@ static volatile DSTATUS sd_card_status = STA_NOINIT; // Disk status
 static BYTE sd_card_type; // Card type flags
 static volatile UINT sd_card_timer_1, sd_card_timer_2; // 1kHz decrement timer
 
-static boolean wait_ready(UINT wt);
+static bool wait_ready(UINT wt);
 static void deselect (void);
-static boolean select(void);
-static boolean rcvr_datablock(BYTE *buff, UINT btr);
+static bool select(void);
+static bool rcvr_datablock(BYTE *buff, UINT btr);
 #if FF_FS_READONLY == 0
-static boolean xmit_datablock(const BYTE *buff, BYTE token);
+static bool xmit_datablock(const BYTE *buff, BYTE token);
 #endif
 static BYTE send_cmd(BYTE cmd, DWORD arg);
 
@@ -80,7 +80,7 @@ static BYTE send_cmd(BYTE cmd, DWORD arg);
  *
  * @return 1:Ready, 0:Timeout
  ******************************************************************************/
-static boolean wait_ready(UINT wt)
+static bool wait_ready(UINT wt)
 {
   BYTE data;
 
@@ -112,7 +112,7 @@ static void deselect(void)
  *
  * @return 1:OK, 0:Timeout
  ******************************************************************************/
-static boolean select(void)
+static bool select(void)
 {
   BYTE data;
 
@@ -140,7 +140,7 @@ static boolean select(void)
  *
  * @return 1:OK, 0:Failed
  ******************************************************************************/
-static boolean rcvr_datablock(BYTE *buff, UINT btr)
+static bool rcvr_datablock(BYTE *buff, UINT btr)
 {
   BYTE token;
 
@@ -155,7 +155,9 @@ static boolean rcvr_datablock(BYTE *buff, UINT btr)
   }
 
   sdc_rcvr_spi_multi(buff, btr); // Receive the data block into buffer
-  sdc_xchg_spi(0xff, &token);    // Discard CRC
+  // Discard 2 byte-CRC.
+  // Refer to http://elm-chan.org/docs/mmc/mmc_e.html#dataxfer for details"
+  sdc_xchg_spi(0xff, &token);
   sdc_xchg_spi(0xff, &token);
 
   return 1;
@@ -174,7 +176,7 @@ static boolean rcvr_datablock(BYTE *buff, UINT btr)
  * @return 1:OK, 0:Failed
  ******************************************************************************/
 #if FF_FS_READONLY == 0
-static boolean xmit_datablock(const BYTE *buff, BYTE token)
+static bool xmit_datablock(const BYTE *buff, BYTE token)
 {
   BYTE data;
 
@@ -185,7 +187,9 @@ static boolean xmit_datablock(const BYTE *buff, BYTE token)
   sdc_xchg_spi(token, &data);      // Xmit a token
   if (token != 0xfd) {             // Not StopTran token
     sdc_xmit_spi_multi(buff, 512); // Xmit the data block to the MMC
-    sdc_xchg_spi(0xff, &data);     // CRC (Dummy)
+    // Discard 2 byte-CRC.
+    // Refer to http://elm-chan.org/docs/mmc/mmc_e.html#dataxfer for details"
+    sdc_xchg_spi(0xff, &data);
     sdc_xchg_spi(0xff, &data);
     sdc_xchg_spi(0xff, &data);     // Receive a data response
     // If not accepted, return with error
@@ -260,7 +264,7 @@ static BYTE send_cmd(BYTE cmd, DWORD arg)
 }
 
 /***************************************************************************//**
- * Inidialize a SD Card.
+ * Inidialize an SD Card.
  ******************************************************************************/
 DSTATUS sd_card_disk_initialize(void)
 {
@@ -422,7 +426,6 @@ dresult_t sd_card_disk_write(const BYTE *buff, LBA_t sector, UINT count)
 #endif
 
 /***************************************************************************//**
- * Miscellaneous Functions.
  * This function is called to control device specific features 
  * and miscellaneous functions other than generic read/write.
  ******************************************************************************/

@@ -4,7 +4,9 @@
 
 This project aims to implement a hardware driver interacting with an SD Card using the microSD Click board. SD Cards support SDIO or SPI interfaces to communicate with them, this driver focuses to communicate with them via the SPI interface. SPI is widely available in embedded devices/microcontrollers.
 
-This project integrates FatFS which is one of the most popular file system libraries. File system related abstraction is handled by FatFS, and lower level functions like the media IO layer are provided by this project's source code. For more information about FatFS, see [FatFS](http://elm-chan.org/fsw/ff/doc/appnote.html).
+This project integrates FatFS which is one of the most popular file system libraries. File system related abstraction is handled by FatFS, and lower-level functions like the media IO layer are provided by this project's source code.
+
+For more information about FatFS, see [FatFS](http://elm-chan.org/fsw/ff/doc/appnote.html).
 
 The microSD Click communicates with the target microcontroller over SPI interface that corresponds to the pinout on the mikroBUS™ socket as shown below.
 
@@ -48,7 +50,7 @@ You can either import the provided **storage_sd_card_simple.sls** project file o
 
      - **[Platform] > [Driver] > [SPIDRV]** with the default instance name: **mikroe**.
      - **[Services] > [IO Stream] > [IO Stream: USART]** with the default instance name: **vcom**.
-     - **[Services] > [Sleep Timer]**. Then set the **Enable wallclock funtionality**.
+     - **[Services] > [Sleep Timer]**. Then set the **Enable wallclock functionality**.
 
         ![sleeptimer_wallclock](doc/sleeptimer_wallclock.png)
 
@@ -61,7 +63,7 @@ You can either import the provided **storage_sd_card_simple.sls** project file o
 
 ### API Overview ###
 
-The driver is diveded into a FatFs, a Media access interface, and an SPI platform. The FatFs layer is the Filesystem Layer independent of platforms and storage media, it is completely separated from the physical device, such as memory card, hard disk, or any type of storage device. The media access interface is not part of the FatFs module and it needs to be provided by the implementer hardware-dependent code. FatFs controls the storage devices via a media access interface. The SPI platform layer provides integration to the host microcontroller hardware-dependent codes.
+The driver is divided into a FatFs, a Media access interface, and an SPI platform. The FatFs layer is the Filesystem Layer independent of platforms and storage media, it is completely separated from the physical device, such as memory card, hard disk, or any type of storage device. The media access interface is not part of the FatFs module and it needs to be provided by the implementer. FatFs controls the storage devices via a media access interface. The SPI platform layer provides integration to the host microcontroller hardware-dependent code.
 
 ![system_oveview](doc/system_overview.png)
 
@@ -81,7 +83,7 @@ For more information about the APIs of the FatFS module, see the following [sour
 **Storage Device Controls Generic Media**: implements the generic media access interface by consuming device-specific storage device control implementations.
 **Storage Device Controls SD Card**: implements the storage device control interfaces specific to SD Card.
 
-**Storage Device Controls SD Card Platform**: implements basic interfaces required by the upper Storage Device Control layer. It implements SPI byte, multibyte, exchange and other required functions by consuming platform SPI interfaces. The SPI instance is configurable via a public interface. Default instance should be provided via a configuration macro defined in a separate [sl_sdc_platform_spi_config.h](inc/sl_sdc_platform_spi_config.h) named header file.
+**Storage Device Controls SD Card Platform**: implements basic interfaces required by the upper Storage Device Control layer. It implements SPI **byte, multibyte, exchange**, and other required functions by consuming platform SPI interfaces. The SPI instance is configurable via a public interface. Default instance should be provided via a configuration macro defined in a separate [sl_sdc_platform_spi_config.h](inc/sl_sdc_platform_spi_config.h) named header file.
 
 **Silicon Labs Platform**: implements the peripheral driver core.
 

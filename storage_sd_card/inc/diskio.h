@@ -37,10 +37,6 @@
 
 #include "ff.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 // Definitions of physical drive number for each drive
 #define SD_CARD_MMC       0 // Map MMC/SD card to physical drive 0
 
@@ -92,6 +88,10 @@ typedef enum {
   RES_NOTRDY,  ///< 3: Not Ready.
   RES_PARERR   ///< 4: Invalid Parameter.
 } dresult_t;
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /***************************************************************************//**
  * @brief
@@ -157,7 +157,8 @@ dresult_t disk_write(BYTE pdrv, const BYTE *buff, LBA_t sector, UINT count);
 
 /***************************************************************************//**
  * @brief
- *   Miscellaneous Functions.
+ *   The disk_ioctl function is called to control device specific features
+ *   and miscellaneous functions other than generic read/write.
  *
  * @param[in] pdrv
  *   Physical drive number to identify the drive

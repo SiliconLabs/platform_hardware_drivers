@@ -42,10 +42,6 @@
 #include "sl_sdc_platform_spi_config.h"
 #include "sl_sleeptimer.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 // Socket controls
 // MMC CS = L
 #define CS_LOW()      GPIO_PinOutSet(SD_CARD_MMC_CS_PORT, SD_CARD_MMC_CS_PIN)
@@ -56,9 +52,13 @@ extern "C" {
 
 // SPI bit rate controls
 // Set slow clock for card initialization (100k-400k)
-#define FCLK_SLOW()   SPIDRV_SetBitrate(spi_handle, SD_CARD_MMC_SLOW_CLOCK)
+#define FCLK_SLOW()   SPIDRV_SetBitrate(sdc_spi_handle, SD_CARD_MMC_SLOW_CLOCK)
 // Set fast clock for generic read/write
-#define FCLK_FAST()   SPIDRV_SetBitrate(spi_handle, SD_CARD_MMC_FAST_CLOCK)
+#define FCLK_FAST()   SPIDRV_SetBitrate(sdc_spi_handle, SD_CARD_MMC_FAST_CLOCK)
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /***************************************************************************//**
  * @brief

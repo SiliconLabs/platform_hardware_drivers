@@ -102,7 +102,8 @@ dresult_t disk_write(BYTE pdrv, const BYTE *buff, LBA_t sector, UINT count)
 }
 
 /***************************************************************************//**
- * Miscellaneous Functions
+ *  The disk_ioctl function is called to control device specific features
+ *  and miscellaneous functions other than generic read/write.
  ******************************************************************************/
 dresult_t disk_ioctl(BYTE pdrv, BYTE cmd, void *buff)
 {
