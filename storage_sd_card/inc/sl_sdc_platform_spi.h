@@ -78,7 +78,7 @@ extern "C" {
  * @return
  *   @ref SL_STATUS_OK on success or @ref SL_STATUS_TRANSMIT on failure
  ******************************************************************************/
-sl_status_t xchg_spi(BYTE tx, BYTE* rx);
+sl_status_t sdc_xchg_spi(BYTE tx, BYTE *rx);
 
 /***************************************************************************//**
  * @brief
@@ -93,7 +93,7 @@ sl_status_t xchg_spi(BYTE tx, BYTE* rx);
  * @return
  *   @ref SL_STATUS_OK on success or @ref SL_STATUS_TRANSMIT on failure
  ******************************************************************************/
-sl_status_t xmit_spi_multi(const BYTE* buff, UINT cnt);
+sl_status_t sdc_xmit_spi_multi(const BYTE *buff, UINT cnt);
 
 /***************************************************************************//**
  * @brief
@@ -108,7 +108,7 @@ sl_status_t xmit_spi_multi(const BYTE* buff, UINT cnt);
  * @return
  *   @ref SL_STATUS_OK on success or @ref SL_STATUS_TRANSMIT on failure
  ******************************************************************************/
-sl_status_t rcvr_spi_multi(BYTE* buff, UINT cnt);
+sl_status_t sdc_rcvr_spi_multi(BYTE *buff, UINT cnt);
 
 #ifdef __cplusplus
 }

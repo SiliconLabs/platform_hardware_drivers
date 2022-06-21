@@ -35,6 +35,8 @@
 #ifndef SL_SDC_SD_CARD_H
 #define SL_SDC_SD_CARD_H
 
+#include "stdint.h"
+
 #include "ff.h"
 #include "diskio.h"
 
@@ -45,10 +47,7 @@ extern "C" {
 #endif
 
 /***************************************************************************//**
- * @brief Inidialize a SD Card.
- *
- * @param[in] pdrv
- *   Physical drive nmuber to identify the drive
+ * @brief Initialize a SD Card.
  *
  * @return Status of Disk Functions
  ******************************************************************************/
@@ -56,9 +55,6 @@ DSTATUS sd_card_disk_initialize(void);
 
 /***************************************************************************//**
  * @brief Get SD Card Status.
- *
- * @param[in] pdrv
- *   Physical drive nmuber to identify the drive
  *
  * @return Status of Disk Functions
  ******************************************************************************/
@@ -79,11 +75,11 @@ DSTATUS sd_card_disk_status(void);
  *
  * @return Status of Disk Functions
  ******************************************************************************/
-DRESULT sd_card_disk_read(BYTE* buff, LBA_t sector, UINT count);
+dresult_t sd_card_disk_read(BYTE* buff, LBA_t sector, UINT count);
 
 /***************************************************************************//**
  * @brief
- *   Write Sector(s) to SD Card
+ *   Write Sector(s) to SD Card.
  *
  * @param[in] buff
  *   Pointer to the Data buffer to be written
@@ -96,11 +92,13 @@ DRESULT sd_card_disk_read(BYTE* buff, LBA_t sector, UINT count);
  *
  * @return Status of Disk Functions
  ******************************************************************************/
-DRESULT sd_card_disk_write(const BYTE* buff, LBA_t sector, UINT count);
+dresult_t sd_card_disk_write(const BYTE* buff, LBA_t sector, UINT count);
 
 /***************************************************************************//**
  * @brief
  *   Miscellaneous Functions.
+ *   This function is called to control device specific features 
+ *   and miscellaneous functions other than generic read/write.
  *
  * @param[in] cmd
  *   Control code
@@ -110,7 +108,7 @@ DRESULT sd_card_disk_write(const BYTE* buff, LBA_t sector, UINT count);
  *
  * @return Status of Disk Functions
  ******************************************************************************/
-DRESULT sd_card_disk_ioctl(BYTE cmd, void* buff);
+dresult_t sd_card_disk_ioctl(BYTE cmd, void* buff);
 
 #ifdef __cplusplus
 }

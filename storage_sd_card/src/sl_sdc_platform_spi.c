@@ -34,7 +34,7 @@
  ******************************************************************************/
 #include "sl_sdc_platform_spi.h"
 
-static sl_sleeptimer_timer_handle_t   disk_timerproc_timer_handle;
+static sl_sleeptimer_timer_handle_t disk_timerproc_timer_handle;
 static void disk_timerproc_timer_callback(sl_sleeptimer_timer_handle_t *handle,
                                           void *data);
 
@@ -63,11 +63,11 @@ sl_status_t sdc_platform_spi_init(void)
 /***************************************************************************//**
  * Exchange a byte.
  ******************************************************************************/
-sl_status_t xchg_spi(BYTE tx, BYTE* rx)
+sl_status_t sdc_xchg_spi(BYTE tx, BYTE *rx)
 {
   sl_status_t retval;
 
-  retval = SPIDRV_MTransferB(spi_handle, &tx, rx, 1);
+  retval = SPIDRV_MTransferB(sdc_spi_handle, &tx, rx, 1);
   if (retval != ECODE_EMDRV_SPIDRV_OK) {
     *rx = 0;
     return SL_STATUS_TRANSMIT;
@@ -79,11 +79,11 @@ sl_status_t xchg_spi(BYTE tx, BYTE* rx)
 /***************************************************************************//**
  * Multi-byte SPI transaction (transmit).
  ******************************************************************************/
-sl_status_t xmit_spi_multi(const BYTE* buff, UINT cnt)
+sl_status_t sdc_xmit_spi_multi(const BYTE *buff, UINT cnt)
 {
   sl_status_t retval;
 
-  retval = SPIDRV_MTransmitB(spi_handle, buff, cnt);
+  retval = SPIDRV_MTransmitB(sdc_spi_handle, buff, cnt);
   if (retval != ECODE_EMDRV_SPIDRV_OK) {
     return SL_STATUS_TRANSMIT;
   }
@@ -94,11 +94,11 @@ sl_status_t xmit_spi_multi(const BYTE* buff, UINT cnt)
 /***************************************************************************//**
  * Multi-byte SPI transaction (receive).
  ******************************************************************************/
-sl_status_t rcvr_spi_multi(BYTE* buff, UINT cnt)
+sl_status_t sdc_rcvr_spi_multi(BYTE *buff, UINT cnt)
 {
   sl_status_t retval;
 
-  retval = SPIDRV_MTransferB(spi_handle, buff, buff, cnt);
+  retval = SPIDRV_MTransferB(sdc_spi_handle, buff, buff, cnt);
   if (retval != ECODE_EMDRV_SPIDRV_OK) {
     return SL_STATUS_TRANSMIT;
   }

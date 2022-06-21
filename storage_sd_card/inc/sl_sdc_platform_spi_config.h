@@ -35,14 +35,14 @@
 #ifndef SL_SDC_PLATFORM_SPI_CONFIG_H
 #define SL_SDC_PLATFORM_SPI_CONFIG_H
 
+#include "sl_spidrv_instances.h"
+#include "sl_spidrv_mikroe_config.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include "sl_spidrv_instances.h"
-#include "sl_spidrv_mikroe_config.h"
-
-#define spi_handle                          sl_spidrv_mikroe_handle
+#define sdc_spi_handle                      sl_spidrv_mikroe_handle
 
 #define SD_CARD_MMC_PERIPHERAL              SL_SPIDRV_MIKROE_PERIPHERAL
 #define SD_CARD_MMC_PERIPHERAL_NO           SL_SPIDRV_MIKROE_PERIPHERAL_NO
@@ -53,8 +53,8 @@ extern "C" {
 #define SD_CARD_MMC_FAST_CLOCK              SL_SPIDRV_MIKROE_BITRATE
 
 // USART0 CS on PC03
-#define SD_CARD_MMC_CS_PORT                 gpioPortC
-#define SD_CARD_MMC_CS_PIN                  3
+#define SD_CARD_MMC_CS_PORT                 SL_SPIDRV_MIKROE_CS_PORT
+#define SD_CARD_MMC_CS_PIN                  SL_SPIDRV_MIKROE_CS_PIN
 
 // USART0 CS on PB00
 #define SD_CARD_MMC_CD_PORT                 gpioPortB

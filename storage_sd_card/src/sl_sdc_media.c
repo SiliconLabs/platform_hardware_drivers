@@ -42,62 +42,79 @@
  ******************************************************************************/
 DSTATUS disk_status(BYTE pdrv)
 {
-	switch (pdrv) {
-	  case SD_CARD_MMC:
-		  return sd_card_disk_status();
-	}
-	return STA_NOINIT;
+  switch (pdrv) {
+    case SD_CARD_MMC:
+      return sd_card_disk_status();
+      break;
+
+    default:
+      break;
+  }
+  return STA_NOINIT;
 }
 
 /***************************************************************************//**
- * Inidialize a Drive.
+ * Initialize a Drive.
  ******************************************************************************/
 DSTATUS disk_initialize(BYTE pdrv)
 {
-	switch (pdrv) {
-	  case SD_CARD_MMC:
-		  return sd_card_disk_initialize();
-	}
-	return STA_NOINIT;
+  switch (pdrv) {
+    case SD_CARD_MMC:
+      return sd_card_disk_initialize();
+      break;
+
+    default:
+      break;
+  }
+  return STA_NOINIT;
 }
 
 /***************************************************************************//**
  * Read Sector(s).
  ******************************************************************************/
-DRESULT disk_read(BYTE pdrv, BYTE *buff,	LBA_t sector,	UINT count)
+dresult_t disk_read(BYTE pdrv, BYTE *buff, LBA_t sector, UINT count)
 {
-	switch (pdrv) {
-	  case SD_CARD_MMC:
-		  return sd_card_disk_read(buff, sector, count);
-	}
+  switch (pdrv) {
+    case SD_CARD_MMC:
+      return sd_card_disk_read(buff, sector, count);
+      break;
 
-	return RES_PARERR;
+    default:
+      break;
+  }
+  return RES_PARERR;
 }
 
 /***************************************************************************//**
  * Write Sector(s).
  ******************************************************************************/
-DRESULT disk_write(BYTE pdrv, const BYTE *buff, LBA_t sector, UINT count)
+dresult_t disk_write(BYTE pdrv, const BYTE *buff, LBA_t sector, UINT count)
 {
-	switch (pdrv) {
-	  case SD_CARD_MMC:
-		  return sd_card_disk_write(buff, sector, count);
-	}
+  switch (pdrv) {
+    case SD_CARD_MMC:
+      return sd_card_disk_write(buff, sector, count);
+      break;
 
-	return RES_PARERR;
+    default:
+      break;
+  }
+  return RES_PARERR;
 }
 
 /***************************************************************************//**
  * Miscellaneous Functions
  ******************************************************************************/
-DRESULT disk_ioctl(BYTE pdrv,	BYTE cmd,	void *buff)
+dresult_t disk_ioctl(BYTE pdrv, BYTE cmd, void *buff)
 {
-	switch (pdrv) {
-	  case SD_CARD_MMC:
-	    return sd_card_disk_ioctl(cmd, buff);
-	}
+  switch (pdrv) {
+    case SD_CARD_MMC:
+      return sd_card_disk_ioctl(cmd, buff);
+      break;
 
-	return RES_PARERR;
+    default:
+      break;
+  }
+  return RES_PARERR;
 }
 
 /***************************************************************************//**
@@ -125,7 +142,7 @@ DRESULT disk_ioctl(BYTE pdrv,	BYTE cmd,	void *buff)
 #if !FF_FS_NORTC && !FF_FS_READONLY
 DWORD get_fattime(void)
 {
-  static sl_sleeptimer_date_t  date_time;
+  static sl_sleeptimer_date_t date_time;
 
   // Get local time
   if (sl_sleeptimer_get_datetime(&date_time) != SL_STATUS_OK) {
@@ -139,7 +156,5 @@ DWORD get_fattime(void)
          | ((DWORD)date_time.hour << 11)
          | ((DWORD)date_time.min << 5)
          | ((DWORD)date_time.sec >> 1);
-
-  return 0;
 }
 #endif

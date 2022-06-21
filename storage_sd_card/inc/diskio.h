@@ -1,6 +1,6 @@
 /***************************************************************************//**
  * @file diskio.h
- * @brief Low level disk interface modlue include file
+ * @brief Low level disk interface module include file
  *******************************************************************************
  * # License
  * <b>Copyright 2022 Silicon Laboratories Inc. www.silabs.com</b>
@@ -42,7 +42,7 @@ extern "C" {
 #endif
 
 // Definitions of physical drive number for each drive
-#define SD_CARD_MMC   0 // Map MMC/SD card to physical drive 0
+#define SD_CARD_MMC       0 // Map MMC/SD card to physical drive 0
 
 // Disk Status Bits (DSTATUS)
 #define STA_NOINIT        0x01  // Drive not initialized
@@ -50,7 +50,6 @@ extern "C" {
 #define STA_PROTECT       0x04  // Write protected
 
 // Command code for disk_ioctrl fucntion
-
 // Generic command (Used by FatFs)
 #define CTRL_SYNC         0 // Complete pending write process (needed at FF_FS_READONLY == 0)
 #define GET_SECTOR_COUNT  1 // Get media size (needed at FF_USE_MKFS == 1)
@@ -83,23 +82,23 @@ extern "C" {
 #define CT_BLOCK          0x10    // Block addressing
 
 // Status of Disk Functions
-typedef BYTE	DSTATUS;
+typedef BYTE DSTATUS;
 
-// Results of Disk Functions
+/// Results of Disk Functions
 typedef enum {
-	RES_OK = 0,		/**< 0: Successful */
-	RES_ERROR,		/**< 1: R/W Error */
-	RES_WRPRT,		/**< 2: Write Protected */
-	RES_NOTRDY,		/**< 3: Not Ready */
-	RES_PARERR		/**< 4: Invalid Parameter */
-} DRESULT;
+  RES_OK = 0,  ///< 0: Successful.
+  RES_ERROR,   ///< 1: R/W Error.
+  RES_WRPRT,   ///< 2: Write Protected.
+  RES_NOTRDY,  ///< 3: Not Ready.
+  RES_PARERR   ///< 4: Invalid Parameter.
+} dresult_t;
 
 /***************************************************************************//**
  * @brief
- *   Inidialize a Drive.
+ *   Initialize a Drive.
  *
  * @param[in] pdrv
- *   Physical drive nmuber to identify the drive
+ *   Physical drive number to identify the drive
  *
  * @return Status of Disk Functions
  ******************************************************************************/
@@ -110,7 +109,7 @@ DSTATUS disk_initialize(BYTE pdrv);
  *   Get Drive Status.
  *
  * @param[in] pdrv
- *   Physical drive nmuber to identify the drive
+ *   Physical drive number to identify the drive
  *
  * @return Status of Disk Functions
  ******************************************************************************/
@@ -121,7 +120,7 @@ DSTATUS disk_status(BYTE pdrv);
  *   Read Sector(s).
  *
  * @param[in] pdrv
- *   Physical drive nmuber to identify the drive
+ *   Physical drive number to identify the drive
  *
  * @param[out] buff
  *   Pointer to the Data buffer to store read data
@@ -134,14 +133,14 @@ DSTATUS disk_status(BYTE pdrv);
  *
  * @return Status of Disk Functions
  ******************************************************************************/
-DRESULT disk_read(BYTE pdrv, BYTE* buff, LBA_t sector, UINT count);
+dresult_t disk_read(BYTE pdrv, BYTE *buff, LBA_t sector, UINT count);
 
 /***************************************************************************//**
  * @brief
  *   Write Sector(s).
  *
  * @param[in] pdrv
- *   Physical drive nmuber to identify the drive
+ *   Physical drive number to identify the drive
  *
  * @param[in] buff
  *   Pointer to the Data buffer to be written
@@ -154,14 +153,14 @@ DRESULT disk_read(BYTE pdrv, BYTE* buff, LBA_t sector, UINT count);
  *
  * @return Status of Disk Functions
  ******************************************************************************/
-DRESULT disk_write(BYTE pdrv, const BYTE* buff, LBA_t sector, UINT count);
+dresult_t disk_write(BYTE pdrv, const BYTE *buff, LBA_t sector, UINT count);
 
 /***************************************************************************//**
  * @brief
  *   Miscellaneous Functions.
  *
  * @param[in] pdrv
- *   Physical drive nmuber to identify the drive
+ *   Physical drive number to identify the drive
  *
  * @param[in] cmd
  *   Control code
@@ -171,7 +170,7 @@ DRESULT disk_write(BYTE pdrv, const BYTE* buff, LBA_t sector, UINT count);
  *
  * @return Status of Disk Functions
  ******************************************************************************/
-DRESULT disk_ioctl(BYTE pdrv, BYTE cmd, void* buff);
+dresult_t disk_ioctl(BYTE pdrv, BYTE cmd, void *buff);
 
 /***************************************************************************//**
  * Device timer function.
@@ -180,8 +179,8 @@ DRESULT disk_ioctl(BYTE pdrv, BYTE cmd, void* buff);
  ******************************************************************************/
 void disk_timerproc(void);
 
+#endif // DISKIO_H
+
 #ifdef __cplusplus
 }
 #endif
-
-#endif // DISKIO_H

@@ -55,11 +55,13 @@ BYTE f_work[FF_MAX_SS]; // Work area (larger is better for processing time)
  ******************************************************************************/
 void app_init(void)
 {
-  FATFS fs, *pfs;
+  FATFS fs;
+  FATFS *pfs;
   FIL fil;
   DWORD fre_clust;
   FRESULT ret_code;
-  UINT bw, br;
+  UINT bw;
+  UINT br;
 
 #if !FF_FS_NORTC && !FF_FS_READONLY
   DWORD time_data;

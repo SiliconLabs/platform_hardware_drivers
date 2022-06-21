@@ -35,34 +35,41 @@
 #include "sl_sdc_sd_card.h"
 
 // Definitions for MMC/SDC command
-#define CMD0      (0)			    // GO_IDLE_STATE
-#define CMD1      (1)			    // SEND_OP_COND (MMC)
-#define	ACMD41    (0x80 + 41) // SEND_OP_COND (SDC)
-#define CMD8      (8)			    // SEND_IF_COND
-#define CMD9      (9)			    // SEND_CSD
-#define CMD10     (10)		    // SEND_CID
-#define CMD12     (12)		    // STOP_TRANSMISSION
-#define ACMD13    (0x80 + 13)	// SD_STATUS (SDC)
-#define CMD16     (16)		    // SET_BLOCKLEN
-#define CMD17     (17)		    // READ_SINGLE_BLOCK
-#define CMD18     (18)		    // READ_MULTIPLE_BLOCK
-#define CMD23     (23)		    // SET_BLOCK_COUNT (MMC)
-#define	ACMD23    (0x80 + 23)	// SET_WR_BLK_ERASE_COUNT (SDC)
-#define CMD24     (24)		    // WRITE_BLOCK
-#define CMD25     (25)		    // WRITE_MULTIPLE_BLOCK
-#define CMD32     (32)		    // ERASE_ER_BLK_START
-#define CMD33     (33)		    // ERASE_ER_BLK_END
-#define CMD38     (38)		    // ERASE
-#define	CMD48     (48)		    // READ_EXTR_SINGLE
-#define	CMD49     (49)		    // WRITE_EXTR_SINGLE
-#define CMD55     (55)		    // APP_CMD
-#define CMD58     (58)		    // READ_OCR
+#define CMD0      (0)         // GO_IDLE_STATE
+#define CMD1      (1)         // SEND_OP_COND (MMC)
+#define ACMD41    (0x80 + 41) // SEND_OP_COND (SDC)
+#define CMD8      (8)         // SEND_IF_COND
+#define CMD9      (9)         // SEND_CSD
+#define CMD10     (10)        // SEND_CID
+#define CMD12     (12)        // STOP_TRANSMISSION
+#define ACMD13    (0x80 + 13) // SD_STATUS (SDC)
+#define CMD16     (16)        // SET_BLOCKLEN
+#define CMD17     (17)        // READ_SINGLE_BLOCK
+#define CMD18     (18)        // READ_MULTIPLE_BLOCK
+#define CMD23     (23)        // SET_BLOCK_COUNT (MMC)
+#define ACMD23    (0x80 + 23) // SET_WR_BLK_ERASE_COUNT (SDC)
+#define CMD24     (24)        // WRITE_BLOCK
+#define CMD25     (25)        // WRITE_MULTIPLE_BLOCK
+#define CMD32     (32)        // ERASE_ER_BLK_START
+#define CMD33     (33)        // ERASE_ER_BLK_END
+#define CMD38     (38)        // ERASE
+#define CMD48     (48)        // READ_EXTR_SINGLE
+#define CMD49     (49)        // WRITE_EXTR_SINGLE
+#define CMD55     (55)        // APP_CMD
+#define CMD58     (58)        // READ_OCR
 
-static volatile DSTATUS sd_card_status = STA_NOINIT;	// Disk status
-
+static volatile DSTATUS sd_card_status = STA_NOINIT; // Disk status
 static BYTE sd_card_type; // Card type flags
+static volatile UINT sd_card_timer_1, sd_card_timer_2; // 1kHz decrement timer
 
-static volatile UINT sd_card_timer_1, sd_card_timer_2;  // 1kHz decrement timer
+static boolean wait_ready(UINT wt);
+static void deselect (void);
+static boolean select(void);
+static boolean rcvr_datablock(BYTE *buff, UINT btr);
+#if FF_FS_READONLY == 0
+static boolean xmit_datablock(const BYTE *buff, BYTE token);
+#endif
+static BYTE send_cmd(BYTE cmd, DWORD arg);
 
 /***************************************************************************//**
  * @brief
@@ -73,13 +80,13 @@ static volatile UINT sd_card_timer_1, sd_card_timer_2;  // 1kHz decrement timer
  *
  * @return 1:Ready, 0:Timeout
  ******************************************************************************/
-static int wait_ready(UINT wt)
+static boolean wait_ready(UINT wt)
 {
   BYTE data;
 
   sd_card_timer_2 = wt;
   do {
-    xchg_spi(0xff, &data);
+    sdc_xchg_spi(0xff, &data);
     // This loop takes a time. Insert rot_rdq() here for multitask envilonment.
   } while (data != 0xff && sd_card_timer_2);  // Wait for card goes ready or timeout
 
@@ -91,12 +98,12 @@ static int wait_ready(UINT wt)
  *   Deselect card and release SPI.
  *
  ******************************************************************************/
-static void deselect (void)
+static void deselect(void)
 {
   BYTE data;
 
   CS_HIGH();
-  xchg_spi(0xff, &data); // Dummy clock (force DO hi-z for multiple slave SPI)
+  sdc_xchg_spi(0xff, &data); // Dummy clock (force DO hi-z for multiple slave SPI)
 }
 
 /***************************************************************************//**
@@ -105,13 +112,13 @@ static void deselect (void)
  *
  * @return 1:OK, 0:Timeout
  ******************************************************************************/
-static int select(void)
+static boolean select(void)
 {
   BYTE data;
 
   CS_LOW();
   // Dummy clock (force DO enabled)
-  xchg_spi(0xff, &data);
+  sdc_xchg_spi(0xff, &data);
 
   if (wait_ready(500)) {
     return 1;  // Wait for card ready
@@ -133,13 +140,13 @@ static int select(void)
  *
  * @return 1:OK, 0:Failed
  ******************************************************************************/
-static int rcvr_datablock(BYTE *buff, UINT btr)
+static boolean rcvr_datablock(BYTE *buff, UINT btr)
 {
   BYTE token;
 
   sd_card_timer_1 = 100;
   do { // Wait for data packet in timeout of 100m
-    xchg_spi(0xff, &token);
+    sdc_xchg_spi(0xff, &token);
   } while ((token == 0xff) && sd_card_timer_1);
 
   // If not valid data token, return with error
@@ -147,9 +154,9 @@ static int rcvr_datablock(BYTE *buff, UINT btr)
     return 0;
   }
 
-  rcvr_spi_multi(buff, btr); // Receive the data block into buffer
-  xchg_spi(0xff, &token);    // Discard CRC
-  xchg_spi(0xff, &token);
+  sdc_rcvr_spi_multi(buff, btr); // Receive the data block into buffer
+  sdc_xchg_spi(0xff, &token);    // Discard CRC
+  sdc_xchg_spi(0xff, &token);
 
   return 1;
 }
@@ -167,7 +174,7 @@ static int rcvr_datablock(BYTE *buff, UINT btr)
  * @return 1:OK, 0:Failed
  ******************************************************************************/
 #if FF_FS_READONLY == 0
-static int xmit_datablock(const BYTE *buff, BYTE token)
+static boolean xmit_datablock(const BYTE *buff, BYTE token)
 {
   BYTE data;
 
@@ -175,12 +182,12 @@ static int xmit_datablock(const BYTE *buff, BYTE token)
     return 0;
   }
 
-  xchg_spi(token, &data);      // Xmit a token
-  if (token != 0xfd) {         // Not StopTran token
-    xmit_spi_multi(buff, 512); // Xmit the data block to the MMC
-    xchg_spi(0xff, &data);     // CRC (Dummy)
-    xchg_spi(0xff, &data);
-    xchg_spi(0xff, &data);     // Receive a data response
+  sdc_xchg_spi(token, &data);      // Xmit a token
+  if (token != 0xfd) {             // Not StopTran token
+    sdc_xmit_spi_multi(buff, 512); // Xmit the data block to the MMC
+    sdc_xchg_spi(0xff, &data);     // CRC (Dummy)
+    sdc_xchg_spi(0xff, &data);
+    sdc_xchg_spi(0xff, &data);     // Receive a data response
     // If not accepted, return with error
     if ((data & 0x1F) != 0x05) {
       return 0;
@@ -205,31 +212,31 @@ static int xmit_datablock(const BYTE *buff, BYTE token)
  ******************************************************************************/
 static BYTE send_cmd(BYTE cmd, DWORD arg)
 {
-	BYTE n, data;
+  BYTE n, data;
 
   // ACMD<n> is the command sequense of CMD55-CMD<n>
-	if (cmd & 0x80) {
-		cmd &= 0x7f;
-		data = send_cmd(CMD55, 0);
-		if (data > 1) {
-		  return data;
-		}
-	}
+  if (cmd & 0x80) {
+    cmd &= 0x7f;
+    data = send_cmd(CMD55, 0);
+    if (data > 1) {
+      return data;
+    }
+  }
 
-	// Select the card and wait for ready except to stop multiple block read
-	if (cmd != CMD12) {
-		deselect();
-		if (!select()) {
-		  return 0xff;
-		}
-	}
+  // Select the card and wait for ready except to stop multiple block read
+  if (cmd != CMD12) {
+    deselect();
+    if (!select()) {
+      return 0xff;
+    }
+  }
 
-	// Send command packet
-	xchg_spi(0x40 | cmd, &data);          // Start + Command index
-	xchg_spi(((BYTE)(arg >> 24)), &data); // Argument[31..24]
-	xchg_spi(((BYTE)(arg >> 16)), &data); // Argument[23..16]
-	xchg_spi(((BYTE)(arg >> 8)), &data);  // Argument[15..8]
-	xchg_spi((BYTE)(arg), &data);         // Argument[7..0]
+  // Send command packet
+  sdc_xchg_spi(0x40 | cmd, &data);          // Start + Command index
+  sdc_xchg_spi(((BYTE)(arg >> 24)), &data); // Argument[31..24]
+  sdc_xchg_spi(((BYTE)(arg >> 16)), &data); // Argument[23..16]
+  sdc_xchg_spi(((BYTE)(arg >> 8)), &data);  // Argument[15..8]
+  sdc_xchg_spi((BYTE)(arg), &data);         // Argument[7..0]
 
   n = 0x01;           // Dummy CRC + Stop
   if (cmd == CMD0) {
@@ -238,15 +245,15 @@ static BYTE send_cmd(BYTE cmd, DWORD arg)
   if (cmd == CMD8) {
     n = 0x87;         // Valid CRC for CMD8(0x1AA) + Stop
   }
-  xchg_spi(n, &data);
+  sdc_xchg_spi(n, &data);
 
   // Receive command response
   if (cmd == CMD12) {
-    xchg_spi(0xff, &data); // Skip a stuff byte on stop to read
+    sdc_xchg_spi(0xff, &data); // Skip a stuff byte on stop to read
   }
   n = 10;             // Wait for a valid response in timeout of 10 attempts
   do {
-    xchg_spi(0xff, &data);
+    sdc_xchg_spi(0xff, &data);
   } while ((data & 0x80) && --n);
 
   return data;     // Return with the response value
@@ -271,7 +278,7 @@ DSTATUS sd_card_disk_initialize(void)
 
   FCLK_SLOW();
   for (n = 10; n; n--) {
-    xchg_spi(0xff, &data);  // Send 80 dummy clocks
+    sdc_xchg_spi(0xff, &data);  // Send 80 dummy clocks
   }
 
   ty = 0;
@@ -279,13 +286,13 @@ DSTATUS sd_card_disk_initialize(void)
     sd_card_timer_1 = 1000;           // Initialization timeout = 1 sec
     if (send_cmd(CMD8, 0x1aa) == 1) { // Is the card SDv2?
       for (n = 0; n < 4; n++) {
-        xchg_spi(0xff, &ocr[n]);          // Get 32 bit return value of R7 resp
+        sdc_xchg_spi(0xff, &ocr[n]);          // Get 32 bit return value of R7 resp
       }
       if (ocr[2] == 0x01 && ocr[3] == 0xaa) { // Is the card supports vcc of 2.7-3.6V?
         while (sd_card_timer_1 && send_cmd(ACMD41, 1UL << 30)) ; // Wait for end of initialization with ACMD41(HCS)
         if (sd_card_timer_1 && send_cmd(CMD58, 0) == 0) { // Check CCS bit in the OCR
           for (n = 0; n < 4; n++) {
-            xchg_spi(0xff, &ocr[n]);
+            sdc_xchg_spi(0xff, &ocr[n]);
           }
           ty = (ocr[0] & 0x40) ? CT_SDC2 | CT_BLOCK : CT_SDC2;  // Card id SDv2
         }
@@ -322,58 +329,58 @@ DSTATUS sd_card_disk_initialize(void)
  ******************************************************************************/
 DSTATUS sd_card_disk_status(void)
 {
-	return sd_card_status;
+  return sd_card_status;
 }
 
 /***************************************************************************//**
  * Read Sector(s) from SD Card.
  ******************************************************************************/
-DRESULT sd_card_disk_read(BYTE *buff, LBA_t sector, UINT count)
+dresult_t sd_card_disk_read(BYTE *buff, LBA_t sector, UINT count)
 {
-	DWORD sect = (DWORD)sector;
+  DWORD sect = (DWORD)sector;
 
-	// Check parameter
-	if (!count) {
-	  return RES_PARERR;
-	}
+  // Check parameter
+  if (!count) {
+    return RES_PARERR;
+  }
 
-	// Check if drive is ready
-	if (sd_card_status & STA_NOINIT) {
-	  return RES_NOTRDY;
-	}
+  // Check if drive is ready
+  if (sd_card_status & STA_NOINIT) {
+    return RES_NOTRDY;
+  }
 
-	// LBA ot BA conversion (byte addressing cards)
-	if (!(sd_card_type & CT_BLOCK)) {
-	  sect *= 512;
-	}
+  // LBA ot BA conversion (byte addressing cards)
+  if (!(sd_card_type & CT_BLOCK)) {
+    sect *= 512;
+  }
 
-	// Single block read
-	if (count == 1) {
-	  if ((send_cmd(CMD17, sect) == 0)  // READ_SINGLE_BLOCK
-	      && rcvr_datablock(buff, 512)) {
-	    count = 0;
-	  }
-	} else { // Multiple block read
-	  if (send_cmd(CMD18, sect) == 0) { // READ_MULTIPLE_BLOCK
-	    do {
-	      if (!rcvr_datablock(buff, 512)) {
-	        break;
-	      }
-	      buff += 512;
-	    } while (--count);
-	    send_cmd(CMD12, 0); // STOP_TRANSMISSION
-	  }
-	}
-	deselect();
+  // Single block read
+  if (count == 1) {
+    if ((send_cmd(CMD17, sect) == 0)  // READ_SINGLE_BLOCK
+        && rcvr_datablock(buff, 512)) {
+      count = 0;
+    }
+  } else { // Multiple block read
+    if (send_cmd(CMD18, sect) == 0) { // READ_MULTIPLE_BLOCK
+      do {
+        if (!rcvr_datablock(buff, 512)) {
+          break;
+        }
+        buff += 512;
+      } while (--count);
+      send_cmd(CMD12, 0); // STOP_TRANSMISSION
+    }
+  }
+  deselect();
 
-	return count ? RES_ERROR : RES_OK;
+  return count ? RES_ERROR : RES_OK;
 }
 
 /***************************************************************************//**
  * Write Sector(s) to SD Card.
  ******************************************************************************/
 #if FF_FS_READONLY == 0
-DRESULT sd_card_disk_write(const BYTE *buff, LBA_t sector, UINT count)
+dresult_t sd_card_disk_write(const BYTE *buff, LBA_t sector, UINT count)
 {
   DWORD sect = (DWORD)sector;
 
@@ -416,15 +423,21 @@ DRESULT sd_card_disk_write(const BYTE *buff, LBA_t sector, UINT count)
 
 /***************************************************************************//**
  * Miscellaneous Functions.
+ * This function is called to control device specific features 
+ * and miscellaneous functions other than generic read/write.
  ******************************************************************************/
-DRESULT sd_card_disk_ioctl(BYTE cmd, void *buff)
+dresult_t sd_card_disk_ioctl(BYTE cmd, void *buff)
 {
-  DRESULT res;
-  BYTE n, csd[16], *ptr = buff, data;
+  dresult_t res;
+  BYTE n;
+  BYTE csd[16];
+  BYTE *ptr = buff;
+  BYTE data;
   DWORD csize;
 #ifdef FF_USE_TRIM
   LBA_t *range;
-  DWORD st, ed;
+  DWORD st;
+  DWORD ed;
 #endif
 
   if (sd_card_status & STA_NOINIT) {
@@ -462,10 +475,10 @@ DRESULT sd_card_disk_ioctl(BYTE cmd, void *buff)
     case GET_BLOCK_SIZE:
       if (sd_card_type & CT_SDC2) {         // SDv2?
         if (send_cmd(ACMD13, 0) == 0) { // Read SD status
-          xchg_spi(0xff, &data);
+          sdc_xchg_spi(0xff, &data);
           if (rcvr_datablock(csd, 16)) {// Read partial block
             for (n = 64 - 16; n; n--) {
-              xchg_spi(0xff, &data);    // Purge trailing data
+              sdc_xchg_spi(0xff, &data);    // Purge trailing data
             }
             *(DWORD*)buff = 16UL << (csd[10] >> 4);
             res = RES_OK;
@@ -546,7 +559,7 @@ DRESULT sd_card_disk_ioctl(BYTE cmd, void *buff)
       // READ_OCR
       if (send_cmd(CMD58, 0) == 0) {
         for (n = 4; n; n--) {
-          *ptr++ = xchg_spi(0xff, &data);
+          *ptr++ = sdc_xchg_spi(0xff, &data);
         }
         res = RES_OK;
       }
@@ -557,7 +570,7 @@ DRESULT sd_card_disk_ioctl(BYTE cmd, void *buff)
     case MMC_GET_SDSTAT:
       // SD_STATUS
       if (send_cmd(ACMD13, 0) == 0) {
-        xchg_spi(0xff, &data);
+        sdc_xchg_spi(0xff, &data);
         if (rcvr_datablock(ptr, 64)) {
           res = RES_OK;
         }
@@ -567,6 +580,7 @@ DRESULT sd_card_disk_ioctl(BYTE cmd, void *buff)
 
     default:
       res = RES_PARERR;
+      break;
   }
 
   return res;
