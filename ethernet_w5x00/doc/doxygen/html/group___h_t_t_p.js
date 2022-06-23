@@ -1,6 +1,7 @@
 var group___h_t_t_p =
 [
     [ "w5x00_http_request_t", "structw5x00__http__request__t.html", [
+      [ "method", "structw5x00__http__request__t.html#a3554cab2930c5c9ee788ca1798dc139f", null ],
       [ "type", "structw5x00__http__request__t.html#a74a4986be82a51f7b72ba5b9d719e0dc", null ],
       [ "uri", "structw5x00__http__request__t.html#a5dc950af2e98fecb9b0b8ca2b0ce13f5", null ]
     ] ],
@@ -9,19 +10,22 @@ var group___h_t_t_p =
       [ "file_len", "structw5x00__http__socket__t.html#af597796d1b6e2a2e12d76a5f07c2ea18", null ],
       [ "file_name", "structw5x00__http__socket__t.html#a55b4fb57059edd93885657fb4ca8dae8", null ],
       [ "file_offset", "structw5x00__http__socket__t.html#a180e15890e6e05eb4f2bb2a260c48142", null ],
-      [ "sock_status", "structw5x00__http__socket__t.html#aedfa749f413434c23eba28cae149c12d", null ]
+      [ "sock_status", "structw5x00__http__socket__t.html#aedfa749f413434c23eba28cae149c12d", null ],
+      [ "socknum", "structw5x00__http__socket__t.html#abd26c2cc2168b609d77337f78abe769d", null ]
     ] ],
     [ "w5x00_http_server_callback_t", "structw5x00__http__server__callback__t.html", [
       [ "close_web_content", "structw5x00__http__server__callback__t.html#a1eeed4b7d2073e7c868a938495a5bc20", null ],
       [ "get_cgi_handler", "structw5x00__http__server__callback__t.html#a4fad4d3e67315543645b9cf9e00cfc37", null ],
       [ "open_web_content", "structw5x00__http__server__callback__t.html#a248d37bd28b48e230c4cfe1e6bd00050", null ],
       [ "post_cgi_handler", "structw5x00__http__server__callback__t.html#ad7e8d7c4a5a1d5aa3fec0d3f51e0b16f", null ],
-      [ "read_web_content", "structw5x00__http__server__callback__t.html#a9fb2f9486c26eb15195ec4360457f667", null ]
+      [ "read_web_content", "structw5x00__http__server__callback__t.html#a9fb2f9486c26eb15195ec4360457f667", null ],
+      [ "server_restart", "structw5x00__http__server__callback__t.html#a3c8afed4c8d8c745452d669f7b1251a8", null ]
     ] ],
     [ "w5x00_http_server_t", "structw5x00__http__server__t.html", [
       [ "buf", "structw5x00__http__server__t.html#a6a3da2ee8d319568b1935bb628c78941", null ],
       [ "callback", "structw5x00__http__server__t.html#a35f75dcbd1b252de4b4cc0b60450f57d", null ],
-      [ "port", "structw5x00__http__server__t.html#a728acfd043e33b733ebae0c0f7ee11d3", null ]
+      [ "port", "structw5x00__http__server__t.html#a728acfd043e33b733ebae0c0f7ee11d3", null ],
+      [ "socket", "structw5x00__http__server__t.html#a00e16e28188a6f7090bbe3ac17f37244", null ]
     ] ],
     [ "HTTP_FAILED", "group___h_t_t_p.html#ga8be6a553eeb54fd19da878681092999c", null ],
     [ "HTTP_MAX_TIMEOUT_SEC", "group___h_t_t_p.html#ga80e8edcfc8f4e1b894cafb2ba19be16a", null ],

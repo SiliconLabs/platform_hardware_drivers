@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "Wiznet W5x00 Ethernet Driver", "index.html", [
+  [ "Ethernet Module driver", "index.html", [
     [ "Modules", "modules.html", "modules" ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Wiznet W5x00 Ethernet Driver: IP Address Utilities</title>
+<title>Ethernet Module driver: IP Address Utilities</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Wiznet W5x00 Ethernet Driver
+   <div id="projectname">Ethernet Module driver
    </div>
   </td>
  </tr>
@@ -125,7 +125,7 @@ Macros</h2></td></tr>
 <tr class="memitem:gafa53bd9e6fa813fd8e3e9f228e39a072"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___utils.html#gafa53bd9e6fa813fd8e3e9f228e39a072">w5x00_ip4_addr_set_byte</a>(ipaddr,  idx,  val)&#160;&#160;&#160;  ((uint8_t*)(&amp;(ipaddr)-&gt;addr))[idx] = val;</td></tr>
 <tr class="memdesc:gafa53bd9e6fa813fd8e3e9f228e39a072"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set one byte from the 4-byte address.  <a href="group___utils.html#gafa53bd9e6fa813fd8e3e9f228e39a072">More...</a><br /></td></tr>
 <tr class="separator:gafa53bd9e6fa813fd8e3e9f228e39a072"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga51799f5ebb4c7228ef7e95c247030f42"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___utils.html#ga51799f5ebb4c7228ef7e95c247030f42">htons</a>(x)&#160;&#160;&#160;((((x) &amp; 0xFF)&lt;&lt;8) | (((x)&gt;&gt;8) &amp; 0xFF))</td></tr>
+<tr class="memitem:ga51799f5ebb4c7228ef7e95c247030f42"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___utils.html#ga51799f5ebb4c7228ef7e95c247030f42">htons</a>(x)&#160;&#160;&#160;((((x) &amp; 0xFF) &lt;&lt; 8) | (((x) &gt;&gt; 8) &amp; 0xFF))</td></tr>
 <tr class="memdesc:ga51799f5ebb4c7228ef7e95c247030f42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert u16 to TCP/IP network byte order (which is big-endian).  <a href="group___utils.html#ga51799f5ebb4c7228ef7e95c247030f42">More...</a><br /></td></tr>
 <tr class="separator:ga51799f5ebb4c7228ef7e95c247030f42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gada37feda716b4ba89cf9dba34288141d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___utils.html#gada37feda716b4ba89cf9dba34288141d">ntohs</a>(x)&#160;&#160;&#160;<a class="el" href="group___utils.html#ga51799f5ebb4c7228ef7e95c247030f42">htons</a>(x)</td></tr>
@@ -162,14 +162,14 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">                  (((x)&lt;&lt;24 &amp; 0xFF000000UL) | \</div>
-<div class="line">                  ((x)&lt;&lt; 8 &amp; 0x00FF0000UL) | \</div>
-<div class="line">                  ((x)&gt;&gt; 8 &amp; 0x0000FF00UL) | \</div>
-<div class="line">                  ((x)&gt;&gt;24 &amp; 0x000000FFUL) )</div>
+<b>Value:</b><div class="fragment"><div class="line">                  (((x) &lt;&lt; 24 &amp; 0xFF000000UL) | \</div>
+<div class="line">                  ((x) &lt;&lt; 8 &amp; 0x00FF0000UL) |  \</div>
+<div class="line">                  ((x) &gt;&gt; 8 &amp; 0x0000FF00UL) |  \</div>
+<div class="line">                  ((x) &gt;&gt; 24 &amp; 0x000000FFUL))</div>
 </div><!-- fragment -->
 <p>Convert u32 to TCP/IP network byte order (which is big-endian). </p>
 
-<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00138">138</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00142">142</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
 
 </div>
 </div>
@@ -184,14 +184,14 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">x</td><td>)</td>
-          <td>&#160;&#160;&#160;((((x) &amp; 0xFF)&lt;&lt;8) | (((x)&gt;&gt;8) &amp; 0xFF))</td>
+          <td>&#160;&#160;&#160;((((x) &amp; 0xFF) &lt;&lt; 8) | (((x) &gt;&gt; 8) &amp; 0xFF))</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Convert u16 to TCP/IP network byte order (which is big-endian). </p>
 
-<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00126">126</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00130">130</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
 
 </div>
 </div>
@@ -213,7 +213,7 @@ Functions</h2></td></tr>
 
 <p>Convert u32 in TCP/IP network byte order to little-endian u32. </p>
 
-<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00147">147</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00151">151</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
 
 </div>
 </div>
@@ -235,7 +235,7 @@ Functions</h2></td></tr>
 
 <p>Convert u16 in TCP/IP network byte order to little-endian u32. </p>
 
-<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00132">132</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00136">136</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
 
 </div>
 </div>
@@ -267,7 +267,7 @@ Functions</h2></td></tr>
 
 <p>Get one byte from the 4-byte address. </p>
 
-<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00112">112</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00116">116</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
 
 </div>
 </div>
@@ -305,7 +305,7 @@ Functions</h2></td></tr>
 
 <p>Set one byte from the 4-byte address. </p>
 
-<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00119">119</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00123">123</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
 
 </div>
 </div>
@@ -355,7 +355,7 @@ Functions</h2></td></tr>
 
 <p>Set an IP address given by the four byte-parts. </p>
 
-<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00105">105</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00109">109</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
 
 </div>
 </div>
@@ -396,15 +396,15 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">    <a class="code hl_define" href="group___utils.html#gae4027a6ad07f13aa12eab285a1b46019">htonl</a>((uint32_t)(((uint32_t)((a) &amp; 0xff) &lt;&lt; 24) \</div>
-<div class="line">                     | ((uint32_t)((b) &amp; 0xff) &lt;&lt; 16) \</div>
-<div class="line">                     | ((uint32_t)((c) &amp; 0xff) &lt;&lt; 8)  \</div>
-<div class="line">                     | (uint32_t)((d) &amp; 0xff)))</div>
-<div class="ttc" id="agroup___utils_html_gae4027a6ad07f13aa12eab285a1b46019"><div class="ttname"><a href="group___utils.html#gae4027a6ad07f13aa12eab285a1b46019">htonl</a></div><div class="ttdeci">#define htonl(x)</div><div class="ttdoc">Convert u32 to TCP/IP network byte order (which is big-endian).</div><div class="ttdef"><b>Definition:</b> <a href="w5x00__utils_8h_source.html#l00138">w5x00_utils.h:138</a></div></div>
+<b>Value:</b><div class="fragment"><div class="line">  <a class="code hl_define" href="group___utils.html#gae4027a6ad07f13aa12eab285a1b46019">htonl</a>((uint32_t)(((uint32_t)((a) &amp; 0xff) &lt;&lt; 24)   \</div>
+<div class="line">                   | ((uint32_t)((b) &amp; 0xff) &lt;&lt; 16) \</div>
+<div class="line">                   | ((uint32_t)((c) &amp; 0xff) &lt;&lt; 8)  \</div>
+<div class="line">                   | (uint32_t)((d) &amp; 0xff)))</div>
+<div class="ttc" id="agroup___utils_html_gae4027a6ad07f13aa12eab285a1b46019"><div class="ttname"><a href="group___utils.html#gae4027a6ad07f13aa12eab285a1b46019">htonl</a></div><div class="ttdeci">#define htonl(x)</div><div class="ttdoc">Convert u32 to TCP/IP network byte order (which is big-endian).</div><div class="ttdef"><b>Definition:</b> <a href="w5x00__utils_8h_source.html#l00142">w5x00_utils.h:142</a></div></div>
 </div><!-- fragment -->
 <p>Set an IP address in u32 format. </p>
 
-<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00095">95</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00099">99</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
 
 </div>
 </div>
@@ -422,7 +422,7 @@ Functions</h2></td></tr>
 
 <p>IP=0.0.0.0. </p>
 
-<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00084">84</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00087">87</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
 
 </div>
 </div>
@@ -440,7 +440,7 @@ Functions</h2></td></tr>
 
 <p>IP=255.255.255.255. </p>
 
-<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00089">89</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00093">93</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
 
 </div>
 </div>
@@ -458,7 +458,7 @@ Functions</h2></td></tr>
 
 <p>IP=127.0.0.1. </p>
 
-<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00079">79</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00081">81</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
 
 </div>
 </div>
@@ -476,7 +476,7 @@ Functions</h2></td></tr>
 
 <p>IP=255.255.255.255. </p>
 
-<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00074">74</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="w5x00__utils_8h_source.html#l00075">75</a> of file <a class="el" href="w5x00__utils_8h_source.html">w5x00_utils.h</a>.</p>
 
 </div>
 </div>
@@ -525,7 +525,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Jun 17 2022 10:31:14 for Wiznet W5x00 Ethernet Driver by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+    <li class="footer">Generated on Thu Jun 23 2022 15:33:24 for Ethernet Module driver by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>
 </body>

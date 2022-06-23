@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Wiznet W5x00 Ethernet Driver: w5x00_http_request_t Struct Reference</title>
+<title>Ethernet Module driver: w5x00_http_request_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Wiznet W5x00 Ethernet Driver
+   <div id="projectname">Ethernet Module driver
    </div>
   </td>
  </tr>
@@ -96,18 +96,19 @@ $(document).ready(function(){initNavTree('structw5x00__http__request__t.html',''
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:a3554cab2930c5c9ee788ca1798dc139f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structw5x00__http__request__t.html#a3554cab2930c5c9ee788ca1798dc139f">method</a></td></tr>
+<tr class="memdesc:a3554cab2930c5c9ee788ca1798dc139f"><td class="mdescLeft">&#160;</td><td class="mdescRight">request method <a class="el" href="group___h_t_t_p.html#ga713c4de408b23f8885f369597fa6444e" title="HTTP Process states list.">STATE_HTTP</a> value enum  <a href="structw5x00__http__request__t.html#a3554cab2930c5c9ee788ca1798dc139f">More...</a><br /></td></tr>
 <tr class="separator:a3554cab2930c5c9ee788ca1798dc139f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74a4986be82a51f7b72ba5b9d719e0dc"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structw5x00__http__request__t.html#a74a4986be82a51f7b72ba5b9d719e0dc">type</a></td></tr>
-<tr class="memdesc:a74a4986be82a51f7b72ba5b9d719e0dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">request method <a class="el" href="group___h_t_t_p.html#ga713c4de408b23f8885f369597fa6444e" title="HTTP Process states list.">STATE_HTTP</a> value enum  <a href="structw5x00__http__request__t.html#a74a4986be82a51f7b72ba5b9d719e0dc">More...</a><br /></td></tr>
+<tr class="memdesc:a74a4986be82a51f7b72ba5b9d719e0dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">request type(PTYPE_HTML...).  <a href="structw5x00__http__request__t.html#a74a4986be82a51f7b72ba5b9d719e0dc">More...</a><br /></td></tr>
 <tr class="separator:a74a4986be82a51f7b72ba5b9d719e0dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5dc950af2e98fecb9b0b8ca2b0ce13f5"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structw5x00__http__request__t.html#a5dc950af2e98fecb9b0b8ca2b0ce13f5">uri</a> [1024]</td></tr>
-<tr class="memdesc:a5dc950af2e98fecb9b0b8ca2b0ce13f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">request type(PTYPE_HTML...).  <a href="structw5x00__http__request__t.html#a5dc950af2e98fecb9b0b8ca2b0ce13f5">More...</a><br /></td></tr>
+<tr class="memdesc:a5dc950af2e98fecb9b0b8ca2b0ce13f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">request file name.  <a href="structw5x00__http__request__t.html#a5dc950af2e98fecb9b0b8ca2b0ce13f5">More...</a><br /></td></tr>
 <tr class="separator:a5dc950af2e98fecb9b0b8ca2b0ce13f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >HTTP request info. </p>
 
-<p class="definition">Definition at line <a class="el" href="http__server_8h_source.html#l00102">102</a> of file <a class="el" href="http__server_8h_source.html">http_server.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="http__server_8h_source.html#l00096">96</a> of file <a class="el" href="http__server_8h_source.html">http_server.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="a3554cab2930c5c9ee788ca1798dc139f" name="a3554cab2930c5c9ee788ca1798dc139f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3554cab2930c5c9ee788ca1798dc139f">&#9670;&nbsp;</a></span>method</h2>
@@ -121,7 +122,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="http__server_8h_source.html#l00104">104</a> of file <a class="el" href="http__server_8h_source.html">http_server.h</a>.</p>
+<p>request method <a class="el" href="group___h_t_t_p.html#ga713c4de408b23f8885f369597fa6444e" title="HTTP Process states list.">STATE_HTTP</a> value enum </p>
+
+<p class="definition">Definition at line <a class="el" href="http__server_8h_source.html#l00097">97</a> of file <a class="el" href="http__server_8h_source.html">http_server.h</a>.</p>
 
 </div>
 </div>
@@ -137,9 +140,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>request method <a class="el" href="group___h_t_t_p.html#ga713c4de408b23f8885f369597fa6444e" title="HTTP Process states list.">STATE_HTTP</a> value enum </p>
+<p>request type(PTYPE_HTML...). </p>
 
-<p class="definition">Definition at line <a class="el" href="http__server_8h_source.html#l00105">105</a> of file <a class="el" href="http__server_8h_source.html">http_server.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="http__server_8h_source.html#l00098">98</a> of file <a class="el" href="http__server_8h_source.html">http_server.h</a>.</p>
 
 </div>
 </div>
@@ -155,14 +158,14 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>request type(PTYPE_HTML...). </p>
+<p>request file name. </p>
 
-<p class="definition">Definition at line <a class="el" href="http__server_8h_source.html#l00106">106</a> of file <a class="el" href="http__server_8h_source.html">http_server.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="http__server_8h_source.html#l00099">99</a> of file <a class="el" href="http__server_8h_source.html">http_server.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>inc/<a class="el" href="http__server_8h_source.html">http_server.h</a></li>
+<li>D:/doxygen/src/<a class="el" href="http__server_8h_source.html">http_server.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -170,7 +173,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="structw5x00__http__request__t.html">w5x00_http_request_t</a></li>
-    <li class="footer">Generated on Fri Jun 17 2022 10:31:14 for Wiznet W5x00 Ethernet Driver by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+    <li class="footer">Generated on Thu Jun 23 2022 15:33:24 for Ethernet Module driver by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>
 </body>

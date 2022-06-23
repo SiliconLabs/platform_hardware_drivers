@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Wiznet W5x00 Ethernet Driver: inc/sntp.h Source File</title>
+<title>Ethernet Module driver: D:/doxygen/src/sntp.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Wiznet W5x00 Ethernet Driver
+   <div id="projectname">Ethernet Module driver
    </div>
   </td>
  </tr>
@@ -98,51 +98,51 @@ $(document).ready(function(){initNavTree('sntp_8h_source.html',''); initResizabl
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">/***************************************************************************/</span></div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">/***************************************************************************/</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">/***************************************************************************/</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structw5x00__sntp__t.html">   65</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>{</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <a class="code hl_struct" href="structw5x00__ethernet__t.html">w5x00_ethernet_t</a> *eth;            </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="structw5x00__sntp__t.html#aa6d26ac91869c258d0922645e5decab2">   68</a></span>  <a class="code hl_struct" href="structw5x00__ethernet__udp__t.html">w5x00_ethernet_udp_t</a> <a class="code hl_variable" href="structw5x00__sntp__t.html#aa6d26ac91869c258d0922645e5decab2">udp_socket</a>;  </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structw5x00__sntp__t.html#ac577c46b594701951e9c64284b67da8d">   69</a></span>  uint32_t <a class="code hl_variable" href="structw5x00__sntp__t.html#ac577c46b594701951e9c64284b67da8d">epoch_timestamp</a>;         </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>} <a class="code hl_struct" href="structw5x00__sntp__t.html">w5x00_sntp_t</a>;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">/***************************************************************************/</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="group___s_n_t_p.html#gadd3d8d92f3809dfa26530cf61c76c01e">   83</a></span><span class="preprocessor">#define w5x00_sntp_get_unix_timestamp(sntp) \</span></div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">      (sntp)-&gt;epoch_timestamp - 2208988800UL</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">/***************************************************************************/</span></div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="group___s_n_t_p.html#gadcf2a2798d0b0baa7067995824b1ac0d">   94</a></span>sl_status_t <a class="code hl_function" href="group___s_n_t_p.html#gadcf2a2798d0b0baa7067995824b1ac0d">w5x00_sntp_init</a>(<a class="code hl_struct" href="structw5x00__sntp__t.html">w5x00_sntp_t</a> *sntp, <a class="code hl_struct" href="structw5x00__ethernet__t.html">w5x00_ethernet_t</a> *eth);</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment">/***************************************************************************/</span></div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="group___s_n_t_p.html#gabd53d34dbf0981ae0e348203cc88ec46">  110</a></span>sl_status_t <a class="code hl_function" href="group___s_n_t_p.html#gabd53d34dbf0981ae0e348203cc88ec46">w5x00_sntp_update_timestamp</a>(<a class="code hl_struct" href="structw5x00__sntp__t.html">w5x00_sntp_t</a> *sntp,</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                                        w5x00_ip4_addr_t server_ip,</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                                        uint16_t port,</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                                        uint16_t timeout);</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment">/***************************************************************************/</span></div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="group___s_n_t_p.html#ga40e3f43f2a0eae797bbb06b0016c1271">  129</a></span>sl_status_t <a class="code hl_function" href="group___s_n_t_p.html#ga40e3f43f2a0eae797bbb06b0016c1271">w5x00_sntp_update_timestamp_from_host</a>(<a class="code hl_struct" href="structw5x00__sntp__t.html">w5x00_sntp_t</a> *sntp,</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                                                  <span class="keyword">const</span> <span class="keywordtype">char</span> *host,</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>                                                  uint16_t port,</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>                                                  uint16_t timeout);</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>}</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">#endif  </span><span class="comment">// SNTP_CLIENT_H_</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structw5x00__sntp__t.html">   62</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>{</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structw5x00__sntp__t.html#a706bba1e5d723f3436442491b80dc68a">   64</a></span>  <a class="code hl_struct" href="structw5x00__ethernet__t.html">w5x00_ethernet_t</a> *<a class="code hl_variable" href="structw5x00__sntp__t.html#a706bba1e5d723f3436442491b80dc68a">eth</a>;            </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structw5x00__sntp__t.html#aa6d26ac91869c258d0922645e5decab2">   65</a></span>  <a class="code hl_struct" href="structw5x00__ethernet__udp__t.html">w5x00_ethernet_udp_t</a> <a class="code hl_variable" href="structw5x00__sntp__t.html#aa6d26ac91869c258d0922645e5decab2">udp_socket</a>;  </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structw5x00__sntp__t.html#ac577c46b594701951e9c64284b67da8d">   66</a></span>  uint32_t <a class="code hl_variable" href="structw5x00__sntp__t.html#ac577c46b594701951e9c64284b67da8d">epoch_timestamp</a>;         </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>} <a class="code hl_struct" href="structw5x00__sntp__t.html">w5x00_sntp_t</a>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">/***************************************************************************/</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="group___s_n_t_p.html#gadd3d8d92f3809dfa26530cf61c76c01e">   78</a></span><span class="preprocessor">#define w5x00_sntp_get_unix_timestamp(sntp) \</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">      (sntp)-&gt;epoch_timestamp - 2208988800UL</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">/***************************************************************************/</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="group___s_n_t_p.html#gadcf2a2798d0b0baa7067995824b1ac0d">   91</a></span>sl_status_t <a class="code hl_function" href="group___s_n_t_p.html#gadcf2a2798d0b0baa7067995824b1ac0d">w5x00_sntp_init</a>(<a class="code hl_struct" href="structw5x00__sntp__t.html">w5x00_sntp_t</a> *sntp, <a class="code hl_struct" href="structw5x00__ethernet__t.html">w5x00_ethernet_t</a> *eth);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment">/***************************************************************************/</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="group___s_n_t_p.html#gabd53d34dbf0981ae0e348203cc88ec46">  107</a></span>sl_status_t <a class="code hl_function" href="group___s_n_t_p.html#gabd53d34dbf0981ae0e348203cc88ec46">w5x00_sntp_update_timestamp</a>(<a class="code hl_struct" href="structw5x00__sntp__t.html">w5x00_sntp_t</a> *sntp,</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                                        w5x00_ip4_addr_t server_ip,</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                                        uint16_t port,</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                                        uint16_t timeout);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment">/***************************************************************************/</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="group___s_n_t_p.html#ga40e3f43f2a0eae797bbb06b0016c1271">  126</a></span>sl_status_t <a class="code hl_function" href="group___s_n_t_p.html#ga40e3f43f2a0eae797bbb06b0016c1271">w5x00_sntp_update_timestamp_from_host</a>(<a class="code hl_struct" href="structw5x00__sntp__t.html">w5x00_sntp_t</a> *sntp,</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                                                  <span class="keyword">const</span> <span class="keywordtype">char</span> *host,</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>                                                  uint16_t port,</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                                                  uint16_t timeout);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>}</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="preprocessor">#endif  </span><span class="comment">// SNTP_CLIENT_H_</span></div>
 <div class="ttc" id="agroup___s_n_t_p_html_ga40e3f43f2a0eae797bbb06b0016c1271"><div class="ttname"><a href="group___s_n_t_p.html#ga40e3f43f2a0eae797bbb06b0016c1271">w5x00_sntp_update_timestamp_from_host</a></div><div class="ttdeci">sl_status_t w5x00_sntp_update_timestamp_from_host(w5x00_sntp_t *sntp, const char *host, uint16_t port, uint16_t timeout)</div><div class="ttdoc">Update timestamp from NTP server host.</div></div>
 <div class="ttc" id="agroup___s_n_t_p_html_gabd53d34dbf0981ae0e348203cc88ec46"><div class="ttname"><a href="group___s_n_t_p.html#gabd53d34dbf0981ae0e348203cc88ec46">w5x00_sntp_update_timestamp</a></div><div class="ttdeci">sl_status_t w5x00_sntp_update_timestamp(w5x00_sntp_t *sntp, w5x00_ip4_addr_t server_ip, uint16_t port, uint16_t timeout)</div><div class="ttdoc">Update timestamp from NTP server IP.</div></div>
 <div class="ttc" id="agroup___s_n_t_p_html_gadcf2a2798d0b0baa7067995824b1ac0d"><div class="ttname"><a href="group___s_n_t_p.html#gadcf2a2798d0b0baa7067995824b1ac0d">w5x00_sntp_init</a></div><div class="ttdeci">sl_status_t w5x00_sntp_init(w5x00_sntp_t *sntp, w5x00_ethernet_t *eth)</div><div class="ttdoc">Init SNTP instance.</div></div>
 <div class="ttc" id="astructw5x00__ethernet__t_html"><div class="ttname"><a href="structw5x00__ethernet__t.html">w5x00_ethernet_t</a></div><div class="ttdoc">Ethernet object definition.</div><div class="ttdef"><b>Definition:</b> <a href="ethernet_8h_source.html#l00070">ethernet.h:70</a></div></div>
 <div class="ttc" id="astructw5x00__ethernet__udp__t_html"><div class="ttname"><a href="structw5x00__ethernet__udp__t.html">w5x00_ethernet_udp_t</a></div><div class="ttdoc">UDP object defination.</div><div class="ttdef"><b>Definition:</b> <a href="ethernet__udp_8h_source.html#l00068">ethernet_udp.h:68</a></div></div>
-<div class="ttc" id="astructw5x00__sntp__t_html"><div class="ttname"><a href="structw5x00__sntp__t.html">w5x00_sntp_t</a></div><div class="ttdoc">SNTP object definition.</div><div class="ttdef"><b>Definition:</b> <a href="sntp_8h_source.html#l00065">sntp.h:66</a></div></div>
-<div class="ttc" id="astructw5x00__sntp__t_html_aa6d26ac91869c258d0922645e5decab2"><div class="ttname"><a href="structw5x00__sntp__t.html#aa6d26ac91869c258d0922645e5decab2">w5x00_sntp_t::udp_socket</a></div><div class="ttdeci">w5x00_ethernet_udp_t udp_socket</div><div class="ttdoc">Ethernet object reference.</div><div class="ttdef"><b>Definition:</b> <a href="sntp_8h_source.html#l00068">sntp.h:68</a></div></div>
-<div class="ttc" id="astructw5x00__sntp__t_html_ac577c46b594701951e9c64284b67da8d"><div class="ttname"><a href="structw5x00__sntp__t.html#ac577c46b594701951e9c64284b67da8d">w5x00_sntp_t::epoch_timestamp</a></div><div class="ttdeci">uint32_t epoch_timestamp</div><div class="ttdoc">UDP socket.</div><div class="ttdef"><b>Definition:</b> <a href="sntp_8h_source.html#l00069">sntp.h:69</a></div></div>
+<div class="ttc" id="astructw5x00__sntp__t_html"><div class="ttname"><a href="structw5x00__sntp__t.html">w5x00_sntp_t</a></div><div class="ttdoc">SNTP object definition.</div><div class="ttdef"><b>Definition:</b> <a href="sntp_8h_source.html#l00062">sntp.h:63</a></div></div>
+<div class="ttc" id="astructw5x00__sntp__t_html_a706bba1e5d723f3436442491b80dc68a"><div class="ttname"><a href="structw5x00__sntp__t.html#a706bba1e5d723f3436442491b80dc68a">w5x00_sntp_t::eth</a></div><div class="ttdeci">w5x00_ethernet_t * eth</div><div class="ttdoc">Ethernet object reference.</div><div class="ttdef"><b>Definition:</b> <a href="sntp_8h_source.html#l00064">sntp.h:64</a></div></div>
+<div class="ttc" id="astructw5x00__sntp__t_html_aa6d26ac91869c258d0922645e5decab2"><div class="ttname"><a href="structw5x00__sntp__t.html#aa6d26ac91869c258d0922645e5decab2">w5x00_sntp_t::udp_socket</a></div><div class="ttdeci">w5x00_ethernet_udp_t udp_socket</div><div class="ttdoc">UDP socket.</div><div class="ttdef"><b>Definition:</b> <a href="sntp_8h_source.html#l00065">sntp.h:65</a></div></div>
+<div class="ttc" id="astructw5x00__sntp__t_html_ac577c46b594701951e9c64284b67da8d"><div class="ttname"><a href="structw5x00__sntp__t.html#ac577c46b594701951e9c64284b67da8d">w5x00_sntp_t::epoch_timestamp</a></div><div class="ttdeci">uint32_t epoch_timestamp</div><div class="ttdoc">Epoch timestamp.</div><div class="ttdef"><b>Definition:</b> <a href="sntp_8h_source.html#l00066">sntp.h:66</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_bfccd401955b95cf8c75461437045ac0.html">inc</a></li><li class="navelem"><b>sntp.h</b></li>
-    <li class="footer">Generated on Fri Jun 17 2022 10:31:14 for Wiznet W5x00 Ethernet Driver by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><b>sntp.h</b></li>
+    <li class="footer">Generated on Thu Jun 23 2022 15:33:24 for Ethernet Module driver by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>
 </body>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Wiznet W5x00 Ethernet Driver: SNTP Client</title>
+<title>Ethernet Module driver: SNTP Client</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Wiznet W5x00 Ethernet Driver
+   <div id="projectname">Ethernet Module driver
    </div>
   </td>
  </tr>
@@ -139,14 +139,13 @@ Functions</h2></td></tr>
 <p>Get unix timestamp. </p>
 <p >Unix time starts on Jan 1 1970. In seconds, that's 2208988800: </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sntp</td><td>SNTP instance </td></tr>
-    <tr><td class="paramname">eth</td><td>Ethernet instance </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sntp</td><td>SNTP instance </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Unix timestamp </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sntp_8h_source.html#l00083">83</a> of file <a class="el" href="sntp_8h_source.html">sntp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sntp_8h_source.html#l00078">78</a> of file <a class="el" href="sntp_8h_source.html">sntp.h</a>.</p>
 
 </div>
 </div>
@@ -180,11 +179,12 @@ Functions</h2></td></tr>
 <p>Init SNTP instance. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sntp</td><td>SNTP instance </td></tr>
-    <tr><td class="paramname">eth</td><td>Ethernet instance </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sntp</td><td>SNTP instance </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eth</td><td>Ethernet instance </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>SL_STATUS_OK on success or SL_STATUS_FAIL on failure. </dd></dl>
 
 </div>
 </div>
@@ -297,7 +297,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Jun 17 2022 10:31:14 for Wiznet W5x00 Ethernet Driver by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+    <li class="footer">Generated on Thu Jun 23 2022 15:33:24 for Ethernet Module driver by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>
 </body>

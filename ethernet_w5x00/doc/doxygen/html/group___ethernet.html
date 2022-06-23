@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Wiznet W5x00 Ethernet Driver: Ethernet</title>
+<title>Ethernet Module driver: Ethernet</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Wiznet W5x00 Ethernet Driver
+   <div id="projectname">Ethernet Module driver
    </div>
   </td>
  </tr>
@@ -125,10 +125,10 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ga605b93a7e5ddbeebe0525e1643b7d518"><td class="memItemLeft" align="right" valign="top">sl_status_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___ethernet.html#ga605b93a7e5ddbeebe0525e1643b7d518">w5x00_ethernet_dhcp_init</a> (<a class="el" href="structw5x00__ethernet__t.html">w5x00_ethernet_t</a> *eth, uint8_t *mac, uint32_t timeout, uint32_t response_timeout)</td></tr>
-<tr class="memdesc:ga605b93a7e5ddbeebe0525e1643b7d518"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init ethernet interface with DHCP.  <a href="group___ethernet.html#ga605b93a7e5ddbeebe0525e1643b7d518">More...</a><br /></td></tr>
+<tr class="memdesc:ga605b93a7e5ddbeebe0525e1643b7d518"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize ethernet interface with DHCP.  <a href="group___ethernet.html#ga605b93a7e5ddbeebe0525e1643b7d518">More...</a><br /></td></tr>
 <tr class="separator:ga605b93a7e5ddbeebe0525e1643b7d518"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4fc3e3e934973e9dc79b96cff32c9755"><td class="memItemLeft" align="right" valign="top">sl_status_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___ethernet.html#ga4fc3e3e934973e9dc79b96cff32c9755">w5x00_ethernet_static_init</a> (<a class="el" href="structw5x00__ethernet__t.html">w5x00_ethernet_t</a> *eth, uint8_t *mac, w5x00_ip4_addr_t *local_ip, w5x00_ip4_addr_t *gateway_ip, w5x00_ip4_addr_t *subnet_mask, w5x00_ip4_addr_t *dns_server_ip, uint32_t timeout)</td></tr>
-<tr class="memdesc:ga4fc3e3e934973e9dc79b96cff32c9755"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init ethernet interface with static address.  <a href="group___ethernet.html#ga4fc3e3e934973e9dc79b96cff32c9755">More...</a><br /></td></tr>
+<tr class="memdesc:ga4fc3e3e934973e9dc79b96cff32c9755"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize ethernet interface with static address.  <a href="group___ethernet.html#ga4fc3e3e934973e9dc79b96cff32c9755">More...</a><br /></td></tr>
 <tr class="separator:ga4fc3e3e934973e9dc79b96cff32c9755"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac26700f5f23a156a9dd11cca73253cb9"><td class="memItemLeft" align="right" valign="top">sl_status_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___ethernet.html#gac26700f5f23a156a9dd11cca73253cb9">w5x00_ethernet_set_dns_server</a> (<a class="el" href="structw5x00__ethernet__t.html">w5x00_ethernet_t</a> *eth, w5x00_ip4_addr_t ip)</td></tr>
 <tr class="memdesc:gac26700f5f23a156a9dd11cca73253cb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set DNS server ip.  <a href="group___ethernet.html#gac26700f5f23a156a9dd11cca73253cb9">More...</a><br /></td></tr>
@@ -253,7 +253,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Init ethernet interface with DHCP. </p>
+<p>Initialize ethernet interface with DHCP. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">eth</td><td>Ethernet instance </td></tr>
@@ -296,11 +296,12 @@ Functions</h2></td></tr>
 <p>Get gateway ip. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">eth</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eth</td><td>Ethernet instance </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">gateway</td><td>Gateway ip </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Gateway ip </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>SL_STATUS_OK on success or SL_STATUS_FAIL on failure. </dd></dl>
 
 </div>
 </div>
@@ -333,11 +334,12 @@ Functions</h2></td></tr>
 <p>Get local ip. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">eth</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eth</td><td>Ethernet instance </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">ip</td><td>Local ip </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Local ip </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>SL_STATUS_OK on success or SL_STATUS_FAIL on failure. </dd></dl>
 
 </div>
 </div>
@@ -370,7 +372,8 @@ Functions</h2></td></tr>
 <p>Get subnet mask. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">eth</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eth</td><td>Ethernet instance </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">subnet</td><td>Subnet mask </td></tr>
   </table>
   </dd>
 </dl>
@@ -416,6 +419,12 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get ethernet link status. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eth</td><td>Ethernet instance </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>returns an <a class="el" href="group___ethernet.html#gab44fc8966e09098f4134fdc0310dbf97">EthernetLinkStatus</a> value enum </dd></dl>
 
 </div>
@@ -513,8 +522,8 @@ Functions</h2></td></tr>
 <p>Set gateway ip. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">eth</td><td></td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ip</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eth</td><td>Ethernet instance </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ip</td><td>Gateway ip </td></tr>
   </table>
   </dd>
 </dl>
@@ -551,8 +560,8 @@ Functions</h2></td></tr>
 <p>Set local ip. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">eth</td><td></td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">ip</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eth</td><td>Ethernet instance </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ip</td><td>Local ip </td></tr>
   </table>
   </dd>
 </dl>
@@ -589,7 +598,7 @@ Functions</h2></td></tr>
 <p>Set subnet mask. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">eth</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eth</td><td>Ethernet instance </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">subnet</td><td>Subnet mask </td></tr>
   </table>
   </dd>
@@ -654,7 +663,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Init ethernet interface with static address. </p>
+<p>Initialize ethernet interface with static address. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">eth</td><td>Ethernet instance </td></tr>
@@ -675,7 +684,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Jun 17 2022 10:31:14 for Wiznet W5x00 Ethernet Driver by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+    <li class="footer">Generated on Thu Jun 23 2022 15:33:24 for Ethernet Module driver by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>
 </body>
