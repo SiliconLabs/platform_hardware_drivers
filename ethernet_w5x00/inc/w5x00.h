@@ -72,36 +72,36 @@ extern "C" {
  * @brief
  *    Socket channel size
  ******************************************************************************/
-#define W5x00_CH_SIZE 0x0100
+#define W5x00_CH_SIZE      0x0100
 
 /***************************************************************************//**
  * @brief
  *    Socket mode
  ******************************************************************************/
 enum SnMR {
-  SnMR_CLOSE  = 0x00, /*!< SnMR_CLOSE */
-  SnMR_TCP    = 0x21, /*!< SnMR_TCP */
-  SnMR_UDP    = 0x02, /*!< SnMR_UDP */
-  SnMR_IPRAW  = 0x03, /*!< SnMR_IPRAW */
-  SnMR_MACRAW = 0x04, /*!< SnMR_MACRAW */
-  SnMR_PPPOE  = 0x05, /*!< SnMR_PPPOE */
-  SnMR_ND     = 0x20, /*!< SnMR_ND */
-  SnMR_MULTI  = 0x80  /*!< SnMR_MULTI */
+  SnMR_CLOSE  = 0x00, ///< SnMR_CLOSE
+  SnMR_TCP    = 0x21, ///< SnMR_TCP
+  SnMR_UDP    = 0x02, ///< SnMR_UDP
+  SnMR_IPRAW  = 0x03, ///< SnMR_IPRAW
+  SnMR_MACRAW = 0x04, ///< SnMR_MACRAW
+  SnMR_PPPOE  = 0x05, ///< SnMR_PPPOE
+  SnMR_ND     = 0x20, ///< SnMR_ND
+  SnMR_MULTI  = 0x80  ///< SnMR_MULTI
 };
 
 /***************************************************************************//**
  * @brief Socket command
  ******************************************************************************/
 enum SockCMD {
-  Sock_OPEN      = 0x01,  /*!< Sock_OPEN */
-  Sock_LISTEN    = 0x02,  /*!< Sock_LISTEN */
-  Sock_CONNECT   = 0x04,  /*!< Sock_CONNECT */
-  Sock_DISCON    = 0x08,  /*!< Sock_DISCON */
-  Sock_CLOSE     = 0x10,  /*!< Sock_CLOSE */
-  Sock_SEND      = 0x20,  /*!< Sock_SEND */
-  Sock_SEND_MAC  = 0x21,  /*!< Sock_SEND_MAC */
-  Sock_SEND_KEEP = 0x22,  /*!< Sock_SEND_KEEP */
-  Sock_RECV      = 0x40   /*!< Sock_RECV */
+  Sock_OPEN      = 0x01,  ///< Sock_OPEN
+  Sock_LISTEN    = 0x02,  ///< Sock_LISTEN
+  Sock_CONNECT   = 0x04,  ///< Sock_CONNECT
+  Sock_DISCON    = 0x08,  ///< Sock_DISCON
+  Sock_CLOSE     = 0x10,  ///< Sock_CLOSE
+  Sock_SEND      = 0x20,  ///< Sock_SEND
+  Sock_SEND_MAC  = 0x21,  ///< Sock_SEND_MAC
+  Sock_SEND_KEEP = 0x22,  ///< Sock_SEND_KEEP
+  Sock_RECV      = 0x40   ///< Sock_RECV
 };
 
 /***************************************************************************//**
@@ -109,15 +109,15 @@ enum SockCMD {
  *    Socket interrupt
  ******************************************************************************/
 enum SnIR {
-  SnIR_SEND_OK = 0x10,  /*!< This is issued when SEND command is completed. */
-  SnIR_TIMEOUT = 0x08,  /*!< This is issued when ARPTO or TCPTO occurs. */
-  SnIR_RECV    = 0x04,  /*!< This is issued whenever data
-                             is received from a peer. */
-  SnIR_DISCON  = 0x02,  /*!< This is issued when FIN or FIN/ACK
-                             packet is received from a peer. */
-  SnIR_CON     = 0x01,  /*!< This is issued one time when
-                             the connection with peer is successful and then
-                             #SnSR changed to @ref SOCK_ESTABLISHED. */
+  SnIR_SEND_OK = 0x10,  ///< This is issued when SEND command is completed.
+  SnIR_TIMEOUT = 0x08,  ///< This is issued when ARPTO or TCPTO occurs.
+  SnIR_RECV    = 0x04,  ///< This is issued whenever data
+                        ///< is received from a peer.
+  SnIR_DISCON  = 0x02,  ///< This is issued when FIN or FIN/ACK
+                        ///< packet is received from a peer.
+  SnIR_CON     = 0x01,  ///< This is issued one time when
+                        ///< the connection with peer is successful and then
+                        ///< #SnSR changed to @ref SOCK_ESTABLISHED.
 };
 
 typedef uint8_t w5x00_socket_t;
@@ -126,53 +126,40 @@ typedef uint8_t w5x00_socket_t;
  * @brief Socket status
  ******************************************************************************/
 enum SnSR {
-  SnSR_CLOSED      = 0x00,  /*!< Socket closed */
-  SnSR_INIT        = 0x13,  /*!< Socket init */
-  SnSR_LISTEN      = 0x14,  /*!< Socket listen */
-  SnSR_SYNSENT     = 0x15,  /*!< Socket SYNSENT */
-  SnSR_SYNRECV     = 0x16,  /*!< Socket SYNRECV */
-  SnSR_ESTABLISHED = 0x17,  /*!< Socket ESTABLISHED */
-  SnSR_FIN_WAIT    = 0x18,  /*!< Socket FIN_WAIT */
-  SnSR_CLOSING     = 0x1A,  /*!< Socket CLOSING */
-  SnSR_TIME_WAIT   = 0x1B,  /*!< Socket TIME_WAIT */
-  SnSR_CLOSE_WAIT  = 0x1C,  /*!< Socket CLOSE_WAIT */
-  SnSR_LAST_ACK    = 0x1D,  /*!< Socket LAST_ACK */
-  SnSR_UDP         = 0x22,  /*!< Socket UDP */
-  SnSR_IPRAW       = 0x32,  /*!< Socket IPRAW */
-  SnSR_MACRAW      = 0x42,  /*!< Socket MACRAW */
-  SnSR_PPPOE       = 0x5F   /*!< Socket PPPOE */
+  SnSR_CLOSED      = 0x00,  ///< Socket closed
+  SnSR_INIT        = 0x13,  ///< Socket init
+  SnSR_LISTEN      = 0x14,  ///< Socket listen
+  SnSR_SYNSENT     = 0x15,  ///< Socket SYNSENT
+  SnSR_SYNRECV     = 0x16,  ///< Socket SYNRECV
+  SnSR_ESTABLISHED = 0x17,  ///< Socket ESTABLISHED
+  SnSR_FIN_WAIT    = 0x18,  ///< Socket FIN_WAIT
+  SnSR_CLOSING     = 0x1A,  ///< Socket CLOSING
+  SnSR_TIME_WAIT   = 0x1B,  ///< Socket TIME_WAIT
+  SnSR_CLOSE_WAIT  = 0x1C,  ///< Socket CLOSE_WAIT
+  SnSR_LAST_ACK    = 0x1D,  ///< Socket LAST_ACK
+  SnSR_UDP         = 0x22,  ///< Socket UDP
+  SnSR_IPRAW       = 0x32,  ///< Socket IPRAW
+  SnSR_MACRAW      = 0x42,  ///< Socket MACRAW
+  SnSR_PPPOE       = 0x5F   ///< Socket PPPOE
 };
-
-//enum IPPROTO {
-//  IPPROTO_IP   = 0,
-//  IPPROTO_ICMP = 1,
-//  IPPROTO_IGMP = 2,
-//  IPPROTO_GGP  = 3,
-//  IPPROTO_TCP  = 6,
-//  IPPROTO_PUP  = 12,
-//  IPPROTO_UDP  = 17,
-//  IPPROTO_IDP  = 22,
-//  IPPROTO_ND   = 77,
-//  IPPROTO_RAW  = 255
-//};
 
 /***************************************************************************//**
  * @brief PHY link status
  ******************************************************************************/
 enum W5x00Linkstatus {
-  UNKNOWN,  /*!< Status unknown */
-  LINK_ON,  /*!< Link is on */
-  LINK_OFF  /*!< Link is off */
+  UNKNOWN,  ///< Status unknown
+  LINK_ON,  ///< Link is on
+  LINK_OFF  ///< Link is off
 };
 
 /***************************************************************************//**
  * @brief W5x00 CHIP
  ******************************************************************************/
 enum W5x00Chip {
-  W5x00_UNKNOWN=0,  /*!< Chip is unknown */
-  W5x00_W5100=51,   /*!< Chip is W5100 */
-  W5x00_W5200=52,   /*!< Chip is W5200 */
-  W5x00_W5500=55    /*!< Chip is W5300 */
+  W5x00_UNKNOWN=0,  ///< Chip is unknown
+  W5x00_W5100=51,   ///< Chip is W5100
+  W5x00_W5200=52,   ///< Chip is W5200
+  W5x00_W5500=55    ///< Chip is W5300
 };
 
 /***************************************************************************//**
@@ -500,44 +487,42 @@ uint8_t w5x00_soft_reset(void);
     return w5x00_read(address, _buff, size);                          \
   }
 
-__GP_REGISTER8 (MR,          0x0000);      // Mode
-__GP_REGISTER_N(GAR,           0x0001, 4); // Gateway IP address
-__GP_REGISTER_N(SUBR,          0x0005, 4); // Subnet mask address
-__GP_REGISTER_N(SHAR,          0x0009, 6); // Source MAC address
-__GP_REGISTER_N(SIPR,          0x000F, 4); // Source IP address
-__GP_REGISTER16(INTLEVEL,      0x0013);    // Interrupt Low Level Timer
-__GP_REGISTER8 (IR,            0x0015);    // Interrupt
-__GP_REGISTER8 (IMR,           0x0016);    // Interrupt Mask
-__GP_REGISTER8 (SIR,           0x0017);    // Socket Interrupt (W5500 only)
-__GP_REGISTER16(RTR_W5100,     0x0017);    // Timeout address
-__GP_REGISTER8 (SIMR,          0x0018);    // Socket Interrupt Mask
-__GP_REGISTER16(RTR_W5500,     0x0019);    // Timeout address (W5500 only)
-__GP_REGISTER8 (RCR_W5100,     0x0019);    // Retry count
-__GP_REGISTER8 (RCR_W5500,     0x001B);    // Retry count (W5500 only)
-__GP_REGISTER8 (RMSR,          0x001A);    // Receive memory size (W5100 only)
-__GP_REGISTER8 (TMSR,          0x001B);    // Transmit memory size (W5100 only)
-__GP_REGISTER8 (PATR,          0x001C);    // Authentication type address in PPPoE mode
-__GP_REGISTER8 (PTIMER_W5100,  0x0028);    // PPP LCP Request Timer
-__GP_REGISTER8 (PTIMER_W5500,  0x001C);    // PPP LCP Request Timer (W5500 only)
-__GP_REGISTER8 (PMAGIC_W5100,  0x0029);    // PPP LCP Magic Number
-__GP_REGISTER8 (PMAGIC_W5500,  0x001D);    // PPP LCP Magic Number (W5500 only)
-__GP_REGISTER_N(UIPR_W5100,    0x002A, 4); // Unreachable IP address in UDP mode (W5100 only)
-__GP_REGISTER_N(UIPR_W5500,    0x0028, 4); // Unreachable IP address in UDP mode (W5500 only)
-__GP_REGISTER16(UPORT_W5100,   0x002E);    // Unreachable Port address in UDP mode (W5100 only)
-__GP_REGISTER16(UPORT_W5500,   0x002C);    // Unreachable Port address in UDP mode (W5500 only)
-__GP_REGISTER8 (VERSIONR_W5200,0x001F);    // Chip Version Register (W5200 only)
-__GP_REGISTER8 (VERSIONR_W5500,0x0039);    // Chip Version Register (W5500 only)
-__GP_REGISTER8 (PSTATUS_W5200, 0x0035);    // PHY Status
-__GP_REGISTER8 (PHYCFGR_W5500, 0x002E);    // PHY Configuration register, default: 10111xxx
-__GP_REGISTER_N(PHAR,          0x001E, 6); // PPP Destination MAC address
-__GP_REGISTER16(PSID,          0x0024);    // PPP Session ID
-__GP_REGISTER16(PMRU,          0x0026);    // PPP Maximum Segment Size
-
+__GP_REGISTER8(MR, 0x0000);             // Mode
+__GP_REGISTER_N(GAR, 0x0001, 4);        // Gateway IP address
+__GP_REGISTER_N(SUBR, 0x0005, 4);       // Subnet mask address
+__GP_REGISTER_N(SHAR, 0x0009, 6);       // Source MAC address
+__GP_REGISTER_N(SIPR, 0x000F, 4);       // Source IP address
+__GP_REGISTER16(INTLEVEL, 0x0013);      // Interrupt Low Level Timer
+__GP_REGISTER8(IR, 0x0015);             // Interrupt
+__GP_REGISTER8(IMR, 0x0016);            // Interrupt Mask
+__GP_REGISTER8(SIR, 0x0017);            // Socket Interrupt (W5500 only)
+__GP_REGISTER16(RTR_W5100, 0x0017);     // Timeout address
+__GP_REGISTER8(SIMR, 0x0018);           // Socket Interrupt Mask
+__GP_REGISTER16(RTR_W5500, 0x0019);     // Timeout address (W5500 only)
+__GP_REGISTER8(RCR_W5100, 0x0019);      // Retry count
+__GP_REGISTER8(RCR_W5500, 0x001B);      // Retry count (W5500 only)
+__GP_REGISTER8(RMSR, 0x001A);           // Receive memory size (W5100 only)
+__GP_REGISTER8(TMSR, 0x001B);           // Transmit memory size (W5100 only)
+__GP_REGISTER8(PATR, 0x001C);           // Authentication type address in PPPoE mode
+__GP_REGISTER8(PTIMER_W5100, 0x0028);   // PPP LCP Request Timer
+__GP_REGISTER8(PTIMER_W5500, 0x001C);   // PPP LCP Request Timer (W5500 only)
+__GP_REGISTER8(PMAGIC_W5100, 0x0029);   // PPP LCP Magic Number
+__GP_REGISTER8(PMAGIC_W5500, 0x001D);   // PPP LCP Magic Number (W5500 only)
+__GP_REGISTER_N(UIPR_W5100, 0x002A, 4); // Unreachable IP address in UDP mode (W5100 only)
+__GP_REGISTER_N(UIPR_W5500, 0x0028, 4); // Unreachable IP address in UDP mode (W5500 only)
+__GP_REGISTER16(UPORT_W5100, 0x002E);   // Unreachable Port address in UDP mode (W5100 only)
+__GP_REGISTER16(UPORT_W5500, 0x002C);   // Unreachable Port address in UDP mode (W5500 only)
+__GP_REGISTER8(VERSIONR_W5200, 0x001F); // Chip Version Register (W5200 only)
+__GP_REGISTER8(VERSIONR_W5500, 0x0039); // Chip Version Register (W5500 only)
+__GP_REGISTER8(PSTATUS_W5200, 0x0035);  // PHY Status
+__GP_REGISTER8(PHYCFGR_W5500, 0x002E);  // PHY Configuration register, default: 10111xxx
+__GP_REGISTER_N(PHAR, 0x001E, 6);       // PPP Destination MAC address
+__GP_REGISTER16(PSID, 0x0024);          // PPP Session ID
+__GP_REGISTER16(PMRU, 0x0026);          // PPP Maximum Segment Size
 
 #undef __GP_REGISTER8
 #undef __GP_REGISTER16
 #undef __GP_REGISTER_N
-
 
 // -----------------------------------------------------------------------------
 // Socket Registers IOMAP
@@ -569,29 +554,29 @@ __GP_REGISTER16(PMRU,          0x0026);    // PPP Maximum Segment Size
     return w5x00_readSn_buf(_s, address, _buff, size);                      \
   }
 
-__SOCKET_REGISTER8(SnMR,        0x0000)        // Mode
-__SOCKET_REGISTER8(SnCR,        0x0001)        // Command
-__SOCKET_REGISTER8(SnIR,        0x0002)        // Interrupt
-__SOCKET_REGISTER8(SnSR,        0x0003)        // Status
-__SOCKET_REGISTER16(SnPORT,     0x0004)        // Source Port
-__SOCKET_REGISTER_N(SnDHAR,     0x0006, 6)     // Destination Hardw Addr
-__SOCKET_REGISTER_N(SnDIPR,     0x000C, 4)     // Destination IP Addr
-__SOCKET_REGISTER16(SnDPORT,    0x0010)        // Destination Port
-__SOCKET_REGISTER16(SnMSSR,     0x0012)        // Max Segment Size
-__SOCKET_REGISTER8(SnPROTO,     0x0014)        // Protocol in IP RAW Mode
-__SOCKET_REGISTER8(SnTOS,       0x0015)        // IP TOS
-__SOCKET_REGISTER8(SnTTL,       0x0016)        // IP TTL
-__SOCKET_REGISTER8(SnRX_SIZE,   0x001E)        // RX Memory Size (W5200 only)
-__SOCKET_REGISTER8(SnTX_SIZE,   0x001F)        // RX Memory Size (W5200 only)
-__SOCKET_REGISTER16(SnTX_FSR,   0x0020)        // TX Free Size
-__SOCKET_REGISTER16(SnTX_RD,    0x0022)        // TX Read Pointer
-__SOCKET_REGISTER16(SnTX_WR,    0x0024)        // TX Write Pointer
-__SOCKET_REGISTER16(SnRX_RSR,   0x0026)        // RX Free Size
-__SOCKET_REGISTER16(SnRX_RD,    0x0028)        // RX Read Pointer
-__SOCKET_REGISTER16(SnRX_WR,    0x002A)        // RX Write Pointer (supported?)
-__SOCKET_REGISTER8(Sn_IMR,      0x002C)        // Interrupt Mask (W5500 only)
-__SOCKET_REGISTER16(SnFRAG,     0x002D)        // Fragment Offset in IP header (W5500 only)
-__SOCKET_REGISTER8(Sn_KPALVTR,  0x002F)        // Keep alive timer (W5500 only)
+__SOCKET_REGISTER8(SnMR, 0x0000)               // Mode
+__SOCKET_REGISTER8(SnCR, 0x0001)               // Command
+__SOCKET_REGISTER8(SnIR, 0x0002)               // Interrupt
+__SOCKET_REGISTER8(SnSR, 0x0003)               // Status
+__SOCKET_REGISTER16(SnPORT, 0x0004)            // Source Port
+__SOCKET_REGISTER_N(SnDHAR, 0x0006, 6)         // Destination Hardw Addr
+__SOCKET_REGISTER_N(SnDIPR, 0x000C, 4)         // Destination IP Addr
+__SOCKET_REGISTER16(SnDPORT, 0x0010)           // Destination Port
+__SOCKET_REGISTER16(SnMSSR, 0x0012)            // Max Segment Size
+__SOCKET_REGISTER8(SnPROTO, 0x0014)            // Protocol in IP RAW Mode
+__SOCKET_REGISTER8(SnTOS, 0x0015)              // IP TOS
+__SOCKET_REGISTER8(SnTTL, 0x0016)              // IP TTL
+__SOCKET_REGISTER8(SnRX_SIZE, 0x001E)          // RX Memory Size (W5200 only)
+__SOCKET_REGISTER8(SnTX_SIZE, 0x001F)          // RX Memory Size (W5200 only)
+__SOCKET_REGISTER16(SnTX_FSR, 0x0020)          // TX Free Size
+__SOCKET_REGISTER16(SnTX_RD, 0x0022)           // TX Read Pointer
+__SOCKET_REGISTER16(SnTX_WR, 0x0024)           // TX Write Pointer
+__SOCKET_REGISTER16(SnRX_RSR, 0x0026)          // RX Free Size
+__SOCKET_REGISTER16(SnRX_RD, 0x0028)           // RX Read Pointer
+__SOCKET_REGISTER16(SnRX_WR, 0x002A)           // RX Write Pointer (supported?)
+__SOCKET_REGISTER8(Sn_IMR, 0x002C)             // Interrupt Mask (W5500 only)
+__SOCKET_REGISTER16(SnFRAG, 0x002D)            // Fragment Offset in IP header (W5500 only)
+__SOCKET_REGISTER8(Sn_KPALVTR, 0x002F)         // Keep alive timer (W5500 only)
 
 #undef __SOCKET_REGISTER8
 #undef __SOCKET_REGISTER16

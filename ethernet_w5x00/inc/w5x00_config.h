@@ -46,22 +46,11 @@
 extern "C" {
 #endif
 
-/***************************************************************************//**
- * @brief
- *    SPI handle for W5x00 chip
- ******************************************************************************/
-#define W5x00_SPI_HANDLE        sl_spidrv_mikroe_handle
+// SPI handle for W5x00 chip
+#define w5x00_spi_handle        sl_spidrv_mikroe_handle
 
-/***************************************************************************//**
- * @brief
- *    Reset GPIO port
- ******************************************************************************/
+// Reset GPIO port and pin
 #define W5x00_RESET_GPIO_PORT   gpioPortC
-
-/***************************************************************************//**
- * @brief
- *    Reset GPIO pin
- ******************************************************************************/
 #define W5x00_RESET_GPIO_PIN    (6)
 
 /***************************************************************************//**
@@ -76,36 +65,24 @@ extern "C" {
  *    buffers should allow faster TCP over high-latency links, but this
  *    does not always seem to work in practice (maybe Wiznet bugs?)
  ******************************************************************************/
-//#define W5x00_ETHERNET_LARGE_BUFFERS
+// #define W5x00_ETHERNET_LARGE_BUFFERS
 
-/***************************************************************************//**
- * @def W5x00_HTTP_SERVER_DEBUG
- * @brief
- *    HTTP Server debug message enable
- ******************************************************************************/
+// HTTP Server debug message enable
 #define W5x00_HTTP_SERVER_DEBUG
 
-/***************************************************************************//**
- * @def W5x00_HTTP_SERVER_BUFFER_SIZE
- * @brief
- *    HTTP server buffer size configuration
- ******************************************************************************/
+// HTTP server buffer size configuration
 #define W5x00_HTTP_SERVER_BUFFER_SIZE (1024)
 
-/***************************************************************************//**
- * @def W5x00_LOG_ENABLE
- * @brief
- *    Enable log printing
- ******************************************************************************/
+// Enable log printing
 #if defined(SL_CATALOG_APP_LOG_PRESENT) && APP_LOG_ENABLE
 /// use applog for the log printing
 #include "app_log.h"
-#define w5x00_log_printf          app_log_append
+#define w5x00_log_printf              app_log_append
 #define W5x00_LOG_ENABLE
 #elif defined(SL_CATALOG_RETARGET_STDIO_PRESENT)
 /// use stdio printf for the log printing
 #include <stdio.h>
-#define w5x00_log_printf          printf
+#define w5x00_log_printf              printf
 #define W5x00_LOG_ENABLE
 #endif
 

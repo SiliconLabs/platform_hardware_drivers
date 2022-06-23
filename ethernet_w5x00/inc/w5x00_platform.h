@@ -71,10 +71,10 @@ extern "C" {
   w5x00_log_printf("[ I: %s ] " fmt, tag, ##__VA_ARGS__)
 #define w5x00_log_error(tag, fmt, ...)  \
   w5x00_log_printf("[ E: %s ] " fmt, tag, ##__VA_ARGS__)
-#define w5x00_log_print_ip(ip)          \
+#define w5x00_log_print_ip(ip)                                     \
   w5x00_log_printf("%d.%d.%d.%d", w5x00_ip4_addr_get_byte(ip, 0),  \
-                                w5x00_ip4_addr_get_byte(ip, 1),  \
-                                w5x00_ip4_addr_get_byte(ip, 2),  \
+                                w5x00_ip4_addr_get_byte(ip, 1),    \
+                                w5x00_ip4_addr_get_byte(ip, 2),    \
                                 w5x00_ip4_addr_get_byte(ip, 3))
 #else
 #define w5x00_log_printf(...)
@@ -116,7 +116,7 @@ extern "C" {
  * @return
  *    Current tick count in milliseconds
  ******************************************************************************/
-#define w5x00_get_tick_ms()  \
+#define w5x00_get_tick_ms() \
     sl_sleeptimer_tick_to_ms(sl_sleeptimer_get_tick_count())
 
 /***************************************************************************//**

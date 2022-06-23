@@ -71,7 +71,7 @@ typedef struct {
 
 /***************************************************************************//**
  * @brief
- *    Init ethernet client instance.
+ *    Initialize ethernet client instance.
  * @param[in] c
  *    Ethernet client instance.
  * @param[in] eth

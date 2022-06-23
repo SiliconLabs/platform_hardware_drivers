@@ -58,18 +58,6 @@ extern "C" {
  * @{
  ******************************************************************************/
 
-/**
- * @brief
- *    HTTP Process states list
- */
-enum STATE_HTTP {
-  STATE_HTTP_IDLE=0,         /*!< IDLE, Waiting for data received (TCP established) */
-  STATE_HTTP_REQ_INPROC=1,   /*!< Received HTTP request from HTTP client */
-  STATE_HTTP_REQ_DONE=2,     /*!< The end of HTTP request parse */
-  STATE_HTTP_RES_INPROC=3,   /*!< Sending the HTTP response to HTTP client (in progress) */
-  STATE_HTTP_RES_DONE=4,     /*!< The end of HTTP response send (HTTP transaction ended) */
-};
-
 /// HTTP Simple Return Value
 #define HTTP_FAILED         0
 #define HTTP_OK             1
@@ -79,11 +67,11 @@ enum STATE_HTTP {
 #define W5x00_HTTP_SERVER_MAX_CONTENT_NAME_LEN    128
 
 /// HTTP Timeout
-#define HTTP_MAX_TIMEOUT_SEC                      3      // Sec.
+#define HTTP_MAX_TIMEOUT_SEC                      3      // Second
 
 /// HTTP Max URI size
 #ifndef W5x00_HTTP_SERVER_MAX_URI_SIZE
-//#define HTTP_SERVER_MAX_URI_SIZE  1461
+// #define HTTP_SERVER_MAX_URI_SIZE               1461
 #define W5x00_HTTP_SERVER_MAX_URI_SIZE            1024
 #endif
 
@@ -92,32 +80,33 @@ enum STATE_HTTP {
 #endif
 
 #if !defined(W5x00_HTTP_MAX_CLIENT)
-#define W5x00_HTTP_MAX_CLIENT W5x00_MAX_SOCK_NUM
+#define W5x00_HTTP_MAX_CLIENT                     W5x00_MAX_SOCK_NUM
 #endif
 
-/***************************************************************************//**
- * @brief
- *    HTTP request info
- ******************************************************************************/
-typedef struct
-{
-  uint8_t method;                               /// request method #STATE_HTTP value enum
-  uint8_t type;                                 /// request type(PTYPE_HTML...).
-  uint8_t uri[W5x00_HTTP_SERVER_MAX_URI_SIZE];  /// request file name.
+/// HTTP Process states list
+enum STATE_HTTP {
+  STATE_HTTP_IDLE       = 0,   ///< IDLE, Waiting for data received (TCP established)
+  STATE_HTTP_REQ_INPROC = 1,   ///< Received HTTP request from HTTP client
+  STATE_HTTP_REQ_DONE   = 2,   ///< The end of HTTP request parse
+  STATE_HTTP_RES_INPROC = 3,   ///< Sending the HTTP response to HTTP client (in progress)
+  STATE_HTTP_RES_DONE   = 4,   ///< The end of HTTP response send (HTTP transaction ended)
+};
+
+/// HTTP request info
+typedef struct {
+  uint8_t method;                               ///< request method #STATE_HTTP value enum
+  uint8_t type;                                 ///< request type(PTYPE_HTML...).
+  uint8_t uri[W5x00_HTTP_SERVER_MAX_URI_SIZE];  ///< request file name.
 } w5x00_http_request_t;
 
-/***************************************************************************//**
- * @brief
- *    HTTP socket state
- ******************************************************************************/
-typedef struct
-{
-  w5x00_socket_t socknum;                                    /// Soket number
-  uint8_t sock_status;                                       /// Socket status
-  uint8_t file_name[W5x00_HTTP_SERVER_MAX_CONTENT_NAME_LEN]; /// Content file name
-  uint32_t file_id;                                          /// Content file ID
-  uint32_t file_len;                                         /// Content file total length
-  uint32_t file_offset;                                      /// Content file offset
+/// HTTP socket state
+typedef struct {
+  w5x00_socket_t socknum;                                    ///< Soket number
+  uint8_t sock_status;                                       ///< Socket status
+  uint8_t file_name[W5x00_HTTP_SERVER_MAX_CONTENT_NAME_LEN]; ///< Content file name
+  uint32_t file_id;                                          ///< Content file ID
+  uint32_t file_len;                                         ///< Content file total length
+  uint32_t file_offset;                                      ///< Content file offset
 } w5x00_http_socket_t;
 
 /***************************************************************************//**
@@ -167,6 +156,7 @@ typedef uint16_t (*w5x00_http_read_web_content_t)(uint32_t file_id,
                                                   uint8_t *buf,
                                                   uint32_t offset,
                                                   uint16_t size);
+
 /***************************************************************************//**
  * @brief
  *    Close content file callback type (HTTP GET request)
@@ -201,7 +191,7 @@ typedef uint8_t (*w5x00_http_get_cgi_handler_t)(const char *uri_name,
  *    Body data
  * @param[out] buf
  *    Response body buffer
- * @param file_len
+ * @param[in] file_len
  *    Size of the body buffer/response body data
  * @return
  *    1 on success
@@ -211,29 +201,24 @@ typedef uint8_t (*w5x00_http_post_cgi_handler_t)(const char *uri_name,
                                                  const char *body,
                                                  uint8_t *buf,
                                                  uint32_t *file_len);
-typedef struct
-{
-  w5x00_http_server_restart_t server_restart;       /// Request restart server
+typedef struct {
+  w5x00_http_server_restart_t server_restart;       ///< Request restart server
 #ifdef W5x00_USE_WATCHDOG
-  w5x00_http_wdt_reset wdt_reset;                   /// Reset watchdog
+  w5x00_http_wdt_reset wdt_reset;                   ///< Reset watchdog
 #endif
-  w5x00_http_open_web_content_t open_web_content;   /// Open web content file
-  w5x00_http_read_web_content_t read_web_content;   /// Open web content file
-  w5x00_http_close_web_content_t close_web_content; /// Close web content file
-  w5x00_http_get_cgi_handler_t get_cgi_handler;     /// Get CGI
-  w5x00_http_post_cgi_handler_t post_cgi_handler;   /// Post CGI
+  w5x00_http_open_web_content_t open_web_content;   ///< Open web content file
+  w5x00_http_read_web_content_t read_web_content;   ///< Open web content file
+  w5x00_http_close_web_content_t close_web_content; ///< Close web content file
+  w5x00_http_get_cgi_handler_t get_cgi_handler;     ///< Get CGI
+  w5x00_http_post_cgi_handler_t post_cgi_handler;   ///< Post CGI
 } w5x00_http_server_callback_t;
 
-/***************************************************************************//**
- * @brief
- *    HTTP server object defination
- ******************************************************************************/
-typedef struct
-{
-  w5x00_http_socket_t socket[W5x00_HTTP_MAX_CLIENT];  /// Socket state
-  uint16_t port;                                      /// Listen port
-  const w5x00_http_server_callback_t *callback;       /// Callback
-  uint8_t buf[W5x00_HTTP_SERVER_BUFFER_SIZE];         /// Buffer to parse the request
+/// HTTP server object defination
+typedef struct {
+  w5x00_http_socket_t socket[W5x00_HTTP_MAX_CLIENT];  ///< Socket state
+  uint16_t port;                                      ///< Listen port
+  const w5x00_http_server_callback_t *callback;       ///< Callback
+  uint8_t buf[W5x00_HTTP_SERVER_BUFFER_SIZE];         ///< Buffer to parse the request
 } w5x00_http_server_t;
 
 /***************************************************************************//**
@@ -243,7 +228,7 @@ typedef struct
  *    HTTP server instance
  * @param[in] port
  *    Listen port
- * @param callback
+ * @param[in] callback
  *    Callback struct define by #w5x00_http_server_callback_t
  ******************************************************************************/
 sl_status_t w5x00_http_server_init(w5x00_http_server_t *http,
@@ -253,9 +238,9 @@ sl_status_t w5x00_http_server_init(w5x00_http_server_t *http,
 /***************************************************************************//**
  * @brief
  *    Run server on 1 socket
- * @param http
+ * @param[in] http
  *    HTTP server instance
- * @param s
+ * @param[in] s
  *    Socket number
  * @return
  *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure.
@@ -265,7 +250,7 @@ sl_status_t w5x00_http_server_socket_run(w5x00_http_server_t *http, uint8_t s);
 /***************************************************************************//**
  * @brief
  *    Run server on all socket
- * @param http
+ * @param[in] http
  *    HTTP server instance
  * @return
  *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure.

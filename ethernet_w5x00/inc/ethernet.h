@@ -70,11 +70,11 @@ enum EthernetHardwareStatus {
 typedef struct {
   w5x00_ip4_addr_t dns_server_address;  /// DNS server ip address
   w5x00_dhcp_t dhcp;                    /// DHCP client object
-}w5x00_ethernet_t;
+} w5x00_ethernet_t;
 
 /***************************************************************************//**
  * @brief
- *    Init ethernet interface with DHCP
+ *    Initialize ethernet interface with DHCP
  * @param[in] eth
  *    Ethernet instance
  * @param[in] mac
@@ -93,7 +93,7 @@ sl_status_t w5x00_ethernet_dhcp_init(w5x00_ethernet_t *eth,
 
 /***************************************************************************//**
  * @brief
- *    Init ethernet interface with static address
+ *    Initialize ethernet interface with static address
  * @param[in] eth
  *    Ethernet instance
  * @param[in] mac
@@ -127,6 +127,8 @@ sl_status_t w5x00_ethernet_set_dns_server(w5x00_ethernet_t *eth,
 /***************************************************************************//**
  * @brief
  *    Get ethernet link status
+ * @param[in] eth
+ *    Ethernet instance
  * @return
  *    returns an #EthernetLinkStatus value enum
  ******************************************************************************/
@@ -154,8 +156,11 @@ sl_status_t w5x00_ethernet_maintain(w5x00_ethernet_t *eth);
  * @brief
  *    Get local ip
  * @param[in] eth
- * @return
+ *    Ethernet instance
+ * @param[out] ip
  *    Local ip
+ * @return
+ *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure.
  ******************************************************************************/
 sl_status_t w5x00_ethernet_get_local_ip(w5x00_ethernet_t *eth,
                                         w5x00_ip4_addr_t *ip);
@@ -164,7 +169,9 @@ sl_status_t w5x00_ethernet_get_local_ip(w5x00_ethernet_t *eth,
  * @brief
  *    Set local ip
  * @param[in] eth
- * @param ip
+ *    Ethernet instance
+ * @param[in] ip
+ *    Local ip
  * @return
  *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure.
  ******************************************************************************/
@@ -175,6 +182,9 @@ sl_status_t w5x00_ethernet_set_local_ip(w5x00_ethernet_t *eth,
  * @brief
  *    Get subnet mask
  * @param[in] eth
+ *    Ethernet instance
+ * @param[out] subnet
+ *    Subnet mask
  * @return
  *    Subnet mask
  ******************************************************************************/
@@ -185,6 +195,7 @@ sl_status_t w5x00_ethernet_get_subnet_mask(w5x00_ethernet_t *eth,
  * @brief
  *    Set subnet mask
  * @param[in] eth
+ *    Ethernet instance
  * @param[in] subnet
  *    Subnet mask
  * @return
@@ -197,8 +208,11 @@ sl_status_t w5x00_ethernet_set_subnet_mask(w5x00_ethernet_t *eth,
  * @brief
  *    Get gateway ip
  * @param[in] eth
- * @return
+ *    Ethernet instance
+ * @param[out] gateway
  *    Gateway ip
+ * @return
+ *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure.
  ******************************************************************************/
 sl_status_t w5x00_ethernet_get_gateway_ip(w5x00_ethernet_t *eth,
                                           w5x00_ip4_addr_t *gateway);
@@ -207,7 +221,9 @@ sl_status_t w5x00_ethernet_get_gateway_ip(w5x00_ethernet_t *eth,
  * @brief
  *    Set gateway ip
  * @param[in] eth
+ *    Ethernet instance
  * @param[in] ip
+ *    Gateway ip
  * @return
  *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure.
  ******************************************************************************/
@@ -215,6 +231,5 @@ sl_status_t w5x00_ethernet_set_gateway_ip(w5x00_ethernet_t *eth,
                                           w5x00_ip4_addr_t *gateway);
 
 /** @} (end group Ethernet) */
-
 
 #endif // ETHERNET_H_

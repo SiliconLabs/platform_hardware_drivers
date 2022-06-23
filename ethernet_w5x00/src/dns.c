@@ -42,7 +42,7 @@
 #include "dns.h"
 #include "w5x00.h"
 
-#define TAG "DNS"
+#define TAG                      "DNS"
 
 #define SOCKET_NONE              255
 // Various flags and header field values for a DNS message
@@ -50,16 +50,16 @@
 #define DNS_HEADER_SIZE          12
 #define TTL_SIZE                 4
 #define QUERY_FLAG               (0)
-#define RESPONSE_FLAG            (1<<15)
-#define QUERY_RESPONSE_MASK      (1<<15)
+#define RESPONSE_FLAG            (1 << 15)
+#define QUERY_RESPONSE_MASK      (1 << 15)
 #define OPCODE_STANDARD_QUERY    (0)
-#define OPCODE_INVERSE_QUERY     (1<<11)
-#define OPCODE_STATUS_REQUEST    (2<<11)
-#define OPCODE_MASK              (15<<11)
-#define AUTHORITATIVE_FLAG       (1<<10)
-#define TRUNCATION_FLAG          (1<<9)
-#define RECURSION_DESIRED_FLAG   (1<<8)
-#define RECURSION_AVAILABLE_FLAG (1<<7)
+#define OPCODE_INVERSE_QUERY     (1 << 11)
+#define OPCODE_STATUS_REQUEST    (2 << 11)
+#define OPCODE_MASK              (15 << 11)
+#define AUTHORITATIVE_FLAG       (1 << 10)
+#define TRUNCATION_FLAG          (1 << 9)
+#define RECURSION_DESIRED_FLAG   (1 << 8)
+#define RECURSION_AVAILABLE_FLAG (1 << 7)
 #define RESP_NO_ERROR            (0)
 #define RESP_FORMAT_ERROR        (1)
 #define RESP_SERVER_FAILURE      (2)
@@ -131,7 +131,9 @@ sl_status_t w5x00_dns_get_host_by_name(w5x00_dns_t *dns,
   result = w5x00_ethernet_udp_begin(&dns->udp_socket,
                                     1024 + (w5x00_get_tick_ms() & 0xF));
   if (result == SL_STATUS_OK) {
-    w5x00_log_info(TAG, "Start DNS resolution for host name: '%s'\r\n", a_hostname);
+    w5x00_log_info(TAG, 
+                   "Start DNS resolution for host name: '%s'\r\n",
+                   a_hostname);
     // Try up to three times
     int retries = 0;
     // while ((retries < 3) && (ret <= 0)) {
@@ -164,16 +166,22 @@ sl_status_t w5x00_dns_get_host_by_name(w5x00_dns_t *dns,
   }
 
   if (ret == SUCCESS) {
-    w5x00_log_info(TAG, "DNS resolution for host name: '%s' is complete\r\n", a_hostname);
+    w5x00_log_info(TAG,
+                   "DNS resolution for host name: '%s' is complete\r\n",
+                   a_hostname);
     w5x00_log_info(TAG, "Host name: '%s', IP Address: ", a_hostname);
     w5x00_log_print_ip(a_result);
     w5x00_log_printf("\r\n");
     return SL_STATUS_OK;
   } else if (ret == TIMED_OUT) {
-    w5x00_log_error(TAG, "DNS resolution for host name: '%s' is timeout\r\n", a_hostname);
+    w5x00_log_error(TAG,
+                    "DNS resolution for host name: '%s' is timeout\r\n",
+                    a_hostname);
     return SL_STATUS_TIMEOUT;
   }
-  w5x00_log_error(TAG, "DNS resolution for host name: '%s' is failed\r\n", a_hostname);
+  w5x00_log_error(TAG,
+                  "DNS resolution for host name: '%s' is failed\r\n",
+                  a_hostname);
   return SL_STATUS_FAIL;
 }
 
@@ -203,8 +211,8 @@ static uint16_t build_request(w5x00_dns_t *dns, const char* a_name)
   dns->request_id = w5x00_get_tick_ms(); // generate a random ID
   uint16_t twoByteBuffer;
 
-  // FIXME We should also check that there's enough space available to write to, rather
-  // FIXME than assume there's enough space (as the code does at present)
+  // FIXME We should also check that there's enough space available to write to,
+  // rather FIXME than assume there's enough space (as the code does at present)
   w5x00_ethernet_udp_write(&dns->udp_socket,
                             (uint8_t*)&dns->request_id,
                             sizeof(dns->request_id));
@@ -235,25 +243,25 @@ static uint16_t build_request(w5x00_dns_t *dns, const char* a_name)
                             sizeof(twoByteBuffer));
 
   // Build question
-  const char* start =a_name;
-  const char* end =start;
+  const char *start = a_name;
+  const char *end = start;
   uint8_t len;
   // Run through the name being requested
   while (*end) {
     // Find out how long this section of the name is
     end = start;
-    while (*end && (*end != '.') ) {
+    while (*end && (*end != '.')) {
       end++;
     }
 
-    if (end-start > 0) {
+    if (end - start > 0) {
       // Write out the size of this section
-      len = end-start;
+      len = end - start;
       w5x00_ethernet_udp_write(&dns->udp_socket, &len, sizeof(len));
       // And then write out the section
-      w5x00_ethernet_udp_write(&dns->udp_socket, (uint8_t*)start, end-start);
+      w5x00_ethernet_udp_write(&dns->udp_socket, (uint8_t*)start, end - start);
     }
-    start = end+1;
+    start = end + 1;
   }
 
   // We've got to the end of the question name, so
@@ -291,15 +299,15 @@ static uint16_t process_response(w5x00_dns_t *dns,
 
   // We've had a reply!
   // Read the UDP header
-  //uint8_t header[DNS_HEADER_SIZE]; // Enough space to reuse for the DNS header
+  // uint8_t header[DNS_HEADER_SIZE]; // Enough space to reuse for the DNS header
   union {
     uint8_t  byte[DNS_HEADER_SIZE]; // Enough space to reuse for the DNS header
-    uint16_t word[DNS_HEADER_SIZE/2];
+    uint16_t word[DNS_HEADER_SIZE / 2];
   } header;
 
   // Check that it's a response from the right server and the right port
   if ((dns->dns_server.addr != dns->udp_socket.remote_ip.addr)
-      || (dns->udp_socket.remote_port != DNS_PORT) ) {
+      || (dns->udp_socket.remote_port != DNS_PORT)) {
     // It's not from who we expected
     return INVALID_SERVER;
   }
@@ -314,18 +322,18 @@ static uint16_t process_response(w5x00_dns_t *dns,
 
   uint16_t header_flags = htons(header.word[1]);
   // Check that it's a response to this request
-  if ((dns->request_id != (header.word[0])) ||
-    ((header_flags & QUERY_RESPONSE_MASK) != (uint16_t)RESPONSE_FLAG) ) {
+  if ((dns->request_id != (header.word[0]))
+      || ((header_flags & QUERY_RESPONSE_MASK) != (uint16_t)RESPONSE_FLAG)) {
     // Mark the entire packet as read
     w5x00_ethernet_udp_flush(&dns->udp_socket); // FIXME
     return INVALID_RESPONSE;
   }
   // Check for any errors in the response (or in our request)
   // although we don't do anything to get round these
-  if ((header_flags & TRUNCATION_FLAG) || (header_flags & RESP_MASK) ) {
+  if ((header_flags & TRUNCATION_FLAG) || (header_flags & RESP_MASK)) {
     // Mark the entire packet as read
     w5x00_ethernet_udp_flush(&dns->udp_socket); // FIXME
-    return -5; //INVALID_RESPONSE;
+    return -5; // INVALID_RESPONSE;
   }
 
   // And make sure we've got (at least) one answer
@@ -333,11 +341,11 @@ static uint16_t process_response(w5x00_dns_t *dns,
   if (answerCount == 0) {
     // Mark the entire packet as read
     w5x00_ethernet_udp_flush(&dns->udp_socket); // FIXME
-    return -6; //INVALID_RESPONSE;
+    return -6; // INVALID_RESPONSE;
   }
 
   // Skip over any questions
-  for (uint16_t i=0; i < htons(header.word[2]); i++) {
+  for (uint16_t i = 0; i < htons(header.word[2]); i++) {
     // Skip over the name
     uint8_t len;
     do {
@@ -360,7 +368,7 @@ static uint16_t process_response(w5x00_dns_t *dns,
   // type A answer) and some authority and additional resource records but
   // we're going to ignore all of them.
 
-  for (uint16_t i=0; i < answerCount; i++) {
+  for (uint16_t i = 0; i < answerCount; i++) {
     // Skip the name
     uint8_t len;
     do {
@@ -399,8 +407,8 @@ static uint16_t process_response(w5x00_dns_t *dns,
 
     // Ignore the Time-To-Live as we don't do any caching
     w5x00_ethernet_udp_read(&dns->udp_socket,
-                             (uint8_t *)NULL,
-                             TTL_SIZE); // don't care about the returned bytes
+                            (uint8_t *)NULL,
+                            TTL_SIZE);  // don't care about the returned bytes
 
     // And read out the length of this answer
     // Don't need header_flags anymore, so we can reuse it here
@@ -408,12 +416,12 @@ static uint16_t process_response(w5x00_dns_t *dns,
                             (uint8_t*)&header_flags,
                             sizeof(header_flags));
 
-    if ((htons(answerType) == TYPE_A) && (htons(answerClass) == CLASS_IN) ) {
+    if ((htons(answerType) == TYPE_A) && (htons(answerClass) == CLASS_IN)) {
       if (htons(header_flags) != 4) {
         // It's a weird size
         // Mark the entire packet as read
         w5x00_ethernet_udp_flush(&dns->udp_socket); // FIXME
-        return -9;//INVALID_RESPONSE;
+        return -9;  // INVALID_RESPONSE;
       }
       w5x00_ethernet_udp_read(&dns->udp_socket, (uint8_t *)a_address, 4);
       return SUCCESS;
@@ -429,6 +437,5 @@ static uint16_t process_response(w5x00_dns_t *dns,
   w5x00_ethernet_udp_flush(&dns->udp_socket); // FIXME
 
   // If we get here then we haven't found an answer
-  return -10; //INVALID_RESPONSE;
+  return -10; // INVALID_RESPONSE;
 }
-

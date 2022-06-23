@@ -50,7 +50,7 @@ sl_status_t w5x00_ethernet_dhcp_init(w5x00_ethernet_t *eth,
                                      uint32_t timeout,
                                      uint32_t response_timeout)
 {
-  w5x00_ip4_addr_t ip = {0};
+  w5x00_ip4_addr_t ip = { 0 };
 
   if (eth == NULL) {
     return SL_STATUS_INVALID_PARAMETER;
@@ -170,18 +170,18 @@ sl_status_t w5x00_ethernet_maintain(w5x00_ethernet_t *eth)
   rc = w5x00_dhcp_check_lease(&eth->dhcp);
   switch (rc) {
   case W5x00_DHCP_CHECK_NONE:
-    //nothing done
+    // nothing done
     break;
   case W5x00_DHCP_CHECK_RENEW_OK:
   case W5x00_DHCP_CHECK_REBIND_OK:
-    //we might have got a new IP.
+    // we might have got a new IP.
     w5x00_set_ip_address((uint8_t *)&(eth->dhcp.local_ip));
     w5x00_set_gateway_ip((uint8_t *)&(eth->dhcp.gateway_ip));
     w5x00_set_subnet_mask((uint8_t *)&(eth->dhcp.subnet_mask));
     eth->dns_server_address = eth->dhcp.dns_server_ip;
     break;
   default:
-    //this is actually an error, it will retry though
+    // this is actually an error, it will retry though
     return SL_STATUS_FAIL;
     break;
   }
@@ -265,10 +265,3 @@ sl_status_t w5x00_ethernet_set_gateway_ip(w5x00_ethernet_t *eth,
   w5x00_set_gateway_ip((uint8_t *)gateway);
   return SL_STATUS_OK;
 }
-
-
-
-
-
-
-

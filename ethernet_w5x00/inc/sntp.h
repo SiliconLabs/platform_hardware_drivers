@@ -58,25 +58,20 @@ extern "C" {
  * @{
  ******************************************************************************/
 
-/***************************************************************************//**
- * @brief
- *    SNTP object definition
- ******************************************************************************/
+/// SNTP object definition
 typedef struct
 {
-  w5x00_ethernet_t *eth;            /// Ethernet object reference
-  w5x00_ethernet_udp_t udp_socket;  /// UDP socket
-  uint32_t epoch_timestamp;         /// Epoch timestamp
+  w5x00_ethernet_t *eth;            ///< Ethernet object reference
+  w5x00_ethernet_udp_t udp_socket;  ///< UDP socket
+  uint32_t epoch_timestamp;         ///< Epoch timestamp
 } w5x00_sntp_t;
 
 /***************************************************************************//**
  * @brief
  *    Get unix timestamp. Unix time starts on Jan 1 1970.
  *    In seconds, that's 2208988800:
- * @param sntp
+ * @param[in] sntp
  *    SNTP instance
- * @param eth
- *    Ethernet instance
  * @return
  *    Unix timestamp
  ******************************************************************************/
@@ -86,10 +81,12 @@ typedef struct
 /***************************************************************************//**
  * @brief
  *    Init SNTP instance
- * @param sntp
+ * @param[in] sntp
  *    SNTP instance
- * @param eth
+ * @param[in] eth
  *    Ethernet instance
+ * @return
+ *    @ref SL_STATUS_OK on success or @ref SL_STATUS_FAIL on failure.
  ******************************************************************************/
 sl_status_t w5x00_sntp_init(w5x00_sntp_t *sntp, w5x00_ethernet_t *eth);
 

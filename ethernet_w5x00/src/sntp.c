@@ -44,20 +44,20 @@
 #include "dns.h"
 #include "sntp.h"
 
-#define TAG "SNTP"
+#define TAG                      "SNTP"
 
-#define NTP_PACKET_SIZE 48 // NTP time stamp is in the first 48 bytes of the message
+#define NTP_PACKET_SIZE          48 // NTP time stamp is in the first 48 bytes of the message
 
 #define SOCKET_NONE              255
 // Port number that DNS servers listen on
 #define SNTP_DEFAULT_PORT        123
 
 // Possible return codes from ProcessResponse
-#define SUCCESS          1
-#define TIMED_OUT        -1
-#define INVALID_SERVER   -2
-#define TRUNCATED        -3
-#define INVALID_RESPONSE -4
+#define SUCCESS                  1
+#define TIMED_OUT                -1
+#define INVALID_SERVER           -2
+#define TRUNCATED                -3
+#define INVALID_RESPONSE         -4
 
 static int process_response(w5x00_ethernet_udp_t *udp_socket,
                             uint16_t timeout,
@@ -69,7 +69,7 @@ static int process_response(w5x00_ethernet_udp_t *udp_socket,
  ******************************************************************************/
 sl_status_t w5x00_sntp_init(w5x00_sntp_t *sntp, w5x00_ethernet_t *eth)
 {
-  if (sntp == NULL || eth == NULL) {
+  if ((sntp == NULL) || (eth == NULL)) {
     return SL_STATUS_INVALID_PARAMETER;
   }
   sntp->eth = eth;
@@ -87,7 +87,7 @@ sl_status_t w5x00_sntp_update_timestamp_from_host(w5x00_sntp_t *sntp,
   w5x00_dns_t dns_client; // Look up the host first
   w5x00_ip4_addr_t remote_addr;
 
-  if (sntp == NULL || host == NULL) {
+  if ((sntp == NULL) || (host == NULL)) {
     return SL_STATUS_INVALID_PARAMETER;
   }
   w5x00_dns_init(&dns_client, sntp->eth->dns_server_address);
@@ -111,7 +111,8 @@ sl_status_t w5x00_sntp_update_timestamp(w5x00_sntp_t *sntp,
   sl_status_t ret;
   int status = TIMED_OUT;
   size_t len;
-  uint8_t packet_buffer[NTP_PACKET_SIZE]; //buffer to hold incoming and outgoing packets
+  // buffer to hold incoming and outgoing packets
+  uint8_t packet_buffer[NTP_PACKET_SIZE];
 
   if (sntp == NULL) {
     return SL_STATUS_INVALID_PARAMETER;
@@ -136,10 +137,10 @@ sl_status_t w5x00_sntp_update_timestamp(w5x00_sntp_t *sntp,
       packet_buffer[2] = 6;     // Polling Interval
       packet_buffer[3] = 0xEC;  // Peer Clock Precision
       // 8 bytes of zero for Root Delay & Root Dispersion
-      packet_buffer[12]  = 49;
-      packet_buffer[13]  = 0x4E;
-      packet_buffer[14]  = 49;
-      packet_buffer[15]  = 52;
+      packet_buffer[12] = 49;
+      packet_buffer[13] = 0x4E;
+      packet_buffer[14] = 49;
+      packet_buffer[15] = 52;
       len = w5x00_ethernet_udp_write(&sntp->udp_socket,
                                      packet_buffer,
                                      sizeof(packet_buffer));
@@ -211,9 +212,9 @@ static int process_response(w5x00_ethernet_udp_t *udp_socket,
     return TRUNCATED;
   }
 
-  if(size == w5x00_ethernet_udp_read(udp_socket,
-                                     packet_buffer,
-                                     size)) {
+  if (size == w5x00_ethernet_udp_read(udp_socket,
+                                      packet_buffer,
+                                      size)) {
     return SUCCESS;
   }
 

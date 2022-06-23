@@ -39,16 +39,12 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#include "app_assert.h"
-#include "sl_spidrv_instances.h"
 #include "w5x00_platform.h"
-
-#define spi_handle    W5x00_SPI_HANDLE
 
 /***************************************************************************//**
  * Reset Chip.
  ******************************************************************************/
-void  w5x00_reset(void)
+void w5x00_reset(void)
 {
   GPIO_PinOutClear(W5x00_RESET_GPIO_PORT, W5x00_RESET_GPIO_PIN);
   w5x00_delay_ms(100);
@@ -58,50 +54,50 @@ void  w5x00_reset(void)
 /***************************************************************************//**
  * Initialize Bus IO.
  ******************************************************************************/
-void  w5x00_bus_init(void)
+void w5x00_bus_init(void)
 {
   GPIO_PinModeSet(W5x00_RESET_GPIO_PORT,
                   W5x00_RESET_GPIO_PIN,
                   gpioModePushPull,
                   0);
-  GPIO_PinModeSet((GPIO_Port_TypeDef)spi_handle->portCs,
-                  spi_handle->pinCs,
+  GPIO_PinModeSet((GPIO_Port_TypeDef)w5x00_spi_handle->portCs,
+                  w5x00_spi_handle->pinCs,
                   gpioModePushPull, 1);
 }
 
 /***************************************************************************//**
  * Select Chip.
  ******************************************************************************/
-void  w5x00_bus_select(void)
+void w5x00_bus_select(void)
 {
-  GPIO_PinOutClear((GPIO_Port_TypeDef)spi_handle->portCs,
-                   spi_handle->pinCs);
+  GPIO_PinOutClear((GPIO_Port_TypeDef)w5x00_spi_handle->portCs,
+                   w5x00_spi_handle->pinCs);
 }
 
 /***************************************************************************//**
  * Deselect Chip.
  ******************************************************************************/
-void  w5x00_bus_deselect(void)
+void w5x00_bus_deselect(void)
 {
-  GPIO_PinOutSet((GPIO_Port_TypeDef)spi_handle->portCs,
-                 spi_handle->pinCs);
+  GPIO_PinOutSet((GPIO_Port_TypeDef)w5x00_spi_handle->portCs,
+                 w5x00_spi_handle->pinCs);
 }
 
 /***************************************************************************//**
  * Read Chip Data From SPI Interface.
  ******************************************************************************/
-uint32_t  w5x00_bus_read(uint8_t *buf, uint16_t len)
+uint32_t w5x00_bus_read(uint8_t *buf, uint16_t len)
 {
-  Ecode_t ret = SPIDRV_MReceiveB(spi_handle, buf, len);
+  Ecode_t ret = SPIDRV_MReceiveB(w5x00_spi_handle, buf, len);
   return (uint32_t)ret;
 }
 
 /***************************************************************************//**
  * Write Data To Chip.
  ******************************************************************************/
-uint32_t  w5x00_bus_write(const uint8_t *buf, uint16_t len)
+uint32_t w5x00_bus_write(const uint8_t *buf, uint16_t len)
 {
-  Ecode_t ret = SPIDRV_MTransmitB(spi_handle, buf, len);
+  Ecode_t ret = SPIDRV_MTransmitB(w5x00_spi_handle, buf, len);
   return (uint32_t)ret;
 }
 
@@ -115,17 +111,18 @@ long w5x00_random(long howbig)
   uint32_t l = (uint32_t)m;
 
   if (l < (uint32_t)howbig) {
-      uint32_t t = (uint32_t)-howbig;
+    uint32_t t = (uint32_t)-howbig;
+    if (t >= (uint32_t)howbig) {
+      t -= howbig;
       if (t >= (uint32_t)howbig) {
-          t -= howbig;
-          if (t >= (uint32_t)howbig)
-              t %= howbig;
+        t %= howbig;
       }
-      while (l < t) {
-          x = (uint32_t)rand();
-          m = (uint64_t)x * (uint64_t)howbig;
-          l = (uint32_t)m;
-      }
+    }
+    while (l < t) {
+      x = (uint32_t)rand();
+      m = (uint64_t)x * (uint64_t)howbig;
+      l = (uint32_t)m;
+    }
   }
   return (long)(m >> 32);
 }
@@ -135,9 +132,11 @@ long w5x00_random(long howbig)
  ******************************************************************************/
 long w5x00_random2(long howsmall, long howbig)
 {
-    if (howsmall >= howbig) {
-        return howsmall;
-    }
-    long diff = howbig - howsmall;
-    return w5x00_random(diff) + howsmall;
+  long diff = howbig - howsmall;
+
+  if (howsmall >= howbig) {
+    return howsmall;
+  }
+
+  return w5x00_random(diff) + howsmall;
 }

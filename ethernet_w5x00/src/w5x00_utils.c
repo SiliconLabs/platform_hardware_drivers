@@ -67,7 +67,7 @@ bool w5x00_ip4addr_aton(const char *cp, w5x00_ip4_addr_t *addr)
     base = 10;
     if (c == '0') {
       c = *++cp;
-      if (c == 'x' || c == 'X') {
+      if ((c == 'x') || (c == 'X')) {
         base = 16;
         c = *++cp;
       } else {
@@ -78,7 +78,7 @@ bool w5x00_ip4addr_aton(const char *cp, w5x00_ip4_addr_t *addr)
       if (isdigit(c)) {
         val = (val * base) + (uint32_t)(c - '0');
         c = *++cp;
-      } else if (base == 16 && isxdigit(c)) {
+      } else if ((base == 16) && isxdigit(c)) {
         val = (val << 4) | (uint32_t)(c + 10 - (islower(c) ? 'a' : 'A'));
         c = *++cp;
       } else {
@@ -102,7 +102,7 @@ bool w5x00_ip4addr_aton(const char *cp, w5x00_ip4_addr_t *addr)
     }
   }
   // Check for trailing characters.
-  if (c != '\0' && !isspace(c)) {
+  if ((c != '\0') && !isspace(c)) {
     return false;
   }
   /*
@@ -110,9 +110,8 @@ bool w5x00_ip4addr_aton(const char *cp, w5x00_ip4_addr_t *addr)
    * the number of parts specified.
    */
   switch (pp - parts + 1) {
-
     case 0:
-      return false;       /* initial nondigit */
+      return false;     /* initial nondigit */
 
     case 1:             /* a -- 32 bits */
       break;

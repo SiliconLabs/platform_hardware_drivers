@@ -56,7 +56,6 @@ typedef struct {
 
 static socketstate_t state[W5x00_MAX_SOCK_NUM];
 
-
 static uint16_t getSnTX_FSR(w5x00_socket_t s);
 static uint16_t getSnRX_RSR(w5x00_socket_t s);
 static void write_data(w5x00_socket_t s,
@@ -81,7 +80,7 @@ void w5x00_socket_port_rand(uint16_t n)
 {
   n &= 0x3FFF;
   local_port ^= n;
-  //w5x00_log_info("Local port: %d, srcport=%d\n", n, local_port);
+  // w5x00_log_info("Local port: %d, srcport=%d\n", n, local_port);
 }
 
 /***************************************************************************//**
@@ -91,13 +90,16 @@ w5x00_socket_t w5x00_socket_init(w5x00_socket_t s,
                                  uint8_t protocol,
                                  uint16_t port)
 {
-  if (protocol != SnMR_TCP
-      && protocol != SnMR_UDP) {
+  if ((protocol != SnMR_TCP)
+      && (protocol != SnMR_UDP)) {
     return W5x00_MAX_SOCK_NUM;
   }
-  if (s >= W5x00_MAX_SOCK_NUM)          return W5x00_MAX_SOCK_NUM;
-  if (SnSR_CLOSED != w5x00_readSnSR(s)) return W5x00_MAX_SOCK_NUM;
-  //w5x00_log_info("W5000socket %d\n", s);
+  if (s >= W5x00_MAX_SOCK_NUM) {
+    return W5x00_MAX_SOCK_NUM;
+  }
+  if (SnSR_CLOSED != w5x00_readSnSR(s)) {
+    return W5x00_MAX_SOCK_NUM;
+  }
   //  EthernetServer::server_port[s] = 0;
   w5x00_delay_us(250); // TODO: is this needed??
   w5x00_writeSnMR(s, protocol);
@@ -106,15 +108,17 @@ w5x00_socket_t w5x00_socket_init(w5x00_socket_t s,
     w5x00_writeSnPORT(s, port);
   } else {
     // if don't set the source port, set local_port number.
-    if (++local_port < 49152) local_port = 49152;
+    if (++local_port < 49152) {
+      local_port = 49152;
+    }
     w5x00_writeSnPORT(s, local_port);
   }
   w5x00_exec_cmd_socket(s, Sock_OPEN);
   state[s].RX_RSR = 0;
-  state[s].RX_RD  = w5x00_readSnRX_RD(s); // always zero?
+  state[s].RX_RD = w5x00_readSnRX_RD(s);  // always zero?
   state[s].RX_inc = 0;
   state[s].TX_FSR = 0;
-  //w5x00_log_info("W5000socket prot=%d, RX_RD=%d\n", w5x00_readSnMR(s), state[s].RX_RD);
+  // w5x00_log_info("W5000socket prot=%d, RX_RD=%d\n", w5x00_readSnMR(s), state[s].RX_RD);
   return s;
 }
 
@@ -126,23 +130,28 @@ w5x00_socket_t w5x00_socket_init_multicast(w5x00_socket_t s,
                                            uint8_t protocol,
                                            uint16_t port)
 {
-  if (protocol != SnMR_TCP
-      && protocol != SnMR_UDP) {
+  if ((protocol != SnMR_TCP)
+      && (protocol != SnMR_UDP)) {
     return W5x00_MAX_SOCK_NUM;
   }
-  if (s >= W5x00_MAX_SOCK_NUM)          return W5x00_MAX_SOCK_NUM;
-  if (SnSR_CLOSED != w5x00_readSnSR(s)) return W5x00_MAX_SOCK_NUM;
+  if (s >= W5x00_MAX_SOCK_NUM) {
+    return W5x00_MAX_SOCK_NUM;
+  }
+  if (SnSR_CLOSED != w5x00_readSnSR(s)) {
+    return W5x00_MAX_SOCK_NUM;
+  }
 
-  //w5x00_log_info("W5000socket %d\n", s);
-//  EthernetServer::server_port[s] = 0;
-  w5x00_delay_us(250); // TODO: is this needed??
+  // w5x00_log_info("W5000socket %d\n", s);
+  w5x00_delay_us(250);
   w5x00_writeSnMR(s, protocol);
   w5x00_writeSnIR(s, 0xFF);
   if (port > 0) {
     w5x00_writeSnPORT(s, port);
   } else {
     // if don't set the source port, set local_port number.
-    if (++local_port < 49152) local_port = 49152;
+    if (++local_port < 49152) {
+      local_port = 49152;
+    }
     w5x00_writeSnPORT(s, local_port);
   }
   // Calculate MAC address from Multicast IP Address
@@ -150,15 +159,14 @@ w5x00_socket_t w5x00_socket_init_multicast(w5x00_socket_t s,
   mac[3] = w5x00_ip4_addr_get_byte(&ip, 1) & 0x7F;
   mac[4] = w5x00_ip4_addr_get_byte(&ip, 2);
   mac[5] = w5x00_ip4_addr_get_byte(&ip, 3);
-  w5x00_writeSnDIPR(s, (uint8_t *)&ip.addr);   //239.255.0.1
+  w5x00_writeSnDIPR(s, (uint8_t *)&ip.addr);   // 239.255.0.1
   w5x00_writeSnDPORT(s, port);
   w5x00_writeSnDHAR(s, mac);
   w5x00_exec_cmd_socket(s, Sock_OPEN);
   state[s].RX_RSR = 0;
-  state[s].RX_RD  = w5x00_readSnRX_RD(s); // always zero?
+  state[s].RX_RD = w5x00_readSnRX_RD(s);  // always zero?
   state[s].RX_inc = 0;
   state[s].TX_FSR = 0;
-  //w5x00_log_info("W5000socket prot=%d, RX_RD=%d\n", w5x00_readSnMR(s), state[s].RX_RD);
   return s;
 }
 
@@ -168,7 +176,8 @@ w5x00_socket_t w5x00_socket_init_multicast(w5x00_socket_t s,
 w5x00_socket_t w5x00_socket_begin(uint8_t protocol, uint16_t port)
 {
   w5x00_socket_t s;
-  uint8_t status[W5x00_MAX_SOCK_NUM], maxindex=W5x00_MAX_SOCK_NUM;
+  uint8_t status[W5x00_MAX_SOCK_NUM];
+  uint8_t maxindex = W5x00_MAX_SOCK_NUM;
 
   // first check hardware compatibility
   enum W5x00Chip chip = w5x00_get_chip();
@@ -180,33 +189,48 @@ w5x00_socket_t w5x00_socket_begin(uint8_t protocol, uint16_t port)
     maxindex = 4; // W5100 chip never supports more than 4 sockets
   }
 #endif
-  //w5x00_log_info("W5000socket begin, protocol=%d, port=%d\n", protocol, port);
   // look at all the hardware sockets, use any that are closed (unused)
-  for (s=0; s < maxindex; s++) {
+  for (s = 0; s < maxindex; s++) {
     status[s] = w5x00_readSnSR(s);
-    if (status[s] == SnSR_CLOSED) goto makesocket;
+    if (status[s] == SnSR_CLOSED) {
+      goto makesocket;
+    }
   }
-  //w5x00_log_info("W5000socket step2\n");
+  // w5x00_log_info("W5000socket step2\n");
   // as a last resort, forcibly close any already closing
   for (s = 0; s < maxindex; s++) {
     uint8_t stat = status[s];
-    if (stat == SnSR_LAST_ACK) goto closemakesocket;
-    if (stat == SnSR_TIME_WAIT) goto closemakesocket;
-    if (stat == SnSR_FIN_WAIT) goto closemakesocket;
-    if (stat == SnSR_CLOSING) goto closemakesocket;
+    if (stat == SnSR_LAST_ACK) {
+      goto closemakesocket;
+    }
+    if (stat == SnSR_TIME_WAIT) {
+      goto closemakesocket;
+    }
+    if (stat == SnSR_FIN_WAIT) {
+      goto closemakesocket;
+    }
+    if (stat == SnSR_CLOSING) {
+      goto closemakesocket;
+    }
   }
+
 #if 0
+
   w5x00_log_info("W5000socket step3\n");
   // next, use any that are effectively closed
-  for (s=0; s < W5x00_MAX_SOCK_NUM; s++) {
+  for (s = 0; s < W5x00_MAX_SOCK_NUM; s++) {
     uint8_t stat = status[s];
     // TODO: this also needs to check if no more data
-    if (stat == SnSR_CLOSE_WAIT) goto closemakesocket;
+    if (stat == SnSR_CLOSE_WAIT) {
+      goto closemakesocket;
+    }
   }
+
 #endif
+
   return W5x00_MAX_SOCK_NUM; // all sockets are in use
 closemakesocket:
-  //w5x00_log_info("W5000socket close\n");
+  // w5x00_log_info("W5000socket close\n");
   w5x00_exec_cmd_socket(s, Sock_CLOSE);
 makesocket:
   return w5x00_socket_init(s, protocol, port);
@@ -220,7 +244,8 @@ w5x00_socket_t w5x00_socket_begin_multicast(uint8_t protocol,
                                             uint16_t port)
 {
   w5x00_socket_t s;
-  uint8_t status[W5x00_MAX_SOCK_NUM], maxindex=W5x00_MAX_SOCK_NUM;
+  uint8_t status[W5x00_MAX_SOCK_NUM];
+  uint8_t maxindex = W5x00_MAX_SOCK_NUM;
 
   // first check hardware compatibility
   enum W5x00Chip chip = w5x00_get_chip();
@@ -232,33 +257,48 @@ w5x00_socket_t w5x00_socket_begin_multicast(uint8_t protocol,
     maxindex = 4; // W5100 chip never supports more than 4 sockets
   }
 #endif
-  //w5x00_log_info("W5000socket begin, protocol=%d, port=%d\n", protocol, port);
+  // w5x00_log_info("W5000socket begin, protocol=%d, port=%d\n", protocol, port);
   // look at all the hardware sockets, use any that are closed (unused)
-  for (s=0; s < maxindex; s++) {
+  for (s = 0; s < maxindex; s++) {
     status[s] = w5x00_readSnSR(s);
-    if (status[s] == SnSR_CLOSED) goto makesocket;
+    if (status[s] == SnSR_CLOSED) {
+      goto makesocket;
+    }
   }
-  //w5x00_log_info("W5000socket step2\n");
   // as a last resort, forcibly close any already closing
-  for (s=0; s < maxindex; s++) {
+  for (s = 0; s < maxindex; s++) {
     uint8_t stat = status[s];
-    if (stat == SnSR_LAST_ACK) goto closemakesocket;
-    if (stat == SnSR_TIME_WAIT) goto closemakesocket;
-    if (stat == SnSR_FIN_WAIT) goto closemakesocket;
-    if (stat == SnSR_CLOSING) goto closemakesocket;
+    if (stat == SnSR_LAST_ACK) {
+      goto closemakesocket;
+    }
+    if (stat == SnSR_TIME_WAIT) {
+      goto closemakesocket;
+    }
+    if (stat == SnSR_FIN_WAIT) {
+      goto closemakesocket;
+    }
+    if (stat == SnSR_CLOSING) {
+      goto closemakesocket;
+    }
   }
+
 #if 0
+
   w5x00_log_info("W5000socket step3\n");
   // next, use any that are effectively closed
-  for (s=0; s < W5x00_MAX_SOCK_NUM; s++) {
+  for (s = 0; s < W5x00_MAX_SOCK_NUM; s++) {
     uint8_t stat = status[s];
     // TODO: this also needs to check if no more data
-    if (stat == SnSR_CLOSE_WAIT) goto closemakesocket;
+    if (stat == SnSR_CLOSE_WAIT) {
+      goto closemakesocket;
+    }
   }
+
 #endif
+
   return W5x00_MAX_SOCK_NUM; // all sockets are in use
 closemakesocket:
-  //w5x00_log_info("W5000socket close\n");
+  // w5x00_log_info("W5000socket close\n");
   w5x00_exec_cmd_socket(s, Sock_CLOSE);
 makesocket:
   return w5x00_socket_init_multicast(s, ip, protocol, port);
@@ -285,9 +325,9 @@ uint16_t w5x00_socket_get_tx_max_size(w5x00_socket_t s)
     return 0;
   }
   enum W5x00Chip chip = w5x00_get_chip();
-  if (chip == W5x00_UNKNOWN
-      || chip == W5x00_W5100
-      || s >= W5x00_MAX_SOCK_NUM) {
+  if ((chip == W5x00_UNKNOWN)
+      || (chip == W5x00_W5100)
+      || (s >= W5x00_MAX_SOCK_NUM)) {
     return 0;
   }
   return ((uint16_t)w5x00_readSnTX_SIZE(s)) << 10;
@@ -298,7 +338,9 @@ uint16_t w5x00_socket_get_tx_max_size(w5x00_socket_t s)
  ******************************************************************************/
 void w5x00_socket_close(w5x00_socket_t s)
 {
-  if (s >= W5x00_MAX_SOCK_NUM) return;
+  if (s >= W5x00_MAX_SOCK_NUM) {
+    return;
+  }
   w5x00_exec_cmd_socket(s, Sock_CLOSE);
 }
 
@@ -336,17 +378,15 @@ void w5x00_socket_connect(w5x00_socket_t s, w5x00_ip4_addr_t *ip, uint16_t port)
  ******************************************************************************/
 void w5x00_socket_disconnect(w5x00_socket_t s)
 {
-  if (s >= W5x00_MAX_SOCK_NUM) return;
+  if (s >= W5x00_MAX_SOCK_NUM) {
+    return;
+  }
   w5x00_exec_cmd_socket(s, Sock_DISCON);
 }
-
-
 
 /*****************************************/
 /*    Socket Data Receive Functions      */
 /*****************************************/
-
-
 static uint16_t getSnRX_RSR(w5x00_socket_t s)
 {
 #if 1
@@ -375,12 +415,12 @@ static void read_data(w5x00_socket_t s,
   uint16_t src_mask;
   uint16_t src_ptr;
 
-  //w5x00_log_info("read_data, len=%d, at:%d\n", len, src);
+  // w5x00_log_info("read_data, len=%d, at:%d\n", len, src);
   src_mask = (uint16_t)src & w5x00_get_SMASK();
   src_ptr = w5x00_get_RBASE(s) + src_mask;
 
   if (w5x00_has_offset_address_mapping()
-      || src_mask + len <= w5x00_get_SSIZE()) {
+      || ((src_mask + len) <= w5x00_get_SSIZE())) {
     w5x00_read(src_ptr, dst, len);
   } else {
     size = w5x00_get_SSIZE() - src_mask;
@@ -404,14 +444,14 @@ int w5x00_socket_recv(w5x00_socket_t s, uint8_t *buf, int16_t len)
     uint16_t rsr = getSnRX_RSR(s);
     ret = rsr - state[s].RX_inc;
     state[s].RX_RSR = ret;
-    //w5x00_log_info("Sock_RECV, RX_RSR=%d, RX_inc=%d\n", ret, state[s].RX_inc);
+    // w5x00_log_info("Sock_RECV, RX_RSR=%d, RX_inc=%d\n", ret, state[s].RX_inc);
   }
   if (ret == 0) {
     // No data available.
     uint8_t status = w5x00_readSnSR(s);
-    if (status == SnSR_LISTEN
-        || status == SnSR_CLOSED
-        || status == SnSR_CLOSE_WAIT ) {
+    if ((status == SnSR_LISTEN)
+        || (status == SnSR_CLOSED)
+        || (status == SnSR_CLOSE_WAIT)) {
       // The remote end has closed its side of the connection,
       // so this is the eof state
       ret = 0;
@@ -420,24 +460,29 @@ int w5x00_socket_recv(w5x00_socket_t s, uint8_t *buf, int16_t len)
       ret = -1;
     }
   } else {
-    if (ret > len) ret = len; // more data available than buffer length
+    if (ret > len) {
+      ret = len;              // more data available than buffer length
+    }
     uint16_t ptr = state[s].RX_RD;
-    if (buf) read_data(s, ptr, buf, ret);
+    if (buf) {
+      read_data(s, ptr, buf, ret);
+    }
     ptr += ret;
     state[s].RX_RD = ptr;
     state[s].RX_RSR -= ret;
     uint16_t inc = state[s].RX_inc + ret;
-    if (inc >= 250 || state[s].RX_RSR == 0) {
+    if ((inc >= 250) || (state[s].RX_RSR == 0)) {
       state[s].RX_inc = 0;
       w5x00_writeSnRX_RD(s, ptr);
       w5x00_exec_cmd_socket(s, Sock_RECV);
-      //w5x00_log_info("Sock_RECV cmd, RX_RD=%d, RX_RSR=%d\n",
-      //  state[s].RX_RD, state[s].RX_RSR);
+      // w5x00_log_info("Sock_RECV cmd, RX_RD=%d, RX_RSR=%d\n",
+      //                state[s].RX_RD, state[s].RX_RSR);
     } else {
       state[s].RX_inc = inc;
     }
   }
-  //w5x00_log_info("socketRecv, ret=%d\n", ret);
+  // w5x00_log_info("socketRecv, ret=%d\n", ret);
+
   return ret;
 }
 
@@ -454,7 +499,7 @@ uint16_t w5x00_socket_recv_available(w5x00_socket_t s)
     uint16_t rsr = getSnRX_RSR(s);
     ret = rsr - state[s].RX_inc;
     state[s].RX_RSR = ret;
-    //w5x00_log_info("sockRecvAvailable s=%d, RX_RSR=%d\n", s, ret);
+    // w5x00_log_info("sockRecvAvailable s=%d, RX_RSR=%d\n", s, ret);
   }
   return ret;
 }
@@ -476,11 +521,9 @@ uint8_t w5x00_socket_peek(w5x00_socket_t s)
 }
 
 
-
-/*****************************************/
-/*    Socket Data Transmit Functions     */
-/*****************************************/
-
+/***************************************************************************//**
+ * Socket Data Transmit Functions.
+ ******************************************************************************/
 static uint16_t getSnTX_FSR(w5x00_socket_t s)
 {
   uint16_t val, prev;
@@ -496,7 +539,6 @@ static uint16_t getSnTX_FSR(w5x00_socket_t s)
   }
 }
 
-
 static void write_data(w5x00_socket_t s,
                        uint16_t data_offset,
                        const uint8_t *data,
@@ -508,7 +550,7 @@ static void write_data(w5x00_socket_t s,
   uint16_t dstAddr = offset + w5x00_get_SBASE(s);
 
   if (w5x00_has_offset_address_mapping()
-      || offset + len <= w5x00_get_SSIZE()) {
+      || ((offset + len) <= w5x00_get_SSIZE())) {
     w5x00_write(dstAddr, data, len);
   } else {
     // Wrap around circular buffer
@@ -527,12 +569,13 @@ uint16_t w5x00_socket_send(w5x00_socket_t s,
                             const uint8_t * buf,
                             uint16_t len)
 {
+  uint8_t status = 0;
+  uint16_t ret = 0;
+  uint16_t freesize = 0;
+
   if (s >= W5x00_MAX_SOCK_NUM) {
     return 0;
   }
-  uint8_t status=0;
-  uint16_t ret=0;
-  uint16_t freesize=0;
 
   if (len > w5x00_get_SSIZE()) {
     ret = w5x00_get_SSIZE(); // check size not to exceed MAX size.
@@ -563,6 +606,7 @@ uint16_t w5x00_socket_send(w5x00_socket_t s,
     }
     yield();
   }
+
   /* +2008.01 bj */
   w5x00_writeSnIR(s, SnIR_SEND_OK);
   return ret;
@@ -573,11 +617,13 @@ uint16_t w5x00_socket_send(w5x00_socket_t s,
  ******************************************************************************/
 uint16_t w5x00_socket_send_available(w5x00_socket_t s)
 {
+  uint8_t status = 0;
+  uint16_t freesize = 0;
+
   if (s >= W5x00_MAX_SOCK_NUM) {
     return 0;
   }
-  uint8_t status=0;
-  uint16_t freesize=0;
+  
   freesize = getSnTX_FSR(s);
   status = w5x00_readSnSR(s);
   if ((status == SnSR_ESTABLISHED)
@@ -595,12 +641,13 @@ uint16_t w5x00_socket_buffer_data(w5x00_socket_t s,
                                   const uint8_t* buf,
                                   uint16_t len)
 {
+  uint16_t ret =0;
+  uint16_t txfree = getSnTX_FSR(s);
+
   if (s >= W5x00_MAX_SOCK_NUM) {
     return 0;
   }
-  //w5x00_log_info("  bufferData, offset=%d, len=%d\n", offset, len);
-  uint16_t ret =0;
-  uint16_t txfree = getSnTX_FSR(s);
+
   if (len > txfree) {
     ret = txfree; // check size not to exceed MAX size.
   } else {
@@ -620,8 +667,8 @@ sl_status_t w5x00_socket_begin_udp(w5x00_socket_t s,
   if (s >= W5x00_MAX_SOCK_NUM) {
     return SL_STATUS_INVALID_PARAMETER;
   }
-  if (ip->addr == WIZNET_IPADDR_ANY
-      || ((port == 0x00)) ) {
+  if ((ip->addr == WIZNET_IPADDR_ANY)
+      || ((port == 0x00))) {
     return SL_STATUS_FAIL;
   }
   w5x00_writeSnDIPR(s, (uint8_t *)&ip->addr);
@@ -639,21 +686,19 @@ sl_status_t w5x00_socket_send_udp(w5x00_socket_t s)
   }
   w5x00_exec_cmd_socket(s, Sock_SEND);
 
-  /* +2008.01 bj */
+  // +2008.01 bj
   while ((w5x00_readSnIR(s) & SnIR_SEND_OK) != SnIR_SEND_OK) {
     if (w5x00_readSnIR(s) & SnIR_TIMEOUT) {
-      /* +2008.01 [bj]: clear interrupt */
+      // +2008.01 [bj]: clear interrupt
       w5x00_writeSnIR(s, (SnIR_SEND_OK | SnIR_TIMEOUT));
-      //w5x00_log_info("sendUDP timeout\n");
       return SL_STATUS_FAIL;
     }
     yield();
   }
 
-  /* +2008.01 bj */
+  // +2008.01 bj
   w5x00_writeSnIR(s, SnIR_SEND_OK);
 
-  //w5x00_log_info("sendUDP ok\n");
-  /* Sent ok */
+  // Sent ok
   return SL_STATUS_OK;
 }

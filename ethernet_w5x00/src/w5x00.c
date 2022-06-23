@@ -80,13 +80,21 @@ static uint8_t w5x00_is_w5100(void)
 {
   chip = W5x00_W5100;
   tag = tag_w5100;
-  if (!w5x00_soft_reset()) return 0;
+  if (!w5x00_soft_reset()) {
+    return 0;
+  }
   w5x00_writeMR(0x10);
-  if (w5x00_readMR() != 0x10) return 0;
+  if (w5x00_readMR() != 0x10) {
+    return 0;
+  }
   w5x00_writeMR(0x12);
-  if (w5x00_readMR() != 0x12) return 0;
+  if (w5x00_readMR() != 0x12) {
+    return 0;
+  }
   w5x00_writeMR(0x00);
-  if (w5x00_readMR() != 0x00) return 0;
+  if (w5x00_readMR() != 0x00) {
+    return 0;
+  }
   w5x00_log_info(tag, "Chip is W5100\r\n");
   return 1;
 }
@@ -95,16 +103,26 @@ static uint8_t w5x00_is_w5200(void)
 {
   chip = W5x00_W5200;
   tag = tag_w5200;
-  if (!w5x00_soft_reset()) return 0;
+  if (!w5x00_soft_reset()) {
+    return 0;
+  }
   w5x00_writeMR(0x08);
-  if (w5x00_readMR() != 0x08) return 0;
+  if (w5x00_readMR() != 0x08) {
+    return 0;
+  }
   w5x00_writeMR(0x10);
-  if (w5x00_readMR() != 0x10) return 0;
+  if (w5x00_readMR() != 0x10) {
+    return 0;
+  }
   w5x00_writeMR(0x00);
-  if (w5x00_readMR() != 0x00) return 0;
+  if (w5x00_readMR() != 0x00) {
+    return 0;
+  }
   int ver = w5x00_readVERSIONR_W5200();
   w5x00_log_info(tag, "Version = %d\r\n", ver);
-  if (ver != 3) return 0;
+  if (ver != 3) {
+    return 0;
+  }
   w5x00_log_info(tag, "Chip is W5200\r\n");
   return 1;
 }
@@ -113,16 +131,26 @@ static uint8_t w5x00_is_w5500(void)
 {
   chip = W5x00_W5500;
   tag = tag_w5500;
-  if (!w5x00_soft_reset()) return 0;
+  if (!w5x00_soft_reset()) {
+    return 0;
+  }
   w5x00_writeMR(0x08);
-  if (w5x00_readMR() != 0x08) return 0;
+  if (w5x00_readMR() != 0x08) {
+    return 0;
+  }
   w5x00_writeMR(0x10);
-  if (w5x00_readMR() != 0x10) return 0;
+  if (w5x00_readMR() != 0x10) {
+    return 0;
+  }
   w5x00_writeMR(0x00);
-  if (w5x00_readMR() != 0x00) return 0;
+  if (w5x00_readMR() != 0x00) {
+    return 0;
+  }
   int ver = w5x00_readVERSIONR_W5500();
   w5x00_log_info(tag, "Version = %d\r\n", ver);
-  if (ver != 4) return 0;
+  if (ver != 4) {
+    return 0;
+  }
   w5x00_log_info(tag, "Chip is W5500\r\n");
   return 1;
 }
@@ -135,8 +163,7 @@ bool w5x00_init(void)
   static bool initialized = false;
   uint8_t i;
 
-  if (initialized)
-  {
+  if (initialized) {
     return true;
   }
   w5x00_bus_init();
@@ -150,7 +177,6 @@ bool w5x00_init(void)
   // until the reset pulse is ended.  If your hardware has a shorter
   // reset time, this can be edited or removed.
   w5x00_delay_ms(560);
-  //w5x00_log_info(tag, "w5100 init");
 
   // Attempt W5200 detection first, because W5200 does not properly
   // reset its SPI state when CS goes high (inactive).  Communication
@@ -170,11 +196,11 @@ bool w5x00_init(void)
 #endif
     SMASK = SSIZE - 1;
 #endif
-    for (i = 0; i< W5x00_MAX_SOCK_NUM; i++) {
+    for (i = 0; i < W5x00_MAX_SOCK_NUM; i++) {
       w5x00_writeSnRX_SIZE(i, SSIZE >> 10);
       w5x00_writeSnTX_SIZE(i, SSIZE >> 10);
     }
-    for (; i<8; i++) {
+    for (; i < 8; i++) {
       w5x00_writeSnRX_SIZE(i, 0);
       w5x00_writeSnTX_SIZE(i, 0);
     }
@@ -194,11 +220,11 @@ bool w5x00_init(void)
     SSIZE = 2048;
 #endif
     SMASK = SSIZE - 1;
-    for (i=0; i<W5x00_MAX_SOCK_NUM; i++) {
+    for (i = 0; i < W5x00_MAX_SOCK_NUM; i++) {
       w5x00_writeSnRX_SIZE(i, SSIZE >> 10);
       w5x00_writeSnTX_SIZE(i, SSIZE >> 10);
     }
-    for (; i<8; i++) {
+    for (; i < 8; i++) {
       w5x00_writeSnRX_SIZE(i, 0);
       w5x00_writeSnTX_SIZE(i, 0);
     }
@@ -233,7 +259,6 @@ bool w5x00_init(void)
     // that's heard other SPI communication if its chip select
     // pin wasn't high when a SD card or other SPI chip was used.
   } else {
-    //w5x00_log_info(tag, "no chip :-(");
     chip = W5x00_UNKNOWN;
     return false; // no known chip is responding :-(
   }
@@ -246,17 +271,19 @@ bool w5x00_init(void)
  ******************************************************************************/
 uint8_t w5x00_soft_reset(void)
 {
-  uint16_t count=0;
+  uint16_t count = 0;
 
-  //w5x00_log_info(tag, "Wiznet soft reset");
   // write to reset bit
   w5x00_writeMR(0x80);
   // then wait for soft reset to complete
   do {
     uint8_t mr = w5x00_readMR();
-    //Serial.print("mr=");
-    //w5x00_log_info(tag, mr, HEX);
-    if (mr == 0) return 1;
+
+    // Serial.print("mr=");
+    // w5x00_log_info(tag, mr, HEX);
+    if (mr == 0) {
+      return 1;
+    }
     w5x00_delay_ms(1);
   } while (++count < 20);
   return 0;
@@ -277,15 +304,21 @@ enum W5x00Linkstatus w5x00_get_link_status(void)
 {
   uint8_t phystatus;
 
-  if (!w5x00_init()) return UNKNOWN;
+  if (!w5x00_init()) {
+    return UNKNOWN;
+  }
   switch (chip) {
     case W5x00_W5200:
       phystatus = w5x00_readPSTATUS_W5200();
-      if (phystatus & 0x20) return LINK_ON;
+    if (phystatus & 0x20) {
+      return LINK_ON;
+    }
       return LINK_OFF;
     case W5x00_W5500:
       phystatus = w5x00_readPHYCFGR_W5500();
-      if (phystatus & 0x01) return LINK_ON;
+    if (phystatus & 0x01) {
+      return LINK_ON;
+    }
       return LINK_OFF;
     default:
       return UNKNOWN;
@@ -301,7 +334,7 @@ uint16_t w5x00_write(uint16_t addr, const uint8_t *buf, uint16_t len)
   uint32_t ret = 0;
 
   if (chip == W5x00_W5100) {
-    for (uint16_t i=0; i<len; i++) {
+    for (uint16_t i = 0; i < len; i++) {
       w5x00_bus_select();
       ret += w5x00_bus_writebyte(0xF0);
       ret += w5x00_bus_writebyte(addr >> 8);
@@ -321,7 +354,7 @@ uint16_t w5x00_write(uint16_t addr, const uint8_t *buf, uint16_t len)
     ret += w5x00_bus_write(buf, NULL, len);
 #else
     // TODO: copy 8 bytes at a time to cmd[] and block transfer
-    for (uint16_t i=0; i < len; i++) {
+    for (uint16_t i = 0; i < len; i++) {
       ret += w5x00_bus_writebyte(buf[i]);
     }
 #endif
@@ -367,7 +400,7 @@ uint16_t w5x00_write(uint16_t addr, const uint8_t *buf, uint16_t len)
 #endif
     }
     if (len <= 5) {
-      for (uint8_t i=0; i < len; i++) {
+      for (uint8_t i = 0; i < len; i++) {
         cmd[i + 3] = buf[i];
       }
       ret += w5x00_bus_write(cmd, len + 3);
@@ -377,14 +410,16 @@ uint16_t w5x00_write(uint16_t addr, const uint8_t *buf, uint16_t len)
       ret += w5x00_bus_write(buf, len);
 #else
       // TODO: copy 8 bytes at a time to cmd[] and block transfer
-      for (uint16_t i=0; i < len; i++) {
+      for (uint16_t i = 0; i < len; i++) {
         ret += w5x00_bus_writebyte(buf[i]);
       }
 #endif
     }
     w5x00_bus_deselect();
   }
-  if (ret)  return 0;
+  if (ret) {
+    return 0;
+  }
   return len;
 }
 
@@ -397,7 +432,7 @@ uint16_t w5x00_read(uint16_t addr, uint8_t *buf, uint16_t len)
   uint32_t ret = 0;
 
   if (chip == W5x00_W5100) {
-    for (uint16_t i=0; i < len; i++) {
+    for (uint16_t i = 0; i < len; i++) {
       w5x00_bus_select();
       ret += w5x00_bus_writebyte(0x0F);
       ret += w5x00_bus_writebyte(addr >> 8);
@@ -461,7 +496,9 @@ uint16_t w5x00_read(uint16_t addr, uint8_t *buf, uint16_t len)
     ret += w5x00_bus_read(buf, len);
     w5x00_bus_deselect();
   }
-  if (ret) return 0;
+  if (ret) {
+    return 0;
+  }
   return len;
 }
 
@@ -473,7 +510,7 @@ void w5x00_exec_cmd_socket(w5x00_socket_t s, uint8_t cmd)
   // Send command to socket
   w5x00_writeSnCR(s, cmd);
   // Wait for command to complete
-  while (w5x00_readSnCR(s)) ;
+  while (w5x00_readSnCR(s)) {}
 }
 
 /***************************************************************************//**
@@ -481,7 +518,9 @@ void w5x00_exec_cmd_socket(w5x00_socket_t s, uint8_t cmd)
  ******************************************************************************/
 bool w5x00_has_offset_address_mapping(void)
 {
-  if (chip == W5x00_W5500) return true;
+  if (chip == W5x00_W5500) {
+    return true;
+  }
   return false;
 }
 
@@ -594,8 +633,11 @@ void w5x00_get_ip_address(uint8_t * addr)
  ******************************************************************************/
 void w5x00_set_retransmission_time(uint16_t timeout)
 {
-  if (chip == W5x00_W5500)  w5x00_writeRTR_W5500(timeout);
-  else                      w5x00_writeRTR_W5100(timeout);
+  if (chip == W5x00_W5500) {
+    w5x00_writeRTR_W5500(timeout);
+  } else {
+    w5x00_writeRTR_W5100(timeout);
+  }
 }
 
 /***************************************************************************//**
@@ -603,6 +645,9 @@ void w5x00_set_retransmission_time(uint16_t timeout)
  ******************************************************************************/
 void w5x00_set_retransmission_count(uint8_t retry)
 {
-  if (chip == W5x00_W5500)  w5x00_writeRCR_W5500(retry);
-  else                      w5x00_writeRCR_W5100(retry);
+  if (chip == W5x00_W5500) {
+    w5x00_writeRCR_W5500(retry);
+  } else {
+    w5x00_writeRCR_W5100(retry);
+  }
 }

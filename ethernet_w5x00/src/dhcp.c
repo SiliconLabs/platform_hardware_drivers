@@ -47,9 +47,9 @@
 // -----------------------------------------------------------------------------
 // Defines
 
-#define TAG "DHCP"
+#define TAG                   "DHCP"
 
-/* DHCP state machine. */
+// DHCP state machine.
 #define STATE_DHCP_START      0
 #define STATE_DHCP_DISCOVER   1
 #define STATE_DHCP_REQUEST    2
@@ -59,15 +59,15 @@
 
 #define DHCP_FLAGSBROADCAST   0x8000
 
-/* UDP port numbers for DHCP */
+// UDP port numbers for DHCP
 #define DHCP_SERVER_PORT      67  /* from server to client */
 #define DHCP_CLIENT_PORT      68  /* from client to server */
 
-/* DHCP message OP code */
+// DHCP message OP code
 #define DHCP_BOOTREQUEST      1
 #define DHCP_BOOTREPLY        2
 
-/* DHCP message type */
+// DHCP message type
 #define DHCP_DISCOVER         1
 #define DHCP_OFFER            2
 #define DHCP_REQUEST          3
@@ -88,7 +88,7 @@
 #define MAX_DHCP_OPT          16
 
 #define HOST_NAME             "WIZnet"
-#define DEFAULT_LEASE         (900) //default lease time in seconds
+#define DEFAULT_LEASE         (900) // default lease time in seconds
 
 enum
 {
@@ -96,63 +96,65 @@ enum
   subnetMask    = 1,
   timerOffset   = 2,
   routersOnSubnet   = 3,
-  /* timeServer   = 4,
-  nameServer    = 5,*/
+
+  // timeServer   = 4,
+  // nameServer    = 5,
+
   dns     = 6,
-  /*logServer   = 7,
-  cookieServer    = 8,
-  lprServer   = 9,
-  impressServer   = 10,
-  resourceLocationServer  = 11,*/
+  // logServer   = 7,
+  // cookieServer    = 8,
+  // lprServer   = 9,
+  // impressServer   = 10,
+  // resourceLocationServer  = 11,
   hostName    = 12,
-  /*bootFileSize    = 13,
-  meritDumpFile   = 14,*/
+  // bootFileSize    = 13,
+  // meritDumpFile   = 14,
   domainName    = 15,
-  /*swapServer    = 16,
-  rootPath    = 17,
-  extentionsPath    = 18,
-  IPforwarding    = 19,
-  nonLocalSourceRouting = 20,
-  policyFilter    = 21,
-  maxDgramReasmSize = 22,
-  defaultIPTTL    = 23,
-  pathMTUagingTimeout = 24,
-  pathMTUplateauTable = 25,
-  ifMTU     = 26,
-  allSubnetsLocal   = 27,
-  broadcastAddr   = 28,
-  performMaskDiscovery  = 29,
-  maskSupplier    = 30,
-  performRouterDiscovery  = 31,
-  routerSolicitationAddr  = 32,
-  staticRoute   = 33,
-  trailerEncapsulation  = 34,
-  arpCacheTimeout   = 35,
-  ethernetEncapsulation = 36,
-  tcpDefaultTTL   = 37,
-  tcpKeepaliveInterval  = 38,
-  tcpKeepaliveGarbage = 39,
-  nisDomainName   = 40,
-  nisServers    = 41,
-  ntpServers    = 42,
-  vendorSpecificInfo  = 43,
-  netBIOSnameServer = 44,
-  netBIOSdgramDistServer  = 45,
-  netBIOSnodeType   = 46,
-  netBIOSscope    = 47,
-  xFontServer   = 48,
-  xDisplayManager   = 49,*/
+  // swapServer    = 16,
+  // rootPath    = 17,
+  // extentionsPath    = 18,
+  // IPforwarding    = 19,
+  // nonLocalSourceRouting = 20,
+  // policyFilter    = 21,
+  // maxDgramReasmSize = 22,
+  // defaultIPTTL    = 23,
+  // pathMTUagingTimeout = 24,
+  // pathMTUplateauTable = 25,
+  // ifMTU     = 26,
+  // allSubnetsLocal   = 27,
+  // broadcastAddr   = 28,
+  // performMaskDiscovery  = 29,
+  // maskSupplier    = 30,
+  // performRouterDiscovery  = 31,
+  // routerSolicitationAddr  = 32,
+  // staticRoute   = 33,
+  // trailerEncapsulation  = 34,
+  // arpCacheTimeout   = 35,
+  // ethernetEncapsulation = 36,
+  // tcpDefaultTTL   = 37,
+  // tcpKeepaliveInterval  = 38,
+  // tcpKeepaliveGarbage = 39,
+  // nisDomainName   = 40,
+  // nisServers    = 41,
+  // ntpServers    = 42,
+  // vendorSpecificInfo  = 43,
+  // netBIOSnameServer = 44,
+  // netBIOSdgramDistServer  = 45,
+  // netBIOSnodeType   = 46,
+  // netBIOSscope    = 47,
+  // xFontServer   = 48,
+  // xDisplayManager   = 49,
   dhcpRequestedIPaddr = 50,
   dhcpIPaddrLeaseTime = 51,
-  /*dhcpOptionOverload  = 52,*/
+  // dhcpOptionOverload  = 52,
   dhcpMessageType   = 53,
   dhcpServerIdentifier  = 54,
   dhcpParamRequest  = 55,
-  /*dhcpMsg     = 56,
-  dhcpMaxMsgSize    = 57,*/
+  // dhcpMsg     = 56,
+  // dhcpMaxMsgSize    = 57,
   dhcpT1value   = 58,
   dhcpT2value   = 59,
-  /*dhcpClassIdentifier = 60,*/
+  // dhcpClassIdentifier = 60,
   dhcpClientIdentifier  = 61,
   endOption   = 255
 };
@@ -176,7 +178,7 @@ typedef struct _RIP_MSG_FIXED
 // -----------------------------------------------------------------------------
 // Private function declarations
 
-static void print_byte(char * buf, uint8_t n );
+static void print_byte(char *buf, uint8_t n);
 static void send_dhcp_message(w5x00_dhcp_t *dhcp,
                               uint8_t messageType,
                               uint16_t secondsElapsed);
@@ -254,10 +256,10 @@ enum W5x00_DHCP_CHECK w5x00_dhcp_check_lease(w5x00_dhcp_t *dhcp)
   }
 
   // if we have a lease but should renew, do it
-  if (dhcp->renew_in_sec == 0
-      && dhcp->dhcp_state == STATE_DHCP_LEASED) {
+  if ((dhcp->renew_in_sec == 0)
+      && (dhcp->dhcp_state == STATE_DHCP_LEASED)) {
     dhcp->dhcp_state = STATE_DHCP_REREQUEST;
-    if (SL_STATUS_OK == request_dhcp_lease(dhcp) ) {
+    if (SL_STATUS_OK == request_dhcp_lease(dhcp)) {
       rc = W5x00_DHCP_CHECK_RENEW_OK;
     } else {
       rc = W5x00_DHCP_CHECK_RENEW_FAIL;
@@ -265,13 +267,13 @@ enum W5x00_DHCP_CHECK w5x00_dhcp_check_lease(w5x00_dhcp_t *dhcp)
   }
 
   // if we have a lease or is renewing but should bind, do it
-  if (dhcp->rebind_in_sec == 0
-      && (dhcp->dhcp_state == STATE_DHCP_LEASED
-      || dhcp->dhcp_state == STATE_DHCP_START)) {
+  if ((dhcp->rebind_in_sec == 0)
+      && ((dhcp->dhcp_state == STATE_DHCP_LEASED)
+          || (dhcp->dhcp_state == STATE_DHCP_START))) {
     // this should basically restart completely
     dhcp->dhcp_state = STATE_DHCP_START;
     reset_dhcp_lease(dhcp);
-    if (SL_STATUS_OK ==  request_dhcp_lease(dhcp)) {
+    if (SL_STATUS_OK == request_dhcp_lease(dhcp)) {
       rc = W5x00_DHCP_CHECK_REBIND_OK;
     } else {
       rc = W5x00_DHCP_CHECK_REBIND_FAIL;
@@ -293,7 +295,7 @@ static void reset_dhcp_lease(w5x00_dhcp_t *dhcp)
   dhcp->dns_server_ip.addr = 0;
 }
 
-  //return:0 on error, 1 if request is sent and response is received
+  // return:0 on error, 1 if request is sent and response is received
 static sl_status_t request_dhcp_lease(w5x00_dhcp_t *dhcp)
 {
   uint8_t messageType = 0;
@@ -308,7 +310,8 @@ static sl_status_t request_dhcp_lease(w5x00_dhcp_t *dhcp)
                                   DHCP_CLIENT_PORT);
   if (SL_STATUS_OK != SL_STATUS_OK) {
     // Couldn't get a socket
-    w5x00_log_error(TAG, "Couldn't get a socket to start DHCP configuration\r\n");
+    w5x00_log_error(TAG,
+                    "Couldn't get a socket to start DHCP configuration\r\n");
     return SL_STATUS_FAIL;
   }
   w5x00_log_info(TAG, "Start DHCP configuration on socket[%d] success\r\n",
@@ -329,7 +332,7 @@ static sl_status_t request_dhcp_lease(w5x00_dhcp_t *dhcp)
       dhcp->transaction_id++;
       send_dhcp_message(dhcp,
                         DHCP_REQUEST,
-                        ((w5x00_get_tick_ms() - startTime)/1000));
+                        ((w5x00_get_tick_ms() - startTime) / 1000));
       dhcp->dhcp_state = STATE_DHCP_REQUEST;
     } else if (dhcp->dhcp_state == STATE_DHCP_DISCOVER) {
       uint32_t respId;
@@ -353,7 +356,7 @@ static sl_status_t request_dhcp_lease(w5x00_dhcp_t *dhcp)
       if (messageType == DHCP_ACK) {
         dhcp->dhcp_state = STATE_DHCP_LEASED;
         result = SL_STATUS_OK;
-        //use default lease time if we didn't get it
+        // use default lease time if we didn't get it
         if (dhcp->lease_time == 0) {
           dhcp->lease_time = DEFAULT_LEASE;
         }
@@ -380,7 +383,7 @@ static sl_status_t request_dhcp_lease(w5x00_dhcp_t *dhcp)
       dhcp->dhcp_state = STATE_DHCP_START;
     }
 
-    if (result != SL_STATUS_OK
+    if ((result != SL_STATUS_OK)
         && ((w5x00_get_tick_ms() - startTime) > dhcp->timeout)) {
       w5x00_log_info(TAG, "DHCP configuration on socket[%d] is failed\r\n",
                                    dhcp->udp_socket.sockindex);
@@ -407,7 +410,7 @@ static void send_dhcp_message(w5x00_dhcp_t *dhcp,
   if (w5x00_ethernet_udp_begin_packet(&dhcp->udp_socket,
                                        &dest_addr,
                                        DHCP_SERVER_PORT) != SL_STATUS_OK) {
-    //Serial.printf("DHCP transmit error\n");
+    // Serial.printf("DHCP transmit error\n");
     // FIXME Need to return errors
     return;
   }
@@ -434,7 +437,7 @@ static void send_dhcp_message(w5x00_dhcp_t *dhcp,
   // siaddr: already zeroed
   // giaddr: already zeroed
 
-  //put data in W5100 transmit buffer
+  // put data in W5100 transmit buffer
   w5x00_ethernet_udp_write(&dhcp->udp_socket,
                             buffer,
                             28);
@@ -443,7 +446,7 @@ static void send_dhcp_message(w5x00_dhcp_t *dhcp,
 
   memcpy(buffer, dhcp->mac_addr, 6); // chaddr
 
-  //put data in W5100 transmit buffer
+  // put data in W5100 transmit buffer
   w5x00_ethernet_udp_write(&dhcp->udp_socket,
                             buffer,
                             16);
@@ -453,22 +456,22 @@ static void send_dhcp_message(w5x00_dhcp_t *dhcp,
   // leave zeroed out for sname && file
   // put in W5100 transmit buffer x 6 (192 bytes)
 
-  for(int i = 0; i < 6; i++) {
+  for (int i = 0; i < 6; i++) {
     w5x00_ethernet_udp_write(&dhcp->udp_socket,
                              buffer,
                              32);
   }
 
   // OPT - Magic Cookie
-  buffer[0] = (uint8_t)((MAGIC_COOKIE >> 24)& 0xFF);
-  buffer[1] = (uint8_t)((MAGIC_COOKIE >> 16)& 0xFF);
-  buffer[2] = (uint8_t)((MAGIC_COOKIE >> 8)& 0xFF);
+  buffer[0] = (uint8_t)((MAGIC_COOKIE >> 24) & 0xFF);
+  buffer[1] = (uint8_t)((MAGIC_COOKIE >> 16) & 0xFF);
+  buffer[2] = (uint8_t)((MAGIC_COOKIE >> 8) & 0xFF);
   buffer[3] = (uint8_t)(MAGIC_COOKIE & 0xFF);
 
   // OPT - message type
   buffer[4] = dhcpMessageType;
   buffer[5] = 0x01;
-  buffer[6] = messageType; //DHCP_REQUEST;
+  buffer[6] = messageType; // DHCP_REQUEST;
 
   // OPT - client identifier
   buffer[7] = dhcpClientIdentifier;
@@ -485,7 +488,7 @@ static void send_dhcp_message(w5x00_dhcp_t *dhcp,
   print_byte((char*)&(buffer[26]), dhcp->mac_addr[4]);
   print_byte((char*)&(buffer[28]), dhcp->mac_addr[5]);
 
-  //put data in W5100 transmit buffer
+  // put data in W5100 transmit buffer
   w5x00_ethernet_udp_write(&dhcp->udp_socket,
                             buffer,
                             30);
@@ -505,7 +508,7 @@ static void send_dhcp_message(w5x00_dhcp_t *dhcp,
     buffer[10] = w5x00_ip4_addr_get_byte(&dhcp->server_ip, 2);
     buffer[11] = w5x00_ip4_addr_get_byte(&dhcp->server_ip, 3);
 
-    //put data in W5100 transmit buffer
+    // put data in W5100 transmit buffer
     w5x00_ethernet_udp_write(&dhcp->udp_socket,
                               buffer,
                               12);
@@ -521,7 +524,7 @@ static void send_dhcp_message(w5x00_dhcp_t *dhcp,
   buffer[7] = dhcpT2value;
   buffer[8] = endOption;
 
-  //put data in W5100 transmit buffer
+  // put data in W5100 transmit buffer
   w5x00_ethernet_udp_write(&dhcp->udp_socket,
                             buffer,
                             9);
@@ -550,12 +553,12 @@ static uint8_t parse_dhcp_response(w5x00_dhcp_t *dhcp,
                           (uint8_t*)&fixedMsg,
                           sizeof(RIP_MSG_FIXED));
 
-  if (fixedMsg.op == DHCP_BOOTREPLY
-      && dhcp->udp_socket.remote_port == DHCP_SERVER_PORT) {
+  if ((fixedMsg.op == DHCP_BOOTREPLY)
+      && (dhcp->udp_socket.remote_port == DHCP_SERVER_PORT)) {
     *transaction_id = ntohl(fixedMsg.xid);
-    if (memcmp(fixedMsg.chaddr, dhcp->mac_addr, 6) != 0 ||
-      (*transaction_id < dhcp->initial_transaction_id) ||
-      (*transaction_id > dhcp->transaction_id)) {
+    if ((memcmp(fixedMsg.chaddr, dhcp->mac_addr, 6) != 0)
+        || (*transaction_id < dhcp->initial_transaction_id)
+        || (*transaction_id > dhcp->transaction_id)) {
       // Need to read the rest of the packet here regardless
       w5x00_ethernet_udp_flush(&dhcp->udp_socket); // FIXME
       return 0;
@@ -570,25 +573,25 @@ static uint8_t parse_dhcp_response(w5x00_dhcp_t *dhcp,
 
     while (w5x00_ethernet_udp_available(&dhcp->udp_socket) > 0) {
       switch (w5x00_ethernet_udp_read_byte(&dhcp->udp_socket)) {
-      case endOption :
+      case endOption:
         break;
 
-      case padOption :
+      case padOption:
         break;
 
-      case dhcpMessageType :
+      case dhcpMessageType:
         opt_len = w5x00_ethernet_udp_read_byte(&dhcp->udp_socket);
         type = w5x00_ethernet_udp_read_byte(&dhcp->udp_socket);
         break;
 
-      case subnetMask :
+      case subnetMask:
         opt_len = w5x00_ethernet_udp_read_byte(&dhcp->udp_socket);
         w5x00_ethernet_udp_read(&dhcp->udp_socket,
                                 (uint8_t*)&dhcp->subnet_mask,
                                 4);
         break;
 
-      case routersOnSubnet :
+      case routersOnSubnet:
         opt_len = w5x00_ethernet_udp_read_byte(&dhcp->udp_socket);
         w5x00_ethernet_udp_read(&dhcp->udp_socket,
                                 (uint8_t*)&dhcp->gateway_ip,
@@ -598,7 +601,7 @@ static uint8_t parse_dhcp_response(w5x00_dhcp_t *dhcp,
                                 opt_len - 4);
         break;
 
-      case dns :
+      case dns:
         opt_len = w5x00_ethernet_udp_read_byte(&dhcp->udp_socket);
         w5x00_ethernet_udp_read(&dhcp->udp_socket,
                                 (uint8_t*)&dhcp->dns_server_ip,
@@ -608,10 +611,10 @@ static uint8_t parse_dhcp_response(w5x00_dhcp_t *dhcp,
                                 opt_len - 4);
         break;
 
-      case dhcpServerIdentifier :
+      case dhcpServerIdentifier:
         opt_len = w5x00_ethernet_udp_read_byte(&dhcp->udp_socket);
-        if (dhcp->server_ip.addr == WIZNET_IPADDR_ANY ||
-            dhcp->server_ip.addr == dhcp->udp_socket.remote_ip.addr ) {
+        if ((dhcp->server_ip.addr == WIZNET_IPADDR_ANY)
+            || (dhcp->server_ip.addr == dhcp->udp_socket.remote_ip.addr)) {
           w5x00_ethernet_udp_read(&dhcp->udp_socket,
                                   (uint8_t*)&dhcp->server_ip,
                                   sizeof(dhcp->server_ip));
@@ -623,7 +626,7 @@ static uint8_t parse_dhcp_response(w5x00_dhcp_t *dhcp,
         }
         break;
 
-      case dhcpT1value :
+      case dhcpT1value:
         opt_len = w5x00_ethernet_udp_read_byte(&dhcp->udp_socket);
         w5x00_ethernet_udp_read(&dhcp->udp_socket,
                                 (uint8_t*)&dhcp->dhcp_T1,
@@ -631,7 +634,7 @@ static uint8_t parse_dhcp_response(w5x00_dhcp_t *dhcp,
         dhcp->dhcp_T1 = ntohl(dhcp->dhcp_T1);
         break;
 
-      case dhcpT2value :
+      case dhcpT2value:
         opt_len = w5x00_ethernet_udp_read_byte(&dhcp->udp_socket);
         w5x00_ethernet_udp_read(&dhcp->udp_socket,
                                 (uint8_t*)&dhcp->dhcp_T2,
@@ -639,7 +642,7 @@ static uint8_t parse_dhcp_response(w5x00_dhcp_t *dhcp,
         dhcp->dhcp_T2 = ntohl(dhcp->dhcp_T2);
         break;
 
-      case dhcpIPaddrLeaseTime :
+      case dhcpIPaddrLeaseTime:
         opt_len = w5x00_ethernet_udp_read_byte(&dhcp->udp_socket);
         w5x00_ethernet_udp_read(&dhcp->udp_socket,
                                 (uint8_t*)&dhcp->lease_time,
@@ -648,7 +651,7 @@ static uint8_t parse_dhcp_response(w5x00_dhcp_t *dhcp,
         dhcp->renew_in_sec = dhcp->lease_time;
         break;
 
-      default :
+      default:
         opt_len = w5x00_ethernet_udp_read_byte(&dhcp->udp_socket);
         // Skip over the rest of this option
         w5x00_ethernet_udp_read(&dhcp->udp_socket,
@@ -665,14 +668,14 @@ static uint8_t parse_dhcp_response(w5x00_dhcp_t *dhcp,
   return type;
 }
 
-static void print_byte(char * buf, uint8_t n )
+static void print_byte(char *buf, uint8_t n)
 {
   char *str = &buf[1];
-  buf[0]='0';
+  buf[0] = '0';
   do {
     unsigned long m = n;
     n /= 16;
     char c = m - 16 * n;
     *str-- = c < 10 ? c + '0' : c + 'A' - 10;
-  } while(n);
+  } while (n);
 }

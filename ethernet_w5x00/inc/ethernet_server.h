@@ -63,11 +63,11 @@ extern "C" {
 typedef struct {
   uint16_t port;                            /// Listen port
   uint16_t server_port[W5x00_MAX_SOCK_NUM]; /// Port list to mark socket are in use
-}w5x00_ethernet_server_t;
+} w5x00_ethernet_server_t;
 
 /***************************************************************************//**
  * @brief
- *    Init TCP server
+ *    Initialize TCP server
  * @param ss
  *    TCP server instance
  * @param port
@@ -102,8 +102,11 @@ w5x00_ethernet_client_t w5x00_ethernet_server_accept(w5x00_ethernet_server_t *ss
  * @brief
  *    Write to all client
  * @param[in] ss
+ *    TCP server instance
  * @param[in] buffer
+ *    Pointer to the Data buffer to be written
  * @param[in] size
+ *    Size of data buffer
  * @return
  *    >= 0: Size of written data
  *    <0: Error is occurred
@@ -112,7 +115,7 @@ int w5x00_ethernet_server_write(w5x00_ethernet_server_t *ss,
                                 const uint8_t *buffer,
                                 size_t size);
 
-/** @} (end group DNS) */
+/** @} (end group TCP_Server) */
 #ifdef __cplusplus
 }
 #endif

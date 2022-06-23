@@ -272,7 +272,7 @@ uint16_t w5x00_socket_send_available(w5x00_socket_t s);
  *    Offset of socket send buffer
  * @param[in] buf
  *    Pointer of the send data
- * @param len
+ * @param[in] len
  *    Size of the send data
  * @return
  *    Size of written data

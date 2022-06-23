@@ -83,7 +83,7 @@ w5x00_ethernet_client_t w5x00_ethernet_server_accept(w5x00_ethernet_server_t *ss
   bool listening = false;
   uint8_t sockindex = W5x00_MAX_SOCK_NUM;
   enum W5x00Chip chip;
-  uint8_t maxindex=W5x00_MAX_SOCK_NUM;
+  uint8_t maxindex = W5x00_MAX_SOCK_NUM;
   w5x00_ethernet_client_t client;
 
   client.sockindex = W5x00_MAX_SOCK_NUM;
@@ -99,12 +99,12 @@ w5x00_ethernet_client_t w5x00_ethernet_server_accept(w5x00_ethernet_server_t *ss
     maxindex = 4; // W5100 chip never supports more than 4 sockets
   }
 #endif
-  for (uint8_t i=0; i < maxindex; i++) {
+  for (uint8_t i = 0; i < maxindex; i++) {
     if (ss->server_port[i] == ss->port) {
       uint8_t stat = w5x00_socket_status(i);
-      if (sockindex == W5x00_MAX_SOCK_NUM &&
-        (stat == SnSR_ESTABLISHED
-         || stat == SnSR_CLOSE_WAIT)) {
+      if ((sockindex == W5x00_MAX_SOCK_NUM)
+          && ((stat == SnSR_ESTABLISHED)
+              || (stat == SnSR_CLOSE_WAIT))) {
         // Return the connected client even if no data received.
         // Some protocols like FTP expect the server to send the
         // first data.
@@ -117,7 +117,9 @@ w5x00_ethernet_client_t w5x00_ethernet_server_accept(w5x00_ethernet_server_t *ss
       }
     }
   }
-  if (!listening) w5x00_ethernet_server_begin(ss);
+  if (!listening) {
+    w5x00_ethernet_server_begin(ss);
+  }
   client.sockindex = sockindex;
   return client;
 }
@@ -145,7 +147,7 @@ int w5x00_ethernet_server_write(w5x00_ethernet_server_t *ss,
   }
 #endif
   w5x00_ethernet_server_accept(ss);
-  for (uint8_t i=0; i < maxindex; i++) {
+  for (uint8_t i = 0; i < maxindex; i++) {
     if (ss->server_port[i] == ss->port) {
       if (w5x00_socket_status(i) == SnSR_ESTABLISHED) {
         w5x00_socket_send(i, buffer, size);

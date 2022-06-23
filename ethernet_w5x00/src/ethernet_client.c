@@ -105,19 +105,31 @@ sl_status_t w5x00_ethernet_client_connect(w5x00_ethernet_client_t *c,
     }
     c->sockindex = W5x00_MAX_SOCK_NUM;
   }
-  if (ip.addr == WIZNET_IPADDR_ANY || ip.addr == WIZNET_IPADDR_NONE) return 0;
+  if ((ip.addr == WIZNET_IPADDR_ANY) || (ip.addr == WIZNET_IPADDR_NONE)) {
+    return 0;
+  }
   c->sockindex = w5x00_socket_begin(SnMR_TCP, 0);
-  if (c->sockindex >= W5x00_MAX_SOCK_NUM) return 0;
+  if (c->sockindex >= W5x00_MAX_SOCK_NUM) {
+    return 0;
+  }
   w5x00_socket_connect(c->sockindex,
                         &ip,
                         port);
   uint32_t start = w5x00_get_tick_ms();
   while (1) {
     uint8_t stat = w5x00_socket_status(c->sockindex);
-    if (stat == SnSR_ESTABLISHED) return SL_STATUS_OK;
-    if (stat == SnSR_CLOSE_WAIT)  return SL_STATUS_OK;
-    if (stat == SnSR_CLOSED)      return SL_STATUS_FAIL;
-    if (w5x00_get_tick_ms() - start > c->timeout) break;
+    if (stat == SnSR_ESTABLISHED) {
+      return SL_STATUS_OK;
+    }
+    if (stat == SnSR_CLOSE_WAIT) {
+      return SL_STATUS_OK;
+    }
+    if (stat == SnSR_CLOSED) {
+      return SL_STATUS_FAIL;
+    }
+    if (w5x00_get_tick_ms() - start > c->timeout) {
+      break;
+    }
     w5x00_delay_ms(1);
   }
   w5x00_socket_close(c->sockindex);
@@ -133,7 +145,9 @@ int w5x00_ethernet_client_available_for_write(w5x00_ethernet_client_t *c)
   if (c == NULL) {
     return -1;
   }
-  if (c->sockindex >= W5x00_MAX_SOCK_NUM) return 0;
+  if (c->sockindex >= W5x00_MAX_SOCK_NUM) {
+    return 0;
+  }
   return w5x00_socket_send_available(c->sockindex);
 }
 
@@ -147,8 +161,12 @@ int w5x00_ethernet_client_write(w5x00_ethernet_client_t *c,
   if (c == NULL) {
     return -1;
   }
-  if (c->sockindex >= W5x00_MAX_SOCK_NUM) return 0;
-  if (w5x00_socket_send(c->sockindex, buf, size)) return size;
+  if (c->sockindex >= W5x00_MAX_SOCK_NUM) {
+    return 0;
+  }
+  if (w5x00_socket_send(c->sockindex, buf, size)) {
+    return size;
+  }
   return 0;
 }
 
@@ -160,7 +178,9 @@ int w5x00_ethernet_client_available(w5x00_ethernet_client_t *c)
   if (c == NULL) {
     return -1;
   }
-  if (c->sockindex >= W5x00_MAX_SOCK_NUM) return 0;
+  if (c->sockindex >= W5x00_MAX_SOCK_NUM) {
+    return 0;
+  }
   return w5x00_socket_recv_available(c->sockindex);
   // TODO: do the Wiznet chips automatically retransmit TCP ACK
   // packets if they are lost by the network?  Someday this should
@@ -177,7 +197,9 @@ int w5x00_ethernet_client_read(w5x00_ethernet_client_t *c,
                                uint8_t *buf,
                                size_t size)
 {
-  if (c->sockindex >= W5x00_MAX_SOCK_NUM) return 0;
+  if (c->sockindex >= W5x00_MAX_SOCK_NUM) {
+    return 0;
+  }
   return w5x00_socket_recv(c->sockindex, buf, size);
 }
 
@@ -186,8 +208,12 @@ int w5x00_ethernet_client_read(w5x00_ethernet_client_t *c,
  ******************************************************************************/
 int w5x00_ethernet_client_peek(w5x00_ethernet_client_t *c)
 {
-  if (c->sockindex >= W5x00_MAX_SOCK_NUM) return -1;
-  if (!w5x00_ethernet_client_available(c)) return -1;
+  if (c->sockindex >= W5x00_MAX_SOCK_NUM) {
+    return -1;
+  }
+  if (!w5x00_ethernet_client_available(c)) {
+    return -1;
+  }
   return w5x00_socket_peek(c->sockindex);
 }
 
@@ -198,7 +224,7 @@ sl_status_t w5x00_ethernet_client_flush(w5x00_ethernet_client_t *c)
 {
   while (c->sockindex < W5x00_MAX_SOCK_NUM) {
     uint8_t stat = w5x00_socket_status(c->sockindex);
-    if (stat != SnSR_ESTABLISHED && stat != SnSR_CLOSE_WAIT) {
+    if ((stat != SnSR_ESTABLISHED) && (stat != SnSR_CLOSE_WAIT)) {
       return SL_STATUS_INVALID_STATE;
     }
     if (w5x00_socket_send_available(c->sockindex) >= w5x00_get_SSIZE()) {
@@ -244,7 +270,9 @@ sl_status_t w5x00_ethernet_client_stop(w5x00_ethernet_client_t *c)
  ******************************************************************************/
 bool w5x00_ethernet_client_connected(w5x00_ethernet_client_t *c)
 {
-  if (c->sockindex >= W5x00_MAX_SOCK_NUM) return 0;
+  if (c->sockindex >= W5x00_MAX_SOCK_NUM) {
+    return 0;
+  }
 
   uint8_t s = w5x00_socket_status(c->sockindex);
   return !(s == SnSR_LISTEN
@@ -258,7 +286,9 @@ bool w5x00_ethernet_client_connected(w5x00_ethernet_client_t *c)
  ******************************************************************************/
 uint8_t w5x00_ethernet_client_status(w5x00_ethernet_client_t *c)
 {
-  if (c->sockindex >= W5x00_MAX_SOCK_NUM) return SnSR_CLOSED;
+  if (c->sockindex >= W5x00_MAX_SOCK_NUM) {
+    return SnSR_CLOSED;
+  }
   return w5x00_socket_status(c->sockindex);
 }
 
@@ -267,7 +297,9 @@ uint8_t w5x00_ethernet_client_status(w5x00_ethernet_client_t *c)
  ******************************************************************************/
 uint16_t w5x00_ethernet_client_local_port(w5x00_ethernet_client_t *c)
 {
-  if (c->sockindex >= W5x00_MAX_SOCK_NUM) return 0;
+  if (c->sockindex >= W5x00_MAX_SOCK_NUM) {
+    return 0;
+  }
   uint16_t port;
   port = w5x00_readSnPORT(c->sockindex);
   return port;
@@ -279,7 +311,9 @@ uint16_t w5x00_ethernet_client_local_port(w5x00_ethernet_client_t *c)
 w5x00_ip4_addr_t w5x00_ethernet_client_remote_ip(w5x00_ethernet_client_t *c)
 {
   w5x00_ip4_addr_t ip = { WIZNET_IP4_DATA(127, 0, 0, 1) };
-  if (c->sockindex >= W5x00_MAX_SOCK_NUM) return ip;
+  if (c->sockindex >= W5x00_MAX_SOCK_NUM) {
+    return ip;
+  }
   w5x00_readSnDIPR(c->sockindex, (uint8_t *)&ip);
   return ip;
 }
@@ -289,10 +323,10 @@ w5x00_ip4_addr_t w5x00_ethernet_client_remote_ip(w5x00_ethernet_client_t *c)
  ******************************************************************************/
 uint16_t w5x00_ethernet_client_remote_port(w5x00_ethernet_client_t *c)
 {
-  if (c->sockindex >= W5x00_MAX_SOCK_NUM) return 0;
+  if (c->sockindex >= W5x00_MAX_SOCK_NUM) {
+    return 0;
+  }
   uint16_t port;
   port = w5x00_readSnDPORT(c->sockindex);
   return port;
 }
-
-
