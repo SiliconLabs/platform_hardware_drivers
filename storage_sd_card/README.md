@@ -4,9 +4,7 @@
 
 This project aims to implement a hardware driver interacting with an SD Card using the microSD Click board. SD Cards support SDIO or SPI interfaces to communicate with them, this driver focuses to communicate with them via the SPI interface. SPI is widely available in embedded devices/microcontrollers.
 
-This project integrates FatFS which is one of the most popular file system libraries. File system related abstraction is handled by FatFS, and lower-level functions like the media IO layer are provided by this project's source code.
-
-For more information about FatFS, see [FatFS](http://elm-chan.org/fsw/ff/doc/appnote.html).
+This project integrates FatFS which is one of the most popular file system libraries. File system related abstraction is handled by FatFS, and lower-level functions like the media IO layer are provided by this project's source code. For more information about FatFS, see the following [source](http://elm-chan.org/fsw/ff/doc/appnote.html).
 
 The microSD Click communicates with the target microcontroller over SPI interface that corresponds to the pinout on the mikroBUS™ socket as shown below.
 
