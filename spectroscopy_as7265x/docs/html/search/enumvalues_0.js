@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['as72651_5fnir_0',['AS72651_NIR',['../group__as7265x.html#gga924b0025acf1b32aee70edc6fbbe575ea9f7d71e3f61acdbee2d3b28d4d0e3413',1,'as7265x.h']]],
+  ['as72652_5fvisible_1',['AS72652_VISIBLE',['../group__as7265x.html#gga924b0025acf1b32aee70edc6fbbe575ea3e4f0ac8b75064b6e7295777c06c1d57',1,'as7265x.h']]],
+  ['as72653_5fuv_2',['AS72653_UV',['../group__as7265x.html#gga924b0025acf1b32aee70edc6fbbe575ea8c24d0d0e8cb15310f5734c0c8968d97',1,'as7265x.h']]],
+  ['as7265x_5fgain_5f16x_3',['AS7265X_GAIN_16X',['../group__as7265x.html#gga02505f505f5805ec47671a96af0bd662a96cf858a79cde8b6ce973651069024f1',1,'as7265x.h']]],
+  ['as7265x_5fgain_5f1x_4',['AS7265X_GAIN_1X',['../group__as7265x.html#gga02505f505f5805ec47671a96af0bd662a369c8ad96d8a2366c1e059b94714b921',1,'as7265x.h']]],
+  ['as7265x_5fgain_5f37x_5',['AS7265X_GAIN_37X',['../group__as7265x.html#gga02505f505f5805ec47671a96af0bd662aff4640440a765eb58f2e51dae612e1c9',1,'as7265x.h']]],
+  ['as7265x_5fgain_5f64x_6',['AS7265X_GAIN_64X',['../group__as7265x.html#gga02505f505f5805ec47671a96af0bd662a7a228dcbb2163c16fcd7b699ad3c847f',1,'as7265x.h']]],
+  ['as7265x_5findicator_5fcurrent_5flimit_5f1ma_7',['AS7265X_INDICATOR_CURRENT_LIMIT_1MA',['../group__as7265x.html#gga4c0cdef060f371c09067d8af0f291607ad8a54b31e5ce610033f4da4ffe6541fd',1,'as7265x.h']]],
+  ['as7265x_5findicator_5fcurrent_5flimit_5f2ma_8',['AS7265X_INDICATOR_CURRENT_LIMIT_2MA',['../group__as7265x.html#gga4c0cdef060f371c09067d8af0f291607a528acd05e1b64b26f092871f62079710',1,'as7265x.h']]],
+  ['as7265x_5findicator_5fcurrent_5flimit_5f4ma_9',['AS7265X_INDICATOR_CURRENT_LIMIT_4MA',['../group__as7265x.html#gga4c0cdef060f371c09067d8af0f291607ae95e176c98c9343b7886c61f988a5c5c',1,'as7265x.h']]],
+  ['as7265x_5findicator_5fcurrent_5flimit_5f8ma_10',['AS7265X_INDICATOR_CURRENT_LIMIT_8MA',['../group__as7265x.html#gga4c0cdef060f371c09067d8af0f291607a7d930bc8dc57970b595681646365761d',1,'as7265x.h']]],
+  ['as7265x_5fled_5fcurrent_5flimit_5f100ma_11',['AS7265X_LED_CURRENT_LIMIT_100MA',['../group__as7265x.html#ggaa15445de867b809649d317f669a6caa3a72016832d657cc5f4d06579d4fb82d8d',1,'as7265x.h']]],
+  ['as7265x_5fled_5fcurrent_5flimit_5f12_5f5ma_12',['AS7265X_LED_CURRENT_LIMIT_12_5MA',['../group__as7265x.html#ggaa15445de867b809649d317f669a6caa3a8bdec5994c9342a81c34e31b5a9772c1',1,'as7265x.h']]],
+  ['as7265x_5fled_5fcurrent_5flimit_5f25ma_13',['AS7265X_LED_CURRENT_LIMIT_25MA',['../group__as7265x.html#ggaa15445de867b809649d317f669a6caa3ac6446bcc8113c9ac99df8319727794c9',1,'as7265x.h']]],
+  ['as7265x_5fled_5fcurrent_5flimit_5f50ma_14',['AS7265X_LED_CURRENT_LIMIT_50MA',['../group__as7265x.html#ggaa15445de867b809649d317f669a6caa3ae8589fab7dfb9be6a8d7097803e0edc7',1,'as7265x.h']]],
+  ['as7265x_5fled_5fir_15',['AS7265x_LED_IR',['../group__as7265x.html#gga69245301bcaa5dd590b0e1216f695a68a7c40ed83ead7ca10a2349a45a33ce09c',1,'as7265x.h']]],
+  ['as7265x_5fled_5fuv_16',['AS7265x_LED_UV',['../group__as7265x.html#gga69245301bcaa5dd590b0e1216f695a68a20e51e9008f70d69dcbca44bfc872d01',1,'as7265x.h']]],
+  ['as7265x_5fled_5fwhite_17',['AS7265x_LED_WHITE',['../group__as7265x.html#gga69245301bcaa5dd590b0e1216f695a68aa7ff0e461f2d4f1eb8e48e2cb4c0c3cb',1,'as7265x.h']]],
+  ['as7265x_5fmeasurement_5fmode_5f4chan_18',['AS7265X_MEASUREMENT_MODE_4CHAN',['../group__as7265x.html#gga30d223b482d76f746ffcce0dc666558ea657553935185b0c4e710caf58b72d0f9',1,'as7265x.h']]],
+  ['as7265x_5fmeasurement_5fmode_5f4chan_5f2_19',['AS7265X_MEASUREMENT_MODE_4CHAN_2',['../group__as7265x.html#gga30d223b482d76f746ffcce0dc666558eadc14095bfbd3acee36f9dc77f8325a0c',1,'as7265x.h']]],
+  ['as7265x_5fmeasurement_5fmode_5f6chan_5fcontinuous_20',['AS7265X_MEASUREMENT_MODE_6CHAN_CONTINUOUS',['../group__as7265x.html#gga30d223b482d76f746ffcce0dc666558ea59ad947941fc2f5dbf11643910bacb7e',1,'as7265x.h']]],
+  ['as7265x_5fmeasurement_5fmode_5f6chan_5fone_5fshot_21',['AS7265X_MEASUREMENT_MODE_6CHAN_ONE_SHOT',['../group__as7265x.html#gga30d223b482d76f746ffcce0dc666558eaccee974e27312859ed6271bf114ddf56',1,'as7265x.h']]]
+];
