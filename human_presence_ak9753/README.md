@@ -1,5 +1,14 @@
 # Human Presence AK9753 Driver #
 
+![Type badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/human_presence_ak9753_common.json&label=Type&query=type&color=green)
+![Technology badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/human_presence_ak9753_common.json&label=Technology&query=technology&color=green)
+![License badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/human_presence_ak9753_common.json&label=License&query=license&color=green)
+![SDK badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/human_presence_ak9753_common.json&label=SDK&query=sdk&color=green)
+[![Required board](https://img.shields.io/badge/Sparkfun-Human%20Presence%20AK9753-green)](https://www.sparkfun.com/products/14349)
+![Build badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/human_presence_ak9753_build_status.json)
+![Flash badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/human_presence_ak9753_common.json&label=Flash&query=flash&color=blue)
+![RAM badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/human_presence_ak9753_common.json&label=RAM&query=ram&color=blue)
+
 ## Description ##
 
 The AK9753 is a low power and compact infrared-ray (IR) sensor module. It is composed of four

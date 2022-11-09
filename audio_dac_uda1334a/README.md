@@ -1,10 +1,10 @@
 # Audio DAC Driver #
-![Type badge](https://img.shields.io/badge/Type-Hardware%20Driver-green)
-![Technology badge](https://img.shields.io/badge/Technology-Platform-green)
-![License badge](https://img.shields.io/badge/License-zlib-green)
-![SDK badge](https://img.shields.io/badge/SDK-v3.1.2-green)
-![GCC badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/audio_dac_uda1334a_gcc.json)
+![Type badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/audio_dac_uda1334a_common.json&label=Type&query=type&color=green)
+![Technology badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/audio_dac_uda1334a_common.json&label=Technology&query=technology&color=green)
+![License badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/audio_dac_uda1334a_common.json&label=License&query=license&color=green)
+![SDK badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/audio_dac_uda1334a_common.json&label=SDK&query=sdk&color=green)
 [![GitHub](https://img.shields.io/badge/Adafruit-I2S%20Stereo%20Decoder-green)](https://www.adafruit.com/product/3678)
+![Build badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/audio_dac_uda1334a_build_status.json)
 
 ## Overview ##
 

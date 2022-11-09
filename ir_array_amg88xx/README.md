@@ -1,8 +1,12 @@
 # Ir Array AMG8833 Driver #
-![License badge](https://img.shields.io/badge/License-zlib-green)
-![SDK badge](https://img.shields.io/badge/SDK-v3.2.3-green)
-![GCC badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/ir_array_amg88xx_gcc.json)
+![License badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/ir_array_amg88xx_common.json&label=License&query=license&color=green)
+![SDK badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/ir_array_amg88xx_common.json&label=SDK&query=sdk&color=green)
 [![GitHub](https://img.shields.io/badge/Sparkfun-Grid%20EYE%20Infrared%20Array-green)](https://www.sparkfun.com/products/14607)
+![Type badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/ir_array_amg88xx_common.json&label=Type&query=type&color=green)
+![Technology badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/ir_array_amg88xx_common.json&label=Technology&query=technology&color=green)
+![Build badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/ir_array_amg88xx_build_status.json)
+![Flash badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/ir_array_amg88xx_common.json&label=Flash&query=flash&color=blue)
+![RAM badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/ir_array_amg88xx_common.json&label=RAM&query=ram&color=blue)
 
 ## Overview ##
 

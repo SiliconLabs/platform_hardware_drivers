@@ -1,8 +1,12 @@
 # Stepper Motor Driver
-![License badge](https://img.shields.io/badge/License-zlib-green)
-![SDK badge](https://img.shields.io/badge/SDK-v4.0.0-green)
-![GCC badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/stepper_motor_a4988_gcc.json)
+![License badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/stepper_motor_a4988_common.json&label=License&query=license&color=green)
+![SDK badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/stepper_motor_a4988_common.json&label=SDK&query=sdk&color=green)
 [![GitHub](https://img.shields.io/badge/Mikroe-STEPPER%202%20CLICK-green)](https://www.mikroe.com/stepper-2-click)
+![Type badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/stepper_motor_a4988_common.json&label=Type&query=type&color=green)
+![Technology badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/stepper_motor_a4988_common.json&label=Technology&query=technology&color=green)
+![Build badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/stepper_motor_a4988_build_status.json)
+![Flash badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/stepper_motor_a4988_common.json&label=Flash&query=flash&color=blue)
+![RAM badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/stepper_motor_a4988_common.json&label=RAM&query=ram&color=blue)
 
 ## Summary
 

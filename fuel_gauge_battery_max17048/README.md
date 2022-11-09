@@ -1,5 +1,14 @@
 # Battery Fuel Gauge MAX17048 #
 
+![Type badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/fuel_gauge_battery_max17048_common.json&label=Type&query=type&color=green)
+![Technology badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/fuel_gauge_battery_max17048_common.json&label=Technology&query=technology&color=green)
+![License badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/fuel_gauge_battery_max17048_common.json&label=License&query=license&color=green)
+![SDK badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/fuel_gauge_battery_max17048_common.json&label=SDK&query=sdk&color=green)
+[![Required board](https://img.shields.io/badge/Maxim-MAX17048XEVKIT-green)](https://www.maximintegrated.com/en/products/power/battery-management/MAX17048XEVKIT.html)
+![Build badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/fuel_gauge_battery_max17048_build_status.json)
+![Flash badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/fuel_gauge_battery_max17048_common.json&label=Flash&query=flash&color=blue)
+![RAM badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/fuel_gauge_battery_max17048_common.json&label=RAM&query=ram&color=blue)
+
 ## Overview ##
 
 This project shows the implementation of an I2C Fuel Gauge driver using the MAX17048EVKIT Evalue Kit from the Maxim Integrated with the EFR32xG21 Radio Board and the Wireless Starter Kit Mainboard.

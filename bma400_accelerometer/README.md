@@ -1,11 +1,11 @@
 # Barometer driver #
-![Type badge](https://img.shields.io/badge/Type-Hardware%20Driver-green)
-![Technology badge](https://img.shields.io/badge/Technology-Platform-green)
-![License badge](https://img.shields.io/badge/License-zlib-green)
-![SDK badge](https://img.shields.io/badge/SDK-v3.0.2-green)
-![GCC badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/bma400_accelerometer_gcc.json)
+![Type badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/bma400_accelerometer_common.json&label=Type&query=type&color=green)
+![Technology badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/bma400_accelerometer_common.json&label=Technology&query=technology&color=green)
+![License badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/bma400_accelerometer_common.json&label=License&query=license&color=green)
+![SDK badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/bma400_accelerometer_common.json&label=SDK&query=sdk&color=green)
 [![GitHub](https://img.shields.io/badge/Mikroe-ACCEL%205%20CLICK-green)](https://www.mikroe.com/accel-5-click)
 [![GitHub](https://img.shields.io/badge/Sparkfun-Pressure%20Sensor-green)](https://www.sparkfun.com/products/14688)
+![Build badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/bma400_accelerometer_build_status.json)
 ## Overview ##
 
 This project shows the implementation of **BMA400** accelerometer driver. This driver is primarily design for the I2C bus but will be extended to SPI very shortly. 

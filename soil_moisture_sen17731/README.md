@@ -1,6 +1,16 @@
 # SEN17731 Soil Moisture Sensor Driver #
 
+![Type badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/soil_moisture_sen17731_common.json&label=Type&query=type&color=green)
+![Technology badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/soil_moisture_sen17731_common.json&label=Technology&query=technology&color=green)
+![License badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/soil_moisture_sen17731_common.json&label=License&query=license&color=green)
+![SDK badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/soil_moisture_sen17731_common.json&label=SDK&query=sdk&color=green)
+[![Required board](https://img.shields.io/badge/Sparkfun-Qwiic%20Soil%20Moisture%20Sensor-green)](https://www.sparkfun.com/products/17731)
+![Build badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/soil_moisture_sen17731_build_status.json)
+![Flash badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/soil_moisture_sen17731_common.json&label=Flash&query=flash&color=blue)
+![RAM badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/soil_moisture_sen17731_common.json&label=RAM&query=ram&color=blue)
+
 ## Overview ##
+
 This project aims to implement a hardware driver interacting with the [SEN17731 soil moisture sensor](https://www.sparkfun.com/products/17731) via APIs of GSDK.
 
 SEN17731 is a simple breakout for measuring the moisture in soil and similar materials.The soil moisture sensor is pretty straightforward to use. The two large, exposed pads function as probes for the sensor, together acting as a variable resistor. The more water that is in the soil means the better the conductivity between the pads will be, resulting in a lower resistance and a higher SIG out. This version of the Soil Moisture Sensor includes a Qwiic connector, making it even easier to use this sensor.

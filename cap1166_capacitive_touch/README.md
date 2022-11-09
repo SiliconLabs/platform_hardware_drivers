@@ -1,8 +1,10 @@
 # CAP1166 Capacitive touch driver #
-![License badge](https://img.shields.io/badge/License-zlib-green)
-![SDK badge](https://img.shields.io/badge/SDK-v3.2.1-green)
-![GCC badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/cap1166_capacitive_touch_gcc.json)
+![License badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/cap1166_capacitive_touch_common.json&label=License&query=license&color=green)
+![SDK badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/cap1166_capacitive_touch_common.json&label=SDK&query=sdk&color=green)
 [![GitHub](https://img.shields.io/badge/Mikroe-CAP%20TOUCH%202%20CLICK-green)](https://www.mikroe.com/cap-touch-2-click)
+![Type badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/cap1166_capacitive_touch_common.json&label=Type&query=type&color=green)
+![Technology badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/cap1166_capacitive_touch_common.json&label=Technology&query=technology&color=green)
+![Build badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/cap1166_capacitive_touch_build_status.json)
 
 ## Overview ##
 
