@@ -1,37 +1,40 @@
 /***************************************************************************//**
  * @file ir_array_amg88xx_driver.h
- * @brief amg88xx ir array driver functions.
+ * @version 1.0.0
  *******************************************************************************
  * # License
- * <b>Copyright 2021 Silicon Laboratories Inc. www.silabs.com</b>
+ * <b>Copyright 2022 Silicon Laboratories Inc. www.silabs.com</b>
  *******************************************************************************
-*
-* SPDX-License-Identifier: Zlib
-*
-* The licensor of this software is Silicon Laboratories Inc.
-*
-* This software is provided \'as-is\', without any express or implied
-* warranty. In no event will the authors be held liable for any damages
-* arising from the use of this software.
-*
-* Permission is granted to anyone to use this software for any purpose,
-* including commercial applications, and to alter it and redistribute it
-* freely, subject to the following restrictions:
-*
-* 1. The origin of this software must not be misrepresented; you must not
-*    claim that you wrote the original software. If you use this software
-*    in a product, an acknowledgment in the product documentation would be
-*    appreciated but is not required.
-* 2. Altered source versions must be plainly marked as such, and must not be
-*    misrepresented as being the original software.
-* 3. This notice may not be removed or altered from any source distribution.
-*
-*******************************************************************************
-* # Evaluation Quality
-* This code has been minimally tested to ensure that it builds and is suitable
-* as a demonstration for evaluation purposes only. This code will be maintained
-* at the sole discretion of Silicon Labs.
-******************************************************************************/
+ *
+ * SPDX-License-Identifier: Zlib
+ *
+ * The licensor of this software is Silicon Laboratories Inc.
+ *
+ * This software is provided \'as-is\', without any express or implied
+ * warranty. In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ *
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ * 3. This notice may not be removed or altered from any source distribution.
+ *
+ *******************************************************************************
+ *
+ * EVALUATION QUALITY
+ * This code has been minimally tested to ensure that it builds with the
+ * specified dependency versions and is suitable as a demonstration for
+ * evaluation purposes only.
+ * This code will be maintained at the sole discretion of Silicon Labs.
+ *
+ ******************************************************************************/
 
 #ifndef IR_ARRAY_AMG88XX_DRIVER_H_
 #define IR_ARRAY_AMG88XX_DRIVER_H_
@@ -46,14 +49,13 @@
 /***************************************************************************//**
  * Dimensions of the sensor array.
  ******************************************************************************/
-#define SENSOR_ARRAY_ROWS 8
-#define SENSOR_ARRAY_COLUMNS 8
+#define SENSOR_ARRAY_ROWS             8
+#define SENSOR_ARRAY_COLUMNS          8
 
-#define I2C_BUFFER_SIZE 10
+#define I2C_BUFFER_SIZE               10
 
 /***************************************************************************//**
- * For detailed descriptions for the following registers please see:
- * https://forum.digikey.com/t/panasonic-grid-eye-memory-registers/13372
+ * For detailed description for the following registers see the datasheet.
  ******************************************************************************/
 #define AMG88XX_ADDRESS_OPEN          0x69
 #define AMG88XX_ADDRESS_CLOSE         0x68
@@ -88,6 +90,17 @@ extern "C" {
 #endif
 
 /***************************************************************************//**
+ * Initialise the periphery
+ *
+ * @param i2c         The used I2C instance.
+ * @param I2C_address The used device address.
+ * @param temp_scale  Temperature scale. Can be "celsius" or "fahrenheit".
+ ******************************************************************************/
+void amg88xx_init(sl_i2cspm_t *amg88xx_i2c_instance_init,
+                  int16_t I2C_address,
+                  enum temperature_scale_t temp_scale);
+
+/***************************************************************************//**
  * Sets temperature scale for temperature related functions.
  * The scale is initialized to celsius by default.
  *
@@ -113,7 +126,7 @@ sl_status_t amg88xx_get_thermistor_temperature(float *thermistor_temperature);
  * @returns The result of the I2C transaction.
  ******************************************************************************/
 sl_status_t amg88xx_get_thermistor_temperature_raw(
-                                               int16_t *thermistor_temperature);
+  int16_t *thermistor_temperature);
 
 /***************************************************************************//**
  * Gets the temperature of a single pixel.
@@ -155,7 +168,7 @@ sl_status_t amg88xx_get_pixel_temperature_raw(unsigned char pixelAddr,
  * @returns The result of the I2C transaction.
  ******************************************************************************/
 sl_status_t amg88xx_get_sensor_array_temperatures(
-    float temperature_grid[SENSOR_ARRAY_COLUMNS][SENSOR_ARRAY_ROWS]);
+  float temperature_grid[SENSOR_ARRAY_COLUMNS][SENSOR_ARRAY_ROWS]);
 
 /***************************************************************************//**
  * Gets the raw temperatures of the IR sensor array.
@@ -167,7 +180,7 @@ sl_status_t amg88xx_get_sensor_array_temperatures(
  * @returns The result of the I2C transaction.
  ******************************************************************************/
 sl_status_t amg88xx_get_sensor_array_temperatures_raw(
-    uint16_t temperature_grid[SENSOR_ARRAY_COLUMNS][SENSOR_ARRAY_ROWS]);
+  uint16_t temperature_grid[SENSOR_ARRAY_COLUMNS][SENSOR_ARRAY_ROWS]);
 
 /***************************************************************************//**
  * Sets the I2C address of the amg88xx.
@@ -204,7 +217,6 @@ sl_status_t amg88xx_60_sec_standby(void);
  * @returns The result of the I2C transaction.
  ******************************************************************************/
 sl_status_t amg88xx_10_sec_standby(void);
-
 
 /***************************************************************************//**
  * Enable INT pin to pull low on interrupt flag.

@@ -1,6 +1,9 @@
 # Ir Array AMG8833 Driver #
-![License badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/ir_array_amg88xx_common.json&label=License&query=license&color=green)
-![SDK badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/ir_array_amg88xx_common.json&label=SDK&query=sdk&color=green)
+![License badge](https://img.shields.io/badge/License-zlib-green)
+![Type badge](https://img.shields.io/badge/Type-Hardware%20Driver-green)
+![Technology badge](https://img.shields.io/badge/Technology-Platform-green)
+![SDK badge](https://img.shields.io/badge/SDK-v4.1.2-green)
+![GCC badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/ir_array_amg88xx_gcc.json)
 [![GitHub](https://img.shields.io/badge/Sparkfun-Grid%20EYE%20Infrared%20Array-green)](https://www.sparkfun.com/products/14607)
 ![Type badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/ir_array_amg88xx_common.json&label=Type&query=type&color=green)
 ![Technology badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/ir_array_amg88xx_common.json&label=Technology&query=technology&color=green)
@@ -8,48 +11,90 @@
 ![Flash badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/ir_array_amg88xx_common.json&label=Flash&query=flash&color=blue)
 ![RAM badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/ir_array_amg88xx_common.json&label=RAM&query=ram&color=blue)
 
-## Overview ##
+## Summary ##
 
-This project shows the implementation of the [Panasonic amg88xx infrared array](https://industry.panasonic.eu/components/sensors/industrial-sensors/grid-eye/amg88xx-high-performance-type/amg8833-amg8833) driver using the [EFM32GG11 starter kit](https://www.silabs.com/development-tools/mcu/32-bit/efm32gg11-starter-kit) and the [SparkFun Grid-EYE AMG8833 infrared array](https://www.sparkfun.com/products/14607). The driver includes every known functionality of the amg88xx device, such as sensor readings, power settings, interrupt setup, and more.
+This project shows the implementation of the [Panasonic amg88xx infrared array](https://industry.panasonic.eu/components/sensors/industrial-sensors/grid-eye/amg88xx-high-performance-type/amg8833-amg8833) driver using the [EFR32xG24 Dev Kit](https://www.silabs.com/development-tools/wireless/efr32xg24-dev-kit?tab=overview) and the [SparkFun Grid-EYE AMG8833 infrared array](https://www.sparkfun.com/products/14607). The driver includes every known functionality of the amg88xx device, such as sensor readings, power settings, interrupt setup, and more.
 
 ## Gecko SDK version ##
 
-v3.2 or later
+v4.1.2 or later
 
 ## Hardware Required ##
 
-- EFM32GG11 Giant Gecko Series 1 Starter Kit (SLSTK3701A)
-- SparkFun Grid-EYE Infrared Array Breakout - AMG8833 (Qwiic)
+- [EFR32xG24 Dev Kit (BRD2601B)](https://www.silabs.com/development-tools/wireless/efr32xg24-dev-kit?tab=overview)
+- [SparkFun Grid-EYE Infrared Array Breakout - AMG8833 (Qwiic)](https://www.sparkfun.com/products/14607)
+
+## Connections Required ##
+
+The breakout board is connected to the dev kit with a Qwiic connector
+
+![Dev kit connection diagram](doc/dev_kit.jpg)
+
+## File and API Documentation ##
+
+ir_array_amg88xx_driver - This is the top-level API implementation.
+
+- `amg88xx_init` : Initialise the driver.
+- `amg88xx_get_thermistor_temperature` : Gets the thermistor temperature.
+- `amg88xx_get_sensor_array_temperatures` : Gets the temperatures of the IR sensor array.
+- `amg88xx_wake` : Puts the device to normal mode from any other state.
+- `amg88xx_sleep` : Puts device into sleep mode.
+- `amg88xx_60_sec_standby` : Puts the device into 60 sec update interval mode.
+- `amg88xx_10_sec_standby` : Puts the device into 10 sec update interval mode.
+- `amg88xx_enable_moving_average` : Enables "Twice Moving Average".
+- `amg88xx_disable_moving_average` : Disables "Twice Moving Average".
 
 ## Setup ##
 
-The amg88xx driver provides the ir_array_amg88xx.sls application example to test the basic functionality of the driver and hardware. To use this test project, connect the Sparkfun Grideye module to the GG11 starter kit as shown in the diagram below.
+You can either import the .sls project included with this example or create your example application code using the included source files and adding the necessary software components in Simplicity Studio v5 according to the following instructions below:
 
-![Connection Diagram](doc/connection_diagram.png)
-Next, import the included .sls file into Studio, then build and flash the project to the starter kit.
-In Simplicity Studio select "File->Import" and navigate to the directory with the .sls project file. After you connect the STK,
-right-click on the project, and select Run As -> 1 Silicon Labs ARM Program.
+1.) Create an "Empty C Project" project for the EFR32xG24 Dev Kit using SimplicityStudio 5. Use the default project settings. Be sure to connect and select the EFR32xG24 Dev Kit from the "Debug Adapters" on the left before creating a project.
 
-## Application example ##
+2.) Then copy the files [app.c](src/app.c), [ir_array_amg88xx_driver.c](src/ir_array_amg88xx_driver.c) and [ir_array_amg88xx_driver.h](inc/ir_array_amg88xx_driver.h) into the project root folder.
 
-The included application example reads the temperature registers of the grideye amg88xx ir sensor array continuously, and prints the values in celsius to the display with a background color changing acording to the current temperature.
+3.) Install software components in the .slcp
 
-Additional software components needed in order to use the example:
+- IO Stream: EUSART
 
-- Color Sharp Memory LCD
-- Memory LCD with usart SPI driver
-- GLIB Graphics Library
-- GLIB driver for SHARP Memory LCD
+    ![IOS create](doc/IS-Stream_EUSART_create_inst.png)
+    ![IOS config](doc/IS-Stream_EUSART_config.png)
+
+- CLI: Command Line interface
+
+    ![CLI create](doc/CLI_COMMAND_LIN_Interface_create_inst.png)
+    ![CLi config](doc/CLI_COMMAND_LIN_Interface_config.png)
+
 - I2CSPM
 
-## Driver Usage ##
+    ![I2C config](doc/I2CSPM_config_inst.png)
 
-Before you start using the driver:
+4.) Save the files, build and ready to flash or debug!
 
-- Add I2CSPM software component. Set the settings of it according to your needs.
-- Check the sparkfun_grideye_amg8833_config.h to ensure the setting are correct for the board you're using.
+5.) Launch a terminal or console, open the communication to your device.
+
+6.) The device communicates over CLI, so if you type help you will see how to control the device.
+
+## How It Works ##
+
+The following diagram presents the operation of the driver.
+
+![Usage example](doc/IR_array_struct.png)
+
+Application only needs to call amg88xx_init() once at startup, then with amg88xx_get_sensor_array_temperatures() function it's possible to request an array of temperatures for all 64 pixels. For more features or possibilities please refer to the API function descriptions found in amg88xx_get_sensor_array_temperatures.h.
+
+amg88xx_init requires 3 parameters : an i2cspm instance and an i2c server address. The i2cspm instance is created by adding the I2CSPM software component. The I2C address for the AMG8833 sparkfun module is 0x69, so it's recommended to use the AMG88XX_ADDRESS_OPEN macro. The temperature scale for setup the scale (Celsius scale or Fahrenheit scale) of the temperature value.
+
+However it's possible to change the server address by entering a custom address as a parameter.
+
+## .sls Projects Used ##
+
+[ir_amg88xx_test](SimplicityStudio/ir_array_amg88xx_test.sls)
+
+## Generating image with Python ##
+
+There is a python script included in the repository (image_generator.py) which could control the device over serial port and print out the actual temperature array. In the script you can setup your serial port number.
+The required python package for the app: numpy, seaborn, matplotlib.pylab, pyserial.
 
 ## Porting ##
 
-This driver should work without any issue with a wide range of Silicon Labs boards. You may need to adjust the I2C settings in the ir_array_amg88xx_driver_config.h file.
-Please note, that the test example (.sls) works only with 128x128 3bit display STKs.
+This driver should work without any issue with a wide range of Silicon Labs boards.

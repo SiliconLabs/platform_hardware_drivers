@@ -1,47 +1,50 @@
 /***************************************************************************//**
- * @file app.c
- * @brief Top level application functions.
-*******************************************************************************
-* # License
-* <b>Copyright 2021 Silicon Laboratories Inc. www.silabs.com</b>
-*******************************************************************************
-*
-* SPDX-License-Identifier: Zlib
-*
-* The licensor of this software is Silicon Laboratories Inc.
-*
-* This software is provided \'as-is\', without any express or implied
-* warranty. In no event will the authors be held liable for any damages
-* arising from the use of this software.
-*
-* Permission is granted to anyone to use this software for any purpose,
-* including commercial applications, and to alter it and redistribute it
-* freely, subject to the following restrictions:
-*
-* 1. The origin of this software must not be misrepresented; you must not
-*    claim that you wrote the original software. If you use this software
-*    in a product, an acknowledgment in the product documentation would be
-*    appreciated but is not required.
-* 2. Altered source versions must be plainly marked as such, and must not be
-*    misrepresented as being the original software.
-* 3. This notice may not be removed or altered from any source distribution.
-*
-*******************************************************************************
-* # Experimental Quality
-* This code has not been formally tested and is provided as-is. It is not
-* suitable for production environments. In addition, this code will not be
-* maintained and there may be no bug maintenance planned for these resources.
-* Silicon Labs may update projects from time to time.
-******************************************************************************/
+ * @file
+ * @brief Top level application functions
+ *******************************************************************************
+ * # License
+ * <b>Copyright 2020 Silicon Laboratories Inc. www.silabs.com</b>
+ *******************************************************************************
+ *
+ * The licensor of this software is Silicon Laboratories Inc. Your use of this
+ * software is governed by the terms of Silicon Labs Master Software License
+ * Agreement (MSLA) available at
+ * www.silabs.com/about-us/legal/master-software-license-agreement. This
+ * software is distributed to you in Source Code format and is governed by the
+ * sections of the MSLA applicable to Source Code.
+ *
+ ******************************************************************************/
 
-#include "ir_array_amg88xx_tester.h"
+#include "sl_cli_command.h"
+#include "sl_cli_handles.h"
+#include "ir_array_amg88xx_driver.h"
+#include "sl_i2cspm_instances.h"
+
+extern const sl_cli_command_entry_t app_cli_command_table[];
+
+extern sl_cli_handle_t sl_cli_cli_vcom_handle;
+extern sl_cli_command_group_t sl_cli_cli_vcom_command_group;
+
+sl_cli_command_group_t sl_cli_app_command_group =
+{
+  { NULL },
+  false,
+  app_cli_command_table
+};
 
 /***************************************************************************//**
  * Initialize application.
  ******************************************************************************/
 void app_init(void)
 {
-  amg88xx_tester_start();
+  amg88xx_init(sl_i2cspm_IR_sensor, AMG88XX_ADDRESS_OPEN, CELSIUS);
+  // Remove unused autogen CLI command group
+  sl_cli_command_remove_command_group(sl_cli_cli_vcom_handle,
+                                      &sl_cli_cli_vcom_command_group);
+
+  // Add application CLI commands
+  sl_cli_command_add_command_group(sl_cli_cli_vcom_handle,
+                                   &sl_cli_app_command_group);
 }
 
 /***************************************************************************//**
@@ -49,5 +52,5 @@ void app_init(void)
  ******************************************************************************/
 void app_process_action(void)
 {
-  amg88xx_tester_process_action();
+  //
 }
