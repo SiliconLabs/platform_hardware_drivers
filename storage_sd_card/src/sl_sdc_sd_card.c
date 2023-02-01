@@ -145,7 +145,7 @@ static bool rcvr_datablock(BYTE *buff, UINT btr)
   BYTE token;
 
   sd_card_timer_1 = 100;
-  do { // Wait for data packet in timeout of 100m
+  do { // Wait for data packet in timeout of 100ms
     sdc_xchg_spi(0xff, &token);
   } while ((token == 0xff) && sd_card_timer_1);
 

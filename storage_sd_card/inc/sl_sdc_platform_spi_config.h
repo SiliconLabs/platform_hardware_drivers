@@ -43,12 +43,15 @@
 #define SD_CARD_MMC_PERIPHERAL              SL_SPIDRV_MIKROE_PERIPHERAL
 #define SD_CARD_MMC_PERIPHERAL_NO           SL_SPIDRV_MIKROE_PERIPHERAL_NO
 
+#define SD_CARD_MMC_RX_PORT                 SL_SPIDRV_MIKROE_RX_PORT
+#define SD_CARD_MMC_RX_PIN                  SL_SPIDRV_MIKROE_RX_PIN
+
 // Set slow clock for card initialization (100k-400k)
 #define SD_CARD_MMC_SLOW_CLOCK              200000
 // Set fast clock for generic read/write
 #define SD_CARD_MMC_FAST_CLOCK              SL_SPIDRV_MIKROE_BITRATE
 
-// USART0 CS on PC03
+// CS on PC03
 #define SD_CARD_MMC_CS_PORT                 SL_SPIDRV_MIKROE_CS_PORT
 #define SD_CARD_MMC_CS_PIN                  SL_SPIDRV_MIKROE_CS_PIN
 

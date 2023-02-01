@@ -20,7 +20,7 @@ The microSD Click communicates with the target microcontroller over SPI interfac
 
 ## Gecko SDK version ##
 
-GSDK v4.1.0
+GSDK v4.2.0
 
 ## Hardware Required ##
 

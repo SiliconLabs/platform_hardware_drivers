@@ -68,8 +68,8 @@ void app_init(void)
   sl_status_t sc;
   sl_sleeptimer_date_t date = {
       .year = 122,
-      .month = 6,
-      .month_day = 2,
+      .month = 2,
+      .month_day = 1,
       .hour = 10,
       .min = 30,
       .sec = 0,
@@ -79,7 +79,7 @@ void app_init(void)
   app_assert_status(sc);
 
   time_data = get_fattime();
-  app_log("\nCurrent time is %u/%u/%u %2u:%02u:%02u.\n\n",
+  app_log("\nCurrent time is %lu/%lu/%lu %2lu:%02lu:%02lu.\n\n",
           (time_data >> 25) + 1980,
           (time_data >> 21) & 0x0f,
           (time_data >> 16) & 0x1f,

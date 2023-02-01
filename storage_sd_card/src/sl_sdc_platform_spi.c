@@ -43,21 +43,33 @@ static void disk_timerproc_timer_callback(sl_sleeptimer_timer_handle_t *handle,
  ******************************************************************************/
 sl_status_t sdc_platform_spi_init(void)
 {
-  sl_status_t status;
+  bool timer_is_running = false;
 
   GPIO_PinModeSet(SD_CARD_MMC_CD_PORT,
                   SD_CARD_MMC_CD_PIN,
-                  gpioModeInputPullFilter,
+                  gpioModeInputPull,
+                  1);
+  // MISO pin is not pulled-up by SDcard click board side with a resistor.
+  // This pin should be reconfigured in gpioModeInputPull mode.
+  GPIO_PinModeSet(SD_CARD_MMC_RX_PORT,
+                  SD_CARD_MMC_RX_PIN,
+                  gpioModeInputPull,
                   1);
 
-  // Start a periodic timer 1 ms to generate card control timing
-  status = sl_sleeptimer_start_periodic_timer_ms(&disk_timerproc_timer_handle,
-                                                 1,
-                                                 disk_timerproc_timer_callback,
-                                                 (void *)NULL,
-                                                 0,
-                                                 0);
-  return status;
+  // Make sure the disk_timerproc_timer_handle timer is initialized only once
+  sl_sleeptimer_is_timer_running(&disk_timerproc_timer_handle,
+                                 &timer_is_running);
+  if (timer_is_running == false) {
+    // Start a periodic timer 1 ms to generate card control timing
+    sl_sleeptimer_start_periodic_timer_ms(&disk_timerproc_timer_handle,
+                                          1,
+                                          disk_timerproc_timer_callback,
+                                          (void *)NULL,
+                                          0,
+                                          0);
+  }
+
+  return SL_STATUS_OK;
 }
 
 /***************************************************************************//**
@@ -97,8 +109,9 @@ sl_status_t sdc_xmit_spi_multi(const BYTE *buff, UINT cnt)
 sl_status_t sdc_rcvr_spi_multi(BYTE *buff, UINT cnt)
 {
   sl_status_t retval;
+  BYTE dummy = 0xff;
 
-  retval = SPIDRV_MTransferB(sdc_spi_handle, buff, buff, cnt);
+  retval = SPIDRV_MTransferB(sdc_spi_handle, &dummy, buff, cnt);
   if (retval != ECODE_EMDRV_SPIDRV_OK) {
     return SL_STATUS_TRANSMIT;
   }

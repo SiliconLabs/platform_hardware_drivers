@@ -44,9 +44,9 @@
 
 // Socket controls
 // MMC CS = L
-#define CS_LOW()      GPIO_PinOutSet(SD_CARD_MMC_CS_PORT, SD_CARD_MMC_CS_PIN)
+#define CS_LOW()      // CS controlled by the SPI driver
 // MMC CS = H
-#define CS_HIGH()     GPIO_PinOutClear(SD_CARD_MMC_CS_PORT, SD_CARD_MMC_CS_PIN)
+#define CS_HIGH()     // CS controlled by the SPI driver
 // Card detected      (yes:true, no:false, default:true)
 #define MMC_CD        (!GPIO_PinInGet(SD_CARD_MMC_CD_PORT, SD_CARD_MMC_CD_PIN))
 
