@@ -1,9 +1,9 @@
 # BME280 CCS811 Qwiic driver #
-![License badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/bme280_ccs811_qwiic_common.json&label=License&query=license&color=green)
-![SDK badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/bme280_ccs811_qwiic_common.json&label=SDK&query=sdk&color=green)
-[![GitHub](https://img.shields.io/badge/Sparkfun-Environmental%20Combo%20Breakout-green)](https://www.sparkfun.com/products/14348)
 ![Type badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/bme280_ccs811_qwiic_common.json&label=Type&query=type&color=green)
 ![Technology badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/bme280_ccs811_qwiic_common.json&label=Technology&query=technology&color=green)
+![License badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/bme280_ccs811_qwiic_common.json&label=License&query=license&color=green)
+![SDK badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/bme280_ccs811_qwiic_common.json&label=SDK&query=sdk&color=green)
+[![Required board](https://img.shields.io/badge/Sparkfun-Environmental%20Combo%20Breakout-green)](https://www.sparkfun.com/products/14348)
 ![Build badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/bme280_ccs811_qwiic_build_status.json)
 ![Flash badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/bme280_ccs811_qwiic_common.json&label=Flash&query=flash&color=blue)
 ![RAM badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/bme280_ccs811_qwiic_common.json&label=RAM&query=ram&color=blue)

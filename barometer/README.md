@@ -2,13 +2,9 @@
 ![Type badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/barometer_common.json&label=Type&query=type&color=green)
 ![Technology badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/barometer_common.json&label=Technology&query=technology&color=green)
 ![License badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/barometer_common.json&label=License&query=license&color=green)
-![SDK badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/barometer_common.json&label=SDK&query=sdk&color=green)
-[![GitHub](https://img.shields.io/badge/Adafruit-DPS310-green)](https://www.adafruit.com/product/4494)
-[![GitHub](https://img.shields.io/badge/Sparkfun-MS5637-green)](https://www.sparkfun.com/products/14688)
-[![GitHub](https://img.shields.io/badge/Mikroe-Pressure%203%20Click-green)](https://www.mikroe.com/pressure-3-click)
-![Build badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/barometer_build_status.json)
-![Flash badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/barometer_common.json&label=Flash&query=flash&color=blue)
-![RAM badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/barometer_common.json&label=RAM&query=ram&color=blue)
+[![Required board](https://img.shields.io/badge/Adafruit-DPS310-green)](https://www.adafruit.com/product/4494)
+[![Required board](https://img.shields.io/badge/Sparkfun-MS5637-green)](https://www.sparkfun.com/products/14688)
+[![Required board](https://img.shields.io/badge/Mikroe-Pressure%203%20Click-green)](https://www.mikroe.com/pressure-3-click)
 
 ## Overview ##
 

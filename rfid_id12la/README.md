@@ -3,7 +3,7 @@
 ![Technology badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/rfid_id12la_common.json&label=Technology&query=technology&color=green)
 ![License badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/rfid_id12la_common.json&label=License&query=license&color=green)
 ![SDK badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/rfid_id12la_common.json&label=SDK&query=sdk&color=green)
-[![GitHub](https://img.shields.io/badge/Sparkfun-RFID%20Reader-green)](https://www.sparkfun.com/products/11827)
+[![Required board](https://img.shields.io/badge/Sparkfun-RFID%20Reader-green)](https://www.sparkfun.com/products/11827)
 ![Build badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/rfid_id12la_build_status.json)
 ![Flash badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/rfid_id12la_common.json&label=Flash&query=flash&color=blue)
 ![RAM badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/rfid_id12la_common.json&label=RAM&query=ram&color=blue)

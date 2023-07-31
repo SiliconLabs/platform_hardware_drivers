@@ -6,6 +6,8 @@
 ![SDK badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/spectroscopy_as7265x_common.json&label=SDK&query=sdk&color=green)
 [![Required board](https://img.shields.io/badge/Sparkfun-Triad%20Spectroscopy%20Sensor-green)](https://www.sparkfun.com/products/15050)
 ![Build badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/spectroscopy_as7265x_build_status.json)
+![Flash badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/spectroscopy_as7265x_common.json&label=Flash&query=flash&color=blue)
+![RAM badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/spectroscopy_as7265x_common.json&label=RAM&query=ram&color=blue)
 
 ## Description ##
 

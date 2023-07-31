@@ -3,7 +3,7 @@
 ![Technology badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/audio_dac_uda1334a_common.json&label=Technology&query=technology&color=green)
 ![License badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/audio_dac_uda1334a_common.json&label=License&query=license&color=green)
 ![SDK badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/audio_dac_uda1334a_common.json&label=SDK&query=sdk&color=green)
-[![GitHub](https://img.shields.io/badge/Adafruit-I2S%20Stereo%20Decoder-green)](https://www.adafruit.com/product/3678)
+[![Required board](https://img.shields.io/badge/Adafruit-I2S%20Stereo%20Decoder-green)](https://www.adafruit.com/product/3678)
 ![Build badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/audio_dac_uda1334a_build_status.json)
 
 ## Overview ##

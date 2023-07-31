@@ -3,7 +3,7 @@
 ![Technology badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/oled_ssd1306_spi_common.json&label=Technology&query=technology&color=green)
 ![License badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/oled_ssd1306_spi_common.json&label=License&query=license&color=green)
 ![SDK badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/oled_ssd1306_spi_common.json&label=SDK&query=sdk&color=green)
-[![GitHub](https://img.shields.io/badge/Sparkfun-OLED%20W%20Click-green)](https://www.mikroe.com/oled-w-click)
+[![Required board](https://img.shields.io/badge/Sparkfun-OLED%20W%20Click-green)](https://www.mikroe.com/oled-w-click)
 ![Build badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/oled_ssd1306_spi_build_status.json)
 ![Flash badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/oled_ssd1306_spi_common.json&label=Flash&query=flash&color=blue)
 ![RAM badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/oled_ssd1306_spi_common.json&label=RAM&query=ram&color=blue)

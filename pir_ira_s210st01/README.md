@@ -3,7 +3,7 @@
 ![Technology badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/pir_ira_s210st01_common.json&label=Technology&query=technology&color=green)
 ![License badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/pir_ira_s210st01_common.json&label=License&query=license&color=green)
 ![SDK badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/pir_ira_s210st01_common.json&label=SDK&query=sdk&color=green)
-[![GitHub](https://img.shields.io/badge/Silabs-PIR%20Occupancy%20Sensor%20Kit-green)](https://www.silabs.com/development-tools/sensors/occupancy-sensor-kit)
+[![Required board](https://img.shields.io/badge/Silabs-PIR%20Occupancy%20Sensor%20Kit-green)](https://www.silabs.com/development-tools/sensors/occupancy-sensor-kit)
 ![Build badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/pir_ira_s210st01_build_status.json)
 ![Flash badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/pir_ira_s210st01_common.json&label=Flash&query=flash&color=blue)
 ![RAM badge](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/SiliconLabs/application_examples_ci/master/hardware_drivers/pir_ira_s210st01_common.json&label=RAM&query=ram&color=blue)
