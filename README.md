@@ -1,3 +1,8 @@
+# Deprecation Notice
+This repository has been deprecated. It has been provided for historical reference only and should not be used. This repository will not be maintained. This code is subject to the quality disclaimer at the point in time prior to deprecation and superseded by this deprecation notice.
+
+For third party hardware drivers please use the [Third Party Hardware Drivers extension](https://github.com/SiliconLabs/third_party_hw_drivers_extension) instead.
+
 <table border="0">
   <tr>
     <td align="left" valign="middle">
